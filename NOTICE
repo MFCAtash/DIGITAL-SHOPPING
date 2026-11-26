@@ -1,0 +1,25 @@
+Digital Shopping
+Copyright (c) 2026 Digital Shopping contributors
+
+This project is licensed under the MIT License (see LICENSE).
+
+Third-party components distributed with this project:
+
+1. Fonts in apps/web/public/fonts/ are licensed under the SIL Open Font
+   License, Version 1.1. See apps/web/public/fonts/LICENSES.txt for the
+   copyright notices and the full license text.
+   - Vazirmatn (vazirmatn-{400,600,700}.woff2)
+   - IBM Plex Sans (plex-sans-{400,600,700}.woff2)
+   - IBM Plex Mono (plex-mono-{400,500}.woff2)
+
+2. Runtime and build dependencies (Django, Next.js, React, GSAP, Playwright,
+   and others) keep their own licenses; refer to their lockfiles and upstream
+   distributions. They are not redistributed as source in this repository.
+
+3. Product photographs and artwork have not been cleared for commercial
+   redistribution. See docs/ASSET-PROVENANCE.md for the current provenance
+   summary and the outstanding rights review.
+
+4. The Starlink brand is hidden by default (HIDDEN_BRANDS) pending legal
+   review. This project is not affiliated with or endorsed by any brand shown
+   in the catalogue.

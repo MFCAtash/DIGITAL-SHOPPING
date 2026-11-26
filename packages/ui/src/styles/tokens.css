@@ -1,0 +1,261 @@
+/* تولیدشده از src/tokens/tokens.ts با «npm run tokens:build». دستی ویرایش نکنید. */
+
+:root {
+  --cx-text-xs: 0.8125rem;
+  --cx-lh-xs: 1.6;
+  --cx-text-sm: 0.875rem;
+  --cx-lh-sm: 1.7;
+  --cx-text-base: 1rem;
+  --cx-lh-base: 1.9;
+  --cx-text-md: 1.125rem;
+  --cx-lh-md: 1.8;
+  --cx-text-lg: 1.25rem;
+  --cx-lh-lg: 1.5;
+  --cx-text-xl: 1.5rem;
+  --cx-lh-xl: 1.4;
+  --cx-text-2xl: 1.875rem;
+  --cx-lh-2xl: 1.3;
+  --cx-text-3xl: 2.375rem;
+  --cx-lh-3xl: 1.2;
+  --cx-text-4xl: 3rem;
+  --cx-lh-4xl: 1.1;
+  --cx-space-0: 0;
+  --cx-space-1: 0.25rem;
+  --cx-space-2: 0.5rem;
+  --cx-space-3: 0.75rem;
+  --cx-space-4: 1rem;
+  --cx-space-5: 1.25rem;
+  --cx-space-6: 1.5rem;
+  --cx-space-7: 2rem;
+  --cx-space-8: 2.5rem;
+  --cx-space-9: 3rem;
+  --cx-space-10: 4rem;
+  --cx-space-11: 5rem;
+  --cx-space-12: 6rem;
+  --cx-radius-0: 0;
+  --cx-radius-1: 2px;
+  --cx-radius-2: 4px;
+  --cx-radius-round: 999px;
+  --cx-motion-fast: 120ms;
+  --cx-motion-base: 200ms;
+  --cx-motion-slow: 320ms;
+  --cx-motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  --cx-z-dropdown: 20;
+  --cx-z-sticky: 30;
+  --cx-z-drawer: 40;
+  --cx-z-modal: 50;
+  --cx-z-toast: 60;
+  --cx-font-body: var(--font-latin, "IBM Plex Sans"), var(--font-fa, "Estedad"), "Vazirmatn", system-ui, "Segoe UI", Tahoma, sans-serif;
+  --cx-font-head: var(--font-latin, "IBM Plex Sans"), var(--font-fa-head, var(--font-fa, "Estedad")), "Vazirmatn", system-ui, Tahoma, sans-serif;
+  --cx-font-mono: var(--font-mono, "IBM Plex Mono"), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --cx-focus-width: 2px;
+  --cx-focus-offset: 2px;
+  --cx-measure: 68ch;
+  --cx-bg: #F3EFE7;
+  --cx-surface: #FBF9F4;
+  --cx-sunken: #EAE4D8;
+  --cx-media: #E9E3D6;
+  --cx-text: #17191C;
+  --cx-muted: #5E6168;
+  --cx-line: #D9D3C7;
+  --cx-line-strong: #857E70;
+  --cx-signal: #C42E16;
+  --cx-signal-ink: #FFFFFF;
+  --cx-brand: #0E5C54;
+  --cx-brand-ink: #FFFFFF;
+  --cx-positive: #1F7A4D;
+  --cx-warning: #8A5A00;
+  --cx-danger: #B3261E;
+  --cx-gold: #B8892B;
+  --cx-focus: #17191C;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cx-bg: #0B1020;
+    --cx-surface: #131A2C;
+    --cx-sunken: #0F1626;
+    --cx-media: #DAD5C9;
+    --cx-text: #F4F2ED;
+    --cx-muted: #A8B0C2;
+    --cx-line: #2A3450;
+    --cx-line-strong: #7A86B8;
+    --cx-signal: #FB7185;
+    --cx-signal-ink: #24090F;
+    --cx-brand: #5EEAD4;
+    --cx-brand-ink: #08201D;
+    --cx-positive: #4FB583;
+    --cx-warning: #E0A93B;
+    --cx-danger: #FF8A80;
+    --cx-gold: #D8B46A;
+    --cx-focus: #F4F2ED;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --cx-bg: #0B1020;
+  --cx-surface: #131A2C;
+  --cx-sunken: #0F1626;
+  --cx-media: #DAD5C9;
+  --cx-text: #F4F2ED;
+  --cx-muted: #A8B0C2;
+  --cx-line: #2A3450;
+  --cx-line-strong: #7A86B8;
+  --cx-signal: #FB7185;
+  --cx-signal-ink: #24090F;
+  --cx-brand: #5EEAD4;
+  --cx-brand-ink: #08201D;
+  --cx-positive: #4FB583;
+  --cx-warning: #E0A93B;
+  --cx-danger: #FF8A80;
+  --cx-gold: #D8B46A;
+  --cx-focus: #F4F2ED;
+  color-scheme: dark;
+}
+
+:root[data-theme="nebula"] {
+  --cx-bg: #0B0716;
+  --cx-surface: #1B1033;
+  --cx-sunken: #07040F;
+  --cx-media: #DAD5C9;
+  --cx-text: #F6F4FF;
+  --cx-muted: #C4B9E4;
+  --cx-line: #3B2A5C;
+  --cx-line-strong: #8B7AB8;
+  --cx-signal: #F9A8D4;
+  --cx-signal-ink: #2A0716;
+  --cx-brand: #A78BFA;
+  --cx-brand-ink: #1A0F2E;
+  --cx-positive: #6EE7B7;
+  --cx-warning: #FCD34D;
+  --cx-danger: #FB7185;
+  --cx-gold: #D8B46A;
+  --cx-focus: #F6F4FF;
+  color-scheme: dark;
+  --cx-glow-a: #7C3AED;
+  --cx-glow-b: #EC4899;
+  --cx-cosmic: 1;
+}
+
+:root[data-theme="aurora"] {
+  --cx-bg: #04140F;
+  --cx-surface: #06302B;
+  --cx-sunken: #020A08;
+  --cx-media: #DAD5C9;
+  --cx-text: #ECFFF9;
+  --cx-muted: #A7E8D5;
+  --cx-line: #125E50;
+  --cx-line-strong: #5EEAD4;
+  --cx-signal: #6EE7B7;
+  --cx-signal-ink: #04140F;
+  --cx-brand: #5EEAD4;
+  --cx-brand-ink: #04140F;
+  --cx-positive: #34D399;
+  --cx-warning: #FDE68A;
+  --cx-danger: #FB7185;
+  --cx-gold: #D8B46A;
+  --cx-focus: #ECFFF9;
+  color-scheme: dark;
+  --cx-glow-a: #10B981;
+  --cx-glow-b: #22D3EE;
+  --cx-cosmic: 1;
+}
+
+:root[data-theme="solar"] {
+  --cx-bg: #140D05;
+  --cx-surface: #3A2109;
+  --cx-sunken: #0A0602;
+  --cx-media: #DAD5C9;
+  --cx-text: #FFF7E8;
+  --cx-muted: #E9CFA3;
+  --cx-line: #6B4516;
+  --cx-line-strong: #D8B46A;
+  --cx-signal: #FBBF24;
+  --cx-signal-ink: #2A1700;
+  --cx-brand: #FCD34D;
+  --cx-brand-ink: #2A1700;
+  --cx-positive: #6EE7B7;
+  --cx-warning: #FDE68A;
+  --cx-danger: #FB7185;
+  --cx-gold: #FBBF24;
+  --cx-focus: #FFF7E8;
+  color-scheme: dark;
+  --cx-glow-a: #F59E0B;
+  --cx-glow-b: #FDE68A;
+  --cx-cosmic: 1;
+}
+
+:root[data-theme="ocean"] {
+  --cx-bg: #020B1A;
+  --cx-surface: #082C55;
+  --cx-sunken: #010713;
+  --cx-media: #DAD5C9;
+  --cx-text: #EDF6FF;
+  --cx-muted: #B9D7F7;
+  --cx-line: #1E4E8C;
+  --cx-line-strong: #60A5FA;
+  --cx-signal: #7DD3FC;
+  --cx-signal-ink: #02101F;
+  --cx-brand: #60A5FA;
+  --cx-brand-ink: #02101F;
+  --cx-positive: #6EE7B7;
+  --cx-warning: #FCD34D;
+  --cx-danger: #FB7185;
+  --cx-gold: #D8B46A;
+  --cx-focus: #EDF6FF;
+  color-scheme: dark;
+  --cx-glow-a: #2563EB;
+  --cx-glow-b: #38BDF8;
+  --cx-cosmic: 1;
+}
+
+:root[data-theme="rose"] {
+  --cx-bg: #160611;
+  --cx-surface: #431033;
+  --cx-sunken: #0C0309;
+  --cx-media: #DAD5C9;
+  --cx-text: #FFF3FA;
+  --cx-muted: #F0C3DD;
+  --cx-line: #7A1E5E;
+  --cx-line-strong: #F9A8D4;
+  --cx-signal: #F9A8D4;
+  --cx-signal-ink: #2A0716;
+  --cx-brand: #F472B6;
+  --cx-brand-ink: #2A0716;
+  --cx-positive: #6EE7B7;
+  --cx-warning: #FCD34D;
+  --cx-danger: #FB7185;
+  --cx-gold: #F0CFA5;
+  --cx-focus: #FFF3FA;
+  color-scheme: dark;
+  --cx-glow-a: #DB2777;
+  --cx-glow-b: #F472B6;
+  --cx-cosmic: 1;
+}
+
+:root[data-theme="silver"] {
+  --cx-bg: #0B0D12;
+  --cx-surface: #202737;
+  --cx-sunken: #05070B;
+  --cx-media: #DAD5C9;
+  --cx-text: #F8FAFC;
+  --cx-muted: #BAC4D4;
+  --cx-line: #3B4557;
+  --cx-line-strong: #94A3B8;
+  --cx-signal: #E2E8F0;
+  --cx-signal-ink: #0B0D12;
+  --cx-brand: #CBD5E1;
+  --cx-brand-ink: #0B0D12;
+  --cx-positive: #6EE7B7;
+  --cx-warning: #FCD34D;
+  --cx-danger: #FB7185;
+  --cx-gold: #E2E8F0;
+  --cx-focus: #F8FAFC;
+  color-scheme: dark;
+  --cx-glow-a: #64748B;
+  --cx-glow-b: #E2E8F0;
+  --cx-cosmic: 1;
+}
+

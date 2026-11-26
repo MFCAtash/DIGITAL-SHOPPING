@@ -1,0 +1,68 @@
+# runbook_urlها به فایل موجود docs/RUNBOOK.md و لنگرهای تعریفشده در آن میپردازند.
+groups:
+  - name: codex-core
+    rules:
+      - alert: ApiHighErrorRate
+        expr: sum(rate(codex_http_requests_total{status=~"5.."}[5m])) / clamp_min(sum(rate(codex_http_requests_total[5m])), 0.001) > 0.02
+        for: 5m
+        labels: { severity: critical, team: backend }
+        annotations:
+          summary: "نرخ خطای ۵xx بالای ۲٪ است"
+          runbook_url: "docs/RUNBOOK.md#api-high-error-rate"
+
+      - alert: ApiHighLatency
+        # SLO: p95 ≤ 800ms؛ هشدار دقیقاً روی همان آستانه است (نه ۱ ثانیه).
+        expr: histogram_quantile(0.95, sum(rate(codex_http_request_duration_seconds_bucket[5m])) by (le)) > 0.8
+        for: 10m
+        labels: { severity: warning, team: backend }
+        annotations:
+          summary: "زمان پاسخ p95 بالای ۸۰۰ms است"
+          runbook_url: "docs/RUNBOOK.md#api-high-latency"
+
+      - alert: PaymentSuccessRateDrop
+        expr: sum(rate(codex_orders_paid_total[15m])) / clamp_min(sum(rate(codex_payments_started_total[15m])), 0.001) < 0.7
+        for: 15m
+        labels: { severity: critical, team: backend }
+        annotations:
+          summary: "نرخ موفقیت پرداخت کمتر از ۷۰٪ است"
+          runbook_url: "docs/RUNBOOK.md#payment"
+
+      - alert: PaymentFailureSpike
+        expr: sum(rate(codex_payments_failed_total[5m])) > 1
+        for: 5m
+        labels: { severity: warning, team: backend }
+        annotations:
+          summary: "افزایش ناگهانی پرداختهای ناموفق"
+          runbook_url: "docs/RUNBOOK.md#payment"
+
+      - alert: ProcrastinateBacklog
+        expr: procrastinate_jobs_todo > 200
+        for: 10m
+        labels: { severity: warning, team: backend }
+        annotations:
+          summary: "صف کارها در حال انباشته شدن است"
+          runbook_url: "docs/RUNBOOK.md#worker-backlog"
+
+      - alert: PostgresDown
+        expr: up{job="postgres"} == 0
+        for: 2m
+        labels: { severity: critical, team: infra }
+        annotations:
+          summary: "دیتابیس در دسترس نیست"
+          runbook_url: "docs/RUNBOOK.md#database"
+
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 2m
+        labels: { severity: warning, team: infra }
+        annotations:
+          summary: "کش مشترک (Redis) در دسترس نیست"
+          runbook_url: "docs/RUNBOOK.md#redis"
+
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes{fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"}) < 0.15
+        for: 10m
+        labels: { severity: warning, team: infra }
+        annotations:
+          summary: "فضای دیسک کمتر از ۱۵٪ است"
+          runbook_url: "docs/RUNBOOK.md#disk"

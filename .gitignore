@@ -1,0 +1,44 @@
+# ---------- رازها و محیط ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ---------- پایتون ----------
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+backend/staticfiles/
+*.sqlite3
+*.sqlite3-journal
+
+# ---------- Node / Next / UI ----------
+node_modules/
+.next/
+out/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/next-server.log
+apps/web/AGENTS.md
+packages/ui/.build-preview/
+packages/ui/.build/
+
+# ---------- لاگ و سیستم ----------
+*.log
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+.DS_Store
+Thumbs.db
+
+# ---------- پشتیبانها و فایلهای محلی ----------
+codex-backup-*/
+*.bak
+*.tmp

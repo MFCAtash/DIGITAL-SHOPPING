@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>کانسپتهای لوگوی Digital Shopping</title>
+<style>
+  :root{
+    --night:#0B0716; --panel:#150F27; --paper:#F5EFE6;
+    --violet:#7C3AED; --lav:#C084FC; --pink:#F0ABFC;
+    --cyan:#22D3EE; --indigo:#6366F1; --magenta:#A855F7;
+    --rose:#FB7185; --amber:#FBBF24; --gold:#F59E0B; --silver:#E2E8F0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;color:#F7F3FF;
+    background:
+      radial-gradient(1100px 600px at 15% -10%, rgba(124,58,237,.30), transparent 60%),
+      radial-gradient(900px 700px at 95% 10%, rgba(34,211,238,.16), transparent 62%),
+      radial-gradient(800px 800px at 45% 110%, rgba(251,113,133,.16), transparent 60%),
+      #07040F;
+    min-height:100vh;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.30;
+    background-image:radial-gradient(#fff 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,#000,transparent 80%);}
+  .wrap{position:relative;max-width:1320px;margin:auto;padding:48px 28px 80px}
+  header{text-align:center;margin-bottom:38px}
+  .kicker{display:inline-block;padding:7px 16px;border:1px solid rgba(192,132,252,.45);border-radius:999px;
+    background:rgba(124,58,237,.12);color:#E9D5FF;font-size:13px;letter-spacing:.12em}
+  h1{font-size:clamp(28px,4vw,52px);line-height:1.2;margin:18px 0 10px;font-weight:800;
+    background:linear-gradient(100deg,#fff,#E9D5FF 35%,#67E8F9 70%,#FDA4AF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:#B9AECB;max-width:760px;margin:0 auto;line-height:1.9;font-size:15px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+  .card{position:relative;border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:26px 22px 22px;
+    background:linear-gradient(165deg,rgba(28,19,52,.94),rgba(11,7,22,.96));overflow:hidden;cursor:pointer;
+    transition:transform .35s ease,border-color .35s,box-shadow .35s;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .card:hover{transform:translateY(-6px);border-color:rgba(192,132,252,.55)}
+  .card.selected{border-color:#C084FC;box-shadow:0 0 0 2px rgba(192,132,252,.35),0 24px 70px rgba(124,58,237,.30)}
+  .card::after{content:"";position:absolute;inset:auto -30% -55% -30%;height:70%;filter:blur(48px);opacity:.55;pointer-events:none}
+  .card[data-halo="violet"]::after{background:radial-gradient(ellipse,#7C3AED,transparent 70%)}
+  .card[data-halo="aurora"]::after{background:radial-gradient(ellipse,#22D3EE,transparent 70%)}
+  .card[data-halo="rose"]::after{background:radial-gradient(ellipse,#FB7185,transparent 70%)}
+  .card[data-halo="solar"]::after{background:radial-gradient(ellipse,#F59E0B,transparent 70%)}
+  .stage{height:200px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;z-index:1}
+  .stage svg{width:130px;height:130px;flex:none;filter:drop-shadow(0 0 22px rgba(192,132,252,.55))}
+  .word{display:flex;flex-direction:column;line-height:1.05;text-align:left;direction:ltr}
+  .word b{font-size:27px;letter-spacing:-.5px;color:#fff}
+  .word span{font-size:16px;letter-spacing:.28em;color:#C4B5FD;text-transform:uppercase;margin-top:5px}
+  .card[data-halo="aurora"] .word span{color:#67E8F9}
+  .card[data-halo="rose"] .word span{color:#FDA4AF}
+  .card[data-halo="solar"] .word span{color:#FDE68A}
+  .badge{position:absolute;top:16px;right:18px;font-size:12px;color:#D8B4FE;border:1px solid rgba(192,132,252,.35);
+    padding:4px 10px;border-radius:999px;background:rgba(124,58,237,.14)}
+  h2{margin:6px 0 4px;font-size:20px;position:relative;z-index:1}
+  .en{color:#8B7FA3;font-size:12px;letter-spacing:.14em;direction:ltr;text-align:right;margin-bottom:12px}
+  .desc{color:#C7BCD8;font-size:14px;line-height:1.8;min-height:76px;position:relative;z-index:1}
+  .palette{display:flex;gap:7px;margin:14px 0;position:relative;z-index:1}
+  .dot{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.18);box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .meta{font-size:12px;color:#9C90AF;line-height:1.9;position:relative;z-index:1}
+  .meta b{color:#E9D5FF;font-weight:600}
+  .pick{margin-top:16px;width:100%;border:1px solid rgba(192,132,252,.5);background:rgba(124,58,237,.14);
+    color:#F3E8FF;padding:11px;border-radius:12px;font:inherit;font-size:14px;cursor:pointer;transition:.25s;position:relative;z-index:1}
+  .pick:hover{background:rgba(124,58,237,.32)}
+  .card.selected .pick{background:linear-gradient(100deg,#7C3AED,#A855F7);border-color:transparent;color:#fff}
+  .bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:9;display:flex;gap:10px;align-items:center;
+    background:rgba(14,9,26,.92);border:1px solid rgba(192,132,252,.4);backdrop-filter:blur(12px);
+    padding:10px 18px;border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,.5);font-size:14px;color:#E9D5FF}
+  .bar button{background:linear-gradient(100deg,#7C3AED,#A855F7);color:#fff;border:0;border-radius:999px;padding:8px 16px;font:inherit;cursor:pointer}
+  .bar button:disabled{opacity:.4;cursor:not-allowed}
+  @media(max-width:640px){.stage svg{width:104px;height:104px}.word b{font-size:22px}.wrap{padding:28px 16px 90px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="kicker">品牌身份 / BRAND IDENTITY · 2026</span>
+    <h1>چهار لوگوی جدید برای Digital Shopping</h1>
+    <p>هر کانسپت را ببینید، رنگ و هالهٔ آن را مقایسه کنید و سپس مرحله به مرحله انتخاب کنید. لوگوی نهایی به صورت SVG برداری و هماهنگ با ۶ تم کهکشانی ساخته میشود.</p>
+  </header>
+
+  <div class="grid">
+    <!-- A -->
+    <article class="card" data-id="A" data-halo="violet">
+      <span class="badge">پیشفرض · Nebula</span>
+      <div class="stage">
+        <svg viewBox="0 0 200 200" aria-label="Prism Core">
+          <defs>
+            <radialGradient id="ag"><stop offset="0" stop-color="#F0ABFC"/><stop offset=".45" stop-color="#7C3AED"/><stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
+            <linearGradient id="ad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9D5FF"/><stop offset=".5" stop-color="#A855F7"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>
+            <filter id="ablur"><feGaussianBlur stdDeviation="6"/></filter>
+          </defs>
+          <circle cx="100" cy="100" r="78" fill="url(#ag)" filter="url(#ablur)" opacity=".85"/>
+          <ellipse cx="100" cy="100" rx="86" ry="34" fill="none" stroke="#C084FC" stroke-width="1.2" opacity=".7" transform="rotate(-24 100 100)"/>
+          <ellipse cx="100" cy="100" rx="86" ry="34" fill="none" stroke="#67E8F9" stroke-width="1" opacity=".45" transform="rotate(38 100 100)"/>
+          <polygon points="100,34 156,100 100,166 44,100" fill="url(#ad)" stroke="#F5D0FE" stroke-width="2"/>
+          <polygon points="100,54 140,100 100,146 60,100" fill="#6D28D9" opacity=".85" stroke="#E9D5FF" stroke-width="1.5"/>
+          <polygon points="100,74 123,100 100,126 77,100" fill="#F0ABFC" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="7" fill="#fff"/>
+        </svg>
+        <div class="word"><b>Digital</b><span>Shopping</span></div>
+      </div>
+      <h2>هستهٔ منشور</h2><div class="en">PRISM CORE</div>
+      <div class="desc">هستهای بلوری از لایههای شیشهای تو در تو با دو مدار نوری — نماد دقت، اصالت و شفافیت قیمت.</div>
+      <div class="palette"><span class="dot" style="background:#7C3AED"></span><span class="dot" style="background:#C084FC"></span><span class="dot" style="background:#F0ABFC"></span><span class="dot" style="background:#0B0716"></span></div>
+      <div class="meta"><b>هاله:</b> Nebula محیطی · <b>مناسب:</b> تم بنفش پیشفرض · <b>Favicon:</b> عالی</div>
+      <button class="pick">انتخاب کانسپت A</button>
+    </article>
+
+    <!-- B -->
+    <article class="card" data-id="B" data-halo="aurora">
+      <span class="badge"> futuristic</span>
+      <div class="stage">
+        <svg viewBox="0 0 200 200" aria-label="Nexus Loop">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#22D3EE"/><stop offset=".5" stop-color="#6366F1"/><stop offset="1" stop-color="#A855F7"/></linearGradient>
+            <filter id="bblur"><feGaussianBlur stdDeviation="5"/></filter>
+          </defs>
+          <circle cx="100" cy="100" r="70" fill="#22D3EE" opacity=".16" filter="url(#bblur)"/>
+          <path d="M100 100 C58 44 22 62 36 108 C50 152 92 152 100 100 C108 48 150 48 164 92 C178 138 142 156 100 100 Z"
+                fill="none" stroke="url(#bg)" stroke-width="15" stroke-linecap="round" opacity=".9"/>
+          <path d="M100 100 C58 44 22 62 36 108 C50 152 92 152 100 100 C108 48 150 48 164 92 C178 138 142 156 100 100 Z"
+                fill="none" stroke="#fff" stroke-width="2" opacity=".8"/>
+          <circle cx="100" cy="100" r="9" fill="#fff"/>
+          <circle cx="36" cy="108" r="4" fill="#67E8F9"/><circle cx="164" cy="92" r="4" fill="#F0ABFC"/>
+        </svg>
+        <div class="word"><b>Digital</b><span>Shopping</span></div>
+      </div>
+      <h2>حلقهٔ نکسوس</h2><div class="en">NEXUS LOOP</div>
+      <div class="desc">دو روبان نوری درهمتنیده که هم بیانهایت و هم حرف D را میسازند — نماد اتصال، مقایسه و جریان خرید.</div>
+      <div class="palette"><span class="dot" style="background:#22D3EE"></span><span class="dot" style="background:#6366F1"></span><span class="dot" style="background:#A855F7"></span><span class="dot" style="background:#070B1A"></span></div>
+      <div class="meta"><b>هاله:</b> Aurora خطی · <b>مناسب:</b> تم Ocean / Aurora · <b>انیمیشن:</b> چرخش نور</div>
+      <button class="pick">انتخاب کانسپت B</button>
+    </article>
+
+    <!-- C -->
+    <article class="card" data-id="C" data-halo="rose">
+      <span class="badge">warm & smart</span>
+      <div class="stage">
+        <svg viewBox="0 0 200 200" aria-label="Quantum Spark">
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FB7185"/><stop offset="1" stop-color="#FBBF24"/></linearGradient>
+            <filter id="cblur"><feGaussianBlur stdDeviation="6"/></filter>
+          </defs>
+          <circle cx="100" cy="100" r="72" fill="#FB7185" opacity=".20" filter="url(#cblur)"/>
+          <path d="M62 82 L138 82 L130 174 L70 174 Z" fill="#1B1024" stroke="url(#cg)" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M84 84 C84 48 116 48 116 84" fill="none" stroke="#FDA4AF" stroke-width="5" stroke-linecap="round"/>
+          <g stroke="#FBBF24" stroke-width="2" opacity=".85">
+            <path d="M62 112 H44 M62 138 H50 M138 112 H156 M138 138 H150"/>
+            <path d="M82 174 V186 M118 174 V186"/>
+          </g>
+          <g fill="#FDE68A"><circle cx="42" cy="112" r="3"/><circle cx="48" cy="138" r="3"/><circle cx="158" cy="112" r="3"/><circle cx="152" cy="138" r="3"/></g>
+          <path d="M100 96 L108 118 L130 126 L108 134 L100 156 L92 134 L70 126 L92 118 Z" fill="#FFF7ED" stroke="#FBBF24" stroke-width="2"/>
+        </svg>
+        <div class="word"><b>Digital</b><span>Shopping</span></div>
+      </div>
+      <h2>جرقهٔ کوانتوم</h2><div class="en">QUANTUM SPARK</div>
+      <div class="desc">کیسهٔ خریدی که با مدار میکروچیپ ترکیب شده و جرقهای نورانی از مرکز آن میجوشد — نماد خرید هوشمند.</div>
+      <div class="palette"><span class="dot" style="background:#FB7185"></span><span class="dot" style="background:#F472B6"></span><span class="dot" style="background:#FBBF24"></span><span class="dot" style="background:#F5EFE6"></span></div>
+      <div class="meta"><b>هاله:</b> Rose-gold ذرهای · <b>مناسب:</b> تم Rose / Solar · <b>حس:</b> گرم و انسانی</div>
+      <button class="pick">انتخاب کانسپت C</button>
+    </article>
+
+    <!-- D -->
+    <article class="card" data-id="D" data-halo="solar">
+      <span class="badge">global edition</span>
+      <div class="stage">
+        <svg viewBox="0 0 200 200" aria-label="Orbit Cart">
+          <defs>
+            <radialGradient id="dg"><stop stop-color="#FEF3C7"/><stop offset=".5" stop-color="#F59E0B"/><stop offset="1" stop-color="#F59E0B" stop-opacity="0"/></radialGradient>
+            <filter id="dblur"><feGaussianBlur stdDeviation="6"/></filter>
+          </defs>
+          <circle cx="100" cy="100" r="74" fill="url(#dg)" filter="url(#dblur)"/>
+          <ellipse cx="100" cy="100" rx="88" ry="36" fill="none" stroke="#FDE68A" stroke-width="2" opacity=".85" transform="rotate(-18 100 100)"/>
+          <ellipse cx="100" cy="100" rx="72" ry="72" fill="none" stroke="#E2E8F0" stroke-width="1.2" opacity=".45"/>
+          <ellipse cx="100" cy="100" rx="88" ry="36" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity=".55" transform="rotate(52 100 100)"/>
+          <circle cx="100" cy="100" r="40" fill="#0B0716" stroke="#F59E0B" stroke-width="2"/>
+          <path d="M78 90 H86 L94 122 H118 L126 96 H90" fill="none" stroke="#FDE68A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="98" cy="130" r="4" fill="#E2E8F0"/><circle cx="118" cy="130" r="4" fill="#E2E8F0"/>
+        </svg>
+        <div class="word"><b>Digital</b><span>Shopping</span></div>
+      </div>
+      <h2>سبد مداری</h2><div class="en">ORBIT CART</div>
+      <div class="desc">سبد خرید انتزاعی در مرکز سه حلقهٔ مداری با هستهای طلایی — نماد جهانی بودن و قیمت جهانی.</div>
+      <div class="palette"><span class="dot" style="background:#F59E0B"></span><span class="dot" style="background:#FDE68A"></span><span class="dot" style="background:#E2E8F0"></span><span class="dot" style="background:#0A0A12"></span></div>
+      <div class="meta"><b>هاله:</b> Corona خورشیدی · <b>مناسب:</b> تم Solar / Silver · <b>انیمیشن:</b> چرخش مدار</div>
+      <button class="pick">انتخاب کانسپت D</button>
+    </article>
+  </div>
+</div>
+
+<div class="bar">
+  <span id="status">هنوز کانسپتی انتخاب نشده است</span>
+  <button id="next" disabled>مرحلهٔ بعد: پالت و هاله</button>
+</div>
+
+<script>
+  const cards=[...document.querySelectorAll('.card')];
+  const statusEl=document.getElementById('status');
+  const next=document.getElementById('next');
+  let selected=localStorage.getItem('cx-logo-concept')||'';
+  function paint(){
+    cards.forEach(c=>c.classList.toggle('selected',c.dataset.id===selected));
+    statusEl.textContent=selected?`کانسپت ${selected} انتخاب شد — آمادهٔ مرحلهٔ بعد`:'هنوز کانسپتی انتخاب نشده است';
+    next.disabled=!selected;
+  }
+  cards.forEach(c=>c.addEventListener('click',()=>{selected=c.dataset.id;localStorage.setItem('cx-logo-concept',selected);paint();}));
+  next.addEventListener('click',()=>{if(selected)location.hash='#step2';});
+  paint();
+</script>
+</body>
+</html>

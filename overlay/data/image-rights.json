@@ -1,0 +1,413 @@
+{
+  "note": "دفتر حقوق عکسها: یک ورودی به ازای هر عکس معرفی‌شده در real-catalog.json. عکسهای کاتالوگ با مجوز source-attribution ثبت شدهاند و وضعیت rights_status=needs-review دارد؛ بازبینی حقوقی قبل از استفادهٔ تجاری لازم است. عکسهای GTA VI توسط کاربر ارائه شدهاند.",
+  "images": [
+    {
+      "file": "samsung-galaxy-s26-ultra-1.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-256gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-4.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-256gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-3.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-256gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-2.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-256gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-1.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-512gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-4.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-512gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s26-ultra-2.webp",
+      "product_slug": "samsung-galaxy-s26-ultra-512gb",
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-18-pro-max-1.webp",
+      "product_slug": "apple-iphone-18-pro-max",
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-18-pro-max-2.webp",
+      "product_slug": "apple-iphone-18-pro-max",
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-18-pro-max-3.webp",
+      "product_slug": "apple-iphone-18-pro-max",
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-18-pro-max-4.webp",
+      "product_slug": "apple-iphone-18-pro-max",
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-18-pro-1.webp",
+      "product_slug": "apple-iphone-18-pro",
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-air-1.webp",
+      "product_slug": "apple-iphone-air",
+      "source": "https://www.tomsguide.com/phones/iphones/iphone-17-pre-order-deals-heres-how-to-get-apples-new-phones-for-free",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-legion-7i-2026-1.webp",
+      "product_slug": "lenovo-legion-7i-2026-rtx-5070",
+      "source": "https://gaminglaptop.deals/laptops/lenovo-legion-7i-2026",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-legion-5i-gen-11-2026-1.webp",
+      "product_slug": "lenovo-legion-5i-gen-11-2026",
+      "source": "https://gizmodo.com/lenovo-legion-5i-2026-review-2000820869",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-legion-5i-gen-11-2026-2.webp",
+      "product_slug": "lenovo-legion-5i-gen-11-2026",
+      "source": "https://gizmodo.com/lenovo-legion-5i-2026-review-2000820869",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-18-pro-max-1.webp",
+      "product_slug": "xiaomi-18-pro-max-12gb-256gb",
+      "source": "https://www.technology.org/2026/09/25/xiaomi-18-pro-max-launch-price-specs/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-loq-15-2026-1.webp",
+      "product_slug": "lenovo-loq-15-2026",
+      "source": "https://www.notebookcheck.net/New-affordable-Lenovo-LOQ-gaming-laptop-debuts-with-up-to-Nvidia-RTX-5060-and-AMD-CPU.1196593.0.html",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-tuf-gaming-15-1.webp",
+      "product_slug": "asus-tuf-gaming-15",
+      "source": "user upload",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "منبع عکس در کاتالوگ ذکر نشده؛ پیش از انتشار، منبع و مجوز آن باید تأیید شود."
+    },
+    {
+      "file": "asus-tuf-gaming-15-2.webp",
+      "product_slug": "asus-tuf-gaming-15",
+      "source": "user upload",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "منبع عکس در کاتالوگ ذکر نشده؛ پیش از انتشار، منبع و مجوز آن باید تأیید شود."
+    },
+    {
+      "file": "apple-iphone-17-pro-max-256gb-1.webp",
+      "product_slug": "apple-iphone-17-pro-max-256gb",
+      "source": "https://www.gsmarena.com/iphone_18_pro_max_vs_iphone_17_pro_max_battery_camera_price_compared-news-74787.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-17-pro-max-256gb-2.webp",
+      "product_slug": "apple-iphone-17-pro-max-256gb",
+      "source": "https://www.gsmarena.com/iphone_18_pro_max_vs_iphone_17_pro_max_battery_camera_price_compared-news-74787.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "apple-iphone-17-pro-max-256gb-3.webp",
+      "product_slug": "apple-iphone-17-pro-max-256gb",
+      "source": "https://www.gsmarena.com/iphone_18_pro_max_vs_iphone_17_pro_max_battery_camera_price_compared-news-74787.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-scar-16-1.webp",
+      "product_slug": "asus-rog-strix-scar-16-rtx-5080",
+      "source": "https://www.notebookcheck.net/Asus-announces-ROG-Strix-Scar-16-and-18-2025-pricing-and-availability.967608.0.html",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-scar-16-1.webp",
+      "product_slug": "asus-rog-strix-scar-18-2025-rtx-5080",
+      "source": "https://www.walmart.com/c/kp/rog-strix-scar",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-g16-2026-rtx-5080-1.webp",
+      "product_slug": "asus-rog-strix-g16-2026-rtx-5080",
+      "source": "https://www.pcguide.com/deals/insane-asus-rtx-5080-gaming-laptop-deal-with-core-ultra-9-290hx-plus-packs-serious-firepower-300hz-display-32gb-ddr5-ram-and-more/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-g16-2026-rtx-5080-2.webp",
+      "product_slug": "asus-rog-strix-g16-2026-rtx-5080",
+      "source": "https://www.pcguide.com/deals/insane-asus-rtx-5080-gaming-laptop-deal-with-core-ultra-9-290hx-plus-packs-serious-firepower-300hz-display-32gb-ddr5-ram-and-more/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-g16-2026-rtx-5080-3.webp",
+      "product_slug": "asus-rog-strix-g16-2026-rtx-5080",
+      "source": "https://www.pcguide.com/deals/insane-asus-rtx-5080-gaming-laptop-deal-with-core-ultra-9-290hx-plus-packs-serious-firepower-300hz-display-32gb-ddr5-ram-and-more/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-rog-strix-scar-16-1.webp",
+      "product_slug": "asus-rog-strix-g16-2026-rtx-5080",
+      "source": "https://www.pcguide.com/deals/insane-asus-rtx-5080-gaming-laptop-deal-with-core-ultra-9-290hx-plus-packs-serious-firepower-300hz-display-32gb-ddr5-ram-and-more/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-tuf-gaming-a15-fa506ncq-2026-1.webp",
+      "product_slug": "asus-tuf-gaming-a15-fa506ncq-2026",
+      "source": "https://us.smartprix.com/laptops/asus-tuf-gaming-a15-2026-fa506ncq-hn008w-ppd1ayp2l27a",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-tuf-gaming-a17-fa707xi-ns94-1.webp",
+      "product_slug": "asus-tuf-gaming-a17-fa707xi-ns94",
+      "source": "https://www.notebookcheck.net/Asus-TUF-Gaming-A17-FA707XI-laptop-review-140-W-GeForce-RTX-4070-for-1400.788416.0.html",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-tuf-gaming-f15-fx507-rtx-4070-1.webp",
+      "product_slug": "asus-tuf-gaming-f15-fx507-rtx-4070",
+      "source": "https://www.notebookcheck.net/RTX-4070-equipped-ASUS-TUF-Gaming-F15-drops-back-to-120-day-low-price-following-18-discount.738249.0.html",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "asus-tuf-gaming-f17-fx707vv-1.webp",
+      "product_slug": "asus-tuf-gaming-f17-fx707vv",
+      "source": "https://www.ebay.com/itm/146476589697",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-thinkpad-t480-1.webp",
+      "product_slug": "lenovo-thinkpad-t480",
+      "source": "https://laptopmedia.com/laptop-specs/lenovo-thinkpad-t480-4/specs/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "lenovo-thinkpad-t480-2.webp",
+      "product_slug": "lenovo-thinkpad-t480",
+      "source": "https://laptopmedia.com/laptop-specs/lenovo-thinkpad-t480-4/specs/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "starlink-mini-kit-1.webp",
+      "product_slug": "starlink-mini-kit",
+      "source": "https://www.thepricer.org/how-much-does-starlink-cost/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "starlink-standard-kit-v4-1.webp",
+      "product_slug": "starlink-standard-kit-v4",
+      "source": "https://www.thepricer.org/how-much-does-starlink-cost/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "starlink-standard-kit-v4-2.webp",
+      "product_slug": "starlink-standard-kit-v4",
+      "source": "https://www.thepricer.org/how-much-does-starlink-cost/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-redmi-note-14-5g-1.webp",
+      "product_slug": "xiaomi-redmi-note-14-5g",
+      "source": "https://m.gsmarena.com/xiaomi_redmi_note_14_5g_(global)-13615.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-redmi-note-14-5g-2.webp",
+      "product_slug": "xiaomi-redmi-note-14-5g",
+      "source": "https://m.gsmarena.com/xiaomi_redmi_note_14_5g_(global)-13615.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-poco-x7-1.webp",
+      "product_slug": "xiaomi-poco-x7",
+      "source": "https://m.gsmarena.com/xiaomi_poco_x7-ampp-13604.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-poco-x7-2.webp",
+      "product_slug": "xiaomi-poco-x7",
+      "source": "https://m.gsmarena.com/xiaomi_poco_x7-ampp-13604.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-poco-f8-pro-1.webp",
+      "product_slug": "xiaomi-poco-f8-pro",
+      "source": "https://www.fonearena.com/blog/469763/poco-f8-pro-price-specifications.html",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-poco-x8-pro-1.webp",
+      "product_slug": "xiaomi-poco-x8-pro",
+      "source": "https://the-gadgeteer.com/2026/07/16/poco-x8-pro-specs-price/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "xiaomi-poco-x8-pro-2.webp",
+      "product_slug": "xiaomi-poco-x8-pro",
+      "source": "https://the-gadgeteer.com/2026/07/16/poco-x8-pro-specs-price/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "samsung-galaxy-s25-fe-1.webp",
+      "product_slug": "samsung-galaxy-s25-fe",
+      "source": "https://www.gsmarena.com/samsung_galaxy_s25_fe-review-2880.php",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "sony-playstation-5-pro-2.webp",
+      "product_slug": "sony-playstation-5-pro",
+      "source": "https://tech-insider.org/ps5-pro-vs-ps5-2026/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "sony-playstation-5-pro-1.webp",
+      "product_slug": "sony-playstation-5-pro",
+      "source": "https://tech-insider.org/ps5-pro-vs-ps5-2026/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "sony-playstation-5-pro-3.webp",
+      "product_slug": "sony-playstation-5-pro",
+      "source": "https://tech-insider.org/ps5-pro-vs-ps5-2026/",
+      "license": "source-attribution",
+      "rights_status": "needs-review",
+      "note": "عکس منتشرشده در صفحهٔ منبع محصول؛ امکان بازتوزیع آن نیاز به بازبینی حقوقی دارد."
+    },
+    {
+      "file": "gta-vi-cover-hd.webp",
+      "product_slug": "grand-theft-auto-vi",
+      "source": "user upload",
+      "license": "user-provided",
+      "rights_status": "user-provided",
+      "note": "آپلود کاربر؛ پیش از انتشار، مالکیت و اجازهٔ استفاده توسط کاربر تأیید شد."
+    },
+    {
+      "file": "gta-vi-collage-hd.webp",
+      "product_slug": "grand-theft-auto-vi",
+      "source": "user upload",
+      "license": "user-provided",
+      "rights_status": "user-provided",
+      "note": "آپلود کاربر؛ پیش از انتشار، مالکیت و اجازهٔ استفاده توسط کاربر تأیید شد."
+    }
+  ]
+}

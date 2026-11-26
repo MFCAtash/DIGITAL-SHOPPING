@@ -1,0 +1,19 @@
+title = "codex-shopping gitleaks"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "مقدارهای ساختگی قالب و CI؛ رازهای واقعی هرگز اینجا مجاز نمی‌شوند"
+paths = [
+  '''backend/\.env\.example$''',
+]
+regexes = [
+  '''change-me(-to-a-long-random-string)?''',
+  # تمام مقادیر آزمایشی CI (غیررازاند؛ صرفاً برای عبور از چک fail-closed تولید لازماند)
+  '''ci-only-[a-z0-9-]+''',
+  # مقادیر هگزی ثابت تعریفشده در backend-ci.yml (فاقد معنی و دسترسی خارجیاند)
+  '''4f21a9c7e80b6d53fa17c248e9b605d37a1f4c8d29e670b5a3f1098dc42e6b71''',
+  '''9d8c4b1a76e25f03c9a148db5e072f6b3d91ac48fe720b6519c4d8a3f27e0b95''',
+  '''b6e41c9d82a7503fc14a8b27e690d5f3a7c218b4e9d06f582ca13e7b49d0f2685''',
+]

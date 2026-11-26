@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>پیشنمایش نهایی — حلقهٔ نکسوس</title>
+<style>
+  :root{
+    --night:#0B0716;
+    --c1:#22D3EE; --c2:#6366F1; --c3:#A855F7;
+    --halo:#22D3EE; --paper:#F5EFE6;
+  }
+  body{margin:0;font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;color:#F7F3FF;
+    background:radial-gradient(1000px 600px at 20% 0%,color-mix(in srgb,var(--c2) 24%,transparent),transparent 60%),
+      radial-gradient(900px 700px at 90% 100%,color-mix(in srgb,var(--c3) 20%,transparent),transparent 60%),#07040F;min-height:100vh}
+  .wrap{max-width:1120px;margin:auto;padding:44px 24px 80px}
+  .tag{display:inline-block;padding:6px 14px;border:1px solid color-mix(in srgb,var(--c3) 50%,transparent);border-radius:999px;
+    background:color-mix(in srgb,var(--c2) 12%,transparent);font-size:12px;letter-spacing:.1em;color:#E9D5FF}
+  h1{font-size:clamp(26px,3.6vw,44px);margin:16px 0 8px}
+  p.lead{color:#B9AECB;line-height:1.9;max-width:760px}
+  .preview{position:relative;margin:32px 0;border:1px solid rgba(255,255,255,.10);border-radius:26px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(24,16,44,.96),rgba(8,5,18,.98));padding:70px 30px;text-align:center}
+  .preview::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+    background-image:radial-gradient(#fff 1px,transparent 1px);background-size:38px 38px}
+  .logo{position:relative;display:inline-flex;align-items:center;gap:20px;direction:ltr}
+  .logo svg{width:180px;height:180px;flex:none;filter:drop-shadow(0 0 28px color-mix(in srgb,var(--c1) 55%,transparent))}
+  .word{display:flex;flex-direction:column;text-align:left;line-height:1.04}
+  .word b{font-size:48px;color:#fff;letter-spacing:-1.2px}
+  .word span{font-size:21px;letter-spacing:.34em;color:var(--c1);text-transform:uppercase;margin-top:8px}
+  .spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:34px}
+  .spec div{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px;background:rgba(255,255,255,.03);font-size:13px;color:#B9AECB;line-height:1.9}
+  .spec b{display:block;color:#fff;font-size:14px;margin-bottom:4px}
+  .themes{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+  .themes button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#E9D5FF;
+    border-radius:999px;padding:9px 15px;font:inherit;font-size:13px;cursor:pointer}
+  .themes button:hover{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 14%,transparent)}
+  .mini{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .frame{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 22px;background:rgba(255,255,255,.03);text-align:center;min-width:200px}
+  .frame small{display:block;color:#948AA8;margin-bottom:12px}
+  .frame svg{width:64px;height:64px;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c1) 55%,transparent))}
+  .favicon{width:48px;height:48px;border-radius:12px;background:var(--night);display:grid;place-items:center;margin:auto;
+    border:1px solid color-mix(in srgb,var(--c3) 50%,transparent)}
+  .favicon svg{width:34px;height:34px}
+  .note{margin-top:28px;text-align:center;color:#9C90AF;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">FINAL PREVIEW · LOGO v2</span>
+  <h1>حلقهٔ نکسوس — نسخهٔ نهایی انتخابی شما</h1>
+  <p class="lead">Aurora · هالهٔ ذرهای · تایپوگرافی دووزن · چرخش نور · سازگار با ۶ تم · هدر، فوتر، فاویکن، PWA و لودر.</p>
+
+  <div class="preview">
+    <div class="logo">
+      <svg viewBox="0 0 200 200" aria-label="Nexus Loop final">
+        <defs>
+          <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--c1)"/><stop offset=".5" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
+          </linearGradient>
+          <filter id="fb"><feGaussianBlur stdDeviation="5"/></filter>
+          <path id="fp" d="M100 100 C58 44 22 62 36 108 C50 152 92 152 100 100 C108 48 150 48 164 92 C178 138 142 156 100 100 Z"/>
+          <symbol id="mark" viewBox="0 0 200 200">
+            <use href="#fp" fill="none" stroke="url(#fg)" stroke-width="15" stroke-linecap="round"/>
+            <use href="#fp" fill="none" stroke="#fff" stroke-width="1.6" opacity=".72"/>
+            <circle cx="100" cy="100" r="8" fill="#fff"/>
+          </symbol>
+        </defs>
+        <circle cx="100" cy="100" r="70" fill="var(--c1)" opacity=".18" filter="url(#fb)"/>
+        <use href="#fp" fill="none" stroke="url(#fg)" stroke-width="15" stroke-linecap="round" opacity=".92"/>
+        <use href="#fp" fill="none" stroke="#fff" stroke-width="1.6" opacity=".72"/>
+        <g fill="var(--c1)">
+          <circle cx="34" cy="74" r="2.2"><animate attributeName="opacity" values=".2;1;.2" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle cx="170" cy="66" r="1.8"><animate attributeName="opacity" values=".2;1;.2" dur="3.1s" begin=".6s" repeatCount="indefinite"/></circle>
+          <circle cx="62" cy="168" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="2.8s" begin="1.2s" repeatCount="indefinite"/></circle>
+          <circle cx="150" cy="160" r="1.6"><animate attributeName="opacity" values=".2;1;.2" dur="3.4s" begin=".3s" repeatCount="indefinite"/></circle>
+          <circle cx="24" cy="132" r="1.5"><animate attributeName="opacity" values=".2;1;.2" dur="2.6s" begin=".9s" repeatCount="indefinite"/></circle>
+          <circle cx="184" cy="120" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="3s" begin="1.5s" repeatCount="indefinite"/></circle>
+        </g>
+        <circle r="4.5" fill="#fff">
+          <animateMotion dur="5s" repeatCount="indefinite"><mpath href="#fp"/></animateMotion>
+        </circle>
+        <circle cx="100" cy="100" r="8" fill="#fff"/>
+      </svg>
+      <div class="word"><b>Digital</b><span>Shopping</span></div>
+    </div>
+
+    <div class="themes">
+      <button data-t="aurora">Aurora</button>
+      <button data-t="nebula">Nebula</button>
+      <button data-t="ocean">Ocean</button>
+      <button data-t="rose">Rose</button>
+      <button data-t="solar">Solar</button>
+      <button data-t="silver">Silver</button>
+    </div>
+
+    <div class="spec">
+      <div><b>فرم</b>دو روبان درهمتنیده — بیانهایت + حرف D</div>
+      <div><b>پالت</b>Aurora: #22D3EE → #6366F1 → #A855F7</div>
+      <div><b>هاله</b>ذرات نورانی + حلقهٔ نور متحرک (۵ ثانیه)</div>
+      <div><b>تایپوگرافی</b>Digital ضخیم · Shopping نازک با Tracking</div>
+    </div>
+
+    <div class="mini">
+      <div class="frame"><small>هدر سایت</small><svg viewBox="0 0 200 200"><use href="#mark"/></svg></div>
+      <div class="frame"><small>فاویکن / PWA</small><div class="favicon"><svg viewBox="0 0 200 200"><use href="#mark"/></svg></div></div>
+      <div class="frame"><small>لودر صفحه</small><svg viewBox="0 0 200 200"><use href="#mark"/></svg></div>
+    </div>
+    <div class="note">روی رنگها کلیک کنید تا لوگو را با ۶ تم کهکشانی ببینید.</div>
+  </div>
+</div>
+<script>
+  const palettes={
+    aurora:["#22D3EE","#6366F1","#A855F7"],
+    nebula:["#C084FC","#7C3AED","#F0ABFC"],
+    ocean:["#67E8F9","#0EA5E9","#2563EB"],
+    rose:["#FDA4AF","#FB7185","#A855F7"],
+    solar:["#FDE68A","#F59E0B","#FBBF24"],
+    silver:["#FFFFFF","#E2E8F0","#94A3B8"]
+  };
+  document.querySelectorAll('.themes button').forEach(b=>b.addEventListener('click',()=>{
+    const p=palettes[b.dataset.t];const r=document.documentElement.style;
+    r.setProperty('--c1',p[0]);r.setProperty('--c2',p[1]);r.setProperty('--c3',p[2]);
+  }));
+</script>
+</body>
+</html>

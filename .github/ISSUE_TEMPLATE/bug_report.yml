@@ -1,0 +1,59 @@
+name: گزارش باگ
+description: مشکلی در عملکرد، ظاهر یا سرویسها پیدا کردید؟
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        قبل از ثبت، لطفاً مطمئن شوید که نسخهٔ فعلی `main` را امتحان کرده و issue تکراری وجود ندارد.
+  - type: dropdown
+    id: area
+    attributes:
+      label: بخش مربوطه
+      options:
+        - Backend / API
+        - Web / Storefront
+        - UI package
+        - CI / Deploy / Ops
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: چه اتفاقی افتاد؟
+      description: توضیح واضح و مختصر از مشکل
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: چه انتظاری داشتید؟
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: مراحل بازتولید
+      value: |
+        1. رفتن به `...`
+        2. کلیک روی `...`
+        3. مشاهدهٔ خطا
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: محیط
+      placeholder: "local (sqlite_local) / staging / production — Windows / Linux — Chrome 1xx"
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: لاگ یا اسکرینشات
+      render: shell
+    validations:
+      required: false

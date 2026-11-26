@@ -1,0 +1,69 @@
+name: web-ci
+on:
+  pull_request:
+    paths: ["apps/web/**", "packages/ui/**", "contracts/openapi.json", ".github/workflows/web-ci.yml"]
+  push:
+    branches: [main]
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      # next.config.mjs API_BASE_URL در زمان بیلد خوانده میشود و در rewrites کامپایل میشود؛
+      # بنابراین همان آدرس mock را که Playwright روی پورت ۴۰۰۰ بالا میآورد، موقع بیلد هم میدهیم.
+      E2E_API_BASE_URL: http://127.0.0.1:4000/api/v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            apps/web/package-lock.json
+            packages/ui/package-lock.json
+      - name: Install UI (lockfile)
+        working-directory: packages/ui
+        run: npm ci
+      - name: Install web (lockfile)
+        run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Build (rewrites به API شبیهسازی شدهٔ پورت ۴۰۰۰)
+        env:
+          API_BASE_URL: ${{ env.E2E_API_BASE_URL }}
+        run: npm run build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E golden path (3 سناریو روی همان API بیلدشده)
+        run: npm run test:e2e
+      - name: Lighthouse CI (budgets از lighthouserc.json)
+        # SSR (lib/server-api.ts و app/layout.tsx) نیز API_BASE_URL را در زمان اجرا میخواند.
+        env:
+          API_BASE_URL: ${{ env.E2E_API_BASE_URL }}
+        run: |
+          # Lighthouse هم باید همان API شبیهسازی شده را ببیند؛ Next در بیلد به ۴۰۰۰ اشاره میکند.
+          node e2e/mock-api.mjs > mock-api.log 2>&1 &
+          npm run start > next-server.log 2>&1 &
+          npx --yes wait-on@8 http://127.0.0.1:4000/api/v1/health
+          npx --yes wait-on@8 http://127.0.0.1:3000
+          npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-logs
+          path: |
+            apps/web/next-server.log
+            apps/web/mock-api.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: next-build
+          path: apps/web/.next

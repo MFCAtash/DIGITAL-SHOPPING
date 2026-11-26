@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Shopping — پیشنهاد کاور ۸ محصولی</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#08090f;color:#eef0f8;font-family:Vazirmatn,"Segoe UI",Tahoma,sans-serif;line-height:1.6}
+  .wrap{max-width:1320px;margin:0 auto;padding:28px 20px 90px}
+  .eyebrow{font-size:11px;letter-spacing:.2em;color:#8a8fa4;margin:0 0 8px;text-transform:uppercase}
+  h1{margin:0;font-size:32px;letter-spacing:-.03em}
+  .lead{color:#9aa0b4;font-size:14px;max-width:85ch;margin:8px 0 18px}
+  .picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .picker button{border:1px solid #2b3042;background:#12151f;color:#cdd2e3;border-radius:999px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer;transition:.2s}
+  .picker button[aria-pressed="true"]{background:#f3f4fa;color:#0a0b10;border-color:#f3f4fa}
+  .hint{font-size:12px;color:#7f8599;margin:0 0 20px}
+
+  .stage{
+    --bg1:#0B0716;--bg2:#1B1033;--glow-a:#7C3AED;--glow-b:#EC4899;--accent:#A78BFA;--ink:#F6F4FF;--muted:#C4B9E4;
+    position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:18px;min-height:640px;
+    background:linear-gradient(150deg,var(--bg1),var(--bg2));color:var(--ink);transition:background .4s
+  }
+  .stage[data-palette="aurora"]{--bg1:#04140F;--bg2:#06302B;--glow-a:#10B981;--glow-b:#22D3EE;--accent:#6EE7B7;--ink:#ECFFF9;--muted:#A7E8D5}
+  .stage[data-palette="solar"]{--bg1:#140D05;--bg2:#3A2109;--glow-a:#F59E0B;--glow-b:#FDE68A;--accent:#FBBF24;--ink:#FFF7E8;--muted:#E9CFA3}
+  .stage[data-palette="ocean"]{--bg1:#020B1A;--bg2:#082C55;--glow-a:#2563EB;--glow-b:#38BDF8;--accent:#60A5FA;--ink:#EDF6FF;--muted:#B9D7F7}
+  .stage[data-palette="rose"]{--bg1:#160611;--bg2:#431033;--glow-a:#DB2777;--glow-b:#F472B6;--accent:#F9A8D4;--ink:#FFF3FA;--muted:#F0C3DD}
+
+  .cosmos,.rays,.stars{position:absolute;inset:-25%;pointer-events:none}
+  .cosmos{background:radial-gradient(circle at 28% 34%,var(--glow-a),transparent 38%),radial-gradient(circle at 74% 62%,var(--glow-b),transparent 42%);filter:blur(75px);opacity:.55;animation:drift 16s ease-in-out infinite alternate}
+  .rays{background:conic-gradient(from 210deg at 50% 42%,transparent 0deg,color-mix(in srgb,var(--glow-a) 42%,transparent) 18deg,transparent 36deg,color-mix(in srgb,var(--glow-b) 36%,transparent) 56deg,transparent 74deg,color-mix(in srgb,var(--glow-a) 30%,transparent) 96deg,transparent 118deg);mask-image:radial-gradient(circle at 50% 42%,#000,transparent 62%);opacity:.35;animation:spin 40s linear infinite}
+  .stars{inset:0;opacity:.3;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px);background-size:90px 90px,150px 150px;background-position:12px 22px,60px 80px}
+  @keyframes drift{to{transform:translate3d(5%,-4%,0) scale(1.15)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 26px;border-block-end:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+  .brand i{width:22px;height:22px;border:1px solid var(--accent);transform:rotate(45deg);position:relative}
+  .brand i::after{content:"";position:absolute;inset:6px;border:1px solid var(--accent);border-radius:50%}
+  .brand span span{font-weight:400;color:var(--muted);margin-inline-start:5px}
+  .head .meta{font-size:12px;color:var(--muted)}
+  .head .pill{border:1px solid var(--accent);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:12px;background:rgba(255,255,255,.06)}
+
+  .field{position:relative;z-index:2;padding:28px 26px 20px;min-height:470px}
+  .layout{display:grid;gap:14px;transition:.4s}
+  .card{position:relative;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:14px;background:color-mix(in srgb,var(--bg2) 70%,transparent);backdrop-filter:blur(12px);padding:10px;overflow:hidden;text-align:center;transition:transform .3s,border-color .2s;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+  .card:hover{transform:translateY(-8px) scale(1.03);border-color:var(--accent);z-index:6}
+  .card img{width:100%;height:150px;object-fit:contain;background:rgba(255,255,255,.9);border-radius:9px;mix-blend-mode:normal}
+  .card .tag{position:absolute;inset-block-start:8px;inset-inline-start:8px;font-size:9px;font-weight:800;letter-spacing:.08em;background:var(--accent);color:#0a0b10;border-radius:999px;padding:2px 8px}
+  .card b{display:block;font-size:12px;margin-block-start:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card small{display:block;color:var(--muted);font-size:10px}
+
+  /* ۱٫ شبکهٔ کهکشانی */
+  .stage[data-layout="grid"] .layout{grid-template-columns:repeat(4,minmax(0,1fr))}
+  /* ۲٫ مدار */
+  .stage[data-layout="orbit"] .layout{grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;transform:perspective(900px) rotateX(6deg)}
+  .stage[data-layout="orbit"] .card:nth-child(1),.stage[data-layout="orbit"] .card:nth-child(8){transform:translateY(38px) rotate(-5deg)}
+  .stage[data-layout="orbit"] .card:nth-child(2),.stage[data-layout="orbit"] .card:nth-child(7){transform:translateY(12px) rotate(-2deg)}
+  .stage[data-layout="orbit"] .card:nth-child(3),.stage[data-layout="orbit"] .card:nth-child(6){transform:translateY(-12px) rotate(2deg)}
+  .stage[data-layout="orbit"] .card:nth-child(4),.stage[data-layout="orbit"] .card:nth-child(5){transform:translateY(-30px) rotate(5deg)}
+  .stage[data-layout="orbit"] .card:nth-child(4),.stage[data-layout="orbit"] .card:nth-child(5){box-shadow:0 0 50px color-mix(in srgb,var(--glow-a) 45%,transparent)}
+  /* ۳٫ سکوی نمایش */
+  .stage[data-layout="podium"] .layout{grid-template-columns:repeat(5,minmax(0,1fr));align-items:end}
+  .stage[data-layout="podium"] .card:nth-child(-n+3){transform:scale(1.12) translateY(-18px);z-index:3}
+  .stage[data-layout="podium"] .card:nth-child(3)~.card{opacity:.92}
+  /* ۴٫ صورت فلکی */
+  .stage[data-layout="constellation"] .layout{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:26px}
+  .stage[data-layout="constellation"] .card:nth-child(2n){transform:translateY(26px)}
+  .stage[data-layout="constellation"] .card:nth-child(3n){transform:translateY(-18px)}
+  .stage[data-layout="constellation"] .field::after{content:"";position:absolute;inset:20% 10%;border:1px dashed color-mix(in srgb,var(--accent) 50%,transparent);border-radius:50%;pointer-events:none}
+  /* ۵٫ منشور نوری */
+  .stage[data-layout="prism"] .layout{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;align-items:end}
+  .stage[data-layout="prism"] .card{background:linear-gradient(to top,color-mix(in srgb,var(--glow-a) 30%,transparent),transparent)}
+  .stage[data-layout="prism"] .card img{height:120px}
+  .stage[data-layout="prism"] .card b{font-size:10px}
+  .stage[data-layout="prism"] .card:nth-child(odd){transform:translateY(-22px)}
+  .stage[data-layout="prism"] .card:nth-child(even){transform:translateY(12px)}
+  .stage[data-layout="prism"] .card::before{content:"";position:absolute;inset-block-end:0;inset-inline:20%;height:140px;background:linear-gradient(to top,var(--glow-b),transparent);filter:blur(24px);opacity:.35;z-index:-1}
+
+  .foot{position:relative;z-index:2;display:flex;justify-content:space-between;gap:12px;padding:14px 26px;border-block-start:1px solid rgba(255,255,255,.12);font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .notes{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .note{border:1px solid #252a3b;background:#10131d;border-radius:14px;padding:15px}
+  .note h4{margin:0 0 5px;font-size:14px}
+  .note p{margin:0;font-size:12px;color:#9aa0b4}
+  @media(max-width:900px){.stage[data-layout] .layout{grid-template-columns:repeat(2,minmax(0,1fr))}.stage[data-layout="prism"] .layout{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">DIGITAL SHOPPING · COVER CONCEPTS</p>
+    <h1>کاور ۸ محصولی صفحهٔ خانه</h1>
+    <p class="lead">پنج چیدمان کامل و مرتب از ۸ محصول واقعی (آیفون، سامسونگ، لپتاپ، کنسول و …) با هاله و نورافشانی کهکشانی. روی هر نمونه کلیک کنید تا بصورت زنده ببینید.</p>
+  </header>
+  <div class="picker" id="picker"></div>
+  <p class="hint">پیشنمایش است؛ هنوز در پروژه اعمال نشده تا شما انتخاب کنید.</p>
+
+  <div class="stage" id="stage" data-layout="grid" data-palette="nebula">
+    <div class="cosmos"></div><div class="rays"></div><div class="stars"></div>
+    <div class="head">
+      <div class="brand"><i aria-hidden="true"></i><span>Digital <span>Shopping</span></span></div>
+      <span class="meta">Featured collection — 08 products</span>
+      <span class="pill">☀ / ☾ Galaxy themes</span>
+    </div>
+    <div class="field">
+      <div class="layout" id="layout"></div>
+    </div>
+    <div class="foot"><span id="layoutName">Galaxy Grid</span><span id="paletteName">Nebula Violet</span></div>
+  </div>
+
+  <div class="notes">
+    <div class="note"><h4>۱٫ Galaxy Grid</h4><p>شبکهٔ ۴×۲ کاملاً مرتب؛ منظمترین و مناسب نمایش تمام محصولات.</p></div>
+    <div class="note"><h4>۲٫ Orbit Arc</h4><p>محصولات در قوس مدارگونه با مرکز درخشان؛ حس سینمایی و پویا.</p></div>
+    <div class="note"><h4>۳٫ Launch Podium</h4><p>سه محصول جلو و پنج محصول عقب؛ شبیه استیج رونمایی محصول.</p></div>
+    <div class="note"><h4>۴٫ Constellation</h4><p>چیدمان پلهای و خطوط نقطهچین؛ حس صورت فلکی و ستارگان.</p></div>
+    <div class="note"><h4>۵٫ Prism Beams</h4><p>ستونهای عمودی با پرتو نور پشت هر محصول؛ مدرن و هندسی.</p></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS=[
+  ["apple-iphone-18-pro-max-1.webp","iPhone 18 Pro Max","Apple"],
+  ["samsung-galaxy-s26-ultra-1.webp","Galaxy S26 Ultra","Samsung"],
+  ["asus-rog-strix-g16-2026-rtx-5080-1.webp","ROG Strix G16","ASUS"],
+  ["sony-playstation-5-pro-2.webp","PlayStation 5 Pro","Sony"],
+  ["xiaomi-18-pro-max-1.webp","Xiaomi 18 Pro Max","Xiaomi"],
+  ["lenovo-legion-7i-2026-1.webp","Legion 7i","Lenovo"],
+  ["apple-iphone-air-1.webp","iPhone Air","Apple"],
+  ["xiaomi-poco-x8-pro-1.webp","POCO X8 Pro","Xiaomi"],
+];
+const CONCEPTS=[
+  {key:"grid",palette:"nebula",label:"Galaxy Grid",pal:"Nebula Violet"},
+  {key:"orbit",palette:"aurora",label:"Orbit Arc",pal:"Aurora Mint"},
+  {key:"podium",palette:"solar",label:"Launch Podium",pal:"Solar Gold"},
+  {key:"constellation",palette:"ocean",label:"Constellation",pal:"Ocean Blue"},
+  {key:"prism",palette:"rose",label:"Prism Beams",pal:"Rose Nebula"},
+];
+const layout=document.getElementById('layout'),stage=document.getElementById('stage'),picker=document.getElementById('picker');
+layout.innerHTML=PRODUCTS.map(([file,name,brand],i)=>`<article class="card"><span class="tag">0${i+1}</span><img src="products/${file}" alt="${name}"><b>${name}</b><small>${brand}</small></article>`).join('');
+function apply(i){const c=CONCEPTS[i];stage.dataset.layout=c.key;stage.dataset.palette=c.palette;document.getElementById('layoutName').textContent=c.label;document.getElementById('paletteName').textContent=c.pal;document.querySelectorAll('#picker button').forEach((b,n)=>b.setAttribute('aria-pressed',String(n===i)))}
+CONCEPTS.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+c.label;b.onclick=()=>apply(i);picker.appendChild(b)});
+apply(0);
+</script>
+</body>
+</html>

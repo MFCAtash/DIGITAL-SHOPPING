@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Shopping — Galaxy Theme Concepts</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0a0b10;color:#e8eaf2;font-family:Inter,"Segoe UI",system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:1280px;margin:0 auto;padding:30px 20px 90px}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8b8fa3;margin:0 0 8px}
+  h1{margin:0;font-size:34px;letter-spacing:-.03em}
+  .lead{color:#9a9fb2;max-width:78ch;font-size:14px;margin:8px 0 20px}
+  .picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .picker button{border:1px solid #2c3040;background:#141722;color:#cdd2e2;border-radius:999px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer;transition:.2s}
+  .picker button[aria-pressed="true"]{background:#f4f5fb;color:#0a0b10;border-color:#f4f5fb}
+  .hint{font-size:12px;color:#7e8396;margin:0 0 22px}
+
+  .stage{
+    --bg1:#0B0716;--bg2:#1B1033;--glow1:#7C3AED;--glow2:#EC4899;--accent:#A78BFA;--ink:#F6F4FF;--muted:#C4B9E4;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.16);
+    position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;min-height:660px;background:linear-gradient(150deg,var(--bg1),var(--bg2));color:var(--ink);transition:background .4s,color .4s
+  }
+  .stage[data-theme="aurora"]{--bg1:#04140F;--bg2:#06302B;--glow1:#10B981;--glow2:#22D3EE;--accent:#6EE7B7;--ink:#ECFFF9;--muted:#A7E8D5}
+  .stage[data-theme="solar"]{--bg1:#140D05;--bg2:#3A2109;--glow1:#F59E0B;--glow2:#FDE68A;--accent:#FBBF24;--ink:#FFF7E8;--muted:#E9CFA3}
+  .stage[data-theme="ocean"]{--bg1:#020B1A;--bg2:#082C55;--glow1:#2563EB;--glow2:#38BDF8;--accent:#60A5FA;--ink:#EDF6FF;--muted:#B9D7F7}
+  .stage[data-theme="rose"]{--bg1:#160611;--bg2:#431033;--glow1:#DB2777;--glow2:#F472B6;--accent:#F9A8D4;--ink:#FFF3FA;--muted:#F0C3DD}
+  .stage[data-theme="silver"]{--bg1:#0B0D12;--bg2:#202737;--glow1:#64748B;--glow2:#E2E8F0;--accent:#CBD5E1;--ink:#F8FAFC;--muted:#BAC4D4}
+
+  .stage::before,.stage::after{content:"";position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;pointer-events:none;animation:float 12s ease-in-out infinite alternate}
+  .stage::before{width:420px;height:420px;background:var(--glow1);inset-block-start:-160px;inset-inline-start:-120px}
+  .stage::after{width:520px;height:520px;background:var(--glow2);inset-block-end:-220px;inset-inline-end:-160px;animation-delay:-6s}
+  @keyframes float{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(40px,30px,0) scale(1.18)}}
+  .stars{position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px);background-size:90px 90px,140px 140px;background-position:12px 20px,60px 70px}
+
+  .topbar{position:relative;z-index:2;display:flex;align-items:center;gap:18px;padding:18px 26px;border-block-end:1px solid var(--line);backdrop-filter:blur(6px)}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:-.02em;font-size:18px}
+  .logo i{display:block;width:22px;height:22px;border:1px solid var(--accent);transform:rotate(45deg);position:relative}
+  .logo i::after{content:"";position:absolute;inset:6px;border:1px solid var(--accent);border-radius:50%}
+  .logo span span{font-weight:400;color:var(--muted);margin-inline-start:5px}
+  .spacer{flex:1}
+  .navlink{color:var(--muted);text-decoration:none;font-size:13px}
+  .pill{border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--ink);border-radius:999px;padding:7px 14px;font:inherit;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .pill:hover{border-color:var(--accent)}
+  .cart{border-color:var(--accent);color:var(--ink)}
+
+  .mega{position:absolute;z-index:5;inset-block-start:64px;inset-inline-start:26px;width:min(560px,calc(100% - 52px));padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(10,12,20,.82);backdrop-filter:blur(18px);box-shadow:0 20px 60px rgba(0,0,0,.45);display:none}
+  .mega[data-open="true"]{display:block}
+  .mega h3{margin:0 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .mega-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .mega a{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;font-size:13px}
+  .mega a:hover{border-color:var(--accent);background:rgba(255,255,255,.07);transform:translateY(-1px)}
+  .mega-foot{display:flex;gap:8px;margin-block-start:12px;padding-block-start:12px;border-block-start:1px solid var(--line)}
+
+  .hero{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;padding:48px 30px 32px;align-items:center}
+  .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+  .hero h2{margin:0;font-size:40px;line-height:1.14;letter-spacing:-.04em;max-width:15ch}
+  .hero p{color:var(--muted);font-size:14px;max-width:54ch;margin:14px 0 22px}
+  .cta{display:inline-block;border-radius:999px;padding:11px 22px;background:var(--accent);color:#0a0b10;font-weight:800;font-size:13px;text-decoration:none}
+  .cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);margin-inline-start:8px}
+  .orb{position:relative;inline-size:260px;block-size:260px;margin-inline:auto;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,var(--accent) 35%,var(--glow1) 62%,transparent 72%);box-shadow:0 0 80px var(--glow1),0 0 140px var(--glow2);animation:pulse 6s ease-in-out infinite}
+  .orb::after{content:"";position:absolute;inset:18%;border-radius:50%;border:1px solid rgba(255,255,255,.55);box-shadow:0 0 30px rgba(255,255,255,.35) inset}
+  @keyframes pulse{50%{transform:scale(1.08) rotate(8deg)}}
+
+  .grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:0 30px 34px}
+  .card{border:1px solid var(--line);border-radius:14px;background:var(--card);backdrop-filter:blur(10px);overflow:hidden}
+  .art{height:130px;display:grid;place-items:center;position:relative}
+  .art svg{width:72px;height:72px;color:var(--ink);opacity:.9}
+  .tag{position:absolute;inset-block-start:10px;inset-inline-start:10px;border-radius:999px;background:var(--accent);color:#0a0b10;font-size:10px;font-weight:800;padding:3px 9px}
+  .cbody{padding:14px}
+  .brandname{font-size:10px;letter-spacing:.12em;color:var(--muted)}
+  .cname{margin:4px 0 6px;font-size:14px;font-weight:700}
+  .spec{font-size:11px;color:var(--muted);margin:0 0 10px}
+  .price{font-size:16px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+
+  .notes{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .note{border:1px solid #222636;background:#10131d;border-radius:14px;padding:16px}
+  .note h4{margin:0 0 6px;font-size:14px}
+  .note p{margin:0;font-size:12px;color:#9a9fb2}
+  @media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.navlink{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">DIGITAL SHOPPING · GALAXY THEME CONCEPTS</p>
+    <h1>Six cosmic skins for Digital Shopping</h1>
+    <p class="lead">Each concept keeps the same storefront structure but changes the atmosphere: coloured halos, soft light rays, glass surfaces and an animated cosmic background. Click a name to preview it live.</p>
+  </header>
+
+  <div class="picker" id="picker"></div>
+  <p class="hint">Preview only — none of these are applied to the project yet. Choose the ones you want me to add.</p>
+
+  <div class="stage" id="stage" data-theme="nebula">
+    <div class="stars"></div>
+    <div class="topbar">
+      <a class="logo" href="#" onclick="return false"><i aria-hidden="true"></i><span>Digital <span>Shopping</span></span></a>
+      <a class="navlink" href="#" onclick="return false">Home</a>
+      <a class="navlink" href="#" onclick="return false">Shop</a>
+      <button class="pill" id="menuBtn" aria-expanded="false" aria-controls="mega">☰ Catalog</button>
+      <span class="spacer"></span>
+      <button class="pill" title="Theme toggle">☀ / ☾</button>
+      <button class="pill cart">Cart (2)</button>
+    </div>
+    <div class="mega" id="mega" data-open="false">
+      <h3>Shop by category</h3>
+      <div class="mega-grid">
+        <a href="#" onclick="return false">Smartphones</a><a href="#" onclick="return false">Laptops</a>
+        <a href="#" onclick="return false">Gaming</a><a href="#" onclick="return false">Audio</a>
+        <a href="#" onclick="return false">Wearables</a><a href="#" onclick="return false">Cameras</a>
+      </div>
+      <div class="mega-foot"><button class="pill">All products</button><button class="pill">Deals</button><button class="pill">Compare</button></div>
+    </div>
+    <section class="hero">
+      <div>
+        <p class="kicker">Electronics, reimagined</p>
+        <h2>Genuine Tech. Transparent Prices.</h2>
+        <p>Verified specs, fresh prices and honest comparison — in one calm, focused storefront.</p>
+        <a class="cta" href="#" onclick="return false">Shop now</a>
+        <a class="cta ghost" href="#" onclick="return false">Our promise</a>
+      </div>
+      <div class="orb" aria-hidden="true"></div>
+    </section>
+    <div class="grid">
+      <article class="card"><div class="art"><span class="tag">-10%</span><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="30" y="8" width="40" height="84" rx="6"/><path d="M42 16h16M46 86h8"/></svg></div><div class="cbody"><span class="brandname">XIAOMI</span><p class="cname">Flagship 14</p><p class="spec">12 GB · 256 GB</p><span class="price">49,500,000 IRR</span></div></article>
+      <article class="card"><div class="art"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="12" y="28" width="76" height="46" rx="3"/><path d="M4 78h92M40 74h20"/></svg></div><div class="cbody"><span class="brandname">APPLE</span><p class="cname">Air Laptop</p><p class="spec">16 GB · 512 GB SSD</p><span class="price">128,000,000 IRR</span></div></article>
+      <article class="card"><div class="art"><span class="tag">NEW</span><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 56a28 28 0 0 1 56 0"/><rect x="16" y="54" width="16" height="30" rx="4"/><rect x="68" y="54" width="16" height="30" rx="4"/></svg></div><div class="cbody"><span class="brandname">SONY</span><p class="cname">Wireless Pro</p><p class="spec">ANC · 30h battery</p><span class="price">18,900,000 IRR</span></div></article>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="note"><h4>Nebula Violet</h4><p>Violet + magenta halo, deep indigo base — the most cinematic option.</p></div>
+    <div class="note"><h4>Aurora Mint</h4><p>Emerald + cyan rays, near-black green base — fresh and futuristic.</p></div>
+    <div class="note"><h4>Solar Gold</h4><p>Amber halo on charcoal — premium, warm and launch-campaign ready.</p></div>
+    <div class="note"><h4>Ocean Blue</h4><p>Cobalt + sky rays on deep navy — clean, trustworthy, tech-forward.</p></div>
+    <div class="note"><h4>Rose Nebula</h4><p>Pink glow on plum-black — bold, youthful and campaign-friendly.</p></div>
+    <div class="note"><h4>Cosmic Silver</h4><p>Silver-white halo on graphite — minimal luxury with maximum contrast.</p></div>
+  </div>
+</div>
+
+<script>
+const THEMES = {
+  nebula:{label:"Nebula Violet",colors:["#0B0716","#7C3AED","#EC4899","#A78BFA"]},
+  aurora:{label:"Aurora Mint",colors:["#04140F","#10B981","#22D3EE","#6EE7B7"]},
+  solar:{label:"Solar Gold",colors:["#140D05","#F59E0B","#FDE68A","#FBBF24"]},
+  ocean:{label:"Ocean Blue",colors:["#020B1A","#2563EB","#38BDF8","#60A5FA"]},
+  rose:{label:"Rose Nebula",colors:["#160611","#DB2777","#F472B6","#F9A8D4"]},
+  silver:{label:"Cosmic Silver",colors:["#0B0D12","#64748B","#E2E8F0","#CBD5E1"]}
+};
+const picker=document.getElementById('picker'), stage=document.getElementById('stage');
+Object.entries(THEMES).forEach(([k,v])=>{
+  const b=document.createElement('button');b.type='button';b.textContent=v.label;b.dataset.key=k;b.setAttribute('aria-pressed','false');
+  b.onclick=()=>{stage.dataset.theme=k;document.querySelectorAll('#picker button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.key===k)))};
+  picker.appendChild(b);
+});
+picker.firstChild.click();
+const menuBtn=document.getElementById('menuBtn'), mega=document.getElementById('mega');
+menuBtn.onclick=()=>{const open=mega.dataset.open!=='true';mega.dataset.open=String(open);menuBtn.setAttribute('aria-expanded',String(open))};
+document.addEventListener('click',e=>{if(!stage.contains(e.target)){mega.dataset.open='false';menuBtn.setAttribute('aria-expanded','false')}});
+</script>
+</body>
+</html>

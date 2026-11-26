@@ -1,0 +1,199 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: codex
+      POSTGRES_USER: codex
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codex -d codex"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  # کش مشترک: throttle، فاستها و suggests بین تمام workerها یکسان میشود.
+  # در صورت قطع Redis، Django به LocMem برمیگردد (تکپروسه) — رفتار fail-open امن است.
+  redis:
+    image: redis:7-alpine
+    # REDIS_PASSWORD همان رازی است که rotate-secrets.sh میسازد؛ بدون requirepass چرخش آن بیاثر است.
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru", "--requirepass", "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}"]
+    environment:
+      # redis-cli بهصورت خودکار از REDISCLI_AUTH استفاده میکند (رمز در لاگ healthcheck چاپ نمیشود).
+      REDISCLI_AUTH: ${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    mem_limit: 160m
+
+  api:
+    build: .
+    env_file: .env
+    environment:
+      # migrationها توسط deploy.yml دقیقاً یکبار اجرا میشوند؛ entrypoint دوباره نباید migrate کند.
+      RUN_MIGRATIONS: "0"
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      METRICS_TOKEN: ${METRICS_TOKEN:?set METRICS_TOKEN in .env}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3)"]
+      interval: 10s
+      timeout: 4s
+      retries: 12
+      start_period: 20s
+
+  # اپلیکیشن فروشگاه (Next.js App Router). تصاویر از طریق Caddy در /media سرو میشوند.
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    environment:
+      API_BASE_URL: http://api:8000/api/v1
+      NEXT_PUBLIC_SITE_URL: ${SITE_ADDRESS:-http://localhost}
+      NEXT_PUBLIC_MEDIA_BASE_URL: /media/products
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 512m
+
+  # صف کار (procrastinate روی همان Postgres): لغو سفارشهای منقضی و آزادسازی موجودی هر دقیقه.
+  worker:
+    build: .
+    env_file: .env
+    environment:
+      RUN_MIGRATIONS: "0"
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      METRICS_TOKEN: ${METRICS_TOKEN:?set METRICS_TOKEN in .env}
+      WORKER_HEARTBEAT_FILE: /tmp/codex-worker-heartbeat
+    command: ["python", "manage.py", "procrastinate", "worker"]
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 256m
+    # worker پورت ندارد؛ کار periodic در apps/core/tasks.py هر دقیقه یک فایل heartbeat مینویسد.
+    healthcheck:
+      test: ["CMD-SHELL", "test -f \"$$WORKER_HEARTBEAT_FILE\" && find \"$$WORKER_HEARTBEAT_FILE\" -mmin -5 | grep -q ."]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
+      ADMIN_ALLOWED_IPS: ${ADMIN_ALLOWED_IPS:-127.0.0.1/32 ::1/128}
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - ../overlay/public/products:/srv/media/products:ro
+    depends_on:
+      - api
+      - web
+    restart: unless-stopped
+
+  # ---------- رصد (فاز ۳) ----------
+  prometheus:
+    image: prom/prometheus:v3.6.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    volumes:
+      - ../ops/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ../ops/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - promdata:/prometheus
+    secrets:
+      - metrics_token
+    ports:
+      - "127.0.0.1:9090:9090"
+    depends_on:
+      - api
+      - alertmanager
+    restart: unless-stopped
+    mem_limit: 512m
+
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
+    volumes:
+      - ../ops/monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - "127.0.0.1:9093:9093"
+    restart: unless-stopped
+    mem_limit: 128m
+
+  grafana:
+    image: grafana/grafana:12.2.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+      - ../ops/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../ops/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafanadata:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3001:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    mem_limit: 256m
+
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
+    environment:
+      # همان سیاست TLS دیتابیس در DATABASE_URL و security.E014؛ فقط در توسعه محلی disable مجاز است.
+      DATA_SOURCE_NAME: postgresql://codex:${POSTGRES_PASSWORD}@db:5432/codex?sslmode=${POSTGRES_SSLMODE:-require}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 128m
+
+  node-exporter:
+    image: quay.io/prometheus/node_exporter:v1.9.1
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --path.rootfs=/rootfs
+      - --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    restart: unless-stopped
+    mem_limit: 128m
+
+secrets:
+  metrics_token:
+    environment: METRICS_TOKEN
+
+volumes:
+  pgdata:
+  redisdata:
+  caddy_data:
+  promdata:
+  grafanadata:

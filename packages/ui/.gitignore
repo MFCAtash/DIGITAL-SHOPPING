@@ -1,0 +1,4 @@
+.build/
+.build-preview/
+node_modules/
+preview/design-system.html

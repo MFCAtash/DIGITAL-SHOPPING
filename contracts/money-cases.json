@@ -1,0 +1,94 @@
+{
+ "final": [
+  {
+   "price": 129900,
+   "discount": 0,
+   "expected": 129900
+  },
+  {
+   "price": 129900,
+   "discount": 10,
+   "expected": 116910
+  },
+  {
+   "price": 129900,
+   "discount": 100,
+   "expected": 0
+  },
+  {
+   "price": 129900,
+   "discount": 150,
+   "expected": 0
+  },
+  {
+   "price": 99,
+   "discount": 33,
+   "expected": 66
+  },
+  {
+   "price": 1,
+   "discount": 50,
+   "expected": 0
+  },
+  {
+   "price": 0,
+   "discount": 10,
+   "expected": 0
+  },
+  {
+   "price": 100000,
+   "discount": null,
+   "expected": 100000
+  }
+ ],
+ "toman": [
+  {
+   "cents": 129900,
+   "rate": 100000,
+   "round_to": 1000,
+   "expected": 129900000
+  },
+  {
+   "cents": 5,
+   "rate": 100000,
+   "round_to": 1000,
+   "expected": 5000
+  },
+  {
+   "cents": 12345,
+   "rate": 1050000,
+   "round_to": 1000,
+   "expected": 129623000
+  },
+  {
+   "cents": 12345,
+   "rate": 1050000,
+   "round_to": 1,
+   "expected": 129622500
+  },
+  {
+   "cents": 99999,
+   "rate": 1000000,
+   "round_to": 10000,
+   "expected": 999990000
+  },
+  {
+   "cents": 0,
+   "rate": 100000,
+   "round_to": 1000,
+   "expected": 0
+  },
+  {
+   "cents": 150,
+   "rate": 100,
+   "round_to": 1000,
+   "expected": 0
+  },
+  {
+   "cents": 50,
+   "rate": 100,
+   "round_to": 1,
+   "expected": 50
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "@codex/ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "سیستم طراحی Digital Shopping: توکن‌ها، کامپوننت‌ها و قواعد (ADR-002)",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/index.css",
+    "./tokens.css": "./src/styles/tokens.css",
+    "./tailwind-preset": "./tailwind.preset.cjs"
+  },
+  "scripts": {
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "contrast": "node scripts/check-contrast.mjs",
+    "lint:design": "node scripts/lint-design.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck:stub": "tsc --noEmit -p tsconfig.stub.json",
+    "test": "node scripts/test.mjs",
+    "extract-colors": "node scripts/extract-dominant-colors.mjs",
+    "preview": "node scripts/build-preview.mjs",
+    "check": "npm run tokens:check && npm run contrast && npm run lint:design && npm run typecheck && npm run test",
+    "e2e": "node scripts/e2e-preview.mjs"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.50.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.0",
+    "typescript": "^5.6.0"
+  },
+  "files": [
+    "src",
+    "tailwind.preset.cjs",
+    "next",
+    "fonts",
+    "docs"
+  ]
+}

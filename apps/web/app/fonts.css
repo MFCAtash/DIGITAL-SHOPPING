@@ -1,0 +1,31 @@
+/* فونتهای self-hosted: بدون درخواست خارجی، بدون بلوک رندر (font-display: swap).
+   فایلها از Google Fonts با مجوز OFL گرفته شدهاند و در apps/web/public/fonts نگهداری میشوند.
+   فایلهای -400/-600/-700 نسخهٔ متغیر یکساناند؛ از -400 با بازهٔ وزن کامل استفاده میشود
+   و سایر فایلها بهعنوان نسخهٔ مشخص وزن نگهداری میشوند (حذف نشدهاند). */
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/vazirmatn-400.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200E, U+2010-2011;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/plex-sans-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/plex-mono-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+20AC, U+2122;
+}

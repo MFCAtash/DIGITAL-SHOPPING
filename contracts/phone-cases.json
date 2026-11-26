@@ -1,0 +1,74 @@
+[
+ {
+  "input": "09123456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "۰۹۱۲۳۴۵۶۷۸۹",
+  "expected": "09123456789"
+ },
+ {
+  "input": "+989123456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "+98 912 345 6789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "00989123456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "9123456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "989123456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "0912 345 6789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "0912-345-6789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "(0912) 3456789",
+  "expected": "09123456789"
+ },
+ {
+  "input": "٠٩١٢٣٤٥٦٧٨٩",
+  "expected": "09123456789"
+ },
+ {
+  "input": "09123456",
+  "expected": null
+ },
+ {
+  "input": "08123456789",
+  "expected": null
+ },
+ {
+  "input": "",
+  "expected": null
+ },
+ {
+  "input": "abcdefghijk",
+  "expected": null
+ },
+ {
+  "input": "912345678",
+  "expected": null
+ },
+ {
+  "input": "091234567890",
+  "expected": null
+ },
+ {
+  "input": "+981234567890",
+  "expected": null
+ }
+]

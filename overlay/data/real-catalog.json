@@ -1,0 +1,942 @@
+{
+  "currency": "USD",
+  "checked_on": "2026-10-11",
+  "note": "قیمت‌ها قیمت رسمی یا ویترین در تاریخ بررسی‌اند و باید پیش از انتشار دوباره بررسی شوند. موجودی نمونه است.",
+  "categories": [
+    {
+      "slug": "phones",
+      "name": "گوشی موبایل",
+      "sort": 1,
+      "name_en": "Mobile Phones"
+    },
+    {
+      "slug": "gaming-laptops",
+      "name": "لپ‌تاپ گیمینگ",
+      "sort": 2,
+      "name_en": "Gaming Laptops"
+    },
+    {
+      "slug": "laptops",
+      "name": "لپ‌تاپ",
+      "sort": 3,
+      "name_en": "Laptops"
+    },
+    {
+      "slug": "satellite-internet",
+      "name": "اینترنت ماهواره‌ای",
+      "sort": 4,
+      "name_en": "Satellite Internet"
+    },
+    {
+      "slug": "game-consoles",
+      "name": "کنسول بازی",
+      "sort": 5,
+      "name_en": "Game Consoles"
+    }
+  ],
+  "products": [
+    {
+      "slug": "samsung-galaxy-s26-ultra-256gb",
+      "brand": "Samsung",
+      "category": "phones",
+      "name": "Samsung Galaxy S26 Ultra 256GB",
+      "usd_cents": 139999,
+      "specs": {
+        "display": "6.9 inch QHD+ Dynamic AMOLED 2X, 1-120Hz, Privacy Display",
+        "cpu": "Snapdragon 8 Elite Gen 5 for Galaxy",
+        "ram": "12GB",
+        "storage": "256GB",
+        "camera": "200MP main + 50MP ultra-wide + 50MP 5x + 10MP 3x",
+        "front_camera": "12MP",
+        "battery": "5000mAh, 60W wired / 25W wireless",
+        "pen": "S Pen built-in"
+      },
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "stock": 10,
+      "description": "گلکسی S26 Ultra پرچمدار سامسونگ در سال ۲۰۲۶ است با نمایشگر ۶٫۹ اینچی QHD+ Dynamic AMOLED 2X، نرخ نوسازی ۱ تا ۱۲۰ هرتز و قابلیت Privacy Display. پردازنده Snapdragon 8 Elite Gen 5 for Galaxy و رم ۱۲ گیگابایت دارد. دوربین اصلی ۲۰۰ مگاپیکسلی به‌همراه فوق‌عریض ۵۰ مگاپیکسل و دو تله‌فوتو (۵x با ۵۰ مگاپیکسل و ۳x با ۱۰ مگاپیکسل) و دوربین سلفی ۱۲ مگاپیکسلی. باتری ۵۰۰۰ میلی‌آمپرساعت با شارژ ۶۰ وات و قلم S Pen داخلی. نسخهٔ 256GB.",
+      "images": [
+        {
+          "file": "samsung-galaxy-s26-ultra-1.webp",
+          "alt": "Galaxy S26 Ultra در چهار رنگ"
+        },
+        {
+          "file": "samsung-galaxy-s26-ultra-4.webp",
+          "alt": "Galaxy S26 Ultra در چهار رنگ، نمای دوم"
+        },
+        {
+          "file": "samsung-galaxy-s26-ultra-3.webp",
+          "alt": "Galaxy S26 Ultra مشکی با قلم، ۲۵۶ گیگابایت"
+        },
+        {
+          "file": "samsung-galaxy-s26-ultra-2.webp",
+          "alt": "Galaxy S26 Ultra با قلم S Pen"
+        }
+      ],
+      "spec_source": "https://sammyguru.com/samsung-galaxy-s26-series-prices-increased-in-the-us/",
+      "discount_percent": 5
+    },
+    {
+      "slug": "samsung-galaxy-s26-ultra-512gb",
+      "brand": "Samsung",
+      "category": "phones",
+      "name": "Samsung Galaxy S26 Ultra 512GB",
+      "usd_cents": 159999,
+      "specs": {
+        "display": "6.9 inch QHD+ Dynamic AMOLED 2X, 1-120Hz, Privacy Display",
+        "cpu": "Snapdragon 8 Elite Gen 5 for Galaxy",
+        "ram": "12GB",
+        "storage": "512GB",
+        "camera": "200MP main + 50MP ultra-wide + 50MP 5x + 10MP 3x",
+        "front_camera": "12MP",
+        "battery": "5000mAh, 60W wired / 25W wireless",
+        "pen": "S Pen built-in"
+      },
+      "source": "https://www.techrepublic.com/article/news-samsung-galaxy-s26-price-hike-us/",
+      "stock": 10,
+      "description": "گلکسی S26 Ultra پرچمدار سامسونگ در سال ۲۰۲۶ است با نمایشگر ۶٫۹ اینچی QHD+ Dynamic AMOLED 2X، نرخ نوسازی ۱ تا ۱۲۰ هرتز و قابلیت Privacy Display. پردازنده Snapdragon 8 Elite Gen 5 for Galaxy و رم ۱۲ گیگابایت دارد. دوربین اصلی ۲۰۰ مگاپیکسلی به‌همراه فوق‌عریض ۵۰ مگاپیکسل و دو تله‌فوتو (۵x با ۵۰ مگاپیکسل و ۳x با ۱۰ مگاپیکسل) و دوربین سلفی ۱۲ مگاپیکسلی. باتری ۵۰۰۰ میلی‌آمپرساعت با شارژ ۶۰ وات و قلم S Pen داخلی. نسخهٔ 512GB.",
+      "images": [
+        {
+          "file": "samsung-galaxy-s26-ultra-1.webp",
+          "alt": "Galaxy S26 Ultra در چهار رنگ"
+        },
+        {
+          "file": "samsung-galaxy-s26-ultra-4.webp",
+          "alt": "Galaxy S26 Ultra در چهار رنگ، نمای دوم"
+        },
+        {
+          "file": "samsung-galaxy-s26-ultra-2.webp",
+          "alt": "Galaxy S26 Ultra با قلم S Pen"
+        }
+      ],
+      "spec_source": "https://sammyguru.com/samsung-galaxy-s26-series-prices-increased-in-the-us/",
+      "discount_percent": 6
+    },
+    {
+      "slug": "apple-iphone-18-pro-max",
+      "brand": "Apple",
+      "category": "phones",
+      "name": "Apple iPhone 18 Pro Max",
+      "usd_cents": 129900,
+      "price_note": "از",
+      "specs": {
+        "display": "6.9 inch Super Retina XDR OLED, 2868x1320, ProMotion up to 120Hz",
+        "cpu": "Apple A20 Pro",
+        "ram": "12GB",
+        "storage": "256GB / 512GB / 2TB",
+        "camera": "48MP Pro Fusion triple (main, ultra-wide, telephoto)",
+        "battery": "5391mAh (nano-SIM) / 5567mAh (eSIM only)",
+        "os": "iOS 27",
+        "weight": "249g"
+      },
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "stock": 10,
+      "description": "آیفون ۱۸ پرو مکس با نمایشگر ۶٫۹ اینچی Super Retina XDR OLED با رزولوشن ۲۸۶۸ در ۱۳۲۰، ProMotion تا ۱۲۰ هرتز، Always-On و Dynamic Island. تراشهٔ A20 Pro (۲ نانومتر)، سیستم دوربین ۴۸ مگاپیکسلی Pro Fusion با اصلی، فوق‌عریض و تله‌فوتو، و سیستم‌عامل iOS 27. ظرفیت باتری بسته به نسخهٔ سیم‌کارت ۵٬۳۹۱ یا ۵٬۵۶۷ میلی‌آمپرساعت است و وزن گوشی ۲۴۹ گرم است. قیمت ذکرشده قیمت شروع است.",
+      "images": [
+        {
+          "file": "apple-iphone-18-pro-max-1.webp",
+          "alt": "رندر آیفون ۱۸ پرو در سه رنگ"
+        },
+        {
+          "file": "apple-iphone-18-pro-max-2.webp",
+          "alt": "نمای پشت آیفون ۱۸ با ماژول دوربین"
+        },
+        {
+          "file": "apple-iphone-18-pro-max-3.webp",
+          "alt": "رندر iPhone 18 Pro Max در چهار رنگ"
+        },
+        {
+          "file": "apple-iphone-18-pro-max-4.webp",
+          "alt": "چهار رنگ آیفون با ضخامت ۸٫۷۵ میلی‌متر"
+        }
+      ],
+      "spec_source": "https://support.apple.com/en-us/148591",
+      "discount_percent": 7
+    },
+    {
+      "slug": "apple-iphone-18-pro",
+      "brand": "Apple",
+      "category": "phones",
+      "name": "Apple iPhone 18 Pro",
+      "usd_cents": 119900,
+      "price_note": "از",
+      "specs": {
+        "display": "6.3 inch OLED, 2622x1206, ProMotion 120Hz",
+        "cpu": "Apple A20 Pro (2nm)",
+        "ram": "12GB",
+        "storage": "256GB / 512GB / 1TB / 2TB",
+        "camera": "48MP triple rear camera",
+        "battery": "4056mAh (nano-SIM) / 4288mAh (eSIM only)",
+        "os": "iOS 27",
+        "weight": "211g"
+      },
+      "source": "https://applescoop.org/story/which-iphone-should-you-buy-2026-every-model-compared",
+      "stock": 10,
+      "description": "آیفون ۱۸ پرو با نمایشگر ۶٫۳ اینچی OLED با رزولوشن ۲۶۲۲ در ۱۲۰۶ و ProMotion تا ۱۲۰ هرتز عرضه شده است. تراشهٔ A20 Pro (۲ نانومتر)، رم ۱۲ گیگابایت، سه دوربین ۴۸ مگاپیکسلی پشت و سیستم‌عامل iOS 27. ظرفیت باتری بسته به نسخهٔ سیم‌کارت ۴٬۰۵۶ یا ۴٬۲۸۸ میلی‌آمپرساعت است و وزن ۲۱۱ گرم. قیمت ذکرشده قیمت شروع است.",
+      "images": [
+        {
+          "file": "apple-iphone-18-pro-1.webp",
+          "alt": "رندر iPhone 18 Pro قرمز"
+        }
+      ],
+      "spec_source": "https://en.wikipedia.org/wiki/IPhone_18_Pro",
+      "discount_percent": 8
+    },
+    {
+      "slug": "apple-iphone-air",
+      "brand": "Apple",
+      "category": "phones",
+      "name": "Apple iPhone Air",
+      "usd_cents": 109900,
+      "price_note": "از",
+      "specs": {
+        "display": "6.5 inch Super Retina XDR OLED, 2736x1260, ProMotion up to 120Hz",
+        "cpu": "Apple A19 Pro (6-core CPU, 5-core GPU)",
+        "storage": "256GB and up",
+        "camera": "48MP Fusion single rear camera",
+        "front_camera": "18MP",
+        "thickness": "5.64mm",
+        "weight": "165g",
+        "sim": "eSIM only"
+      },
+      "source": "https://www.tomsguide.com/phones/iphones/iphone-17-pre-order-deals-heres-how-to-get-apples-new-phones-for-free",
+      "stock": 10,
+      "description": "آیفون Air نازک‌ترین و سبک‌ترین آیفون است: ضخامت ۵٫۶۴ میلی‌متر و وزن ۱۶۵ گرم. نمایشگر ۶٫۵ اینچی Super Retina XDR OLED با رزولوشن ۲۷۳۶ در ۱۲۶۰ و ProMotion تا ۱۲۰ هرتز دارد. تراشهٔ A19 Pro با پردازندهٔ ۶ هسته‌ای و گرافیک ۵ هسته‌ای، یک دوربین ۴۸ مگاپیکسلی Fusion در پشت و دوربین سلفی ۱۸ مگاپیکسلی. حافظه از ۲۵۶ گیگابایت شروع می‌شود و فقط eSIM پشتیبانی می‌کند. نام رسمی محصول «iPhone Air» است و اپل مدلی با نام «iPhone 17 Air» عرضه نکرده. قیمت ذکرشده قیمت شروع پس از افزایش ۹ سپتامبر ۲۰۲۶ است.",
+      "images": [
+        {
+          "file": "apple-iphone-air-1.webp",
+          "alt": "iPhone Air صورتی از پشت، کنار و روبه‌رو"
+        }
+      ],
+      "spec_source": "https://swappa.com/en/guide/apple-iphone-air",
+      "discount_percent": 9
+    },
+    {
+      "slug": "lenovo-legion-7i-2026-rtx-5070",
+      "brand": "Lenovo",
+      "category": "gaming-laptops",
+      "name": "Lenovo Legion 7i (2026) RTX 5070",
+      "usd_cents": 313999,
+      "specs": {
+        "display": "16 inch 2560x1600 OLED 240Hz",
+        "cpu": "Intel Core Ultra 9 290HX Plus",
+        "gpu": "NVIDIA GeForce RTX 5070 (12GB)",
+        "ram": "32GB DDR5-5600",
+        "storage": "1TB PCIe Gen 4 SSD",
+        "body": "All-metal"
+      },
+      "source": "https://gaminglaptop.deals/laptops/lenovo-legion-7i-2026",
+      "stock": 5,
+      "description": "لنوو Legion 7i مدل ۲۰۲۶ لپ‌تاپ گیمینگ ۱۶ اینچی پریمیوم با بدنهٔ تمام‌فلزی است. نمایشگر OLED با رزولوشن ۲۵۶۰ در ۱۶۰۰ و نرخ نوسازی ۲۴۰ هرتز دارد. پردازندهٔ Intel Core Ultra 9 290HX Plus، کارت گرافیک RTX 5070 با ۱۲ گیگابایت حافظه، رم ۳۲ گیگابایت DDR5-5600 و SSD یک ترابایتی PCIe Gen 4. قیمت ذکرشده برای همین پیکربندی در فروشگاه لنوو است. در زمان بررسی موجودی آن «ناموجود» بود، پس موجودی را دوباره چک کنید.",
+      "price_basis": "قیمت پیکربندی RTX 5070 / 32GB / 1TB در فروشگاه لنوو؛ در زمان بررسی ناموجود بود.",
+      "images": [
+        {
+          "file": "lenovo-legion-7i-2026-1.webp",
+          "alt": "Lenovo Legion 7i از روبه‌رو"
+        }
+      ],
+      "spec_source": "https://gaminglaptop.deals/laptops/lenovo-legion-7i-2026",
+      "discount_percent": 10
+    },
+    {
+      "slug": "lenovo-legion-5i-gen-11-2026",
+      "brand": "Lenovo",
+      "category": "gaming-laptops",
+      "name": "Lenovo Legion 5i Gen 11 (2026)",
+      "usd_cents": 252600,
+      "price_note": "از",
+      "specs": {
+        "display": "15 inch OLED"
+      },
+      "description": "لپ‌تاپ گیمینگ Lenovo Legion 5i نسل ۱۱ مدل ۲۰۲۶ با نمایشگر ۱۵ اینچی OLED. مشخصات کامل‌تر پس از تعیین پیکربندی دقیق افزوده می‌شود.",
+      "source": "https://gizmodo.com/lenovo-legion-5i-2026-review-2000820869",
+      "stock": 5,
+      "images": [
+        {
+          "file": "lenovo-legion-5i-gen-11-2026-1.webp",
+          "alt": "Lenovo Legion 5 سفید از پشت"
+        },
+        {
+          "file": "lenovo-legion-5i-gen-11-2026-2.webp",
+          "alt": "Lenovo Legion 5 سفید از روبه‌رو"
+        }
+      ],
+      "discount_percent": 5
+    },
+    {
+      "slug": "xiaomi-18-pro-max-12gb-256gb",
+      "brand": "Xiaomi",
+      "category": "phones",
+      "name": "Xiaomi 18 Pro Max 12GB/256GB",
+      "usd_cents": 104300,
+      "price_note": "تقریبی",
+      "price_basis": "قیمت عرضهٔ چین ۶٬۹۹۹ یوان (حدود ۱٬۰۴۳ دلار طبق تبدیل منبع). قیمت رسمی آمریکا اعلام نشده؛ قیمت فروش را خودتان تعیین کنید.",
+      "specs": {
+        "display": "6.9 inch LTPO AMOLED, 2624x1208, 120Hz, Privacy Display",
+        "cpu": "Snapdragon 8 Elite Extreme Gen 6 (2nm)",
+        "ram": "12GB",
+        "storage": "256GB",
+        "camera": "200MP + 200MP + 50MP Leica",
+        "front_camera": "50MP",
+        "battery": "8500mAh, 100W wired / 50W wireless",
+        "os": "Android 17, HyperOS 4"
+      },
+      "description": "شیائومی ۱۸ پرو مکس در ۲۳ سپتامبر ۲۰۲۶ معرفی شد. نمایشگر ۶٫۹ اینچی LTPO AMOLED با رزولوشن ۲۶۲۴ در ۱۲۰۸ و ۱۲۰ هرتز دارد و از Privacy Display پشتیبانی می‌کند. پردازنده Snapdragon 8 Elite Extreme Gen 6 (۲ نانومتر)، رم ۱۲ گیگابایت و حافظهٔ ۲۵۶ گیگابایت. سه دوربین پشت (۲۰۰ + ۲۰۰ + ۵۰ مگاپیکسل، لنز لایکا) و دوربین سلفی ۵۰ مگاپیکسلی. باتری ۸۵۰۰ میلی‌آمپرساعت با شارژ سیمی ۱۰۰ وات و بی‌سیم ۵۰ وات. سیستم‌عامل Android 17 با HyperOS 4. نسخهٔ جهانی و رسمی با قیمت آمریکا هنوز اعلام نشده است.",
+      "images": [
+        {
+          "file": "xiaomi-18-pro-max-1.webp",
+          "alt": "Xiaomi 18 Pro Max سفید"
+        }
+      ],
+      "source": "https://www.technology.org/2026/09/25/xiaomi-18-pro-max-launch-price-specs/",
+      "spec_source": "https://www.gsmarena.com/xiaomi_18_pro_max_5g-14958.php",
+      "stock": 10,
+      "discount_percent": 6
+    },
+    {
+      "slug": "lenovo-loq-15-2026",
+      "brand": "Lenovo",
+      "category": "gaming-laptops",
+      "name": "Lenovo LOQ 15 (2026) Ryzen 7 250 RTX 5060",
+      "usd_cents": 129900,
+      "price_note": "از",
+      "price_basis": "قیمت شروع اعلام‌شده در CES 2026 برای مدل LOQ 15APH11. قیمت فروشگاه‌ها بسته به تخفیف و پیکربندی فرق می‌کند.",
+      "specs": {
+        "display": "15.3 inch WUXGA 1920x1200, 165-180Hz",
+        "cpu": "AMD Ryzen 7 250",
+        "gpu": "NVIDIA GeForce RTX 5060 (8GB)",
+        "ram": "16GB",
+        "storage": "1TB SSD",
+        "cooling": "Hyperchamber"
+      },
+      "description": "لنوو LOQ 15 مدل ۲۰۲۶ لپ‌تاپ گیمینگ اقتصادی لنوو است با پردازندهٔ AMD Ryzen 7 250 و کارت گرافیک RTX 5060 با ۸ گیگابایت حافظه. نمایشگر ۱۵٫۳ اینچی WUXGA با نرخ نوسازی بالا، ۱۶ گیگابایت رم و ۱ ترابایت SSD در پیکربندی فهرست‌شده و سیستم خنک‌کنندهٔ Hyperchamber. عکس‌های موجود ظاهر یک نسل LOQ 15 را نشان می‌دهند. پیش از انتشار مطمئن شوید با مدل و پیکربندی فروشی یکی است.",
+      "images": [
+        {
+          "file": "lenovo-loq-15-2026-1.webp",
+          "alt": "نمای پشت لپ‌تاپ Lenovo LOQ"
+        }
+      ],
+      "source": "https://www.notebookcheck.net/New-affordable-Lenovo-LOQ-gaming-laptop-debuts-with-up-to-Nvidia-RTX-5060-and-AMD-CPU.1196593.0.html",
+      "spec_source": "https://www.amazon.com/Lenovo-LOQ-GeForce-5060-15-3-250-16GB/dp/B0GNB7XQX5",
+      "stock": 5,
+      "discount_percent": 7
+    },
+    {
+      "slug": "asus-tuf-gaming-15",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS TUF Gaming 15",
+      "usd_cents": null,
+      "specs": {
+        "display": "15 inch"
+      },
+      "description": "لپ‌تاپ گیمینگ ASUS TUF Gaming ۱۵ اینچی با بدنهٔ مقاوم و صفحه‌کلید با نورپردازی. مشخصات و قیمت پس از مشخص‌شدن کد مدل کامل می‌شود.",
+      "images": [
+        {
+          "file": "asus-tuf-gaming-15-1.webp",
+          "alt": "نمای پشت ASUS TUF Gaming"
+        },
+        {
+          "file": "asus-tuf-gaming-15-2.webp",
+          "alt": "ASUS TUF Gaming از روبه‌رو با کیبورد فیروزه‌ای"
+        }
+      ],
+      "stock": 0,
+      "discount_percent": 8
+    },
+    {
+      "slug": "apple-iphone-17-pro-max-256gb",
+      "brand": "Apple",
+      "category": "phones",
+      "name": "Apple iPhone 17 Pro Max 256GB",
+      "usd_cents": 91930,
+      "price_note": "تقریبی",
+      "price_basis": "اپل این مدل را در سپتامبر ۲۰۲۶ از فروش رسمی خارج کرده و فقط موجودی خرده‌فروش‌ها یا کارکرده/ریفربیش مانده. قیمت عرضه ۱٬۱۹۹ دلار بود؛ قیمت حدود ۹۱۹ دلار از یک پیشنهاد خرده‌فروشی در GSMArena است. قیمت فروش را خودتان تعیین کنید.",
+      "specs": {
+        "display": "6.9 inch Super Retina XDR OLED, ProMotion 120Hz",
+        "cpu": "Apple A19 Pro (3nm)",
+        "ram": "12GB",
+        "storage": "256GB",
+        "camera": "48MP triple rear camera",
+        "front_camera": "18MP",
+        "battery": "5088mAh (eSIM model)",
+        "os": "iOS 26"
+      },
+      "description": "آیفون ۱۷ پرو مکس بزرگ‌ترین مدل نسل ۱۷ با نمایشگر ۶٫۹ اینچی Super Retina XDR OLED و ProMotion تا ۱۲۰ هرتز است. بدنهٔ یکپارچهٔ آلومینیومی، تراشهٔ A19 Pro (۳ نانومتر) با رم ۱۲ گیگابایت و سه دوربین ۴۸ مگاپیکسلی پشت با دوربین سلفی ۱۸ مگاپیکسلی دارد. نسخهٔ ۲۵۶ گیگابایت با iOS 26 عرضه شد. این مدل دیگر در فهرست رسمی اپل نیست و تا پایان موجودی فروخته می‌شود.",
+      "images": [
+        {
+          "file": "apple-iphone-17-pro-max-256gb-1.webp",
+          "alt": "آیفون نارنجی از پشت"
+        },
+        {
+          "file": "apple-iphone-17-pro-max-256gb-2.webp",
+          "alt": "آیفون نارنجی با صفحهٔ روشن"
+        },
+        {
+          "file": "apple-iphone-17-pro-max-256gb-3.webp",
+          "alt": "آیفون سفید از پشت"
+        }
+      ],
+      "source": "https://www.gsmarena.com/iphone_18_pro_max_vs_iphone_17_pro_max_battery_camera_price_compared-news-74787.php",
+      "spec_source": "https://us.smartprix.com/mobiles/apple-iphone-17-pro-max-ppd1h1rclat7",
+      "stock": 5,
+      "discount_percent": 9
+    },
+    {
+      "slug": "asus-rog-strix-scar-16-rtx-5080",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS ROG Strix SCAR 16 RTX 5080",
+      "usd_cents": 329999,
+      "price_note": "از",
+      "price_basis": "قیمت عرضهٔ ASUS برای پیکربندی RTX 5080 / 2TB در فوریهٔ ۲۰۲۵. فروشگاه‌ها بعداً تخفیف داده‌اند (مثلاً ۳٬۱۹۹ دلار). قیمت فعلی را دوباره بررسی کنید.",
+      "specs": {
+        "display": "16 inch 2560x1600 240Hz Mini LED (ROG Nebula HDR)",
+        "cpu": "Intel Core Ultra 9 275HX",
+        "gpu": "NVIDIA GeForce RTX 5080 (16GB GDDR7, 175W)",
+        "ram": "32GB DDR5-5600",
+        "storage": "2TB PCIe Gen 4 SSD",
+        "ports": "2x Thunderbolt 5",
+        "cooling": "Liquid metal"
+      },
+      "description": "ROG Strix SCAR 16 لپ‌تاپ گیمینگ ۱۶ اینچی رده‌بالای ایسوس است با پردازندهٔ Intel Core Ultra 9 275HX و کارت گرافیک RTX 5080 با ۱۶ گیگابایت حافظه GDDR7. نمایشگر ۱۶ اینچی ۲۵۶۰ در ۱۶۰۰ با نرخ نوسازی ۲۴۰ هرتز، رم ۳۲ گیگابایت DDR5 و SSD دو ترابایتی. سیستم خنک‌کنندهٔ فلز مایع و دو درگاه Thunderbolt 5 دارد. عکس موجود ظاهر یک لپ‌تاپ ROG Strix را نشان می‌دهد. پیش از انتشار تأیید کنید که دقیقاً همین مدل SCAR 16 است.",
+      "images": [
+        {
+          "file": "asus-rog-strix-scar-16-1.webp",
+          "alt": "نمای پشت ASUS ROG Strix با نوار نور RGB"
+        }
+      ],
+      "source": "https://www.notebookcheck.net/Asus-announces-ROG-Strix-Scar-16-and-18-2025-pricing-and-availability.967608.0.html",
+      "spec_source": "https://www.ultrabookreview.com/71050-asus-rog-scar-16-g635-review/",
+      "stock": 5,
+      "discount_percent": 10
+    },
+    {
+      "slug": "asus-rog-strix-scar-18-2025-rtx-5080",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS ROG Strix SCAR 18 (2025) RTX 5080",
+      "usd_cents": 339900,
+      "price_note": "تقریبی",
+      "price_basis": "قیمت جاری فروشگاه Walmart برای پیکربندی RTX 5080 / 2TB (تاریخ نامشخص). قیمت فعلی را دوباره بررسی کنید.",
+      "specs": {
+        "display": "18 inch 2.5K 240Hz ROG Nebula HDR",
+        "cpu": "Intel Core Ultra 9 275HX",
+        "gpu": "NVIDIA GeForce RTX 5080",
+        "ram": "32GB",
+        "storage": "2TB SSD",
+        "battery": "90Wh",
+        "ports": "2x Thunderbolt 5"
+      },
+      "description": "ROG Strix SCAR 18 مدل ۲۰۲۵ لپ‌تاپ گیمینگ ۱۸ اینچی ایسوس است با پردازندهٔ Intel Core Ultra 9 275HX و کارت گرافیک RTX 5080. نمایشگر ۱۸ اینچی ۲٫۵K با نرخ نوسازی ۲۴۰ هرتز، رم ۳۲ گیگابایت و SSD دو ترابایتی. باتری ۹۰ وات‌ساعتی و دو درگاه Thunderbolt 5 دارد.",
+      "images": [
+        {
+          "file": "asus-rog-strix-scar-16-1.webp",
+          "alt": "ROG Strix از پشت با نوار نور RGB"
+        }
+      ],
+      "source": "https://www.walmart.com/c/kp/rog-strix-scar",
+      "spec_source": "https://www.notebookcheck.net/Asus-announces-ROG-Strix-Scar-16-and-18-2025-pricing-and-availability.967608.0.html",
+      "stock": 5,
+      "discount_percent": 5
+    },
+    {
+      "slug": "asus-rog-strix-g16-2026-rtx-5080",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS ROG Strix G16 (2026) RTX 5080",
+      "usd_cents": 369999,
+      "price_note": "تقریبی",
+      "price_basis": "قیمت پیشنهاد آمازون طبق PCGuide (حدود ۴۲ روز پیش). ASUS قیمت رسمی آمریکا را در منبع‌هایی که دیدم نشان نمی‌داد. مدل‌های ۲۰۲۵ با RTX 5080 بین ۲٬۶۰۰ تا ۲٬۹۰۰ دلار بوده‌اند.",
+      "specs": {
+        "display": "16 inch 2.5K Nebula 240Hz",
+        "cpu": "Intel Core Ultra 9 290HX Plus",
+        "gpu": "NVIDIA GeForce RTX 5080 (16GB GDDR7, 175W)",
+        "ram": "32GB DDR5",
+        "storage": "1TB PCIe Gen 4 SSD"
+      },
+      "description": "ROG Strix G16 مدل ۲۰۲۶ (G615LW) با پردازندهٔ Intel Core Ultra 9 290HX Plus و کارت گرافیک RTX 5080 با ۱۶ گیگابایت حافظه GDDR7 و توان ۱۷۵ وات عرضه می‌شود. نمایشگر ۱۶ اینچی ۲٫۵K Nebula با نرخ نوسازی ۲۴۰ هرتز، رم ۳۲ گیگابایت DDR5 و SSD یک ترابایتی PCIe Gen 4 دارد. طراحی بدون ابزار برای ارتقا دارد.",
+      "images": [
+        {
+          "file": "asus-rog-strix-g16-2026-rtx-5080-1.webp",
+          "alt": "ROG Strix از پشت با لوگوی نورانی"
+        },
+        {
+          "file": "asus-rog-strix-g16-2026-rtx-5080-2.webp",
+          "alt": "ROG Strix G16 با پس‌زمینهٔ تبلیغاتی"
+        },
+        {
+          "file": "asus-rog-strix-g16-2026-rtx-5080-3.webp",
+          "alt": "ROG Strix G16 روی میز"
+        },
+        {
+          "file": "asus-rog-strix-scar-16-1.webp",
+          "alt": "ROG Strix از پشت با نوار نور RGB"
+        }
+      ],
+      "source": "https://www.pcguide.com/deals/insane-asus-rtx-5080-gaming-laptop-deal-with-core-ultra-9-290hx-plus-packs-serious-firepower-300hz-display-32gb-ddr5-ram-and-more/",
+      "spec_source": "https://rog.asus.com/me-en/laptops/rog-strix/rog-strix-g16-2026/spec/",
+      "stock": 5,
+      "discount_percent": 6
+    },
+    {
+      "slug": "asus-tuf-gaming-a15-fa506ncq-2026",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS TUF Gaming A15 (2026) FA506NCQ-HN008W",
+      "usd_cents": 82594,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "15.6 inch",
+        "cpu": "AMD Ryzen 7 170",
+        "ram": "16GB",
+        "storage": "1TB SSD",
+        "gpu": "4GB dedicated graphics",
+        "os": "Windows 11 Home"
+      },
+      "source": "https://us.smartprix.com/laptops/asus-tuf-gaming-a15-2026-fa506ncq-hn008w-ppd1ayp2l27a",
+      "stock": 6,
+      "description": "لپ‌تاپ گیمینگ ASUS TUF Gaming A15 مدل ۲۰۲۶ با کد FA506NCQ-HN008W و نمایشگر ۱۵٫۶ اینچی. پردازندهٔ AMD Ryzen 7 170، رم ۱۶ گیگابایت، حافظهٔ SSD یک ترابایتی، کارت گرافیک مجزا با ۴ گیگابایت حافظه و ویندوز ۱۱ Home. قیمت از روی فروشگاه‌های آنلاین تخمین زده شده و باید پیش از انتشار بررسی شود.",
+      "images": [
+        {
+          "file": "asus-tuf-gaming-a15-fa506ncq-2026-1.webp",
+          "alt": "ASUS TUF Gaming A15 از بالا، صفحه‌کلید و نمایشگر"
+        }
+      ],
+      "discount_percent": 7
+    },
+    {
+      "slug": "asus-tuf-gaming-a17-fa707xi-ns94",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS TUF Gaming A17 FA707XI-NS94",
+      "usd_cents": 140000,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "17.3 inch FHD, 144Hz",
+        "cpu": "AMD Ryzen 9 7940HS",
+        "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU (140W)",
+        "weight": "2.60 kg",
+        "battery": "90Wh"
+      },
+      "source": "https://www.notebookcheck.net/Asus-TUF-Gaming-A17-FA707XI-laptop-review-140-W-GeForce-RTX-4070-for-1400.788416.0.html",
+      "stock": 4,
+      "description": "لپ‌تاپ گیمینگ ASUS TUF Gaming A17 مدل FA707XI-NS94 با نمایشگر ۱۷٫۳ اینچی Full HD و نرخ نوسازی ۱۴۴ هرتز. پردازندهٔ AMD Ryzen 9 7940HS و کارت گرافیک NVIDIA GeForce RTX 4070 با توان ۱۴۰ وات. وزن حدود ۲٫۶ کیلوگرم و باتری ۹۰ وات‌ساعتی. قیمت حدود ۱۴۰۰ دلار گزارش شده است.",
+      "spec_source": "https://www.notebookcheck-cn.com/Asus-TUF-Gaming-A17-FA707.690885.0.html",
+      "images": [
+        {
+          "file": "asus-tuf-gaming-a17-fa707xi-ns94-1.webp",
+          "alt": "ASUS TUF Gaming A17 با کیبورد فیروزه‌ای"
+        }
+      ],
+      "discount_percent": 8
+    },
+    {
+      "slug": "asus-tuf-gaming-f15-fx507-rtx-4070",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS TUF Gaming F15 (FX507) RTX 4070",
+      "usd_cents": 139999,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "15.6 inch",
+        "cpu": "Intel Core i7-12700H",
+        "gpu": "NVIDIA GeForce RTX 4070",
+        "expansion": "2x M.2 + 2x SO-DIMM"
+      },
+      "source": "https://www.notebookcheck.net/RTX-4070-equipped-ASUS-TUF-Gaming-F15-drops-back-to-120-day-low-price-following-18-discount.738249.0.html",
+      "stock": 5,
+      "description": "لپ‌تاپ گیمینگ ASUS TUF Gaming F15 (سری FX507) با نمایشگر ۱۵٫۶ اینچی، پردازندهٔ Intel Core i7-12700H و کارت گرافیک NVIDIA GeForce RTX 4070. دو اسلات M.2 برای حافظه و دو اسلات SO-DIMM برای رم دارد و قابل ارتقاست. قیمت اعلام‌شدهٔ این پیکربندی ۱٬۳۹۹٫۹۹ دلار است.",
+      "images": [
+        {
+          "file": "asus-tuf-gaming-f15-fx507-rtx-4070-1.webp",
+          "alt": "ASUS TUF Gaming F15 از روبه‌رو"
+        }
+      ],
+      "discount_percent": 9
+    },
+    {
+      "slug": "asus-tuf-gaming-f17-fx707vv",
+      "brand": "ASUS",
+      "category": "gaming-laptops",
+      "name": "ASUS TUF Gaming F17 FX707VV",
+      "usd_cents": 100000,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "17.3 inch FHD, 144Hz",
+        "cpu": "Intel Core i7-13620H",
+        "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "ram": "16GB",
+        "storage": "1TB SSD",
+        "os": "Windows 11 Home",
+        "ports": "Thunderbolt 4, USB-C (DisplayPort, charging), 2x USB 3.0, HDMI, Gigabit Ethernet",
+        "body": "MIL-STD-810H"
+      },
+      "source": "https://www.ebay.com/itm/146476589697",
+      "stock": 4,
+      "description": "لپ‌تاپ گیمینگ ASUS TUF Gaming F17 مدل FX707VV با نمایشگر ۱۷٫۳ اینچی Full HD و نرخ نوسازی ۱۴۴ هرتز. پردازندهٔ Intel Core i7-13620H، کارت گرافیک GeForce RTX 4060، رم ۱۶ گیگابایت و SSD یک ترابایتی. پورت‌های Thunderbolt 4، USB-C، HDMI و Gigabit Ethernet دارد و با استاندارد نظامی MIL-STD-810H ساخته شده است. قیمت از یک آگهی فروش گرفته شده و تقریبی است.",
+      "spec_source": "https://pc.watch.impress.co.jp/docs/news/todays_sales/1614139.html",
+      "images": [
+        {
+          "file": "asus-tuf-gaming-f17-fx707vv-1.webp",
+          "alt": "ASUS TUF Gaming F17 از پشت، با نقش TUF روی درب"
+        }
+      ],
+      "discount_percent": 10
+    },
+    {
+      "slug": "lenovo-thinkpad-t480",
+      "brand": "Lenovo",
+      "category": "laptops",
+      "name": "Lenovo ThinkPad T480",
+      "usd_cents": 124077,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "14 inch FHD (1920x1080) IPS",
+        "cpu": "Intel Core i7-8650U",
+        "gpu": "Intel UHD Graphics 620",
+        "ram": "16GB",
+        "storage": "512GB SSD (PCIe NVMe)",
+        "os": "Windows 10 Pro",
+        "weight": "1.60 kg",
+        "ports": "USB-C (Thunderbolt 3), USB-C 3.2 Gen 1, 2x USB-A 3.2 Gen 1, HDMI 1.4b, SD card reader, Ethernet"
+      },
+      "source": "https://laptopmedia.com/laptop-specs/lenovo-thinkpad-t480-4/specs/",
+      "stock": 5,
+      "description": "لپ‌تاپ تجاری Lenovo ThinkPad T480 با نمایشگر ۱۴ اینچی Full HD از نوع IPS. پردازندهٔ Intel Core i7-8650U با گرافیک Intel UHD 620، رم ۱۶ گیگابایت و SSD ‏۵۱۲ گیگابایتی NVMe. وزن ۱٫۶ کیلوگرم، پورت Thunderbolt 3، HDMI، کارت‌خوان SD و Ethernet، به‌همراه اثرانگشت و کیبورد با نورپردازی. این پیکربندی مربوط به آگهی‌ای در آمازون است و قیمت باید پیش از انتشار بررسی شود.",
+      "images": [
+        {
+          "file": "lenovo-thinkpad-t480-1.webp",
+          "alt": "Lenovo ThinkPad با ویندوز ۱۱ روی صفحه"
+        },
+        {
+          "file": "lenovo-thinkpad-t480-2.webp",
+          "alt": "Lenovo ThinkPad T480 از نمای سه‌چهارم"
+        }
+      ],
+      "discount_percent": 5
+    },
+    {
+      "slug": "starlink-mini-kit",
+      "brand": "Starlink",
+      "category": "satellite-internet",
+      "name": "Starlink Mini Kit",
+      "usd_cents": 24900,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "dimensions": "298.5 x 259 x 38.5 mm",
+        "weight": "1.10 kg (without kickstand)",
+        "router": "Built-in Wi-Fi router",
+        "devices": "Up to 128 devices",
+        "service": "Requires a Starlink Roam plan"
+      },
+      "source": "https://www.thepricer.org/how-much-does-starlink-cost/",
+      "stock": 8,
+      "description": "کیت Starlink Mini آنتن کوچک و قابل‌حمل استارلینک با روتر Wi-Fi داخلی است که در کوله‌پشتی جا می‌شود. ابعاد ۲۹۸٫۵ × ۲۵۹ × ۳۸٫۵ میلی‌متر و وزن حدود ۱٫۱ کیلوگرم بدون پایه. تا ۱۲۸ دستگاه را به اینترنت وصل می‌کند و برای استفاده به یک طرح سرویس Roam استارلینک نیاز دارد. قیمت سخت‌افزار در بازارها تغییر زیادی کرده و باید پیش از انتشار بررسی شود.",
+      "spec_source": "https://www.basenor.com/blogs/news/starlink-mini-kit-now-available-in-the-u-s-pricing-breakdown",
+      "images": [
+        {
+          "file": "starlink-mini-kit-1.webp",
+          "alt": "آنتن Starlink Mini به‌همراه کابل"
+        }
+      ],
+      "discount_percent": 6
+    },
+    {
+      "slug": "starlink-standard-kit-v4",
+      "brand": "Starlink",
+      "category": "satellite-internet",
+      "name": "Starlink Standard Kit V4",
+      "usd_cents": 34900,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "dimensions": "Antenna 298.5 x 259 x 38.5 mm",
+        "weight": "Antenna 2.9 kg, complete kit 3.2 kg",
+        "router": "Gen 3 router, tri-band Wi-Fi 6, 2x Gigabit Ethernet",
+        "coverage": "Up to 297 m2",
+        "devices": "Up to 235 devices",
+        "cable": "15 m (49.2 ft) Gen 3 cable",
+        "fov": "110 degrees",
+        "includes": "V4 antenna, kickstand, Gen 3 router, cable, power supply"
+      },
+      "source": "https://www.thepricer.org/how-much-does-starlink-cost/",
+      "stock": 6,
+      "description": "کیت Starlink Standard V4 مخصوص منزل و محیط‌های ثابت است. شامل آنتن V4، پایهٔ نصب، روتر نسل ۳ با Wi-Fi 6 سه‌باندی و دو پورت Gigabit Ethernet، کابل ۱۵ متری و منبع تغذیه. پوشش تا ۲۹۷ متر مربع، اتصال تا ۲۳۵ دستگاه و میدان دید ۱۱۰ درجه. آنتن حدود ۲٫۹ کیلوگرم وزن دارد. قیمت معمول این کیت در آمریکا ۳۴۹ دلار گزارش شده و در بازارهای دیگر متفاوت است.",
+      "spec_source": "https://www.overtons.com/starlink-standard-kit-154373.html",
+      "images": [
+        {
+          "file": "starlink-standard-kit-v4-1.webp",
+          "alt": "کیت Starlink Standard V4 با جعبه"
+        },
+        {
+          "file": "starlink-standard-kit-v4-2.webp",
+          "alt": "آنتن Starlink Standard V4 و روتر"
+        }
+      ],
+      "discount_percent": 7
+    },
+    {
+      "slug": "xiaomi-redmi-note-14-5g",
+      "brand": "Xiaomi",
+      "category": "phones",
+      "name": "Xiaomi Redmi Note 14 5G",
+      "usd_cents": 23950,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "6.67 inch AMOLED, 1080x2400, 120Hz, 2100 nits peak",
+        "cpu": "MediaTek Dimensity 7025 Ultra (6 nm)",
+        "ram": "6GB / 8GB / 12GB",
+        "storage": "128GB / 256GB / 512GB",
+        "camera": "108MP main (OIS) + 8MP ultra-wide + 2MP macro",
+        "front_camera": "20MP",
+        "battery": "5110mAh, 45W",
+        "os": "Android 14 (HyperOS)",
+        "weight": "190 g",
+        "thickness": "8 mm",
+        "sim": "Dual Nano-SIM",
+        "body": "Gorilla Glass 5 front, plastic back and frame, IP64"
+      },
+      "source": "https://m.gsmarena.com/xiaomi_redmi_note_14_5g_(global)-13615.php",
+      "stock": 12,
+      "description": "ردمی نوت ۱۴ 5G شیائومی با نمایشگر AMOLED ‏۶٫۶۷ اینچی، رزولوشن ۱۰۸۰×۲۴۰۰، نرخ نوسازی ۱۲۰ هرتز و روشنایی اوج ۲۱۰۰ نیت. پردازندهٔ MediaTek Dimensity 7025 Ultra، دوربین اصلی ۱۰۸ مگاپیکسلی با OIS به‌همراه فوق‌عریض ۸ و ماکرو ۲ مگاپیکسلی و دوربین سلفی ۲۰ مگاپیکسلی. باتری ۵۱۱۰ میلی‌آمپرساعت با شارژ ۴۵ وات، اندروید ۱۴ با HyperOS و مقاومت IP64. در نسخه‌های ۱۲۸، ۲۵۶ و ۵۱۲ گیگابایت عرضه شده است.",
+      "spec_source": "https://us.smartprix.com/mobiles/xiaomi-redmi-note-14-5g-ppd1lk0eyj61",
+      "images": [
+        {
+          "file": "xiaomi-redmi-note-14-5g-1.webp",
+          "alt": "Redmi Note 14 5G بنفش، پشت و جلو"
+        },
+        {
+          "file": "xiaomi-redmi-note-14-5g-2.webp",
+          "alt": "Redmi Note 14 5G در سه رنگ"
+        }
+      ],
+      "discount_percent": 8
+    },
+    {
+      "slug": "xiaomi-poco-x7",
+      "brand": "Xiaomi",
+      "category": "phones",
+      "name": "Xiaomi POCO X7",
+      "usd_cents": 27500,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "6.67 inch CrystalRes AMOLED, 1220x2712, 120Hz, 3000 nits peak",
+        "cpu": "MediaTek Dimensity 7300 Ultra (4 nm)",
+        "gpu": "Mali-G615 MC2",
+        "ram": "8GB / 12GB",
+        "storage": "128GB / 256GB / 512GB",
+        "camera": "50MP main (OIS) + 8MP ultra-wide + 2MP macro",
+        "front_camera": "20MP",
+        "battery": "5110mAh, 45W",
+        "os": "Android 14 (HyperOS)",
+        "weight": "185.5 g (plastic) / 190 g (PU)",
+        "thickness": "8.4 mm / 8.6 mm",
+        "sim": "Dual SIM",
+        "body": "Gorilla Glass Victus 2 front, IP68"
+      },
+      "source": "https://m.gsmarena.com/xiaomi_poco_x7-ampp-13604.php",
+      "stock": 10,
+      "description": "پوکو X7 شیائومی با نمایشگر AMOLED ‏۶٫۶۷ اینچی CrystalRes، رزولوشن ۱۲۲۰×۲۷۱۲، نرخ نوسازی ۱۲۰ هرتز و روشنایی اوج ۳۰۰۰ نیت. پردازندهٔ MediaTek Dimensity 7300 Ultra با گرافیک Mali-G615 MC2، دوربین اصلی ۵۰ مگاپیکسلی با OIS به‌همراه فوق‌عریض ۸ و ماکرو ۲ مگاپیکسلی و دوربین سلفی ۲۰ مگاپیکسلی. باتری ۵۱۱۰ میلی‌آمپرساعت با شارژ ۴۵ وات، اندروید ۱۴ با HyperOS، شیشهٔ Gorilla Glass Victus 2 و مقاومت IP68. در رنگ‌های نقره‌ای، سبز و مشکی-زرد و نسخه‌های ۱۲۸، ۲۵۶ و ۵۱۲ گیگابایت عرضه شده است. توجه: این مدل X7 معمولی است، نه X7 Pro.",
+      "spec_source": "https://www.mi.com/my/product/poco-x7/specs",
+      "images": [
+        {
+          "file": "xiaomi-poco-x7-1.webp",
+          "alt": "POCO X7 نقره‌ای، پشت و جلو"
+        },
+        {
+          "file": "xiaomi-poco-x7-2.webp",
+          "alt": "POCO X7 در سه رنگ نقره‌ای، سبز و مشکی-زرد"
+        }
+      ],
+      "discount_percent": 9
+    },
+    {
+      "slug": "xiaomi-poco-f8-pro",
+      "brand": "Xiaomi",
+      "category": "phones",
+      "name": "Xiaomi POCO F8 Pro",
+      "usd_cents": 57900,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "6.59 inch AMOLED, 1156x2510, 120Hz, 3500 nits peak",
+        "cpu": "Qualcomm Snapdragon 8 Elite (3 nm)",
+        "gpu": "Adreno 830",
+        "ram": "12GB",
+        "storage": "256GB / 512GB",
+        "camera": "50MP + 50MP + 8MP triple camera",
+        "front_camera": "20MP",
+        "battery": "6210mAh, 100W",
+        "os": "Android 16 (HyperOS 3)",
+        "weight": "199 g",
+        "thickness": "8 mm",
+        "sim": "Dual SIM + eSIM",
+        "body": "Gorilla Glass 7i front, aluminum frame, glass back, IP68"
+      },
+      "source": "https://www.fonearena.com/blog/469763/poco-f8-pro-price-specifications.html",
+      "spec_source": "https://m.gsmarena.com/xiaomi_poco_f8_pro-ampp-14303.php",
+      "stock": 8,
+      "description": "پوکو F8 Pro شیائومی با نمایشگر AMOLED ‏۶٫۵۹ اینچی، رزولوشن ۱۱۵۶×۲۵۱۰، نرخ نوسازی ۱۲۰ هرتز و روشنایی اوج ۳۵۰۰ نیت. پردازندهٔ Qualcomm Snapdragon 8 Elite (۳ نانومتر) با گرافیک Adreno 830 و رم ۱۲ گیگابایت، در نسخه‌های ۲۵۶ و ۵۱۲ گیگابایت. دوربین سه‌گانهٔ ۵۰ + ۵۰ + ۸ مگاپیکسلی، سلفی ۲۰ مگاپیکسلی، باتری ۶۲۱۰ میلی‌آمپرساعت با شارژ ۱۰۰ وات و اندروید ۱۶ با HyperOS 3. بدنه با شیشهٔ Gorilla Glass 7i، قاب آلومینیومی و مقاومت IP68، وزن ۱۹۹ گرم. رنگ‌ها: مشکی، نقره‌ای تیتانیوم و آبی. قیمت، قیمت عرضهٔ جهانی (۵۷۹ دلار) است و در فروشگاه‌ها متفاوت است.",
+      "images": [
+        {
+          "file": "xiaomi-poco-f8-pro-1.webp",
+          "alt": "POCO F8 Pro در رنگ‌های مشکی، نقره‌ای و آبی روشن"
+        }
+      ],
+      "discount_percent": 10
+    },
+    {
+      "slug": "xiaomi-poco-x8-pro",
+      "brand": "Xiaomi",
+      "category": "phones",
+      "name": "Xiaomi POCO X8 Pro",
+      "usd_cents": 35450,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "6.59 inch AMOLED, 1268x2756, 120Hz, 3500 nits peak",
+        "cpu": "MediaTek Dimensity 8500 Ultra (4 nm)",
+        "gpu": "Mali-G720 MC8",
+        "ram": "8GB / 12GB",
+        "storage": "256GB / 512GB",
+        "camera": "50MP main (IMX882, OIS) + 8MP ultra-wide",
+        "front_camera": "20MP",
+        "battery": "6500mAh, 100W",
+        "os": "Android 16 (HyperOS)",
+        "weight": "about 201 g",
+        "body": "Gorilla Glass 7i, IP66 / IP68 / IP69 / IP69K"
+      },
+      "source": "https://the-gadgeteer.com/2026/07/16/poco-x8-pro-specs-price/",
+      "spec_source": "https://www.noypigeeks.com/?p=266176",
+      "stock": 10,
+      "description": "پوکو X8 Pro شیائومی (عرضه‌شده در مارس ۲۰۲۶) با نمایشگر AMOLED ‏۶٫۵۹ اینچی، رزولوشن ۱۲۶۸×۲۷۵۶، نرخ نوسازی ۱۲۰ هرتز و روشنایی اوج ۳۵۰۰ نیت. پردازندهٔ MediaTek Dimensity 8500 Ultra (۴ نانومتر) با گرافیک Mali-G720 MC8، رم ۸ یا ۱۲ گیگابایت و حافظهٔ ۲۵۶ یا ۵۱۲ گیگابایت. دوربین اصلی ۵۰ مگاپیکسلی IMX882 با OIS به‌همراه فوق‌عریض ۸ مگاپیکسلی و سلفی ۲۰ مگاپیکسلی. باتری ۶۵۰۰ میلی‌آمپرساعت با شارژ ۱۰۰ وات، اندروید ۱۶ با HyperOS و مقاومت IP68 و IP69K. نوار نورپردازی پویا کنار دوربین برای اعلان‌ها و شارژ دارد. قیمت از فروشگاه آمازون گزارش شده و تقریبی است.",
+      "images": [
+        {
+          "file": "xiaomi-poco-x8-pro-1.webp",
+          "alt": "POCO X8 Pro در رنگ‌های سفید، سبز روشن و مشکی"
+        },
+        {
+          "file": "xiaomi-poco-x8-pro-2.webp",
+          "alt": "POCO X8 Pro، پشت و جلو"
+        }
+      ],
+      "discount_percent": 5
+    },
+    {
+      "slug": "samsung-galaxy-s25-fe",
+      "brand": "Samsung",
+      "category": "phones",
+      "name": "Samsung Galaxy S25 FE",
+      "usd_cents": 64999,
+      "price_note": "از",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "display": "6.7 inch Dynamic AMOLED 2X, 1080x2340, 120Hz",
+        "cpu": "Samsung Exynos 2400 (4 nm)",
+        "gpu": "Xclipse 940",
+        "ram": "8GB",
+        "storage": "128GB / 256GB / 512GB",
+        "camera": "50MP main (OIS) + 12MP ultra-wide + 8MP 3x telephoto (OIS)",
+        "front_camera": "12MP",
+        "battery": "4900mAh, 45W wired, 15W wireless",
+        "os": "Android 16 (One UI 8), 7 major OS upgrades",
+        "weight": "190 g",
+        "thickness": "7.4 mm",
+        "body": "Gorilla Glass Victus+, armor aluminum frame, IP68"
+      },
+      "source": "https://www.gsmarena.com/samsung_galaxy_s25_fe-review-2880.php",
+      "spec_source": "https://www.ifixit.com/Topic/Samsung_Galaxy_S25_FE",
+      "stock": 9,
+      "description": "گلکسی S25 FE سامسونگ با نمایشگر Dynamic AMOLED 2X ‏۶٫۷ اینچی، رزولوشن ۱۰۸۰×۲۳۴۰ و نرخ نوسازی ۱۲۰ هرتز. پردازندهٔ Exynos 2400 (۴ نانومتر) با گرافیک Xclipse 940، رم ۸ گیگابایت و حافظهٔ ۱۲۸، ۲۵۶ یا ۵۱۲ گیگابایت. دوربین اصلی ۵۰ مگاپیکسلی با OIS، فوق‌عریض ۱۲ مگاپیکسلی و تله‌فوتو ۸ مگاپیکسلی با زوم ۳ برابر، سلفی ۱۲ مگاپیکسلی. باتری ۴۹۰۰ میلی‌آمپرساعت با شارژ سیمی ۴۵ وات و بی‌سیم ۱۵ وات، اندروید ۱۶ با One UI 8 و هفت نسخهٔ ارتقای سیستم‌عامل. وزن ۱۹۰ گرم، ضخامت ۷٫۴ میلی‌متر و مقاومت IP68. قیمت عرضهٔ آمریکا از ۶۴۹٫۹۹ دلار برای نسخهٔ ۱۲۸ گیگابایت است.",
+      "images": [
+        {
+          "file": "samsung-galaxy-s25-fe-1.webp",
+          "alt": "Samsung Galaxy S25 FE از پشت در رنگ‌های سفید، آبی یخی و سرمه‌ای"
+        }
+      ],
+      "discount_percent": 6
+    },
+    {
+      "slug": "sony-playstation-5-pro",
+      "brand": "Sony",
+      "category": "game-consoles",
+      "name": "Sony PlayStation 5 Pro",
+      "usd_cents": 89999,
+      "price_note": "تقریبی",
+      "checked_on": "2026-10-12",
+      "specs": {
+        "cpu": "AMD Zen 2, 8 cores / 16 threads, up to 3.85 GHz",
+        "gpu": "AMD RDNA, 60 compute units, about 16.7 TFLOPS",
+        "ram": "16GB GDDR6",
+        "storage": "2TB SSD",
+        "upscaling": "PSSR (PlayStation Spectral Super Resolution)",
+        "connectivity": "Wi-Fi 7",
+        "optical": "Disc drive not included (optional add-on)"
+      },
+      "source": "https://tech-insider.org/ps5-pro-vs-ps5-2026/",
+      "spec_source": "https://tech-insider.org/ie/?p=686",
+      "stock": 6,
+      "description": "کنسول بازی PlayStation 5 Pro سونی با پردازندهٔ AMD Zen 2 هشت‌هسته‌ای (تا ۳٫۸۵ گیگاهرتز)، پردازندهٔ گرافیکی با ۶۰ واحد محاسباتی و حدود ۱۶٫۷ ترافلاپس، حافظهٔ ۱۶ گیگابایت GDDR6 و SSD دو ترابایتی. ارتقای تصویر با هوش مصنوعی PSSR و Wi-Fi 7 دارد. درایو دیسک همراه کنسول نیست و جداگانه افزوده می‌شود. قیمت ۸۹۹٫۹۹ دلار پس از افزایش قیمت آوریل ۲۰۲۶ گزارش شده است؛ منابع دیگر قیمت متفاوتی داده‌اند و باید پیش از انتشار بررسی شود.",
+      "images": [
+        {
+          "file": "sony-playstation-5-pro-2.webp",
+          "alt": "PlayStation 5 Pro و دسته DualSense"
+        },
+        {
+          "file": "sony-playstation-5-pro-1.webp",
+          "alt": "کنسول PlayStation 5 Pro از روبه‌رو"
+        },
+        {
+          "file": "sony-playstation-5-pro-3.webp",
+          "alt": "PlayStation 5 Pro و دسته DualSense، نمای نزدیک"
+        }
+      ],
+      "discount_percent": 7
+    },
+    {
+      "slug": "grand-theft-auto-vi",
+      "brand": "Rockstar",
+      "category": "game-consoles",
+      "name": "Grand Theft Auto VI — Global Edition",
+      "usd_cents": 6999,
+      "specs": {
+        "platform": "PlayStation 5 / Xbox Series X|S",
+        "edition": "Global digital edition",
+        "language": "English / Multi",
+        "release": "2026",
+        "format": "Digital download"
+      },
+      "source": "https://www.rockstargames.com/VI",
+      "stock": 25,
+      "description": "نسخهٔ جهانی بازی Grand Theft Auto VI با قیمت جهانی ۶۹٫۹۹ دلار و تخفیف ویژه ۳٪. مناسب برای کنسولهای PlayStation 5 و Xbox Series X|S.",
+      "images": [
+        {
+          "file": "gta-vi-cover-hd.webp",
+          "alt": "جلد رسمی بازی Grand Theft Auto VI",
+          "alt_fa": "جلد رسمی بازی Grand Theft Auto VI",
+          "alt_en": "Grand Theft Auto VI official cover art",
+          "license": "user-provided",
+          "source": "user upload"
+        },
+        {
+          "file": "gta-vi-collage-hd.webp",
+          "alt": "تصویر ترکیبی صحنههای بازی Grand Theft Auto VI",
+          "alt_fa": "تصویر ترکیبی صحنههای بازی Grand Theft Auto VI",
+          "alt_en": "Grand Theft Auto VI key art collage",
+          "license": "user-provided",
+          "source": "user upload"
+        }
+      ],
+      "spec_source": "user",
+      "discount_percent": 3
+    }
+  ]
+}
