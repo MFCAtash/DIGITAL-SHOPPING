@@ -1,0 +1,45 @@
+name: پیشنهاد قابلیت
+description: ایده یا بهبودی برای پروژه دارید؟
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: مشکلی که حل میکند چیست؟
+      description: مثلاً «کاربر نمیتواند قیمت را با فروشگاه مقایسه کند»
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: راهحل پیشنهادی
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: گزینههای جایگزین بررسیشده
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: بخش
+      options:
+        - Backend / API
+        - Web / Storefront
+        - UI package
+        - Ops / CI
+        - Documentation
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: بررسیها
+      options:
+        - label: issue تکراری را جستوجو کردهام
+          required: true
+        - label: حاضر به کمک در پیادهسازی هستم
+          required: false

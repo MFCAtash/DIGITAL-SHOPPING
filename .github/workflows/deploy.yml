@@ -1,0 +1,137 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: محیط مقصد
+        required: true
+        default: production
+        type: choice
+        options: [production, staging]
+  push:
+    tags: ["v*"]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'production' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+      - name: Deploy (backup → migrate once → health checks)
+        env:
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SITE_HOST: ${{ vars.SITE_HOST || secrets.DEPLOY_HOST }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          : "${DEPLOY_DIR:?DEPLOY_DIR must be set as a repository Variable}"
+          : "${DEPLOY_USER:?}" ; : "${DEPLOY_HOST:?}"
+          export SITE_HOST="${SITE_HOST:-$DEPLOY_HOST}"
+          export GITHUB_SHA="${TARGET_SHA}"
+          # DEPLOY_DIR/GITHUB_SHA are injected into the remote heredoc explicitly:
+          # a quoted heredoc would never let the remote shell see them.
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" bash -s <<REMOTE
+            set -euo pipefail
+            export DEPLOY_DIR="${DEPLOY_DIR}"
+            export GITHUB_SHA="${GITHUB_SHA}"
+            export SITE_HOST="${SITE_HOST}"
+            cd "\${DEPLOY_DIR:?DEPLOY_DIR is not set}"
+            git fetch --tags --quiet
+
+            # Remember the SHA that is currently serving traffic. It is only
+            # replaced with the new SHA after both health checks pass.
+            PREVIOUS_SHA="\$(git rev-parse HEAD)"
+            printf '%s\n' "\$PREVIOUS_SHA" > .deploy-previous-sha
+            git checkout --quiet "\$GITHUB_SHA"
+
+            # Start the data services first: pg_dump and migrations need the DB.
+            docker compose --env-file .env up -d --remove-orphans db redis
+            for i in {1..30}; do
+              if docker compose --env-file .env exec -T db pg_isready -U codex -d codex >/dev/null; then break; fi
+              if [ "\$i" -eq 30 ]; then echo 'database did not become healthy' >&2; exit 1; fi
+              sleep 2
+            done
+
+            # Pre-migration backup, kept outside the containers and verified non-empty.
+            mkdir -p backups
+            BACKUP_FILE="backups/pre-migrate-\$(date -u +%Y%m%dT%H%M%SZ).sql.gz"
+            docker compose --env-file .env exec -T db pg_dump -U codex -d codex | gzip > "\$BACKUP_FILE"
+            test -s "\$BACKUP_FILE"
+            echo "database backup: \$BACKUP_FILE"
+
+            # api/worker run with RUN_MIGRATIONS=0, so this is the only migration run.
+            docker compose --env-file .env run --rm --no-deps api python manage.py migrate --noinput
+            docker compose --env-file .env up -d --remove-orphans
+            docker compose --env-file .env exec -T api python manage.py check --deploy --fail-level WARNING
+
+            # Health-check BOTH surfaces before declaring success.
+            for i in {1..30}; do
+              if curl -fsS --max-time 5 "https://\${SITE_HOST}/api/v1/health" | grep -q '"database":"up"'; then break; fi
+              if [ "\$i" -eq 30 ]; then echo 'api health check failed' >&2; exit 1; fi
+              sleep 5
+            done
+            for i in {1..30}; do
+              if curl -fsS --max-time 5 -o /dev/null "https://\${SITE_HOST}/"; then break; fi
+              if [ "\$i" -eq 30 ]; then echo 'web health check failed' >&2; exit 1; fi
+              sleep 5
+            done
+
+            printf '%s\n' "\$GITHUB_SHA" > .deploy-last-good-sha
+            echo "deployed \$GITHUB_SHA (previous: \$PREVIOUS_SHA)"
+          REMOTE
+      - name: Rollback to the previous known-good SHA
+        if: failure()
+        env:
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SITE_HOST: ${{ vars.SITE_HOST || secrets.DEPLOY_HOST }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          : "${DEPLOY_DIR:?DEPLOY_DIR must be set as a repository Variable}"
+          export SITE_HOST="${SITE_HOST:-$DEPLOY_HOST}"
+          export GITHUB_SHA="${TARGET_SHA}"
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" bash -s <<REMOTE
+            set -euo pipefail
+            export DEPLOY_DIR="${DEPLOY_DIR}"
+            export GITHUB_SHA="${GITHUB_SHA}"
+            export SITE_HOST="${SITE_HOST}"
+            cd "\${DEPLOY_DIR:?DEPLOY_DIR is not set}"
+
+            PREVIOUS_SHA="\$(cat .deploy-previous-sha 2>/dev/null || true)"
+            if [ -z "\$PREVIOUS_SHA" ] || [ "\$PREVIOUS_SHA" = "\$GITHUB_SHA" ]; then
+              echo 'no previously deployed known-good SHA is available for rollback' >&2
+              exit 1
+            fi
+            echo "rolling back to \$PREVIOUS_SHA"
+            git checkout --quiet "\$PREVIOUS_SHA"
+            docker compose --env-file .env up -d --remove-orphans
+
+            # Verify the rolled-back stack before reporting success.
+            for i in {1..30}; do
+              if curl -fsS --max-time 5 "https://\${SITE_HOST}/api/v1/health" | grep -q '"database":"up"'; then break; fi
+              if [ "\$i" -eq 30 ]; then echo 'rollback api health check failed' >&2; exit 1; fi
+              sleep 5
+            done
+            for i in {1..30}; do
+              if curl -fsS --max-time 5 -o /dev/null "https://\${SITE_HOST}/"; then break; fi
+              if [ "\$i" -eq 30 ]; then echo 'rollback web health check failed' >&2; exit 1; fi
+              sleep 5
+            done
+            printf '%s\n' "\$PREVIOUS_SHA" > .deploy-last-good-sha
+            echo "rollback complete: \$PREVIOUS_SHA"
+          REMOTE

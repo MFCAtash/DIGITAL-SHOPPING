@@ -1,0 +1,47 @@
+{$SITE_ADDRESS:localhost} {
+	encode zstd gzip
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Resource-Policy "same-origin"
+		Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests"
+	}
+	request_body {
+		max_size 10MB
+	}
+
+	# /metrics فقط از طریق شبکهٔ داخلی توسط Prometheus خوانده میشود.
+	@metrics path /api/v1/metrics
+	respond @metrics 404
+
+	# /admin/ فقط از IPهای مجاز (ADMIN_ALLOWED_IPS)
+	@admin_blocked {
+		path /admin /admin/*
+		not remote_ip {$ADMIN_ALLOWED_IPS:127.0.0.1/32}
+	}
+	respond @admin_blocked "Forbidden" 403
+
+	# تصاویر کالا: فایلهای webp با کش طولانی
+	@media path /media/*
+	handle @media {
+		root * /srv/media
+		file_server
+		header Cache-Control "public, max-age=31536000, immutable"
+	}
+
+	# بکاند: API، ادمین و بازگشت درگاه پرداخت
+	@backend path /api/* /admin/* /payments/*
+	handle @backend {
+		reverse_proxy api:8000
+	}
+
+	# بقیهٔ مسیرها: اپلیکیشن فروشگاه (Next.js)
+	handle {
+		reverse_proxy web:3000
+	}
+}

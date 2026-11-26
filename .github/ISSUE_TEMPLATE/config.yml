@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: امنیت
+    url: https://docs.github.com/en/code-security/security-advisories
+    about: لطفاً آسیبپذیریها را بهصورت خصوصی از طریق Security Advisories گزارش دهید.
+  - name: مستندات و راهاندازی
+    url: https://github.com
+    about: قبل از ثبت issue، README و docs/RUNBOOK.md را مطالعه کنید.

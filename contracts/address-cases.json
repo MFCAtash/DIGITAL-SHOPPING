@@ -1,0 +1,209 @@
+[
+ {
+  "name": "معتبر",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": []
+ },
+ {
+  "name": "ارقام فارسی",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "۰۹۱۲۳۴۵۶۷۸۹",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "۱۲۳۴۵۶۷۸۹۰",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": []
+ },
+ {
+  "name": "+98",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "+98 912 345 6789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": []
+ },
+ {
+  "name": "کد پستی با خط تیره",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "12345-67890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": []
+ },
+ {
+  "name": "نام کوتاه",
+  "input": {
+   "receiverName": "ع",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "receiverName"
+  ]
+ },
+ {
+  "name": "نام فقط فاصله",
+  "input": {
+   "receiverName": "   ",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "receiverName"
+  ]
+ },
+ {
+  "name": "موبایل کوتاه",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "0912345",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "receiverPhone"
+  ]
+ },
+ {
+  "name": "موبایل ثابت",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "02112345678",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "receiverPhone"
+  ]
+ },
+ {
+  "name": "استان نامعتبر",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "آتلانتیس",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "province"
+  ]
+ },
+ {
+  "name": "استان خالی",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "province"
+  ]
+ },
+ {
+  "name": "شهر کوتاه",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "ت",
+   "postalCode": "1234567890",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "city"
+  ]
+ },
+ {
+  "name": "کد پستی کوتاه",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "12345",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "postalCode"
+  ]
+ },
+ {
+  "name": "کد پستی حروف",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "abcdefghij",
+   "street": "خیابان ولیعصر، کوچهٔ دوم"
+  },
+  "errors": [
+   "postalCode"
+  ]
+ },
+ {
+  "name": "نشانی کوتاه",
+  "input": {
+   "receiverName": "علی رضایی",
+   "receiverPhone": "09123456789",
+   "province": "تهران",
+   "city": "تهران",
+   "postalCode": "1234567890",
+   "street": "کوچه"
+  },
+  "errors": [
+   "street"
+  ]
+ },
+ {
+  "name": "همه نامعتبر",
+  "input": {
+   "receiverName": "",
+   "receiverPhone": "1",
+   "province": "x",
+   "city": "",
+   "postalCode": "1",
+   "street": ""
+  },
+  "errors": [
+   "city",
+   "postalCode",
+   "province",
+   "receiverName",
+   "receiverPhone",
+   "street"
+  ]
+ }
+]

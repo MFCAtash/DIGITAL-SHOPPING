@@ -1,0 +1,4255 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Digital Shopping API",
+  "version": "1.1.0",
+  "description": "قرارداد مرجع: contracts/openapi.json (تستشده در backend/tests/test_openapi_contract.py). خطاها: {code, message, ...}."
+ },
+ "paths": {
+  "/catalog/products": {
+   "get": {
+    "operationId": "catalog_list_products",
+    "summary": "فهرست کالاها با فیلتر و مرتب‌سازی",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "brand",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Brand"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "category",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "brands",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Brands"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "categories",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Categories"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "ram_gte",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Ram Gte"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "storage_gte",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Storage Gte"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "spec",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Spec"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "min_usd",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Min Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "max_usd",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Max Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "in_stock",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "In Stock"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "on_sale",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "On Sale"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "sort",
+      "schema": {
+       "default": "newest",
+       "title": "Sort",
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 24,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "schema": {
+       "default": 0,
+       "title": "Offset",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProductList"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "x-querySchema": {
+     "$ref": "#/components/schemas/ProductFilters"
+    }
+   }
+  },
+  "/catalog/products/{slug}": {
+   "get": {
+    "operationId": "catalog_get_product",
+    "summary": "Get Product",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProductOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/catalog/categories": {
+   "get": {
+    "operationId": "catalog_list_categories",
+    "summary": "List Categories",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/CategoryOut"
+         },
+         "title": "Response",
+         "type": "array"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/catalog/facets": {
+   "get": {
+    "operationId": "catalog_facets",
+    "summary": "شمارش فیلترها برای PLP (کش ۶۰ ثانیه)",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "brand",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Brand"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "category",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "brands",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Brands"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "categories",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Categories"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "ram_gte",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Ram Gte"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "storage_gte",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Storage Gte"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "spec",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Spec"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "min_usd",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Min Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "max_usd",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Max Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "in_stock",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "In Stock"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "on_sale",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "On Sale"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "sort",
+      "schema": {
+       "default": "newest",
+       "title": "Sort",
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 24,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "schema": {
+       "default": 0,
+       "title": "Offset",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FacetsOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "x-querySchema": {
+     "$ref": "#/components/schemas/ProductFilters"
+    }
+   }
+  },
+  "/catalog/products/{slug}/variants": {
+   "get": {
+    "operationId": "catalog_list_variants",
+    "summary": "واریانت‌های قابل‌انتخاب محصول",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VariantList"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/catalog/products/{slug}/price-history": {
+   "get": {
+    "operationId": "catalog_price_history",
+    "summary": "تاریخچهٔ قیمت محصول (نمودار PDP)",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PriceHistoryOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/catalog/products/{slug}/reviews": {
+   "get": {
+    "operationId": "catalog_list_reviews",
+    "summary": "List Reviews",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 10,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "schema": {
+       "default": 0,
+       "title": "Offset",
+       "type": "integer"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "sort",
+      "schema": {
+       "default": "newest",
+       "title": "Sort",
+       "type": "string"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewList"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   },
+   "post": {
+    "operationId": "catalog_create_review",
+    "summary": "Create Review",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewOut"
+        }
+       }
+      }
+     },
+     "201": {
+      "description": "Created",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReviewIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/catalog/wishlist": {
+   "get": {
+    "operationId": "catalog_wishlist_list",
+    "summary": "Wishlist List",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WishlistOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/catalog/wishlist/{slug}": {
+   "post": {
+    "operationId": "catalog_wishlist_add",
+    "summary": "Wishlist Add",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WishToggleOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   },
+   "delete": {
+    "operationId": "catalog_wishlist_remove",
+    "summary": "Wishlist Remove",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WishToggleOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/catalog/products/{slug}/related": {
+   "get": {
+    "operationId": "catalog_related",
+    "summary": "کالاهای مشابه (همان دسته و بازهٔ قیمت)",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 4,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RelatedOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/catalog/suggest": {
+   "get": {
+    "operationId": "catalog_suggest",
+    "summary": "پیشنهاد جست‌وجو (۸ مورد، کش ۶۰ ثانیه)",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "q",
+      "schema": {
+       "default": "",
+       "title": "Q",
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 8,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SuggestOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "catalog"
+    ]
+   }
+  },
+  "/auth/csrf": {
+   "get": {
+    "operationId": "auth_csrf",
+    "summary": "توکن CSRF (کوکی را هم ست می‌کند)",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CsrfOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/auth/otp/request": {
+   "post": {
+    "operationId": "auth_otp_request",
+    "summary": "درخواست کد یک‌بارمصرف پیامکی",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OtpRequestOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PhoneIn"
+       }
+      }
+     },
+     "required": true
+    }
+   }
+  },
+  "/auth/otp/verify": {
+   "post": {
+    "operationId": "auth_otp_verify",
+    "summary": "تأیید کد و ورود",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpVerifyIn"
+       }
+      }
+     },
+     "required": true
+    }
+   }
+  },
+  "/auth/logout": {
+   "post": {
+    "operationId": "auth_logout",
+    "summary": "Logout View",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/auth/me": {
+   "get": {
+    "operationId": "auth_me",
+    "summary": "Me",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   },
+   "patch": {
+    "operationId": "auth_me_update",
+    "summary": "Me Update",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfileIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/auth/password/set": {
+   "post": {
+    "operationId": "auth_password_set",
+    "summary": "تنظیم رمز عبور برای حساب OTP-only",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PasswordSetIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/auth/password/change": {
+   "post": {
+    "operationId": "auth_password_change",
+    "summary": "تغییر رمز با بررسی رمز فعلی",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PasswordChangeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/auth/password/reset/request": {
+   "post": {
+    "operationId": "auth_password_reset_request",
+    "summary": "ارسال لینک زماندار بازنشانی رمز (بدون افشای وجود حساب)",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PasswordResetRequestIn"
+       }
+      }
+     },
+     "required": true
+    }
+   }
+  },
+  "/auth/password/reset/confirm": {
+   "post": {
+    "operationId": "auth_password_reset_confirm",
+    "summary": "تأیید لینک زماندار و تنظیم رمز جدید (هششده)",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "auth"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PasswordResetConfirmIn"
+       }
+      }
+     },
+     "required": true
+    }
+   }
+  },
+  "/addresses": {
+   "get": {
+    "operationId": "addresses_list",
+    "summary": "Addresses List",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AddressOut"
+         },
+         "title": "Response",
+         "type": "array"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "addresses"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   },
+   "post": {
+    "operationId": "addresses_create",
+    "summary": "Addresses Create",
+    "parameters": [],
+    "responses": {
+     "201": {
+      "description": "Created",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AddressOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "addresses"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AddressIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/addresses/{address_id}": {
+   "put": {
+    "operationId": "addresses_update",
+    "summary": "Addresses Update",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "address_id",
+      "schema": {
+       "title": "Address Id",
+       "type": "integer"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AddressOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "addresses"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AddressIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   },
+   "delete": {
+    "operationId": "addresses_delete",
+    "summary": "Addresses Delete",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "address_id",
+      "schema": {
+       "title": "Address Id",
+       "type": "integer"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OkOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "addresses"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/addresses/{address_id}/default": {
+   "post": {
+    "operationId": "addresses_set_default",
+    "summary": "Addresses Set Default",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "address_id",
+      "schema": {
+       "title": "Address Id",
+       "type": "integer"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AddressOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "addresses"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/cart": {
+   "get": {
+    "operationId": "cart_get",
+    "summary": "Cart Get",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ]
+   },
+   "delete": {
+    "operationId": "cart_clear",
+    "summary": "Cart Clear",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ]
+   }
+  },
+  "/cart/items/{slug}": {
+   "put": {
+    "operationId": "cart_set_item",
+    "summary": "تنظیم تعداد (۰ = حذف)",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/QtyIn"
+       }
+      }
+     },
+     "required": true
+    }
+   },
+   "delete": {
+    "operationId": "cart_remove_item",
+    "summary": "Cart Remove Item",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ]
+   }
+  },
+  "/cart/merge": {
+   "post": {
+    "operationId": "cart_merge",
+    "summary": "ادغام سبد مهمان پس از ورود",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/cart/ack": {
+   "post": {
+    "operationId": "cart_ack",
+    "summary": "پذیرفتن تغییر قیمت/موجودی",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CartOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "cart"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/orders": {
+   "post": {
+    "operationId": "orders_create",
+    "summary": "ثبت سفارش از سبد (هدر Idempotency-Key الزامی)",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "Idempotency-Key",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Idempotency-Key"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "Created",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OrderOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OrderCreateIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   },
+   "get": {
+    "operationId": "orders_list",
+    "summary": "Orders List",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cursor"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 20,
+       "maximum": 50,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OrderListOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/orders/returns": {
+   "get": {
+    "operationId": "orders_returns_list",
+    "summary": "درخواستهای مرجوعی کاربر",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReturnList"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/orders/{number}/returns": {
+   "post": {
+    "operationId": "orders_return_create",
+    "summary": "درخواست مرجوعی برای یک قلم سفارش تحویلشده",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "number",
+      "schema": {
+       "title": "Number",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReturnOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReturnCreateIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/orders/{number}": {
+   "get": {
+    "operationId": "orders_get",
+    "summary": "Orders Get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "number",
+      "schema": {
+       "title": "Number",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OrderOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/orders/{number}/cancel": {
+   "post": {
+    "operationId": "orders_cancel",
+    "summary": "لغو سفارش پرداخت‌نشده",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "number",
+      "schema": {
+       "title": "Number",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OrderOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "orders"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/pricing/coupons/validate": {
+   "get": {
+    "operationId": "pricing_validate_coupon",
+    "summary": "محاسبهٔ تخفیف کوپن بر اساس جمع کالاها",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "code",
+      "schema": {
+       "title": "Code",
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "in": "query",
+      "name": "subtotal_toman",
+      "schema": {
+       "default": 0,
+       "minimum": 0,
+       "title": "Subtotal Toman",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CouponOut"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "pricing"
+    ]
+   }
+  },
+  "/shipping/methods": {
+   "get": {
+    "operationId": "shipping_methods",
+    "summary": "روش‌های ارسال و هزینه برای یک استان",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "province",
+      "schema": {
+       "title": "Province",
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "in": "query",
+      "name": "subtotal_toman",
+      "schema": {
+       "default": 0,
+       "minimum": 0,
+       "title": "Subtotal Toman",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ShippingQuoteOut"
+         },
+         "title": "Response",
+         "type": "array"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "shipping"
+    ]
+   }
+  },
+  "/orders/{number}/pay": {
+   "post": {
+    "operationId": "orders_pay",
+    "summary": "شروع پرداخت؛ کاربر باید به redirect_url برود",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "number",
+      "schema": {
+       "title": "Number",
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PayOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "payments"
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/PayIn"
+         },
+         {
+          "type": "null"
+         }
+        ]
+       }
+      }
+     },
+     "required": false
+    },
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/health": {
+   "get": {
+    "operationId": "core_health",
+    "summary": "Health",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "title": "Response",
+         "type": "object"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "Service Unavailable",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "description": "بررسی سلامت برای Docker، Caddy و Uptime Kuma؛ دیتابیس را هم می‌آزماید.",
+    "tags": [
+     "core"
+    ]
+   }
+  },
+  "/notifications": {
+   "get": {
+    "operationId": "core_notification_list",
+    "summary": "Notification List",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 50,
+       "title": "Limit",
+       "type": "integer"
+      },
+      "required": false
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NotificationList"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "core"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/notifications/{notification_id}/read": {
+   "post": {
+    "operationId": "core_notification_read",
+    "summary": "Notification Read",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "notification_id",
+      "schema": {
+       "title": "Notification Id",
+       "type": "integer"
+      },
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NotificationOut"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "core"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  },
+  "/notifications/read-all": {
+   "post": {
+    "operationId": "core_notification_read_all",
+    "summary": "Notification Read All",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "title": "Response",
+         "type": "object"
+        }
+       }
+      }
+     },
+     "401": {
+      "description": "Unauthorized",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     }
+    },
+    "tags": [
+     "core"
+    ],
+    "security": [
+     {
+      "SessionAuth": []
+     }
+    ]
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "ProductFilters": {
+    "properties": {
+     "brand": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Brand"
+     },
+     "category": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category"
+     },
+     "brands": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Brands"
+     },
+     "categories": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Categories"
+     },
+     "q": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Q"
+     },
+     "ram_gte": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ram Gte"
+     },
+     "storage_gte": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Storage Gte"
+     },
+     "spec": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Spec"
+     },
+     "min_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Usd"
+     },
+     "max_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Usd"
+     },
+     "in_stock": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "In Stock"
+     },
+     "on_sale": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "On Sale"
+     },
+     "sort": {
+      "default": "newest",
+      "title": "Sort",
+      "type": "string"
+     },
+     "lang": {
+      "default": "fa",
+      "title": "Lang",
+      "type": "string"
+     },
+     "limit": {
+      "default": 24,
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "default": 0,
+      "title": "Offset",
+      "type": "integer"
+     }
+    },
+    "title": "ProductFilters",
+    "type": "object"
+   },
+   "ImageOut": {
+    "properties": {
+     "file": {
+      "title": "File",
+      "type": "string"
+     },
+     "alt": {
+      "title": "Alt",
+      "type": "string"
+     }
+    },
+    "required": [
+     "file",
+     "alt"
+    ],
+    "title": "ImageOut",
+    "type": "object"
+   },
+   "ProductList": {
+    "properties": {
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ProductOut"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "count",
+     "items"
+    ],
+    "title": "ProductList",
+    "type": "object"
+   },
+   "ProductOut": {
+    "properties": {
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "brand": {
+      "title": "Brand",
+      "type": "string"
+     },
+     "category": {
+      "title": "Category",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "description": {
+      "title": "Description",
+      "type": "string"
+     },
+     "specs": {
+      "additionalProperties": true,
+      "title": "Specs",
+      "type": "object"
+     },
+     "price_usd_cents": {
+      "title": "Price Usd Cents",
+      "type": "integer"
+     },
+     "final_usd_cents": {
+      "title": "Final Usd Cents",
+      "type": "integer"
+     },
+     "discount_percent": {
+      "title": "Discount Percent",
+      "type": "integer"
+     },
+     "price_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Toman"
+     },
+     "price_note": {
+      "title": "Price Note",
+      "type": "string"
+     },
+     "price_checked_on": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Checked On"
+     },
+     "purchasable": {
+      "title": "Purchasable",
+      "type": "boolean"
+     },
+     "in_stock": {
+      "title": "In Stock",
+      "type": "boolean"
+     },
+     "stock": {
+      "title": "Stock",
+      "type": "integer"
+     },
+     "images": {
+      "items": {
+       "$ref": "#/components/schemas/ImageOut"
+      },
+      "title": "Images",
+      "type": "array"
+     }
+    },
+    "required": [
+     "slug",
+     "brand",
+     "category",
+     "name",
+     "description",
+     "specs",
+     "price_usd_cents",
+     "final_usd_cents",
+     "discount_percent",
+     "price_toman",
+     "price_note",
+     "price_checked_on",
+     "purchasable",
+     "in_stock",
+     "stock",
+     "images"
+    ],
+    "title": "ProductOut",
+    "type": "object"
+   },
+   "CategoryOut": {
+    "properties": {
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slug",
+     "name"
+    ],
+    "title": "CategoryOut",
+    "type": "object"
+   },
+   "FacetValue": {
+    "properties": {
+     "value": {
+      "title": "Value",
+      "type": "string"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "value",
+     "label",
+     "count"
+    ],
+    "title": "FacetValue",
+    "type": "object"
+   },
+   "FacetsOut": {
+    "properties": {
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     },
+     "brands": {
+      "items": {
+       "$ref": "#/components/schemas/FacetValue"
+      },
+      "title": "Brands",
+      "type": "array"
+     },
+     "categories": {
+      "items": {
+       "$ref": "#/components/schemas/FacetValue"
+      },
+      "title": "Categories",
+      "type": "array"
+     },
+     "ram": {
+      "items": {
+       "$ref": "#/components/schemas/FacetValue"
+      },
+      "title": "Ram",
+      "type": "array"
+     },
+     "storage": {
+      "items": {
+       "$ref": "#/components/schemas/FacetValue"
+      },
+      "title": "Storage",
+      "type": "array"
+     },
+     "price": {
+      "$ref": "#/components/schemas/PriceFacet"
+     },
+     "in_stock": {
+      "title": "In Stock",
+      "type": "integer"
+     },
+     "on_sale": {
+      "title": "On Sale",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "total",
+     "brands",
+     "categories",
+     "ram",
+     "storage",
+     "price",
+     "in_stock",
+     "on_sale"
+    ],
+    "title": "FacetsOut",
+    "type": "object"
+   },
+   "PriceBucket": {
+    "properties": {
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "min_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Usd"
+     },
+     "max_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Usd"
+     },
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "label",
+     "min_usd",
+     "max_usd",
+     "count"
+    ],
+    "title": "PriceBucket",
+    "type": "object"
+   },
+   "PriceFacet": {
+    "properties": {
+     "min_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Usd"
+     },
+     "max_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Usd"
+     },
+     "toman_per_usd": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Toman Per Usd"
+     },
+     "buckets": {
+      "items": {
+       "$ref": "#/components/schemas/PriceBucket"
+      },
+      "title": "Buckets",
+      "type": "array"
+     }
+    },
+    "required": [
+     "min_usd",
+     "max_usd",
+     "toman_per_usd",
+     "buckets"
+    ],
+    "title": "PriceFacet",
+    "type": "object"
+   },
+   "VariantList": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/VariantOut"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "title": "VariantList",
+    "type": "object"
+   },
+   "VariantOut": {
+    "properties": {
+     "sku": {
+      "title": "Sku",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "options": {
+      "additionalProperties": true,
+      "title": "Options",
+      "type": "object"
+     },
+     "final_usd_cents": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Final Usd Cents"
+     },
+     "price_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Toman"
+     },
+     "stock": {
+      "title": "Stock",
+      "type": "integer"
+     },
+     "is_active": {
+      "title": "Is Active",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "sku",
+     "name",
+     "options",
+     "final_usd_cents",
+     "price_toman",
+     "stock",
+     "is_active"
+    ],
+    "title": "VariantOut",
+    "type": "object"
+   },
+   "PriceHistoryOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/PricePointOut"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "title": "PriceHistoryOut",
+    "type": "object"
+   },
+   "PricePointOut": {
+    "properties": {
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "t": {
+      "title": "T",
+      "type": "integer"
+     },
+     "v": {
+      "title": "V",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "label",
+     "t",
+     "v"
+    ],
+    "title": "PricePointOut",
+    "type": "object"
+   },
+   "ReviewList": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ReviewOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     },
+     "average": {
+      "title": "Average",
+      "type": "number"
+     },
+     "distribution": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Distribution",
+      "type": "object"
+     }
+    },
+    "required": [
+     "items",
+     "total",
+     "average",
+     "distribution"
+    ],
+    "title": "ReviewList",
+    "type": "object"
+   },
+   "ReviewOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "rating": {
+      "title": "Rating",
+      "type": "integer"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "body": {
+      "title": "Body",
+      "type": "string"
+     },
+     "created_at": {
+      "title": "Created At",
+      "type": "string"
+     },
+     "author": {
+      "title": "Author",
+      "type": "string"
+     },
+     "verified": {
+      "title": "Verified",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "id",
+     "rating",
+     "title",
+     "body",
+     "created_at",
+     "author",
+     "verified"
+    ],
+    "title": "ReviewOut",
+    "type": "object"
+   },
+   "ReviewIn": {
+    "properties": {
+     "rating": {
+      "title": "Rating",
+      "type": "integer"
+     },
+     "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+     },
+     "body": {
+      "title": "Body",
+      "type": "string"
+     }
+    },
+    "required": [
+     "rating",
+     "body"
+    ],
+    "title": "ReviewIn",
+    "type": "object"
+   },
+   "WishlistOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ProductOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "items",
+     "count"
+    ],
+    "title": "WishlistOut",
+    "type": "object"
+   },
+   "WishToggleOut": {
+    "properties": {
+     "wished": {
+      "title": "Wished",
+      "type": "boolean"
+     },
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "wished",
+     "count"
+    ],
+    "title": "WishToggleOut",
+    "type": "object"
+   },
+   "RelatedOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ProductOut"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "title": "RelatedOut",
+    "type": "object"
+   },
+   "SuggestItem": {
+    "properties": {
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "brand": {
+      "title": "Brand",
+      "type": "string"
+     },
+     "price_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Toman"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "brand",
+     "price_toman"
+    ],
+    "title": "SuggestItem",
+    "type": "object"
+   },
+   "SuggestOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/SuggestItem"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "title": "SuggestOut",
+    "type": "object"
+   },
+   "CsrfOut": {
+    "properties": {
+     "csrf_token": {
+      "title": "Csrf Token",
+      "type": "string"
+     }
+    },
+    "required": [
+     "csrf_token"
+    ],
+    "title": "CsrfOut",
+    "type": "object"
+   },
+   "OtpRequestOut": {
+    "properties": {
+     "ok": {
+      "title": "Ok",
+      "type": "boolean"
+     },
+     "expires_in": {
+      "title": "Expires In",
+      "type": "integer"
+     },
+     "resend_in": {
+      "title": "Resend In",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "ok",
+     "expires_in",
+     "resend_in"
+    ],
+    "title": "OtpRequestOut",
+    "type": "object"
+   },
+   "PhoneIn": {
+    "properties": {
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone"
+    ],
+    "title": "PhoneIn",
+    "type": "object"
+   },
+   "SessionOut": {
+    "properties": {
+     "user": {
+      "$ref": "#/components/schemas/UserOut"
+     },
+     "csrf_token": {
+      "title": "Csrf Token",
+      "type": "string"
+     }
+    },
+    "required": [
+     "user",
+     "csrf_token"
+    ],
+    "title": "SessionOut",
+    "type": "object"
+   },
+   "UserOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "phone",
+     "name"
+    ],
+    "title": "UserOut",
+    "type": "object"
+   },
+   "OtpVerifyIn": {
+    "properties": {
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "code": {
+      "title": "Code",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone",
+     "code"
+    ],
+    "title": "OtpVerifyIn",
+    "type": "object"
+   },
+   "OkOut": {
+    "properties": {
+     "ok": {
+      "title": "Ok",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "ok"
+    ],
+    "title": "OkOut",
+    "type": "object"
+   },
+   "ProfileIn": {
+    "properties": {
+     "name": {
+      "title": "Name",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "title": "ProfileIn",
+    "type": "object"
+   },
+   "PasswordSetIn": {
+    "properties": {
+     "new_password": {
+      "title": "New Password",
+      "type": "string"
+     }
+    },
+    "required": [
+     "new_password"
+    ],
+    "title": "PasswordSetIn",
+    "type": "object"
+   },
+   "PasswordChangeIn": {
+    "properties": {
+     "current_password": {
+      "title": "Current Password",
+      "type": "string"
+     },
+     "new_password": {
+      "title": "New Password",
+      "type": "string"
+     }
+    },
+    "required": [
+     "current_password",
+     "new_password"
+    ],
+    "title": "PasswordChangeIn",
+    "type": "object"
+   },
+   "PasswordResetRequestIn": {
+    "properties": {
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone"
+    ],
+    "title": "PasswordResetRequestIn",
+    "type": "object"
+   },
+   "PasswordResetConfirmIn": {
+    "properties": {
+     "uid": {
+      "title": "Uid",
+      "type": "string"
+     },
+     "token": {
+      "title": "Token",
+      "type": "string"
+     },
+     "new_password": {
+      "title": "New Password",
+      "type": "string"
+     }
+    },
+    "required": [
+     "uid",
+     "token",
+     "new_password"
+    ],
+    "title": "PasswordResetConfirmIn",
+    "type": "object"
+   },
+   "AddressOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "receiver_name": {
+      "title": "Receiver Name",
+      "type": "string"
+     },
+     "receiver_phone": {
+      "title": "Receiver Phone",
+      "type": "string"
+     },
+     "province": {
+      "title": "Province",
+      "type": "string"
+     },
+     "city": {
+      "title": "City",
+      "type": "string"
+     },
+     "postal_code": {
+      "title": "Postal Code",
+      "type": "string"
+     },
+     "street": {
+      "title": "Street",
+      "type": "string"
+     },
+     "plate": {
+      "title": "Plate",
+      "type": "string"
+     },
+     "unit": {
+      "title": "Unit",
+      "type": "string"
+     },
+     "is_default": {
+      "title": "Is Default",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "id",
+     "receiver_name",
+     "receiver_phone",
+     "province",
+     "city",
+     "postal_code",
+     "street",
+     "plate",
+     "unit",
+     "is_default"
+    ],
+    "title": "AddressOut",
+    "type": "object"
+   },
+   "AddressIn": {
+    "properties": {
+     "receiver_name": {
+      "title": "Receiver Name",
+      "type": "string"
+     },
+     "receiver_phone": {
+      "title": "Receiver Phone",
+      "type": "string"
+     },
+     "province": {
+      "title": "Province",
+      "type": "string"
+     },
+     "city": {
+      "title": "City",
+      "type": "string"
+     },
+     "postal_code": {
+      "title": "Postal Code",
+      "type": "string"
+     },
+     "street": {
+      "title": "Street",
+      "type": "string"
+     },
+     "plate": {
+      "default": "",
+      "title": "Plate",
+      "type": "string"
+     },
+     "unit": {
+      "default": "",
+      "title": "Unit",
+      "type": "string"
+     },
+     "is_default": {
+      "default": false,
+      "title": "Is Default",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "receiver_name",
+     "receiver_phone",
+     "province",
+     "city",
+     "postal_code",
+     "street"
+    ],
+    "title": "AddressIn",
+    "type": "object"
+   },
+   "CartOut": {
+    "properties": {
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/LineOut"
+      },
+      "title": "Lines",
+      "type": "array"
+     },
+     "count": {
+      "title": "Count",
+      "type": "integer"
+     },
+     "subtotal_toman": {
+      "title": "Subtotal Toman",
+      "type": "integer"
+     },
+     "notices": {
+      "items": {
+       "$ref": "#/components/schemas/NoticeOut"
+      },
+      "title": "Notices",
+      "type": "array"
+     }
+    },
+    "required": [
+     "lines",
+     "count",
+     "subtotal_toman",
+     "notices"
+    ],
+    "title": "CartOut",
+    "type": "object"
+   },
+   "LineOut": {
+    "properties": {
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "image": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Image"
+     },
+     "qty": {
+      "title": "Qty",
+      "type": "integer"
+     },
+     "max_qty": {
+      "title": "Max Qty",
+      "type": "integer"
+     },
+     "stock": {
+      "title": "Stock",
+      "type": "integer"
+     },
+     "unit_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit Toman"
+     },
+     "unit_usd_cents": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit Usd Cents"
+     },
+     "line_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Line Toman"
+     },
+     "warnings": {
+      "items": {
+       "$ref": "#/components/schemas/WarningOut"
+      },
+      "title": "Warnings",
+      "type": "array"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "image",
+     "qty",
+     "max_qty",
+     "stock",
+     "unit_toman",
+     "unit_usd_cents",
+     "line_toman",
+     "warnings"
+    ],
+    "title": "LineOut",
+    "type": "object"
+   },
+   "NoticeOut": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "slug"
+    ],
+    "title": "NoticeOut",
+    "type": "object"
+   },
+   "WarningOut": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "message"
+    ],
+    "title": "WarningOut",
+    "type": "object"
+   },
+   "QtyIn": {
+    "properties": {
+     "qty": {
+      "maximum": 99,
+      "minimum": 0,
+      "title": "Qty",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "qty"
+    ],
+    "title": "QtyIn",
+    "type": "object"
+   },
+   "OrderItemOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "image": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Image"
+     },
+     "qty": {
+      "title": "Qty",
+      "type": "integer"
+     },
+     "unit_toman": {
+      "title": "Unit Toman",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "id",
+     "slug",
+     "name",
+     "image",
+     "qty",
+     "unit_toman"
+    ],
+    "title": "OrderItemOut",
+    "type": "object"
+   },
+   "OrderOut": {
+    "properties": {
+     "number": {
+      "title": "Number",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "subtotal_toman": {
+      "title": "Subtotal Toman",
+      "type": "integer"
+     },
+     "discount_toman": {
+      "title": "Discount Toman",
+      "type": "integer"
+     },
+     "coupon_code": {
+      "title": "Coupon Code",
+      "type": "string"
+     },
+     "shipping_toman": {
+      "title": "Shipping Toman",
+      "type": "integer"
+     },
+     "tax_toman": {
+      "title": "Tax Toman",
+      "type": "integer"
+     },
+     "total_toman": {
+      "title": "Total Toman",
+      "type": "integer"
+     },
+     "shipping_code": {
+      "title": "Shipping Code",
+      "type": "string"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "expires_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expires At"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/OrderItemOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "address": {
+      "additionalProperties": true,
+      "title": "Address",
+      "type": "object"
+     },
+     "payment_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Payment Status"
+     }
+    },
+    "required": [
+     "number",
+     "status",
+     "subtotal_toman",
+     "discount_toman",
+     "coupon_code",
+     "shipping_toman",
+     "tax_toman",
+     "total_toman",
+     "shipping_code",
+     "created_at",
+     "expires_at",
+     "items",
+     "address",
+     "payment_status"
+    ],
+    "title": "OrderOut",
+    "type": "object"
+   },
+   "OrderCreateIn": {
+    "properties": {
+     "address_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address Id"
+     },
+     "address": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/AddressIn"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "shipping_code": {
+      "title": "Shipping Code",
+      "type": "string"
+     },
+     "coupon_code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Coupon Code"
+     }
+    },
+    "required": [
+     "shipping_code"
+    ],
+    "title": "OrderCreateIn",
+    "type": "object"
+   },
+   "OrderListOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/OrderOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "next_cursor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Cursor"
+     }
+    },
+    "required": [
+     "items",
+     "next_cursor"
+    ],
+    "title": "OrderListOut",
+    "type": "object"
+   },
+   "ReturnList": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ReturnOut"
+      },
+      "title": "Items",
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "title": "ReturnList",
+    "type": "object"
+   },
+   "ReturnOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "order_number": {
+      "title": "Order Number",
+      "type": "string"
+     },
+     "item_slug": {
+      "title": "Item Slug",
+      "type": "string"
+     },
+     "reason": {
+      "title": "Reason",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "order_number",
+     "item_slug",
+     "reason",
+     "status",
+     "created_at"
+    ],
+    "title": "ReturnOut",
+    "type": "object"
+   },
+   "ReturnCreateIn": {
+    "properties": {
+     "item_id": {
+      "title": "Item Id",
+      "type": "integer"
+     },
+     "reason": {
+      "title": "Reason",
+      "type": "string"
+     }
+    },
+    "required": [
+     "item_id",
+     "reason"
+    ],
+    "title": "ReturnCreateIn",
+    "type": "object"
+   },
+   "CouponOut": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "description": {
+      "title": "Description",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     },
+     "discount_toman": {
+      "title": "Discount Toman",
+      "type": "integer"
+     },
+     "min_subtotal_toman": {
+      "title": "Min Subtotal Toman",
+      "type": "integer"
+     },
+     "max_discount_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Discount Toman"
+     },
+     "valid_until": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Valid Until"
+     }
+    },
+    "required": [
+     "code",
+     "description",
+     "kind",
+     "discount_toman",
+     "min_subtotal_toman",
+     "max_discount_toman",
+     "valid_until"
+    ],
+    "title": "CouponOut",
+    "type": "object"
+   },
+   "ShippingQuoteOut": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "eta": {
+      "title": "Eta",
+      "type": "string"
+     },
+     "cost_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cost Toman"
+     }
+    },
+    "required": [
+     "code",
+     "name",
+     "eta",
+     "cost_toman"
+    ],
+    "title": "ShippingQuoteOut",
+    "type": "object"
+   },
+   "PayOut": {
+    "properties": {
+     "redirect_url": {
+      "title": "Redirect Url",
+      "type": "string"
+     }
+    },
+    "required": [
+     "redirect_url"
+    ],
+    "title": "PayOut",
+    "type": "object"
+   },
+   "PayIn": {
+    "properties": {
+     "scenario": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Scenario"
+     }
+    },
+    "title": "PayIn",
+    "type": "object"
+   },
+   "NotificationList": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/NotificationOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "unread_count": {
+      "title": "Unread Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "items",
+     "unread_count"
+    ],
+    "title": "NotificationList",
+    "type": "object"
+   },
+   "NotificationOut": {
+    "properties": {
+     "id": {
+      "title": "Id",
+      "type": "integer"
+     },
+     "event": {
+      "title": "Event",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "body": {
+      "title": "Body",
+      "type": "string"
+     },
+     "channel": {
+      "title": "Channel",
+      "type": "string"
+     },
+     "read_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Read At"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "event",
+     "title",
+     "body",
+     "channel",
+     "read_at",
+     "created_at"
+    ],
+    "title": "NotificationOut",
+    "type": "object"
+   },
+   "Error": {
+    "type": "object",
+    "required": [
+     "code",
+     "message"
+    ],
+    "properties": {
+     "code": {
+      "type": "string"
+     },
+     "message": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": true,
+    "description": "شکل یکپارچهٔ خطا: {code, message, ...parts}."
+   }
+  },
+  "securitySchemes": {
+   "SessionAuth": {
+    "type": "apiKey",
+    "in": "cookie",
+    "name": "sessionid"
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "/api/v1"
+  }
+ ]
+}

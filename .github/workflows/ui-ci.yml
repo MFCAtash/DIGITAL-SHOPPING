@@ -1,0 +1,41 @@
+name: ui-ci
+on:
+  pull_request:
+    paths: ["packages/ui/**", "overlay/data/**", "overlay/public/products/**", ".github/workflows/ui-ci.yml"]
+  push:
+    branches: [main]
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/ui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/ui/package-lock.json
+      - run: npm ci   # lockfile کامیت شده است؛ نصب باید کاملاً بازتولیدپذیر باشد
+      - name: Tokens in sync
+        run: npm run tokens:check
+      - name: Contrast (WCAG)
+        run: npm run contrast
+      - name: Design rules (anti-AI-look)
+        run: npm run lint:design
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit + SSR tests
+        run: npm test
+      - name: Build preview
+        run: npm run preview
+      - name: Browser behaviour tests (Chromium)
+        run: |
+          npx playwright install --with-deps chromium
+          npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-system-preview
+          path: packages/ui/preview/design-system.html

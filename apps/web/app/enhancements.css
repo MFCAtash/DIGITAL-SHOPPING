@@ -1,0 +1,368 @@
+/* لایهٔ تکمیلی فاز ۱–۴: فقط خطهای مویی، بدون blur و gradient و سایه. */
+
+/* ---------- زمینهٔ کهکشانی (GSAP) ---------- */
+.cosmic-backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .5s; }
+.cosmic-backdrop.is-active { opacity: 1; }
+.cosmic-orb { position: absolute; border-radius: 50%; width: 42vmax; height: 42vmax; filter: blur(90px); opacity: .34; will-change: transform; }
+.cosmic-orb--a { background: var(--cx-glow-a, #7C3AED); inset-block-start: -18vmax; inset-inline-start: -12vmax; }
+.cosmic-orb--b { background: var(--cx-glow-b, #EC4899); inset-block-end: -22vmax; inset-inline-end: -14vmax; }
+.cosmic-stars { position: absolute; inset: 0; opacity: .22; background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px); background-size: 120px 120px, 190px 190px; background-position: 14px 26px, 70px 90px; }
+[data-cosmic="true"] .site-header,
+[data-cosmic="true"] .cx-card,
+[data-cosmic="true"] .panel { background-color: color-mix(in srgb, var(--cx-surface) 88%, transparent); backdrop-filter: blur(10px); }
+
+/* ---------- تصاویر next/image ---------- */
+.cx-image-contain { inline-size: 100%; block-size: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+/* ---------- سبد: نمایش شفاف و کامل ---------- */
+.cart-line { display: grid; grid-template-columns: 6rem minmax(0,1fr) auto auto; gap: var(--cx-space-4); align-items: center; padding: var(--cx-space-4); border: 1px solid var(--cx-line); background: var(--cx-surface); }
+.cart-line__media { display: grid; place-items: center; background: var(--cx-media); border: 1px solid var(--cx-line); padding: var(--cx-space-1); }
+.cart-line__placeholder { font-size: 1.5rem; color: var(--cx-muted); }
+.cart-line__info { display: grid; gap: var(--cx-space-1); min-inline-size: 0; }
+.cart-line__brand { font-size: var(--cx-text-xs); letter-spacing: .08em; font-weight: 800; color: var(--cx-muted); }
+.cart-line__name { font-weight: 700; text-decoration: none; color: var(--cx-text); font-size: var(--cx-text-md); }
+.cart-line__name:hover { color: var(--cx-brand); }
+.cart-line__specs { display: flex; flex-wrap: wrap; gap: var(--cx-space-1) var(--cx-space-3); font-size: var(--cx-text-xs); color: var(--cx-muted); }
+.cart-line__specs span { border-inline-end: 1px solid var(--cx-line); padding-inline-end: var(--cx-space-2); }
+.cart-line__pricing { display: grid; justify-items: end; gap: 2px; min-inline-size: 8.5rem; }
+.cart-line__deal { font-size: var(--cx-text-xs); font-weight: 800; color: var(--cx-signal); border: 1px solid var(--cx-signal); padding: 1px 6px; margin-block-end: var(--cx-space-1); }
+.cart-line__old { font-size: var(--cx-text-xs); color: var(--cx-muted); }
+.cart-line__unit { color: var(--cx-signal); font-size: var(--cx-text-md); }
+.cart-line__total { font-size: var(--cx-text-lg); font-weight: 800; padding-block-start: var(--cx-space-1); border-block-start: 1px solid var(--cx-line); inline-size: 100%; text-align: end; }
+.cart-line__pricing small { font-size: var(--cx-text-xs); color: var(--cx-muted); }
+.cart-line__actions { display: grid; justify-items: end; gap: var(--cx-space-2); }
+.cart-line__mobile-qty { display: none; }
+@media (max-width: 900px) {
+  .cart-line { grid-template-columns: 4.5rem minmax(0,1fr); align-items: start; }
+  .cart-line__media img { inline-size: 4.5rem; block-size: 4.5rem; }
+  .cart-line__pricing { grid-column: 2; justify-items: start; }
+  .cart-line__actions { grid-column: 2; grid-auto-flow: column; }
+  .cart-line__desktop-qty { display: none; }
+  .cart-line__mobile-qty { display: block; margin-block-start: var(--cx-space-2); }
+}
+
+/* ---------- برچسب کمپین ---------- */
+.campaign-badge { position: absolute; z-index: 2; inset-block-start: var(--cx-space-2); inset-inline-start: var(--cx-space-2); background: var(--cx-signal); color: var(--cx-signal-ink); font-size: 10px; font-weight: 800; letter-spacing: .04em; padding: 3px 8px; border-radius: var(--cx-radius-round); }
+
+/* ---------- کارت کالا: چیدمان خواناتر ---------- */
+.cx-card__media { position: relative; }
+.cx-card__body { gap: var(--cx-space-3); }
+.cx-card__title { line-height: 1.5; font-weight: 700; }
+.cx-card__spec { min-block-size: 2.4em; }
+.cx-price__value { font-size: var(--cx-text-md); }
+
+/* ---------- برند Digital Shopping ---------- */
+.site-header__brand { display: inline-flex; align-items: center; gap: var(--cx-space-3); text-decoration: none; color: var(--cx-text); }
+/* لوگوی «حلقهٔ نکسوس» — پالت Aurora + هالهٔ ذرهای + نقطهٔ نور متحرک.
+   رنگها با تم تغ میکنند (پیشفرض: Nebula با روبانهای Aurora). */
+:root {
+  --cx-logo-1: #22D3EE;
+  --cx-logo-2: #6366F1;
+  --cx-logo-3: #A855F7;
+}
+[data-theme="light"] { --cx-logo-1: #0E7490; --cx-logo-2: #4F46E5; --cx-logo-3: #9333EA; }
+[data-theme="dark"]  { --cx-logo-1: #22D3EE; --cx-logo-2: #6366F1; --cx-logo-3: #A855F7; }
+[data-theme="nebula"]{ --cx-logo-1: #22D3EE; --cx-logo-2: #6366F1; --cx-logo-3: #A855F7; }
+[data-theme="aurora"]{ --cx-logo-1: #5EEAD4; --cx-logo-2: #10B981; --cx-logo-3: #22D3EE; }
+[data-theme="ocean"] { --cx-logo-1: #38BDF8; --cx-logo-2: #2563EB; --cx-logo-3: #60A5FA; }
+[data-theme="rose"]  { --cx-logo-1: #FDA4AF; --cx-logo-2: #DB2777; --cx-logo-3: #F472B6; }
+[data-theme="solar"] { --cx-logo-1: #FDE68A; --cx-logo-2: #F59E0B; --cx-logo-3: #FBBF24; }
+[data-theme="silver"]{ --cx-logo-1: #FFFFFF; --cx-logo-2: #CBD5E1; --cx-logo-3: #94A3B8; }
+
+.nexus-logo { display: block; overflow: visible; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--cx-logo-1, #22D3EE) 55%, transparent)); }
+.nexus-logo__particles circle { animation: nexus-twinkle 2.8s ease-in-out infinite alternate; }
+.nexus-logo__spark { animation: nexus-fade 5s ease-in-out infinite; }
+@keyframes nexus-twinkle { from { opacity: .18; transform: scale(.7); } to { opacity: 1; transform: scale(1.15); } }
+@keyframes nexus-fade { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .nexus-logo__particles, .nexus-logo__spark { display: none; }
+}
+
+.site-header__logo3d { inline-size: 2.3rem; block-size: 2.3rem; transition: filter .3s, transform .3s; }
+.site-header__brand:hover .site-header__logo3d { transform: scale(1.08); filter: drop-shadow(0 0 16px color-mix(in srgb, var(--cx-logo-1, #22D3EE) 75%, transparent)); }
+.site-header__wordmark { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.01em; direction: ltr; white-space: nowrap; text-shadow: 0 0 12px color-mix(in srgb, var(--cx-logo-1, #22D3EE) 40%, transparent); }
+.site-header__wordmark span { font-weight: 400; color: var(--cx-muted); margin-inline-start: 0.35em; }
+
+/* فوتر و لودر */
+.site-footer__brand { display: inline-flex; align-items: center; gap: var(--cx-space-2); direction: ltr; margin-block-end: var(--cx-space-2); }
+.site-footer__brand span { font-family: "IBM Plex Sans", system-ui, sans-serif; font-weight: 800; font-size: 1rem; color: var(--cx-text); letter-spacing: .02em; }
+.route-loader { display: grid; place-items: center; gap: var(--cx-space-3); padding: var(--cx-space-8) 0 var(--cx-space-5); color: var(--cx-muted); font-size: var(--cx-text-sm); }
+.route-loader .nexus-logo { animation: nexus-loader-spin 4s ease-in-out infinite; }
+@keyframes nexus-loader-spin { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(180deg); } }
+
+/* ---------- منوی ترکیبی: Glass Dock + Pill + Neon Serif ---------- */
+.site-header__nav { gap: var(--cx-space-2); padding: 4px !important; border: 1px solid var(--cx-line-strong) !important; border-radius: 999px !important; background: color-mix(in srgb, var(--cx-surface) 72%, transparent) !important; backdrop-filter: blur(12px); box-shadow: inset 0 0 22px color-mix(in srgb, var(--cx-glow-a, var(--cx-brand)) 18%, transparent), 0 6px 22px rgb(0 0 0 / 18%); }
+.site-header__nav > a:not(.site-header__cart) { padding: 6px 13px !important; border-radius: 999px !important; border: 1px solid transparent; font-size: var(--cx-text-sm); transition: .2s; }
+.site-header__nav > a:not(.site-header__cart):hover { background: color-mix(in srgb, var(--cx-glow-a, var(--cx-brand)) 16%, transparent); border-color: var(--cx-line); }
+.site-header__nav > a[aria-current="page"] { background: linear-gradient(90deg, var(--cx-brand), color-mix(in srgb, var(--cx-glow-a, var(--cx-brand)) 70%, var(--cx-signal))) !important; color: #fff !important; font-family: Georgia, "Times New Roman", serif; text-shadow: 0 0 12px color-mix(in srgb, var(--cx-glow-b, var(--cx-signal)) 70%, transparent); box-shadow: 0 0 18px color-mix(in srgb, var(--cx-glow-a, var(--cx-brand)) 45%, transparent); }
+.site-header__nav .cx-input { border-radius: 999px !important; }
+
+/* ---------- منوی کشویی(premium) ---------- */
+.category-nav-wrap { position: relative; z-index: var(--cx-z-dropdown); display: flex; align-items: center; gap: var(--cx-space-2); flex-wrap: wrap; padding-block: var(--cx-space-2); }
+.category-nav__hint { font-size: var(--cx-text-xs); color: var(--cx-muted); margin-inline-start: auto; }
+.mega-menu { position: relative; display: inline-block; }
+.mega-menu__trigger { display: inline-flex; align-items: center; gap: var(--cx-space-2); padding: var(--cx-space-2) var(--cx-space-3); border: 1px solid var(--cx-line-strong); background: var(--cx-surface); color: var(--cx-text); font: inherit; font-size: var(--cx-text-sm); border-radius: var(--cx-radius-2); cursor: pointer; }
+.mega-menu__trigger:hover { border-color: var(--cx-brand); color: var(--cx-brand); }
+.mega-menu__panel { position: absolute; inset-block-start: calc(100% + 4px); inset-inline-start: 0; inline-size: min(46rem, calc(100vw - 2rem)); padding: var(--cx-space-5); background: var(--cx-surface); border: 1px solid var(--cx-line-strong); border-radius: var(--cx-radius-2); box-shadow: 0 0 0 1px var(--cx-line), 0 22px 50px rgb(0 0 0 / 18%); overflow: hidden; }
+.mega-menu__panel::before { content: ""; position: absolute; inset-block-start: -60%; inset-inline-end: -10%; inline-size: 22rem; block-size: 22rem; background: radial-gradient(circle, var(--cx-glow-a, var(--cx-brand)), transparent 65%); filter: blur(50px); opacity: .22; pointer-events: none; }
+.mega-menu__head { display: flex; align-items: center; justify-content: space-between; padding-block-end: var(--cx-space-3); border-block-end: 1px solid var(--cx-line); margin-block-end: var(--cx-space-4); }
+.mega-menu__body { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 13rem; gap: var(--cx-space-4); }
+.mega-menu__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: var(--cx-space-2); }
+.mega-menu__feature { display: grid; align-content: start; gap: var(--cx-space-2); padding: var(--cx-space-3); border: 1px solid var(--cx-line); background: var(--cx-sunken); }
+.mega-menu__feature small { font-size: var(--cx-text-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--cx-signal); font-weight: 800; }
+.mega-menu__feature strong { font-size: var(--cx-text-md); }
+.mega-menu__feature p { margin: 0; font-size: var(--cx-text-sm); color: var(--cx-muted); }
+.mega-menu__feature a { font-size: var(--cx-text-sm); color: var(--cx-brand); text-decoration: none; font-weight: 700; }
+.mega-menu__item { display: flex; align-items: center; gap: var(--cx-space-2); padding: var(--cx-space-2); color: var(--cx-text); text-decoration: none; font-size: var(--cx-text-sm); border: 1px solid transparent; }
+.mega-menu__item:hover { border-color: var(--cx-line); background: var(--cx-sunken); color: var(--cx-brand); }
+.mega-menu__empty { color: var(--cx-muted); font-size: var(--cx-text-sm); }
+.mega-menu__quick { display: flex; flex-wrap: wrap; gap: var(--cx-space-2); margin-block-start: var(--cx-space-4); padding-block-start: var(--cx-space-3); border-block-start: 1px solid var(--cx-line); }
+
+/* ---------- هدر: منوی موبایل، ابزارها ---------- */
+.site-header__icon {
+  min-inline-size: 2.25rem;
+  padding-inline: var(--cx-space-2);
+  font-variant-numeric: tabular-nums;
+}
+.site-header__menu { display: none; }
+.mobile-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cx-space-1); }
+.mobile-nav li a { display: block; padding: var(--cx-space-2) var(--cx-space-3); border-block-end: 1px solid var(--cx-line); text-decoration: none; color: var(--cx-text); }
+.mobile-nav li a[aria-current="page"] { color: var(--cx-brand); font-weight: 700; }
+.mobile-nav__title { margin: var(--cx-space-5) 0 var(--cx-space-2); font-size: var(--cx-text-sm); color: var(--cx-muted); }
+.mobile-nav__cats { max-block-size: 30dvh; overflow: auto; }
+.mobile-nav__tools { display: flex; gap: var(--cx-space-2); margin-block-start: var(--cx-space-5); }
+
+/* ---------- جستجو با پیشنهاد ---------- */
+.cx-search-form { position: relative; display: flex; gap: var(--cx-space-1); }
+.cx-search-suggest { position: absolute; inset-block-start: calc(100% + 2px); inset-inline: 0; z-index: var(--cx-z-dropdown); list-style: none; margin: 0; padding: 0; background: var(--cx-surface); border: 1px solid var(--cx-line-strong); max-block-size: 22rem; overflow: auto; }
+.cx-search-suggest button { display: flex; inline-size: 100%; justify-content: space-between; gap: var(--cx-space-3); padding: var(--cx-space-2) var(--cx-space-3); background: none; border: 0; border-block-end: 1px solid var(--cx-line); text-align: start; color: var(--cx-text); cursor: pointer; font: inherit; }
+.cx-search-suggest button:hover { background: var(--cx-sunken); }
+
+/* ---------- PWA ---------- */
+.pwa-tools { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: var(--cx-z-toast); display: grid; }
+.pwa-tools__bar { display: flex; align-items: center; justify-content: center; gap: var(--cx-space-3); padding: var(--cx-space-2) var(--web-gutter); background: var(--cx-text); color: var(--cx-bg); font-size: var(--cx-text-sm); }
+
+/* ---------- کاور سهبعدی صفحهٔ خانه ---------- */
+.hero--cover { padding: 0; border-block-start: 0; }
+.home-cover { position: relative; min-block-size: 420px; overflow: hidden; display: grid; place-items: center; background: var(--cx-sunken); border: 1px solid var(--cx-line); }
+.home-cover__glow { position: absolute; inset: -30%; background: radial-gradient(circle at 30% 40%, var(--cx-glow-a, var(--cx-brand)), transparent 42%), radial-gradient(circle at 72% 62%, var(--cx-glow-b, var(--cx-signal)), transparent 46%); opacity: calc(.22 + var(--cx-cosmic, 0) * .2); filter: blur(70px); animation: cover-drift 14s ease-in-out infinite alternate; }
+.home-cover__grid { position: absolute; inset: 0; opacity: .2; background-image: linear-gradient(var(--cx-line) 1px, transparent 1px), linear-gradient(90deg, var(--cx-line) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, transparent, #000 40%, transparent); }
+@keyframes cover-drift { to { transform: translate3d(4%, -3%, 0) scale(1.1); } }
+.home-cover__stage { position: relative; z-index: 2; display: flex; align-items: end; justify-content: center; gap: clamp(-3rem, -2vw, 0rem); perspective: 1200px; padding: var(--cx-space-6) var(--cx-space-4); block-size: 100%; }
+.cover-card { position: relative; display: grid; align-content: end; inline-size: clamp(150px, 19vw, 260px); aspect-ratio: 4/5; padding: var(--cx-space-3); background: color-mix(in srgb, var(--cx-surface) 90%, transparent); border: 1px solid var(--cx-line-strong); border-radius: var(--cx-radius-2); text-decoration: none; color: var(--cx-text); box-shadow: 0 18px 40px rgb(0 0 0 / 24%); transition: transform .3s, border-color .2s; }
+.cover-card:hover { transform: translateY(-10px) rotateY(0deg) !important; border-color: var(--cx-brand); z-index: 5; }
+.cover-card--laptop { transform: rotateY(14deg) rotateZ(-5deg) translateY(18px); z-index: 1; }
+.cover-card--galaxy { transform: rotateY(-8deg) rotateZ(3deg) translateY(-10px); z-index: 3; }
+.cover-card--phone { transform: rotateY(-16deg) rotateZ(-3deg) translateY(6px); z-index: 2; }
+.cover-card__img { inline-size: 100%; block-size: auto; max-block-size: 82%; object-fit: contain; mix-blend-mode: multiply; border-radius: var(--cx-radius-1); }
+[data-cosmic="true"] .cover-card__img { mix-blend-mode: normal; background: var(--cx-media); padding: 6px; box-shadow: 0 0 0 1px var(--cx-line); }
+.cover-card__label { position: absolute; inset-block-start: var(--cx-space-2); inset-inline-start: var(--cx-space-2); font-size: var(--cx-text-xs); font-weight: 800; letter-spacing: .08em; color: var(--cx-signal); text-transform: uppercase; }
+.cover-card__name { font-size: var(--cx-text-xs); line-height: 1.4; color: var(--cx-muted); margin-block-start: var(--cx-space-2); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.home-cover__badge { position: absolute; inset-block-end: var(--cx-space-3); inset-inline-end: var(--cx-space-3); z-index: 4; border: 1px solid var(--cx-line-strong); background: var(--cx-surface); color: var(--cx-muted); font-size: var(--cx-text-xs); padding: var(--cx-space-1) var(--cx-space-3); border-radius: var(--cx-radius-round); }
+/* کاور یکپارچهٔ آسمان کهکشانی: ۸ کارت هماندازه، بدون خمیدگی */
+.home-cover--hybrid {
+  --cover-glow-a:#2563EB; --cover-glow-b:#A855F7; --cover-accent:#7DD3FC;
+  background: radial-gradient(ellipse at 50% 18%, #1B2A5E 0%, #0A0E24 46%, #060713 100%);
+  min-block-size: 560px;
+}
+.home-cover--hybrid .home-cover__glow { background: radial-gradient(circle at 22% 34%, var(--cover-glow-a), transparent 46%), radial-gradient(circle at 78% 68%, var(--cover-glow-b), transparent 48%); opacity: .42; inset: -20%; }
+.home-cover--hybrid .home-cover__rays { position:absolute; inset:-35%; pointer-events:none; background:conic-gradient(from 210deg at 50% 40%,transparent 0deg,color-mix(in srgb,var(--cover-glow-a) 32%,transparent) 20deg,transparent 40deg,color-mix(in srgb,var(--cover-glow-b) 30%,transparent) 60deg,transparent 80deg); mask-image:radial-gradient(circle at 50% 40%,#000,transparent 64%); opacity:.22; animation:spin 45s linear infinite; }
+.home-cover--hybrid .home-cover__top { position:absolute; z-index:4; inset-block-start:0; inset-inline:0; display:flex; align-items:center; justify-content:space-between; gap:var(--cx-space-3); padding:var(--cx-space-3) var(--cx-space-5); border-block-end:1px solid rgb(255 255 255 / 12%); background:rgb(6 7 19 / 45%); backdrop-filter:blur(8px); font-size:var(--cx-text-xs); letter-spacing:.08em; color:#DCE6FF; }
+.home-cover--hybrid .home-cover__stage { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--cx-space-3); inline-size:100%; padding:var(--cx-space-6) var(--cx-space-5) var(--cx-space-5); margin-block-start:2.5rem; transform:none; perspective:none; }
+.home-cover--hybrid .cover-card { inline-size:100%; aspect-ratio:4/5; display:grid; grid-template-rows:auto 1fr auto; align-items:center; padding:var(--cx-space-3); transform:none; }
+.home-cover--hybrid .cover-card:hover { transform:translateY(-4px); }
+.home-cover--hybrid .cover-card:nth-child(2n),
+.home-cover--hybrid .cover-card:nth-child(3n) { transform:none; }
+.home-cover--hybrid .cover-card__img { inline-size:100%; block-size:100%; max-block-size:none; object-fit:contain; background:#fff; padding:8px; border-radius:var(--cx-radius-1); }
+.home-cover--hybrid .cover-card__label { color:var(--cover-accent); }
+.home-cover--hybrid .home-cover__badge { border-color:var(--cover-accent); color:var(--cover-accent); }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.cover-nav { display: flex; flex-wrap: wrap; gap: var(--cx-space-2); justify-content: center; padding: var(--cx-space-4); border-block-start: 1px solid var(--cx-line); background: var(--cx-surface); }
+.cover-nav a { display: inline-flex; align-items: center; gap: var(--cx-space-2); border: 1px solid var(--cx-line-strong); background: var(--cx-bg); color: var(--cx-text); text-decoration: none; padding: var(--cx-space-2) var(--cx-space-4); border-radius: var(--cx-radius-round); font-size: var(--cx-text-sm); transition: .2s; }
+.cover-nav a:hover { border-color: var(--cx-brand); color: var(--cx-brand); transform: translateY(-2px); }
+@media(max-width:760px){ .home-cover__stage { gap: -2rem; } .cover-card { inline-size: clamp(110px, 30vw, 180px); } }
+
+/* ---------- خانهٔ ۱۲ بخشی ---------- */
+.hero:has(> div:only-child) { grid-template-columns: 1fr; }
+.home-section { padding-block: clamp(var(--cx-space-6), 5vw, var(--cx-space-12)); border-block-start: 1px solid var(--cx-line); }
+.home-section--flush { border-block-start: 0; }
+.home-section__head { display: flex; align-items: end; justify-content: space-between; gap: var(--cx-space-4); margin-block-end: var(--cx-space-5); }
+.home-section__eyebrow { margin: 0 0 var(--cx-space-2); font-size: var(--cx-text-xs); font-weight: 700; letter-spacing: 0.08em; color: var(--cx-brand); }
+.home-section__title { margin: 0; font-size: var(--cx-text-2xl); line-height: 1.3; }
+.home-section__desc { margin: var(--cx-space-2) 0 0; color: var(--cx-muted); max-inline-size: 68ch; }
+.home-grid { display: grid; gap: var(--cx-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.home-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--cx-space-3); }
+.home-stat { padding: var(--cx-space-4); background: var(--cx-surface); border: 1px solid var(--cx-line); }
+.home-stat strong { display: block; font-size: var(--cx-text-2xl); font-variant-numeric: tabular-nums; }
+.home-stat span { color: var(--cx-muted); font-size: var(--cx-text-sm); }
+.home-cat { display: flex; flex-direction: column; gap: var(--cx-space-2); padding: var(--cx-space-5); background: var(--cx-surface); border: 1px solid var(--cx-line); text-decoration: none; color: var(--cx-text); }
+.home-cat:hover { border-color: var(--cx-text); }
+.home-cat__count { color: var(--cx-muted); font-size: var(--cx-text-sm); }
+.home-steps { counter-reset: step; display: grid; gap: var(--cx-space-4); grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.home-step { counter-increment: step; padding-inline-start: var(--cx-space-5); border-inline-start: 1px solid var(--cx-line-strong); position: relative; }
+.home-step::before { content: counter(step); position: absolute; inset-inline-start: calc(-1 * var(--cx-space-3)); inset-block-start: 0; inline-size: 1.5rem; block-size: 1.5rem; display: grid; place-items: center; background: var(--cx-surface); border: 1px solid var(--cx-text); border-radius: var(--cx-radius-round); font-size: var(--cx-text-xs); }
+.home-quote { padding: var(--cx-space-6); border-inline-start: 2px solid var(--cx-signal); background: var(--cx-surface); }
+.home-quote blockquote { margin: 0; font-size: var(--cx-text-md); }
+.home-faq { display: grid; gap: var(--cx-space-3); }
+
+/* ---------- PLP: فاست قیمت و multi-select ---------- */
+.facet-price { display: grid; gap: var(--cx-space-1); }
+.facet-price__row { display: flex; align-items: center; justify-content: space-between; gap: var(--cx-space-2); font-size: var(--cx-text-sm); padding-block: var(--cx-space-1); border-block-end: 1px solid var(--cx-line); }
+.facet-price__row[data-active="true"] { font-weight: 700; color: var(--cx-brand); }
+.filters__group + .filters__group { margin-block-start: var(--cx-space-4); }
+.filters__legend { font-weight: 700; font-size: var(--cx-text-sm); margin-block-end: var(--cx-space-2); }
+
+/* ---------- PDP: چیدمان منظم اطلاعات و قیمت ---------- */
+.pdp__info { display: grid; align-content: start; gap: var(--cx-space-4); }
+.pdp__head { display: flex; align-items: start; justify-content: space-between; gap: var(--cx-space-4); }
+.pdp__head .pdp__brand { margin: 0 0 var(--cx-space-1); }
+.pdp__head .pdp__title { margin: 0; }
+.pdp__price-panel { display: grid; gap: var(--cx-space-2); padding: var(--cx-space-4); border: 1px solid var(--cx-line-strong); background: var(--cx-surface); }
+.pdp__price-label { font-size: var(--cx-text-xs); font-weight: 800; letter-spacing: .08em; color: var(--cx-muted); }
+.pdp__desc { margin: 0; color: var(--cx-muted); font-size: var(--cx-text-sm); }
+.pdp__highlights h2 { margin: 0 0 var(--cx-space-2); font-size: var(--cx-text-sm); color: var(--cx-muted); }
+.pdp__spec-chips { display: flex; flex-wrap: wrap; gap: var(--cx-space-2); }
+.pdp__spec-chip { display: grid; gap: 2px; padding: var(--cx-space-2) var(--cx-space-3); border: 1px solid var(--cx-line); background: var(--cx-surface); min-inline-size: 7rem; }
+.pdp__spec-chip small { font-size: var(--cx-text-xs); color: var(--cx-muted); }
+.pdp__spec-chip b { font-size: var(--cx-text-sm); font-weight: 700; }
+.pdp__info .pdp__guarantees { display: flex; flex-wrap: wrap; gap: var(--cx-space-2); list-style: none; padding: 0; margin: 0; }
+.pdp__info .pdp__guarantees li { border: 1px solid var(--cx-line); padding: var(--cx-space-1) var(--cx-space-3); font-size: var(--cx-text-xs); color: var(--cx-muted); }
+
+/* ---------- PDP: تبها و کالاهای مشابه ---------- */
+/* تصاویر گالری روی زمینهٔ تیرای پوسته قرار میگیرند؛ blend=multiply آنها را تیره میکند. */
+.pdp__thumbs img { mix-blend-mode: normal; }
+.pdp__stage { position: relative; }
+.pdp__stage-count { position: absolute; inset-block-start: var(--cx-space-2); inset-inline-end: var(--cx-space-2); display: inline-flex; align-items: center; gap: var(--cx-space-1); background: var(--cx-surface); border: 1px solid var(--cx-line); padding: 0 var(--cx-space-2); font-size: var(--cx-text-xs); }
+.rating-dist { list-style: none; margin: 0 0 var(--cx-space-5); padding: 0; display: grid; gap: var(--cx-space-1); max-inline-size: 24rem; }
+.rating-dist li { display: grid; grid-template-columns: 2.5rem 1fr 2.5rem; gap: var(--cx-space-2); align-items: center; font-size: var(--cx-text-sm); }
+.rating-dist meter { inline-size: 100%; block-size: 0.5rem; accent-color: var(--cx-brand); }
+.pdp__tabs { margin-block-start: var(--cx-space-6); }
+.pdp__panel { padding-block: var(--cx-space-5); }
+.pdp__related { margin-block-start: var(--cx-space-8); }
+
+/* ---------- /design ---------- */
+.design-grid { display: grid; gap: var(--cx-space-5); }
+.design-row { display: flex; flex-wrap: wrap; gap: var(--cx-space-3); align-items: center; padding-block: var(--cx-space-3); border-block-end: 1px solid var(--cx-line); }
+.design-swatch { inline-size: 4rem; block-size: 4rem; border: 1px solid var(--cx-line-strong); display: grid; place-items: center; font-size: var(--cx-text-xs); text-align: center; }
+.design-type { display: grid; gap: var(--cx-space-2); }
+
+/* ---------- موبایل ---------- */
+@media (max-width: 900px) {
+  .site-header__menu { display: inline-flex; }
+  .site-header__nav { display: none; }
+  .home-section__head { align-items: start; flex-direction: column; }
+}
+@media (max-width: 900px) {
+  .home-cover--hybrid .home-cover__stage { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .mega-menu__body { grid-template-columns: 1fr; }
+  .mega-menu__feature { display: none; }
+  .category-nav__hint { display: none; }
+}
+@media (max-width: 640px) {
+  .home-section { padding-block: var(--cx-space-6); }
+  .home-section__title { font-size: var(--cx-text-xl); }
+}
+
+/* ---------- اعلان ویژهٔ افزودن به سبد ---------- */
+.cx-toast--cart {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  gap: var(--cx-space-3);
+  max-inline-size: 30rem;
+  border: 1px solid color-mix(in srgb, var(--cx-logo-1, #22D3EE) 65%, transparent);
+  border-inline-start: 4px solid var(--cx-positive, #34D399);
+  background:
+    linear-gradient(110deg,
+      color-mix(in srgb, var(--cx-logo-2, #6366F1) 22%, var(--cx-surface)) 0%,
+      color-mix(in srgb, var(--cx-logo-1, #22D3EE) 18%, var(--cx-surface)) 55%,
+      color-mix(in srgb, var(--cx-logo-3, #A855F7) 20%, var(--cx-surface)) 100%);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 38%), inset 0 0 22px color-mix(in srgb, var(--cx-logo-1, #22D3EE) 12%, transparent);
+  animation: cart-toast-in .45s cubic-bezier(.2,.9,.25,1.2) both;
+}
+.cx-toast--cart::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 20%) 48%, transparent 66%);
+  transform: translateX(-120%);
+  animation: cart-toast-sheen 1.15s ease-out .25s 1 both;
+}
+.cx-toast-cart__glow {
+  position: absolute;
+  inset: -40% -10%;
+  pointer-events: none;
+  filter: blur(24px);
+  opacity: .35;
+  background: radial-gradient(circle at 20% 50%, var(--cx-logo-1, #22D3EE), transparent 60%),
+              radial-gradient(circle at 85% 50%, var(--cx-logo-3, #A855F7), transparent 60%);
+  animation: cart-toast-pulse 2.6s ease-in-out infinite alternate;
+}
+.cx-toast-cart__check {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  flex: none;
+  border-radius: 50%;
+  color: #04231C;
+  font-weight: 900;
+  background: linear-gradient(135deg, #6EE7B7, #34D399);
+  box-shadow: 0 0 18px rgb(52 211 153 / 70%);
+}
+.cx-toast-cart__img {
+  position: relative;
+  z-index: 1;
+  inline-size: 54px;
+  block-size: 54px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  background: var(--cx-media);
+}
+.cx-toast-cart__body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 2px; min-inline-size: 0; flex: 1; }
+.cx-toast-cart__title { font-size: var(--cx-text-sm); line-height: 1.35; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cx-toast-cart__sub { font-size: var(--cx-text-xs); color: var(--cx-muted); line-height: 1.4; }
+.cx-toast-cart__meta { font-size: var(--cx-text-xs); font-weight: 700; color: var(--cx-positive, #34D399); direction: rtl; }
+.cx-toast-cart__action {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: var(--cx-text-xs);
+  font-weight: 800;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(100deg, var(--cx-logo-2, #6366F1), var(--cx-logo-3, #A855F7));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--cx-logo-2, #6366F1) 55%, transparent);
+  transition: transform .2s, filter .2s;
+}
+.cx-toast-cart__action:hover { transform: translateY(-1px); filter: brightness(1.12); }
+.cx-toast-cart__close {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  border: 0;
+  background: transparent;
+  color: var(--cx-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+@keyframes cart-toast-in { from { opacity: 0; transform: translateY(22px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes cart-toast-sheen { to { transform: translateX(120%); } }
+@keyframes cart-toast-pulse { to { opacity: .6; transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) {
+  .cx-toast--cart, .cx-toast--cart::before, .cx-toast-cart__glow { animation: none !important; }
+}
+@media (max-width: 520px) {
+  .cx-toast--cart { gap: var(--cx-space-2); }
+  .cx-toast-cart__img { inline-size: 42px; block-size: 42px; }
+  .cx-toast-cart__action { padding: 6px 9px; }
+}

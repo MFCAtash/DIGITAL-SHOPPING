@@ -1,0 +1,26 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py"]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "DJ"]
+# قواعدی که در کدبانک تاریخی بهطور گسترده نقض شدهاند؛ بهتدریج حذف شوند ( tracking در REVIEW-REPORT ).
+# B904 و DJ008 رفتاریاند و نباید بهعنوانمانع CI در نظر گرفته شوند تا زمانی که بهطور هدفمند اصلاح شوند.
+ignore = ["E501", "DJ001", "B904", "DJ008", "E741", "E731", "UP042", "B007", "B017", "UP017", "B008", "B015"]
+
+[tool.coverage.run]
+source = ["apps", "config"]
+omit = ["*/migrations/*", "*/tests/*", "config/wsgi.py", "config/asgi.py", "manage.py"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:", "raise NotImplementedError"]

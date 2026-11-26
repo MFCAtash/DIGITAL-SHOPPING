@@ -1,0 +1,30 @@
+/* فاز ۲و: پالت طلایی، برچسب برند، فونت‌ها، اسکرول نرم. بعد از shop-theme.css وارد شود. */
+:root{--gold-tx:#8A6609;--gold-1:#C9A227;--gold-2:#7A5C0A;--gold-text:#7A5C0A;--gold-line:rgba(160,120,20,.6);--gold-fg:#2A1D00;--gold-glow:rgba(201,162,39,.45);
+--f-body:var(--font-body,Inter),system-ui,sans-serif;--f-head:var(--font-head,"Playfair Display"),Georgia,serif;--f-brand:var(--font-brand,"Cinzel Decorative"),"Playfair Display",serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--gold-1:#F0D36B;--gold-2:#D4AF37;--gold-text:#E8C75A;--gold-line:rgba(240,211,107,.5);--gold-glow:rgba(240,211,107,.35);--gold-tx:#F0D36B}}
+:root[data-theme=dark]{--gold-1:#F0D36B;--gold-2:#D4AF37;--gold-text:#E8C75A;--gold-line:rgba(240,211,107,.5);--gold-glow:rgba(240,211,107,.35);--gold-tx:#F0D36B}
+html[lang=fa]{--f-body:var(--font-fa,Vazirmatn),Tahoma,sans-serif;--f-head:var(--font-fa-head,Lalezar),Vazirmatn,sans-serif}
+.shop-root{font-family:var(--f-body)}.shop-root :is(h1,h2,h3){font-family:var(--f-head);font-weight:600}
+html[lang=fa] .shop-root :is(h1,h2,h3){font-weight:400}
+.brand{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:999px;font-family:var(--f-brand);font-weight:700;font-size:1.02rem;letter-spacing:.07em;white-space:nowrap;color:var(--gold-fg);text-decoration:none;
+background:linear-gradient(115deg,#F6E08A 0%,#D4AF37 45%,#F6E08A 62%,#C9A227 100%);background-size:220% 100%;box-shadow:0 0 0 1px var(--gold-line),0 6px 24px -8px var(--gold-glow);animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,60%{background-position:100% 0}100%{background-position:0 0}}
+.gold-text{color:var(--gold-text);background:linear-gradient(90deg,var(--gold-2),var(--gold-tx),var(--gold-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.gold-text{-webkit-text-fill-color:currentColor;background:none}}
+.gold-rule{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--gold-line),transparent);margin:14px 0}
+.shop-root::after{content:"";position:fixed;inset:8px;border:1px solid var(--gold-line);border-radius:22px;pointer-events:none;z-index:25;opacity:.45}
+.s-header{border-image:linear-gradient(90deg,transparent,var(--gold-line),transparent) 1}
+.s-card::before{background:linear-gradient(135deg,var(--blue),var(--jade) 55%,var(--gold-1))}
+.aurora__blob.b4{background:var(--gold-1);width:34vmax;height:34vmax;top:55%;inset-inline-start:-8vmax;opacity:calc(var(--blob-op)*.45);animation:drift3 38s ease-in-out infinite alternate-reverse}
+.lang-sw{display:inline-flex;border:1px solid var(--gold-line);border-radius:999px;overflow:hidden}
+.lang-sw button{border:0;background:none;color:var(--text);font:inherit;font-size:.78rem;padding:6px 11px;cursor:pointer}
+.lang-sw button[aria-pressed=true]{background:linear-gradient(135deg,#F6E08A,#D4AF37);color:var(--gold-fg);font-weight:700}
+/* اسکرول لطیف */
+.scroll-progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:80;transform-origin:0 50%;transform:scaleX(var(--sp,0));background:linear-gradient(90deg,var(--gold-2),var(--gold-1),#F6E08A);pointer-events:none}
+[dir=rtl] .scroll-progress{transform-origin:100% 50%}
+.reveal{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.reveal--pending{opacity:0;transform:translateY(22px)}
+.reveal--pending.in{opacity:1;transform:none}
+html{scrollbar-width:thin;scrollbar-color:var(--gold-line) transparent;scroll-padding-top:84px}
+::selection{background:var(--gold-1);color:var(--gold-fg)}
+@media(prefers-reduced-motion:reduce){.reveal--pending{opacity:1;transform:none}.brand{animation:none}}

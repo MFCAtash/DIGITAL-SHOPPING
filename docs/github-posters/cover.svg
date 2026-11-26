@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" direction="ltr" style="direction:ltr">
+        <defs>
+          <linearGradient id="a-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0B0716"/><stop offset=".55" stop-color="#180A38"/><stop offset="1" stop-color="#3B0F5C"/></linearGradient>
+          <radialGradient id="a-glow"><stop stop-color="#A855F7" stop-opacity=".75"/><stop offset="1" stop-color="#A855F7" stop-opacity="0"/></radialGradient>
+          <linearGradient id="a-loop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#22D3EE"/><stop offset=".5" stop-color="#6366F1"/><stop offset="1" stop-color="#A855F7"/></linearGradient>
+          <filter id="a-blur"><feGaussianBlur stdDeviation="18"/></filter>
+          <pattern id="a-stars" width="47" height="47" patternUnits="userSpaceOnUse"><circle cx="7" cy="11" r="1" fill="#fff" opacity=".35"/><circle cx="33" cy="28" r="1.4" fill="#C084FC" opacity=".4"/></pattern>
+          <path id="a-path" d="M300 300 C205 190 140 220 165 330 C190 440 275 440 300 300 C325 160 410 160 435 270 C460 380 395 410 300 300 Z"/>
+        </defs>
+        <rect width="1200" height="630" fill="url(#a-bg)"/>
+        <rect width="1200" height="630" fill="url(#a-stars)"/>
+        <circle cx="300" cy="300" r="230" fill="url(#a-glow)" filter="url(#a-blur)" opacity=".8"/>
+        <ellipse cx="300" cy="300" rx="250" ry="95" fill="none" stroke="#C084FC" stroke-width="1.4" opacity=".5" transform="rotate(-22 300 300)"/>
+        <ellipse cx="300" cy="300" rx="250" ry="95" fill="none" stroke="#22D3EE" stroke-width="1.2" opacity=".4" transform="rotate(38 300 300)"/>
+        <use href="#a-path" fill="none" stroke="url(#a-loop)" stroke-width="26" stroke-linecap="round"/>
+        <use href="#a-path" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/>
+        <circle cx="300" cy="300" r="18" fill="#fff"/>
+        <text x="660" y="250" fill="#FFFFFF" font-family="Tahoma,sans-serif" font-size="76" font-weight="800">Digital</text>
+        <text x="660" y="330" fill="#C084FC" font-family="Tahoma,sans-serif" font-size="76" font-weight="700">Shopping</text>
+        <text x="1140" y="390" text-anchor="end" fill="#E9D5FF" font-family="Tahoma,sans-serif" font-size="32">قیمت شفاف، مقایسۀ واقعی</text>
+        <g font-family="Tahoma,sans-serif" font-size="19" fill="#EDE9FE">
+          <rect x="660" y="430" width="104" height="38" rx="19" fill="#7C3AED" fill-opacity=".3" stroke="#C084FC"/><text x="681" y="455">Django</text>
+          <rect x="778" y="430" width="110" height="38" rx="19" fill="#22D3EE" fill-opacity=".16" stroke="#67E8F9"/><text x="798" y="455">Next.js</text>
+          <rect x="902" y="430" width="140" height="38" rx="19" fill="#A855F7" fill-opacity=".22" stroke="#F0ABFC"/><text x="922" y="455">TypeScript</text>
+        </g>
+        <text x="660" y="540" fill="#8B7FA3" font-family="Tahoma,sans-serif" font-size="18" direction="ltr">Django · Next.js · PostgreSQL · 8 themes · fa / en</text>
+      </svg>
