@@ -41,7 +41,7 @@ export interface FilterPanelProps {
 export const activeFilterCount = (s: FilterSelection): number => Object.values(s).reduce((n, v) => n + v.length, 0);
 
 /** فیلترها: هر گروه یک fieldset/legend؛ تعداد نتیجه کنار هر گزینه؛ «پاک‌کردن» با شمار فعال‌ها. */
-export function FilterPanel({ groups, selected, onChange, onClear, extra, className, locale = "fa", title = "فیلترها", clearLabel = "پاک‌کردن همه", closeLabel = "بستن", showPrefix = "نمایش", showSuffix = "کالا" }: FilterPanelProps) {
+export function FilterPanel({ groups, selected, onChange, onClear, extra, className, locale = "fa", title = "فیلترها", clearLabel = "پاک‌کردن همه" }: FilterPanelProps) {
   const active = activeFilterCount(selected);
   const toggle = (gid: string, value: string, on: boolean) => {
     const cur = selected[gid] ?? [];
