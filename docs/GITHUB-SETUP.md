@@ -34,7 +34,7 @@
 در پوشهٔ پروژه (همان جایی که `.git` قرار دارد):
 
 ```powershell
-git remote add origin https://github.com/USERNAME/REPO.git
+git remote add origin https://github.com/MFCAtash/digital-shopping.git
 git branch -M main
 git push -u origin main
 ```
