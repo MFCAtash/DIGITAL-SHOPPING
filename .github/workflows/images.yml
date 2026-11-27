@@ -20,7 +20,7 @@ jobs:
         include:
           - image: backend
             context: ./backend
-            dockerfile: Dockerfile
+            dockerfile: backend/Dockerfile
           - image: web
             context: .
             dockerfile: apps/web/Dockerfile

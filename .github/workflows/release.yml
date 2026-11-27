@@ -23,9 +23,9 @@ jobs:
       - name: Generate checksums
         run: |
           cd docs/github-posters
-          sha256sum cover.png cover@2x.png cover.svg > SHA256SUMS.txt
+          sha256sum cover.png cover@2x.png cover.svg > posters-SHA256SUMS.txt
           cd ../screenshots
-          sha256sum *.webp > SHA256SUMS.txt
+          sha256sum *.webp > screenshots-SHA256SUMS.txt
       - name: Publish release assets
         uses: softprops/action-gh-release@v2
         with:
@@ -36,7 +36,7 @@ jobs:
             docs/github-posters/cover.png
             docs/github-posters/cover@2x.png
             docs/github-posters/cover.svg
-            docs/github-posters/SHA256SUMS.txt
-            docs/screenshots/SHA256SUMS.txt
+            docs/github-posters/posters-SHA256SUMS.txt
+            docs/screenshots/screenshots-SHA256SUMS.txt
             LICENSE
             NOTICE
