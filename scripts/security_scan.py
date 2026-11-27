@@ -18,7 +18,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SKIP_DIRS = {".venv", "node_modules", ".next", "__pycache__", ".pytest_cache", ".ruff_cache", ".git", "dist", "build"}
+SKIP_DIRS = {".venv", "node_modules", ".next", "__pycache__", ".pytest_cache", ".ruff_cache", ".git", "dist", "build", "staticfiles"}
 SKIP_SUFFIX = {".woff2", ".woff", ".ttf", ".png", ".jpg", ".webp", ".svg", ".gz", ".zip", ".sqlite3", ".pyc", ".ico"}
 PLACEHOLDER = re.compile(r"change[-_]?me|changeme|example|dummy|placeholder|test[-_]?secret|ci[-_]?only|fake|localhost", re.I)
 SECRET_ASSIGN = re.compile(r"(?i)(SECRET_KEY|PASSWORD|TOKEN|API_KEY|PRIVATE_KEY|CREDENTIAL|OTP_SECRET)\s*[:=]\s*[\"']([^\"']{16,})[\"']")
