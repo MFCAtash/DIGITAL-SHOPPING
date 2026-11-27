@@ -423,7 +423,7 @@ This repository is **public for viewing only**. It is distributed under the **Di
 - [ADRs](docs/adr/README.md) · [Design language](docs/DESIGN-LANGUAGE.md) · [Galaxy themes](docs/GALAXY-THEMES-FA.md)
 - [Logo concepts](docs/LOGO-CONCEPTS-2026-FA.md) · [Visual logo preview](docs/logo-concepts/final-preview.html)
 - [Poster gallery](docs/github-posters/index.html) · [Visual hub](docs/index.html) · [API reference](docs/api.html) — **live at https://mfcatash.github.io/digital-shopping/**
-- [Contributing guide](CONTRIBUTING.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security policy](docs/SECURITY.md)
+- [Contributing guide](CONTRIBUTING.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security policy](docs/SECURITY.md) · [Privacy and demo terms](docs/PRIVACY.md)
 
 **Concluding note.** Digital Shopping shows that an electronics storefront can be both rigorously engineered and deeply human: a place where every price carries a history, every image carries a provenance, every order carries a fingerprint, and every interface carries a language and an identity. This repository is not merely code — it is a system that treats transparency as a product feature and quality as an operating discipline, built with engineering rigour, protected by tests, and shaped by respect for the person at the other end of the screen.
 
@@ -435,7 +435,7 @@ This repository is **public for viewing only**. It is distributed under the **Di
 
 **فروشگاهی دیجیتال با قیمت شفاف، مشخصات استاندارد و تجربهای که بهزبان فارسی و انگلیسی، در هر تم و بر هر دستگاهی یکسان میدرخشد.**
 
-> وضعیت (۲۷ نوامبر ۲۰۲۶): بکاند و فرانت کاملاً پیاده، آزموده و منتشر شدهاند. **۳۱۱ تست بکاند Passed + ۲ Skipped** (دو تست همزمانی نیازمند Postgres و روی SQLite رد میشوند) · **۱۴۳ تست خالص** · **۵۴ تست UI** · **۲۶ تست E2E پیشنمایش** · **۴ تست E2E وب**. قرارداد API دارای **۳۹ مسیر**، کاتالوگ **۲۸ محصول / ۵۱ تصویر**، رابط **۱۷ مسیر** و **۸ تم** است. تمام migrationها کامیتاند؛ `ruff`، `tsc`، `next build`، Lighthouse و هر چهار گردشکار CI سبزاند.
+> وضعیت (۲۷ نوامبر ۲۰۲۶): بکاند و فرانت کاملاً پیاده، آزموده و منتشر شدهاند. **۳۱۱ تست بکاند Passed + ۲ Skipped** (دو تست همزمانی نیازمند Postgres و روی SQLite رد میشوند) · **۱۴۳ تست خالص** · **۵۴ تست UI** · **۲۶ تست E2E پیشنمایش** · **۴ تست E2E وب**. قرارداد API دارای **۳۹ مسیر**، کاتالوگ **۲۸ محصول / ۵۱ تصویر**، رابط **۱۷ مسیر** و **۸ تم** است. تمام migrationها کامیتاند؛ `ruff`، `tsc`، `next build`، Lighthouse و تمام گردشکارها سبزاند.
 
 Digital Shopping یک فروشگاه الکترونیکی تمامپیشه است که «قیمت واقعی، مقایسۀ واقعی» را اصل طراحی خود قرار میدهد. این پروژه ترکیبی است از بکاند Django با معماری امن و تراکنشمحور، فرانت Next.js دوزبان با هویت بصری اختصاصی، و لایهای از عملیات شامل CI/CD، مانیتورینگ، پشتیبانگیری رمزگذاری شده و بازگشت قابل اثبات. هدف تنها نمایش کالا نیست، بلکه **ایجاد اعتماد قابلاندازهگیری** از طریق تاریخچۀ قیمت، مشخصات استاندارد، شفافسازی مالیات و حملونقل، گزارش صادقانه حقوق تصاویر و ممیزی فقطافزودنی مالی است.
 
@@ -808,6 +808,6 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 - [ADRها](docs/adr/README.md) · [زبان طراحی](docs/DESIGN-LANGUAGE.md) · [تمها](docs/GALAXY-THEMES-FA.md)
 - [کانسپت لوگو](docs/LOGO-CONCEPTS-2026-FA.md) · [پیشنمایش بصری لوگو](docs/logo-concepts/final-preview.html)
 - [کاورها و پوسترها](docs/github-posters/index.html) · [هاب بصری](docs/index.html) · [مستندات API](docs/api.html) — **نسخۀ زنده: https://mfcatash.github.io/digital-shopping/**
-- [راهنمای مشارکت](CONTRIBUTING.md) · [آییننامه](CODE_OF_CONDUCT.md) · [سیاست امنیتی](docs/SECURITY.md)
+- [راهنمای مشارکت](CONTRIBUTING.md) · [آییننامه](CODE_OF_CONDUCT.md) · [سیاست امنیتی](docs/SECURITY.md) · [حریم خصوصی](docs/PRIVACY.md)
 
 **سخن پایانی.** Digital Shopping ثابت میکند که یک فروشگاه الکترونیکی میتواند هم **دقیق و مهندسی** باشد و هم **زیبا و انسانی**: جایی که هر price دارایhistory، هر تصویر دارای منبع، هر سفارش دارای اثر انگشت و هر رابط دارای هویت و زبان است. این مخزن تنها کد نیست، بلکه سیستمی قابلاعتماد است که شفافیت را بهعنوان قابلیت محصول و کیفیت را بهعنوان قاعدهای عملیاتی در نظر میگیرد — پروژهای با نظم مهندسی ساختهشده، با تستها محافظت شده و با احترام به کاربر نهایی به نقطۀ اعتماد رسیده است.
