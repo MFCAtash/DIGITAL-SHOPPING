@@ -178,7 +178,9 @@ function apply(key){
   store.dataset.theme=key;
   document.querySelectorAll('#picker button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.key===key)));
   const t=THEMES[key];
-  palette.innerHTML='<span>پالت '+t.label+'</span>'+t.colors.map(c=>'<i class="chip" style="background:'+c+'" title="'+c+'"></i>').join('');
+  const label=document.createElement('span');label.textContent='پالت '+t.label;
+  const chips=t.colors.map(c=>{const i=document.createElement('i');i.className='chip';i.style.background=c;i.title=c;return i});
+  palette.replaceChildren(label,...chips);
   document.getElementById('mode').textContent=t.mode;
 }
 Object.entries(THEMES).forEach(([k,v])=>{

@@ -121,11 +121,12 @@ const LOGOS=[
 ];
 function menuHTML(m){return `<nav class="nav">${m.items.map((x,i)=>`<a href="#" class="${x===m.on?'on':''}" onclick="return false">${x}</a>`).join('')}</nav><button class="btn">☀ / ☾ Theme</button><button class="btn">Cart (2)</button>`}
 function logoHTML(l){return `<a class="logo ${l.cls}" href="#" onclick="return false"><i aria-hidden="true"></i><span>${l.word}<small>${l.sub}</small></span></a><nav class="nav"><a href="#" class="on" onclick="return false">Home</a><a href="#" onclick="return false">Products</a><a href="#" onclick="return false">Compare</a></nav><button class="btn">Cart (2)</button>`}
+function setMarkup(el,html){el.replaceChildren(...new DOMParser().parseFromString(html,'text/html').body.childNodes)}
 const ms=document.getElementById('menuStage'),mp=document.getElementById('menuPicker'),mb=document.getElementById('menuBar');
-MENUS.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+m.cls;b.onclick=()=>{ms.className='stage '+m.cls;ms.dataset.p=m.p;mb.innerHTML=menuHTML(m);[...mp.children].forEach((x,n)=>x.setAttribute('aria-pressed',String(n===i)))};mp.appendChild(b)});
+MENUS.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+m.cls;b.onclick=()=>{ms.className='stage '+m.cls;ms.dataset.p=m.p;setMarkup(mb,menuHTML(m));[...mp.children].forEach((x,n)=>x.setAttribute('aria-pressed',String(n===i)))};mp.appendChild(b)});
 mp.firstChild.click();
 const ls=document.getElementById('logoStage'),lp=document.getElementById('logoPicker'),lb=document.getElementById('logoBar');
-LOGOS.forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+l.cls;b.onclick=()=>{ls.dataset.p=l.p;lb.innerHTML=logoHTML(l);[...lp.children].forEach((x,n)=>x.setAttribute('aria-pressed',String(n===i)))};lp.appendChild(b)});
+LOGOS.forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+l.cls;b.onclick=()=>{ls.dataset.p=l.p;setMarkup(lb,logoHTML(l));[...lp.children].forEach((x,n)=>x.setAttribute('aria-pressed',String(n===i)))};lp.appendChild(b)});
 lp.firstChild.click();
 </script>
 </body>

@@ -25,7 +25,7 @@ export function HomeCover({ products, viewLabel }: Props) {
         {products.map((p, i) => {
           const src = imageUrl(p.images[0]?.file);
           return (
-            <Link key={p.slug} href={`/products/${p.slug}`} className="cover-card" aria-label={p.name}>
+            <Link key={p.slug} href={`/products/${p.slug}`} className="cover-card">
               <span className="cover-card__label">{String(i + 1).padStart(2, "0")} · {p.brand}</span>
               {src ? <Image src={src} alt="" width={420} height={520} sizes="(max-width: 760px) 45vw, 16vw" priority={i < 4} className="cover-card__img" /> : null}
               <span className="cover-card__name"><bdi>{p.name}</bdi></span>

@@ -157,7 +157,7 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
       onChange={(next) => { setSelected(next); go({ offset: 0 }, next); }}
       onClear={clear}
       extra={
-        <div className="facet-price" aria-label={t("plp.priceRange")}>
+        <div className="facet-price" role="group" aria-label={t("plp.priceRange")}>
           <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
             <legend className="filters__legend">{t("plp.priceRange")}</legend>
             {priceBuckets.map((b) => {
@@ -211,7 +211,7 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
         <aside className="plp-rail" aria-label={t("plp.filters")}>{panel}</aside>
         <div>
           {pending ? <ProductGridSkeleton count={6} /> : products.length ? (
-            <div className="product-grid">{products.map((p, i) => <ProductTile key={p.slug} product={p} priority={i < 4} />)}</div>
+            <div className="product-grid">{products.map((p, i) => <ProductTile key={p.slug} product={p} priority={i < 4} headingLevel={2} />)}</div>
           ) : (
             <div className="panel" style={{ textAlign: "center" }}>
               <h2>{t("plp.empty")}</h2>

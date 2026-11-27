@@ -38,7 +38,7 @@ export function toSummary(p: ProductDto, locale: Locale = "fa"): ProductSummary 
   };
 }
 
-export function ProductTile({ product, priority = false }: { product: ProductDto; priority?: boolean }) {
+export function ProductTile({ product, priority = false, headingLevel = 3 }: { product: ProductDto; priority?: boolean; headingLevel?: 2 | 3 | 4 }) {
   const { addToCart, notify } = useStore();
   const { t, locale } = useT();
   const [compared, setCompared] = useState(false);
@@ -49,6 +49,7 @@ export function ProductTile({ product, priority = false }: { product: ProductDto
       product={summary}
       locale={locale}
       priority={priority}
+      headingLevel={headingLevel}
       image={summary.imageSrc ? (
         <div className="cx-card__media">
           {product.discount_percent > 0 ? <span className="campaign-badge">BLACK FRIDAY · {toFaDigits(product.discount_percent, locale)}{t("common.percent")}</span> : null}

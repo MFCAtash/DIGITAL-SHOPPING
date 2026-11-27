@@ -41,7 +41,7 @@ export function SiteHeader({ categories, locale }: Props) {
     { href: "/compare", key: "nav.compare" },
     { href: "/account", key: "nav.account" },
   ];
-  const cartLabel = `${t("nav.cart", locale)}: ${toFaDigits(cart.count, locale)}`;
+  const cartText = `${t("nav.cart", locale)} (${toFaDigits(cart.count, locale)})`;
 
   return (
     <header className="site-header" data-scrolled={scrolled}>
@@ -49,7 +49,7 @@ export function SiteHeader({ categories, locale }: Props) {
         <button type="button" className="cx-btn cx-btn--ghost cx-btn--sm site-header__menu" onClick={() => setNavOpen(true)} aria-label={t("nav.menu", locale)}>
           <Icon name="menu" size={20} aria-hidden="true" />
         </button>
-        <Link href="/" className="site-header__brand" aria-label="Digital Shopping — Home">
+        <Link href="/" className="site-header__brand">
           <NexusLogo className="site-header__logo3d" size={38} />
           <span className="site-header__wordmark">Digital<span>Shopping</span></span>
         </Link>
@@ -60,8 +60,8 @@ export function SiteHeader({ categories, locale }: Props) {
               {t(l.key, locale)}
             </Link>
           ))}
-          <Link href="/cart" className="site-header__cart" aria-label={cartLabel}>
-            {t("nav.cart", locale)} ({toFaDigits(cart.count, locale)})
+          <Link href="/cart" className="site-header__cart">
+            {cartText}
           </Link>
           <LocaleSwitch locale={locale} />
         </div>
@@ -81,7 +81,7 @@ export function SiteHeader({ categories, locale }: Props) {
                 <Link href={l.href} aria-current={pathname === l.href ? "page" : undefined}>{t(l.key, locale)}</Link>
               </li>
             ))}
-            <li><Link href="/cart">{t("nav.cart", locale)} ({toFaDigits(cart.count, locale)})</Link></li>
+            <li><Link href="/cart">{cartText}</Link></li>
           </ul>
           <h2 className="mobile-nav__title">{t("nav.categories", locale)}</h2>
           <ul className="mobile-nav__cats">
