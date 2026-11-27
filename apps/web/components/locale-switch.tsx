@@ -9,6 +9,7 @@ const LABEL: Record<Locale, string> = { fa: "FA", en: "EN" };
 export function LocaleSwitch({ locale }: { locale: Locale }) {
   const router = useRouter();
   const next = locale === "fa" ? "en" : "fa";
+  const label = t(next === "fa" ? "locale.toFa" : "locale.toEn", locale);
 
   function change() {
     document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
@@ -22,7 +23,7 @@ export function LocaleSwitch({ locale }: { locale: Locale }) {
       type="button"
       className="cx-btn cx-btn--ghost cx-btn--sm site-header__icon"
       onClick={change}
-      aria-label={t(next === "fa" ? "locale.toFa" : "locale.toEn", locale)}
+      aria-label={`${LABEL[next]} — ${label}`}
       title={`${t("locale.current", locale)}${locale.toUpperCase()}`}
     >
       <span aria-hidden="true">{LABEL[next]}</span>

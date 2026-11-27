@@ -136,7 +136,15 @@ const CONCEPTS=[
   {key:"prism",palette:"rose",label:"Prism Beams",pal:"Rose Nebula"},
 ];
 const layout=document.getElementById('layout'),stage=document.getElementById('stage'),picker=document.getElementById('picker');
-layout.innerHTML=PRODUCTS.map(([file,name,brand],i)=>`<article class="card"><span class="tag">0${i+1}</span><img src="products/${file}" alt="${name}"><b>${name}</b><small>${brand}</small></article>`).join('');
+layout.replaceChildren(...PRODUCTS.map(([file,name,brand],i)=>{
+  const card=document.createElement('article');card.className='card';
+  const tag=document.createElement('span');tag.className='tag';tag.textContent='0'+(i+1);
+  const img=document.createElement('img');img.src='products/'+file;img.alt=name;
+  const title=document.createElement('b');title.textContent=name;
+  const maker=document.createElement('small');maker.textContent=brand;
+  card.append(tag,img,title,maker);
+  return card;
+}));
 function apply(i){const c=CONCEPTS[i];stage.dataset.layout=c.key;stage.dataset.palette=c.palette;document.getElementById('layoutName').textContent=c.label;document.getElementById('paletteName').textContent=c.pal;document.querySelectorAll('#picker button').forEach((b,n)=>b.setAttribute('aria-pressed',String(n===i)))}
 CONCEPTS.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+c.label;b.onclick=()=>apply(i);picker.appendChild(b)});
 apply(0);

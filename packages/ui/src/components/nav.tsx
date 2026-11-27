@@ -48,7 +48,7 @@ export function Pagination({ current, total, hrefFor, onChange, label = "صفح�
   if (total <= 1) return null;
   const item = (page: number, content: ReactNode, opts: { current?: boolean; disabled?: boolean; aria: string }) => {
     const cls = cx("cx-page", opts.current && "cx-page--current");
-    if (opts.disabled) return <span className={cx(cls, "cx-page--disabled")} aria-disabled="true" aria-label={opts.aria}>{content}</span>;
+    if (opts.disabled) return <span className={cx(cls, "cx-page--disabled")} aria-disabled="true"><span className="cx-sr-only">{opts.aria}</span>{content}</span>;
     if (hrefFor) return <a href={hrefFor(page)} className={cls} aria-label={opts.aria} aria-current={opts.current ? "page" : undefined}>{content}</a>;
     return <button type="button" className={cls} aria-label={opts.aria} aria-current={opts.current ? "page" : undefined} onClick={() => onChange?.(page)}>{content}</button>;
   };

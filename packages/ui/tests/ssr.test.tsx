@@ -198,7 +198,9 @@ test("ناوبری: Breadcrumb، Pagination، Stepper", () => {
   assert.match(p, /href="\?page=4"/);
   assert.match(p, /aria-current="page">۵</);
   assert.equal(count(p, /…/g), 2);
-  assert.match(render(<Pagination current={1} total={3} />), /aria-disabled="true"[^>]*aria-label="صفحهٔ قبل"|aria-label="صفحهٔ قبل"[^>]*aria-disabled="true"/);
+  const first = render(<Pagination current={1} total={3} />);
+  assert.match(first, /class="cx-page cx-page--disabled" aria-disabled="true"/);
+  assert.match(first, /<span class="cx-sr-only">[^<]+<\/span>/);
   assert.equal(render(<Pagination current={1} total={1} />), "");
   const s = render(<Stepper steps={["نشانی", "ارسال", "پرداخت"]} current={1} />);
   assert.equal(count(s, /aria-current="step"/g), 1);
