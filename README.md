@@ -1,4 +1,4 @@
-# Digital Shopping
+# DIGITAL SHOPPING
 
 ![Digital Shopping — Nebula Hero cover](docs/github-posters/cover.png)
 
@@ -11,6 +11,8 @@
 [![Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-22D3EE)](https://scorecard.dev/viewer/?uri=github.com/MFCAtash/digital-shopping)
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available%20%C2%B7%20View%20Only-A855F7)](LICENSE)
 
+> **DIGITAL SHOPPING** — فروشگاهی **فولاستک** و آمادهٔ تولید با **تمام امکانات و قابلیتها برای خرید و سفارش محصول**: کاتالوگ و فیلتر، سبد، چکاوت OTP، کوپن، پرداخت، ارسال، مرجوعی و رابط دوزبان. ساخته و توسعه دادهشده با **Python · Django 5.2 · Django Ninja · PostgreSQL 16 · Redis · Procrastinate · Next.js 16 · React 19 · TypeScript · CSS · Playwright · Docker · Caddy · Prometheus/Grafana**.
+
 **Language / زبان:** [English](#english) · [فارسی](#فارسی)
 
 ---
@@ -18,6 +20,10 @@
 <a id="english"></a>
 
 ## English
+
+**DIGITAL SHOPPING is a full-stack, production-grade storefront built end to end for buying and ordering products — catalogue and facets, cart, OTP checkout, coupons, payments, shipping, returns and a genuinely bilingual fa/en interface.**
+
+**Built with Python · Django 5.2 · Django Ninja · PostgreSQL 16 · Redis · Procrastinate · Next.js 16 · React 19 · TypeScript · CSS · Playwright · Docker · Caddy · Prometheus/Grafana.**
 
 **A digital storefront where every price has a history, every claim has evidence, and every interface speaks the user's language — Persian and English, eight themes, one uncompromising standard of trust.**
 
@@ -432,6 +438,10 @@ This repository is **public for viewing only**. It is distributed under the **Di
 <a id="فارسی"></a>
 
 ## فارسی
+
+**DIGITAL SHOPPING یک فروشگاه فولاستک و آمادهٔ تولید است که بطور کامل برای خرید و سفارش محصول ساخته و توسعه داده شده است: کاتالوگ و فیلتر، سبد خرید، چکاوت OTP، کوپن، پرداخت، ارسال، مرجوعی و رابط کاملاً دوزبان.**
+
+**ساخته و توسعه دادهشده با:** Python · Django 5.2 · Django Ninja · PostgreSQL 16 · Redis · Procrastinate · Next.js 16 · React 19 · TypeScript · CSS · Playwright · Docker · Caddy · Prometheus/Grafana.
 
 **فروشگاهی دیجیتال با قیمت شفاف، مشخصات استاندارد و تجربهای که بهزبان فارسی و انگلیسی، در هر تم و بر هر دستگاهی یکسان میدرخشد.**
 
