@@ -14,7 +14,7 @@
 
 ## [2026.11.27] — انتشار عمومی در GitHub
 
-- مخزن عمومی **`MFCAtash/digital-shopping`** ساخته و کل تاریخچه (۶۱۱ فایل) به شاخهٔ `main` منتقل شد.
+- مخزن عمومی **`MFCAtash/DIGITAL-SHOPPING`** ساخته و کل تاریخچه (۶۱۱ فایل) به شاخهٔ `main` منتقل شد.
 - هر چهار گردش‌کار CI روی `main` سبز شدند: **backend-ci** (۳۱۱ تست + گیت پوشش ۹۳٪ منطق پول)، **ui-ci** (۵۴ تست)، **web-ci** (typecheck، build، E2E و Lighthouse) و **security** (gitleaks + pip/npm audit).
 - دسترس‌پذیری **۱۰۰** در Lighthouse برای `/`، `/products`، `/cart` و `/account`: ترتیب صحیح سرتیترها در فهرست کالا، نام دسترس‌پذیر سازگار با متن دیده‌شده برای برند/زبان/سبد، و حذف `aria-label` از عناصر عمومی.
 - کاور **Nebula Hero** و نشان‌های CI در README نصب شدند؛ راهنمای `docs/GITHUB-SETUP.md` با آدرس واقعی مخزن به‌روز شد.

@@ -2,13 +2,13 @@
 
 ![Digital Shopping — Nebula Hero cover](docs/github-posters/cover.png)
 
-[![Backend CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/backend-ci.yml)
-[![Web CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/web-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/web-ci.yml)
-[![UI CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/ui-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/ui-ci.yml)
-[![Security](https://github.com/MFCAtash/digital-shopping/actions/workflows/security.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/security.yml)
-[![CodeQL](https://github.com/MFCAtash/digital-shopping/actions/workflows/codeql.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/codeql.yml)
-[![codecov](https://codecov.io/gh/MFCAtash/digital-shopping/branch/main/graph/badge.svg)](https://codecov.io/gh/MFCAtash/digital-shopping)
-[![Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-22D3EE)](https://scorecard.dev/viewer/?uri=github.com/MFCAtash/digital-shopping)
+[![Backend CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml)
+[![Web CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/web-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/web-ci.yml)
+[![UI CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/ui-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/ui-ci.yml)
+[![Security](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/security.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/security.yml)
+[![CodeQL](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/codeql.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/codeql.yml)
+[![codecov](https://codecov.io/gh/MFCAtash/DIGITAL-SHOPPING/branch/main/graph/badge.svg)](https://codecov.io/gh/MFCAtash/DIGITAL-SHOPPING)
+[![Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-22D3EE)](https://scorecard.dev/viewer/?uri=github.com/MFCAtash/DIGITAL-SHOPPING)
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available%20%C2%B7%20View%20Only-A855F7)](LICENSE)
 
 > **DIGITAL SHOPPING** — فروشگاهی **فولاستک** و آمادهٔ تولید با **تمام امکانات و قابلیتها برای خرید و سفارش محصول**: کاتالوگ و فیلتر، سبد، چکاوت OTP، کوپن، پرداخت، ارسال، مرجوعی و رابط دوزبان. ساخته و توسعه دادهشده با **Python · Django 5.2 · Django Ninja · PostgreSQL 16 · Redis · Procrastinate · Next.js 16 · React 19 · TypeScript · CSS · Playwright · Docker · Caddy · Prometheus/Grafana**.
@@ -428,7 +428,7 @@ This repository is **public for viewing only**. It is distributed under the **Di
 - [Full audit report](docs/PROJECT-AUDIT-2026-FA.md) · [GitHub setup guide](docs/GITHUB-SETUP.md) · [Repository map](docs/REPO-MAP.md)
 - [ADRs](docs/adr/README.md) · [Design language](docs/DESIGN-LANGUAGE.md) · [Galaxy themes](docs/GALAXY-THEMES-FA.md)
 - [Logo concepts](docs/LOGO-CONCEPTS-2026-FA.md) · [Visual logo preview](docs/logo-concepts/final-preview.html)
-- [Poster gallery](docs/github-posters/index.html) · [Visual hub](docs/index.html) · [API reference](docs/api.html) — **live at https://mfcatash.github.io/digital-shopping/**
+- [Poster gallery](docs/github-posters/index.html) · [Visual hub](docs/index.html) · [API reference](docs/api.html) — **live at https://mfcatash.github.io/DIGITAL-SHOPPING/**
 - [Contributing guide](CONTRIBUTING.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security policy](docs/SECURITY.md) · [Privacy and demo terms](docs/PRIVACY.md)
 
 **Concluding note.** Digital Shopping shows that an electronics storefront can be both rigorously engineered and deeply human: a place where every price carries a history, every image carries a provenance, every order carries a fingerprint, and every interface carries a language and an identity. This repository is not merely code — it is a system that treats transparency as a product feature and quality as an operating discipline, built with engineering rigour, protected by tests, and shaped by respect for the person at the other end of the screen.
@@ -817,7 +817,7 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 - [گزارش آنالیز جامع](docs/PROJECT-AUDIT-2026-FA.md) · [راهنمای GitHub](docs/GITHUB-SETUP.md) · [نقشۀ مخزن](docs/REPO-MAP.md)
 - [ADRها](docs/adr/README.md) · [زبان طراحی](docs/DESIGN-LANGUAGE.md) · [تمها](docs/GALAXY-THEMES-FA.md)
 - [کانسپت لوگو](docs/LOGO-CONCEPTS-2026-FA.md) · [پیشنمایش بصری لوگو](docs/logo-concepts/final-preview.html)
-- [کاورها و پوسترها](docs/github-posters/index.html) · [هاب بصری](docs/index.html) · [مستندات API](docs/api.html) — **نسخۀ زنده: https://mfcatash.github.io/digital-shopping/**
+- [کاورها و پوسترها](docs/github-posters/index.html) · [هاب بصری](docs/index.html) · [مستندات API](docs/api.html) — **نسخۀ زنده: https://mfcatash.github.io/DIGITAL-SHOPPING/**
 - [راهنمای مشارکت](CONTRIBUTING.md) · [آییننامه](CODE_OF_CONDUCT.md) · [سیاست امنیتی](docs/SECURITY.md) · [حریم خصوصی](docs/PRIVACY.md)
 
 **سخن پایانی.** Digital Shopping ثابت میکند که یک فروشگاه الکترونیکی میتواند هم **دقیق و مهندسی** باشد و هم **زیبا و انسانی**: جایی که هر price دارایhistory، هر تصویر دارای منبع، هر سفارش دارای اثر انگشت و هر رابط دارای هویت و زبان است. این مخزن تنها کد نیست، بلکه سیستمی قابلاعتماد است که شفافیت را بهعنوان قابلیت محصول و کیفیت را بهعنوان قاعدهای عملیاتی در نظر میگیرد — پروژهای با نظم مهندسی ساختهشده، با تستها محافظت شده و با احترام به کاربر نهایی به نقطۀ اعتماد رسیده است.

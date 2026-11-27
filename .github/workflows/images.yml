@@ -41,13 +41,13 @@ jobs:
           file: ${{ matrix.dockerfile }}
           push: true
           tags: |
-            ghcr.io/mfcatash/${{ github.event.repository.name }}-${{ matrix.image }}:latest
-            ghcr.io/mfcatash/${{ github.event.repository.name }}-${{ matrix.image }}:${{ github.ref_name }}
+            ghcr.io/mfcatash/digital-shopping-${{ matrix.image }}:latest
+            ghcr.io/mfcatash/digital-shopping-${{ matrix.image }}:${{ github.ref_name }}
           labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          image: ghcr.io/mfcatash/${{ github.event.repository.name }}-${{ matrix.image }}:${{ github.ref_name }}
+          image: ghcr.io/mfcatash/digital-shopping-${{ matrix.image }}:${{ github.ref_name }}
           format: spdx-json
           output-file: sbom-${{ matrix.image }}.spdx.json
       - name: Upload SBOM
@@ -58,4 +58,4 @@ jobs:
       - name: Install cosign
         uses: sigstore/cosign-installer@v3
       - name: Sign image (keyless)
-        run: cosign sign --yes ghcr.io/mfcatash/${{ github.event.repository.name }}-${{ matrix.image }}@${{ steps.build.outputs.digest }}
+        run: cosign sign --yes ghcr.io/mfcatash/digital-shopping-${{ matrix.image }}@${{ steps.build.outputs.digest }}

@@ -4,7 +4,7 @@ WORKDIR /app
 COPY packages/ui ./packages/ui
 COPY apps/web ./apps/web
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN cd packages/ui && npm ci --no-audit --no-fund && cd ../apps/web && npm ci --no-audit --no-fund && npm run build
+RUN cd packages/ui && npm ci --no-audit --no-fund && cd /app/apps/web && npm ci --no-audit --no-fund && npm run build
 
 FROM node:22-alpine AS runner
 WORKDIR /app

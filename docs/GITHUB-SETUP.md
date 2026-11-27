@@ -34,7 +34,7 @@
 در پوشهٔ پروژه (همان جایی که `.git` قرار دارد):
 
 ```powershell
-git remote add origin https://github.com/MFCAtash/digital-shopping.git
+git remote add origin https://github.com/MFCAtash/DIGITAL-SHOPPING.git
 git branch -M main
 git push -u origin main
 ```
@@ -150,7 +150,7 @@ git push origin main --tags
 ## تنظیمات نهایی مخزن (انجامشده)
 
 - **مجوز:** لایسنس «Digital Shopping Source-Available v1.0» — مخزن عمومی و فقط قابل مشاهده؛ `LICENSE`، `NOTICE` و `docs/LEGAL.md` مرجعاند. نشان MIT حذف شد.
-- **GitHub Pages:** هاب بصری از پوشۀ `docs/` با گردشکار `pages.yml` منتشر میشود: https://mfcatash.github.io/digital-shopping/
+- **GitHub Pages:** هاب بصری از پوشۀ `docs/` با گردشکار `pages.yml` منتشر میشود: https://mfcatash.github.io/DIGITAL-SHOPPING/
 - **Discussions:** فعال با موضوعات Q&A، Ideas و Show and tell.
 - **Ruleset `main`:** الزام PR و چکهای `test`، `web`، `ui` و `gitleaks` با عبور همیشگی برای مالک مخزن.
 - **CodeQL / Scorecard / Dependency Review / lychee:** تحلیل امنیتی و بررسی لینکها بهصورت خودکار.

@@ -8,8 +8,6 @@ RUN if [ -f constraints.txt ]; then pip install --no-cache-dir -r requirements.t
 COPY . .
 RUN chmod +x docker/entrypoint.sh && useradd -m app && chown -R app /app
 USER app
-# collectstatic فقط به تنظیمات نیاز دارد؛ مقدارهای ساختگی فقط در زمان build استفاده می‌شوند
-RUN SECRET_KEY=build-only DATABASE_URL=sqlite:////tmp/build.db DJANGO_SETTINGS_MODULE=config.settings.prod python manage.py collectstatic --noinput
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD curl -fsS http://127.0.0.1:8000/api/v1/health || exit 1
 ENTRYPOINT ["docker/entrypoint.sh"]
