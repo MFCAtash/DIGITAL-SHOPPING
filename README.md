@@ -2,6 +2,12 @@
 
 ![Digital Shopping — GitHub cover](docs/github-posters/cover.png)
 
+[![Backend CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/backend-ci.yml)
+[![Web CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/web-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/web-ci.yml)
+[![UI CI](https://github.com/MFCAtash/digital-shopping/actions/workflows/ui-ci.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/ui-ci.yml)
+[![Security](https://github.com/MFCAtash/digital-shopping/actions/workflows/security.yml/badge.svg)](https://github.com/MFCAtash/digital-shopping/actions/workflows/security.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-22D3EE)](LICENSE)
+
 **فروشگاهی دیجیتال با قیمت شفاف، مشخصات استاندارد و تجربهای که بهزبان فارسی و انگلیسی، در هر تم و بر هر دستگاهی یکسان میدرخشد.**
 
 > وضعیت (۲۶ نوامبر ۲۰۲۶): بکاند و فرانت کاملاً پیاده، آزموده و برای GitHub آمادهاند.
