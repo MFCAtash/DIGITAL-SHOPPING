@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Badge, Breadcrumb, PriceHistoryChart, PriceTag, SpecTable, Tabs, toFaDigits, type PricePoint } from "@codex/ui";
+import { Badge, Breadcrumb, PriceHistoryChart, PriceTag, SpecTable, Tabs, toFaDigits, type PricePoint } from "@digital-shopping/ui";
 import { Gallery } from "@/components/gallery";
 import { BuyBox } from "@/components/buy-box";
 import { StickyBuy } from "@/components/sticky-buy";
@@ -25,7 +25,7 @@ function specLabel(key: string, locale: Locale): string {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getLocale();
-  const p = await serverGet<ProductDto>(`/catalog/products/${encodeURIComponent(slug)}`);
+  const p = await serverGet<ProductDto>(`/catalog/products/${encodeURIComponent(slug)}?lang=${locale}`);
   if (!p) return { ...seoBase(locale), title: t("meta.productMissing", locale) };
   const img = p.images[0] ? imageUrl(p.images[0].file) : undefined;
   const url = `${siteUrl()}/products/${encodeURIComponent(slug)}`;

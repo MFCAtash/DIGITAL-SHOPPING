@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumb } from "@codex/ui";
+import { Breadcrumb } from "@digital-shopping/ui";
 import { OrderView } from "@/components/order-view";
 import { serverGet } from "@/lib/server-api";
 import { getLocale } from "@/lib/locale";

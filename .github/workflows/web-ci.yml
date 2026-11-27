@@ -50,6 +50,7 @@ jobs:
           npx --yes wait-on@8 http://127.0.0.1:4000/api/v1/health
           npx --yes wait-on@8 http://127.0.0.1:3000
           npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+          node ../../scripts/check-i18n.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

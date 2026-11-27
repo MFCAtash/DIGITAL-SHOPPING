@@ -11,7 +11,7 @@ const nextConfig = {
   // محیط توسعه: اجازهٔ منابع HMR از هاست 127.0.0.1 (پیشفرض NEXT فقط localhost را میپذیرد)
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   // کتابخانهٔ طراحی بهصورت TS خام صادر میشود؛ باید توسط Next ترانسپایل شود.
-  transpilePackages: ["@codex/ui"],
+  transpilePackages: ["@digital-shopping/ui"],
   // تصاویر رسانهها از /media/products سرو میشوند؛ میزبان خارجی تنها در صورت تنظیم صریح مجاز است.
   images: {
     remotePatterns: [
@@ -46,7 +46,7 @@ const nextConfig = {
     ];
   },
   experimental: {
-    optimizePackageImports: ["@codex/ui"],
+    optimizePackageImports: ["@digital-shopping/ui"],
   },
 };
 

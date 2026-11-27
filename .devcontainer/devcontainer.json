@@ -1,0 +1,37 @@
+{
+  "name": "Digital Shopping — full stack",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "cd backend && python -m pip install -r requirements-dev.txt && cd ../apps/web && npm ci && cd ../packages/ui && npm ci",
+  "forwardPorts": [3000, 8000, 3001],
+  "portsAttributes": {
+    "3000": { "label": "Next.js storefront" },
+    "8000": { "label": "Django Ninja API" },
+    "3001": { "label": "Grafana" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.ruff",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "bierner.github-markdown-preview"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.eol": "\n",
+        "[python]": { "editor.defaultFormatter": "charliermarsh.ruff" }
+      }
+    }
+  },
+  "remoteEnv": {
+    "DJANGO_SETTINGS_MODULE": "config.settings.sqlite_local",
+    "DATABASE_URL": "sqlite:///./local.sqlite3",
+    "SECRET_KEY": "devcontainer-only-secret-change-me"
+  },
+  "remoteUser": "vscode"
+}

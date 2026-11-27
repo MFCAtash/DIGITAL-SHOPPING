@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Breadcrumb } from "@codex/ui";
+import { Breadcrumb } from "@digital-shopping/ui";
 import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
 import { routeMetadata } from "@/lib/seo";

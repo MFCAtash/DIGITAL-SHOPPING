@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button, formatToman, toFaDigits } from "@codex/ui";
+import { Button, formatToman, toFaDigits } from "@digital-shopping/ui";
 import { useStore } from "@/components/providers";
 import { useT } from "@/components/locale-provider";
 

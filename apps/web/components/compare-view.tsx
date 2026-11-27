@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CompareTable, EmptyState } from "@codex/ui";
+import { CompareTable, EmptyState } from "@digital-shopping/ui";
 import { product as fetchProduct } from "@/lib/api";
 import { readCompare, writeCompare } from "@/lib/compare-store";
 import { imageUrl } from "@/lib/media";

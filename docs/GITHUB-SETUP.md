@@ -144,3 +144,16 @@ git push origin main --tags
 - هر تغییر را همراه با ورودی تاریخگذاریشده در `docs/CHANGELOG.md` کامیت کنید.
 - قبل از ادغام بزرگ، `docs/PROJECT-AUDIT-2026-FA.md` را بهروزرسانی کنید.
 - تصاویر و فونتها در `docs/ASSET-PROVENANCE.md` مستنداند； ۴۹ عکس کاتالوگ وضعیت `needs-review` دارند و پیش از استفادهٔ تجاری نیاز به تأیید حقوقیاند.
+
+---
+
+## تنظیمات نهایی مخزن (انجامشده)
+
+- **مجوز:** لایسنس «Digital Shopping Source-Available v1.0» — مخزن عمومی و فقط قابل مشاهده؛ `LICENSE`، `NOTICE` و `docs/LEGAL.md` مرجعاند. نشان MIT حذف شد.
+- **GitHub Pages:** هاب بصری از پوشۀ `docs/` با گردشکار `pages.yml` منتشر میشود: https://mfcatash.github.io/digital-shopping/
+- **Discussions:** فعال با موضوعات Q&A، Ideas و Show and tell.
+- **Ruleset `main`:** الزام PR و چکهای `test`، `web`، `ui` و `gitleaks` با عبور همیشگی برای مالک مخزن.
+- **CodeQL / Scorecard / Dependency Review / lychee:** تحلیل امنیتی و بررسی لینکها بهصورت خودکار.
+- **Release Assets:** کاورها و پوسترها به نسخۀ `v1.0.0` پیوست شدند.
+- **Codecov:** آپلود `coverage.xml` اختیاری است (`CODECOV_TOKEN`) و شکست آپلود CI را متوقف نمیکند.
+- **دستی از پنل GitHub:** Social Preview، پین کردن مخزن در پروفایل و Secret scanning / Push protection.

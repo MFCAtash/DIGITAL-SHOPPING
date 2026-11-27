@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Alert, Badge, Button, formatJalali, toFaDigits } from "@codex/ui";
+import { Alert, Badge, Button, formatJalali, toFaDigits } from "@digital-shopping/ui";
 import { notifications } from "@/lib/api";
 import { useT } from "@/components/locale-provider";
 import type { NotificationDto } from "@/lib/types";

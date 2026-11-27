@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatJalali, formatToman, toFaDigits } from "@codex/ui";
+import { formatJalali, formatToman, toFaDigits } from "@digital-shopping/ui";
 import { serverGet } from "@/lib/server-api";
 import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";

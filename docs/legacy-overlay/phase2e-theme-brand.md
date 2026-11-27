@@ -1,7 +1,7 @@
 # افزونهٔ ۲ه: تم آبی و سبز یشمی
 
 > **سند تاریخی (HISTORICAL):** تم قدیمی `shop-theme.css` و `AuroraBackground` منسوخاند.
-> جایگزین فعلی: `@codex/ui` و ۸ تم در `apps/web` (۶ کهکشانی + کاغذ گرم/شب مخملی)؛
+> جایگزین فعلی: `@digital-shopping/ui` و ۸ تم در `apps/web` (۶ کهکشانی + کاغذ گرم/شب مخملی)؛
 > وضعیت فعلی را در [README.md](../../README.md) و [PHASE-D-STATUS.md](../PHASE-D-STATUS.md) ببینید.
 
 ## فایل‌ها

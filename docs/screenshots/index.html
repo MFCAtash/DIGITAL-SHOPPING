@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital Shopping — Screenshot Gallery</title>
+<style>
+  :root{--ink:#0B0716;--paper:#F5EFE6;--violet:#A855F7;--cyan:#22D3EE}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;color:#F7F3FF;background:radial-gradient(800px 420px at 12% 0%,rgba(124,58,237,.3),transparent 65%),radial-gradient(700px 400px at 90% 10%,rgba(34,211,238,.14),transparent 60%),#080512}
+  header{max-width:1180px;margin:0 auto;padding:46px 22px 18px}
+  h1{font-size:clamp(28px,4vw,48px);margin:0 0 8px;background:linear-gradient(100deg,#fff,#C084FC 55%,#67E8F9);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:#B9AECB;line-height:1.8;max-width:760px}
+  .grid{max-width:1180px;margin:0 auto;padding:18px 22px 70px;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
+  figure{margin:0;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;background:#120C22;box-shadow:0 18px 42px rgba(0,0,0,.35)}
+  figure img{width:100%;height:auto;display:block;aspect-ratio:1440/900;object-fit:cover;object-position:top}
+  figcaption{padding:12px 16px 16px;font-size:14px;color:#E9D5FF}
+  figcaption small{display:block;color:#8B7FA3;font-size:12px;margin-top:4px}
+  a{color:#67E8F9}
+  footer{max-width:1180px;margin:0 auto;padding:0 22px 60px;color:#8B7FA3;font-size:13px;line-height:1.8}
+</style>
+</head>
+<body>
+<header>
+  <h1>Screenshots / گالری تصاویر</h1>
+  <p>Eight gallery captures of the live storefront: fa/en, light/dark, catalogue, product detail, checkout, mobile and the dedicated cart notification. Regenerate with <code>node scripts/capture-screenshots.mjs</code>.</p>
+</header>
+<div class="grid">
+  <figure><img src="01-home-fa-nebula.webp" alt="Home page in Persian with the default Nebula theme"><figcaption>Home · fa · Nebula<small>01-home-fa-nebula.webp</small></figcaption></figure>
+  <figure><img src="02-home-fa-light.webp" alt="Home page in Persian with the light paper theme"><figcaption>Home · fa · Warm Paper<small>02-home-fa-light.webp</small></figcaption></figure>
+  <figure><img src="03-home-fa-dark.webp" alt="Home page in Persian with the dark Velvet Night theme"><figcaption>Home · fa · Velvet Night<small>03-home-fa-dark.webp</small></figcaption></figure>
+  <figure><img src="04-home-en.webp" alt="Home page in English"><figcaption>Home · en · LTR<small>04-home-en.webp</small></figcaption></figure>
+  <figure><img src="05-catalog-fa.webp" alt="Product catalogue with facets"><figcaption>Catalogue · fa<small>05-catalog-fa.webp</small></figcaption></figure>
+  <figure><img src="06-product-gta-fa.webp" alt="Grand Theft Auto VI product page"><figcaption>Product detail · GTA VI<small>06-product-gta-fa.webp</small></figcaption></figure>
+  <figure><img src="07-cart-fa.webp" alt="Shopping cart"><figcaption>Cart · fa<small>07-cart-fa.webp</small></figcaption></figure>
+  <figure><img src="08-checkout-fa.webp" alt="Four-step checkout"><figcaption>Checkout · fa<small>08-checkout-fa.webp</small></figcaption></figure>
+  <figure><img src="09-cart-toast-fa.webp" alt="Colourful cart notification with product image"><figcaption>Cart notification · Aurora<small>09-cart-toast-fa.webp</small></figcaption></figure>
+  <figure><img src="10-mobile-home-fa.webp" alt="Mobile home page at 390 pixels"><figcaption>Mobile · 390px · fa<small>10-mobile-home-fa.webp</small></figcaption></figure>
+</div>
+<footer>Back to the <a href="../index.html">visual hub</a> · <a href="../../README.md">README</a></footer>
+</body>
+</html>

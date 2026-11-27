@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AddressForm, Button } from "@codex/ui";
+import { AddressForm, Button } from "@digital-shopping/ui";
 import { addresses } from "@/lib/api";
 import type { AddressDto } from "@/lib/types";
 import { useStore } from "@/components/providers";

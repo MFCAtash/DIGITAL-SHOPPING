@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import type { ReactNode } from "react";
-import { themeInitScript } from "@codex/ui";
+import { themeInitScript } from "@digital-shopping/ui";
 import "./globals.css";
 import { StoreProvider } from "@/components/providers";
 import { englishText, t as translate } from "@/lib/i18n";

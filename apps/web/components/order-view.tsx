@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Countdown, OrderTimeline, formatToman, toFaDigits } from "@codex/ui";
+import { Button, Countdown, OrderTimeline, formatToman, toFaDigits } from "@digital-shopping/ui";
 import { useState } from "react";
 import { orders } from "@/lib/api";
 import type { OrderDto } from "@/lib/types";

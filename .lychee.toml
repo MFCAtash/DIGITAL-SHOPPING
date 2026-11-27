@@ -1,0 +1,12 @@
+exclude = [
+  "localhost",
+  "127.0.0.1",
+  "example.com",
+  "github.com/USERNAME",
+  "scorecard.dev",
+  "storage.googleapis.com",
+]
+exclude_path = ["docs/internal", "docs/legacy-overlay", "legacy"]
+retry_count = 2
+timeout = 20
+user_agent = "Mozilla/5.0 (compatible; DigitalShoppingLinkCheck/1.0)"

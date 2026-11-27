@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
-import { Breadcrumb, Button, Checkbox, FilterPanel, FilterSheet, Pagination, SortMenu, formatToman, toFaDigits, type FilterSelection } from "@codex/ui";
+import { Breadcrumb, Button, Checkbox, FilterPanel, FilterSheet, Pagination, SortMenu, formatToman, toFaDigits, type FilterSelection } from "@digital-shopping/ui";
 import type { CategoryDto, FacetsDto, ProductDto } from "@/lib/types";
 import { ProductTile } from "./product-tile";
 import { ProductGridSkeleton } from "./skeletons";
@@ -151,7 +151,7 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
 
   const priceBuckets = facets?.price?.buckets ?? [];
   const panel = (
-    <FilterPanel
+    <FilterPanel locale={locale} title={t("plp.filters")} clearLabel={t("plp.clear")} closeLabel={t("common.close")} showPrefix={t("plp.showPrefix")} showSuffix={t("plp.showSuffix")}
       groups={groups}
       selected={selected}
       onChange={(next) => { setSelected(next); go({ offset: 0 }, next); }}
@@ -219,11 +219,11 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
               <Button variant="secondary" onClick={clear}>{t("plp.clear")}</Button>
             </div>
           )}
-          <Pagination current={currentPage} total={totalPages} hrefFor={(page) => href({ offset: (page - 1) * query.limit })} locale={locale} />
+          <Pagination current={currentPage} total={totalPages} hrefFor={(page) => href({ offset: (page - 1) * query.limit })} locale={locale} label={t("ui.pagination")} prevLabel={t("ui.pagePrev")} nextLabel={t("ui.pageNext")} />
         </div>
       </div>
 
-      <FilterSheet
+      <FilterSheet locale={locale} title={t("plp.filters")} clearLabel={t("plp.clear")} closeLabel={t("common.close")} showPrefix={t("plp.showPrefix")} showSuffix={t("plp.showSuffix")}
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
         resultCount={count}

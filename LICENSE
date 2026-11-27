@@ -1,21 +1,74 @@
-MIT License
+DIGITAL SHOPPING SOURCE-AVAILABLE LICENSE — VERSION 1.0
+========================================================
 
-Copyright (c) 2026 Digital Shopping contributors
+Copyright (c) 2026 Mohammad Atash (MFCAtash). All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+"Software" means the Digital Shopping storefront source code, configuration,
+documentation, design assets and any other material in this repository that is
+not explicitly marked as a third-party component under its own license.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. NO LICENSE GRANTED
+---------------------
+All rights in the Software are reserved by the copyright holder. No copyright,
+patent, trademark, moral or other intellectual-property right is granted,
+expressly or by implication. There is no permission to copy, clone, fork the
+content of, reproduce, modify, adapt, translate, compile, distribute, publish,
+sublicense, sell, lease, lend, perform, display, or otherwise exploit the
+Software, in whole or in part, for any purpose.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. LIMITED VIEWING PERMISSION
+-----------------------------
+The copyright holder grants a limited, revocable, non-exclusive, non-
+transferable permission to read and view the Software through the GitHub web
+interface or GitHub's official API, solely for the purpose of evaluating the
+project. This permission does not include the right to download, copy, store,
+cache, mirror, extract, reuse or redistribute any part of the Software.
+
+3. PROHIBITED ACTS
+------------------
+Without limitation, you may not:
+  a. copy or paste source code, in whole or in part;
+  b. create derivative works or new works based on the Software;
+  c. use the Software, or any part of it, in a product, service, course,
+     publication, portfolio, commercial or non-commercial project;
+  d. redistribute, publish, mirror or make the Software available to others;
+  e. remove, alter or circumvent copyright notices, this License, or any
+     technical measure that protects the Software;
+  f. claim ownership of, or represent yourself as the author of, the Software.
+
+4. THIRD-PARTY COMPONENTS
+-------------------------
+Fonts, runtime dependencies and other third-party components keep their own
+licenses as listed in NOTICE and docs/LEGAL.md. Those components are not
+covered by this License and are not granted any additional rights here.
+
+5. NO WARRANTY
+--------------
+The Software is provided "as is", without warranty of any kind. Viewing it
+does not create a support, maintenance or contractual obligation.
+
+6. ENFORCEMENT AND GOVERNING LAW
+--------------------------------
+Unauthorised copying or use is infringement and may result in legal action,
+including takedown requests to hosting providers and claims for damages. This
+License is governed by the laws of the copyright holder's jurisdiction, without
+prejudice to any mandatory protection available under the laws of the country
+where an infringement occurs.
+
+7. HISTORICAL NOTE
+------------------
+An earlier revision of this repository was published under the MIT License
+(release tag v1.0.0). That historical grant is not revoked, but it applies only
+to that exact historical revision. Every revision from 2026-11-27 onward,
+including the current main branch and all future releases, is governed
+exclusively by this License.
+
+---
+
+Summary / خلاصهٔ لایسنس
+----------------------------------
+این مخزن **عمومی و فقط برای مشاهده** است. هیچ اجازهای برای کپی، دانلود،
+استفاده، تغییر یا انتشار کد داده نشده است. مشاهدهٔ آنلاین در گیت‌هاب تنها
+مورد مجاز است. استفادهٔ غیرمجاز نقض حقوق مؤلف محسوب می‌شود.
+
+Contact for permission requests: https://github.com/MFCAtash

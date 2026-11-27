@@ -1,5 +1,17 @@
 # تغییرات
 
+## [2026.11.27] — تکمیل نهایی مخزن (دوزبانگی README، مجوز محافظت شده و اتوماسیون)
+
+- **README دو زبانه:** بخش کامل انگلیسی پیش از بخش کامل فارسی، همراه سوییچ زبان، نمودارهای Mermaid معماری و چکاوت، جدول تصاویر، کارت کیفیت و لینک هاب زندهٔ Pages.
+- **مجوز جدید:** لایسنس MIT به «Digital Shopping Source-Available v1.0» تغییر یافت — مخزن عمومی و فقط قابل مشاهده، بدون حق کپی/استفاده/انتشار. اسناد `LICENSE`، `NOTICE`، `docs/LEGAL.md` و تمام نشانها بهروز شدند.
+- **گالری بصری:** ۱۰ اسکرینشات تولیدشده توسط Playwright (fa/en، سه تم، کاتالوگ، PDP، چکاوت، موبایل و اعلان سبد) در `docs/screenshots/` + اسکریپت production-ready `scripts/capture-screenshots.mjs`.
+- **تست دوزبانگی:** `scripts/check-i18n.mjs` با مرورگر واقعی، ۱۴ مسیر en را بدون هیچ متن فارسی تأیید میکند و در `web-ci` اجرا میشود. سه نشت واقعی زبان (عنوان فیلترها، تعدادها و توضیحاتmeta محصول) رفع شدند.
+- **یکدستسازی برند:** فضای نام `@codex/*` به `@digital-shopping/*` تغییر یافت (۴۷ فایل + lockfileها) بدون شکست تستها.
+- **اتوماسیون و امنیت:** گردشکارهای CodeQL، Dependency Review، lychee Link Check، OpenSSF Scorecard، GitHub Pages، Container Images (GHCR + SBOM + cosign) و Release Assets اضافه شدند؛ آپلود Codecov و دوازده topics/GitHub Discussions/Ruleset برای `main` پیکربندی شدند.
+- **نظم اسناد:** شش فایل کارگاهی از ریشه به `docs/internal/` منتقل، `docs/REPO-MAP.md`، `docs/IMAGE-RIGHTS.md`، `docs/index.html` و `docs/api.html` اضافه شدند.
+- **جامعه:** برچسبهای Issue، سه مسئلهٔ «good first issue» و ادغام دو PR سبز Dependabot.
+- **انتشار:** نسخهٔ `v1.0.0` با کاورها و پوسترها بهعنوان Asset بهروز شد.
+
 ## [2026.11.27] — انتشار عمومی در GitHub
 
 - مخزن عمومی **`MFCAtash/digital-shopping`** ساخته و کل تاریخچه (۶۱۱ فایل) به شاخهٔ `main` منتقل شد.

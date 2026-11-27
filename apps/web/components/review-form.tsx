@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@codex/ui";
+import { Button } from "@digital-shopping/ui";
 import { engagement } from "@/lib/api";
 import { useStore } from "./providers";
 import { useT } from "./locale-provider";

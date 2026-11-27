@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { formatToman } from "@codex/ui";
+import { formatToman } from "@digital-shopping/ui";
 import { suggest } from "@/lib/api";
 import type { SuggestDto } from "@/lib/types";
 import { useT } from "./locale-provider";

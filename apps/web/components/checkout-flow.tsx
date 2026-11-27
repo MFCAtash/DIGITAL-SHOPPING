@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AddressForm, Button, OtpInput, Stepper, formatToman, toFaDigits, type AddressInput as UiAddressInput } from "@codex/ui";
+import { AddressForm, Button, OtpInput, Stepper, formatToman, toFaDigits, type AddressInput as UiAddressInput } from "@digital-shopping/ui";
 import { addresses, auth, engagement, orders, shippingMethods } from "@/lib/api";
 import type { AddressDto, OrderDto, ShippingQuote } from "@/lib/types";
 import { useStore } from "./providers";

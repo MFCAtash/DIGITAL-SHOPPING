@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Alert, Button, TextField } from "@codex/ui";
+import { Alert, Button, TextField } from "@digital-shopping/ui";
 import { auth } from "@/lib/api";
 import { useT } from "@/components/locale-provider";
 

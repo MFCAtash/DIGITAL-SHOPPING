@@ -1,0 +1,13 @@
+# Default owner for everything in the repository.
+* @MFCAtash
+
+# Money-critical server code and migrations require the maintainer's review.
+/backend/apps/pricing/ @MFCAtash
+/backend/apps/orders/ @MFCAtash
+/backend/apps/payments/ @MFCAtash
+/backend/**/migrations/ @MFCAtash
+
+# Design system, visual identity and documentation.
+/packages/ui/ @MFCAtash
+/docs/ @MFCAtash
+/.github/ @MFCAtash

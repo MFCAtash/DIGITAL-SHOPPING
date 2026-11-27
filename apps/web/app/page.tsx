@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Accordion, Badge, Icon, PriceHistoryChart, toFaDigits } from "@codex/ui";
+import { Accordion, Badge, Icon, PriceHistoryChart, toFaDigits } from "@digital-shopping/ui";
 import { ProductTile } from "@/components/product-tile";
 import { HomeCover } from "@/components/home-cover";
 import { serverGet } from "@/lib/server-api";

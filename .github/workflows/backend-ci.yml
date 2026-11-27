@@ -83,4 +83,11 @@ jobs:
         with:
           name: coverage-xml
           path: backend/coverage.xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: backend/coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          flags: backend
 # معادل برای Gitea/Woodpecker یا GitLab CI: همین دستورها را در همان ترتیب اجرا کنید.

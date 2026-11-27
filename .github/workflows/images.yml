@@ -1,0 +1,61 @@
+name: Container Images
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  image:
+    name: Build ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: backend
+            context: ./backend
+            dockerfile: Dockerfile
+          - image: web
+            context: .
+            dockerfile: apps/web/Dockerfile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-${{ matrix.image }}:latest
+            ghcr.io/${{ github.repository }}-${{ matrix.image }}:${{ github.ref_name }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: ghcr.io/${{ github.repository }}-${{ matrix.image }}:${{ github.ref_name }}
+          format: spdx-json
+          output-file: sbom-${{ matrix.image }}.spdx.json
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ matrix.image }}
+          path: sbom-${{ matrix.image }}.spdx.json
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+      - name: Sign image (keyless)
+        run: cosign sign --yes ghcr.io/${{ github.repository }}-${{ matrix.image }}@${{ steps.build.outputs.digest }}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital Shopping — Visual Hub</title>
+<style>
+  :root{--violet:#A855F7;--cyan:#22D3EE}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;color:#F7F3FF;background:radial-gradient(900px 480px at 15% 0%,rgba(124,58,237,.32),transparent 62%),radial-gradient(700px 420px at 85% 20%,rgba(34,211,238,.13),transparent 60%),#080512;min-height:100vh}
+  main{max-width:1060px;margin:auto;padding:48px 22px 80px}
+  h1{font-size:clamp(30px,4vw,50px);margin:0 0 8px;background:linear-gradient(100deg,#fff,#C084FC 55%,#67E8F9);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{color:#B9AECB;line-height:1.9;max-width:740px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px;margin-top:34px}
+  a.card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;background:linear-gradient(160deg,rgba(30,20,55,.9),rgba(10,7,20,.95));transition:.25s}
+  a.card:hover{transform:translateY(-4px);border-color:rgba(192,132,252,.6);box-shadow:0 20px 48px rgba(124,58,237,.25)}
+  a.card b{display:block;font-size:18px;margin-bottom:6px}
+  a.card small{color:#9F92B7;font-size:12px;letter-spacing:.08em}
+  a.card span{display:block;color:#C7BCD8;font-size:13px;line-height:1.7;margin-top:10px}
+  footer{margin-top:44px;color:#8B7FA3;font-size:13px;line-height:1.8}
+</style>
+</head>
+<body>
+<main>
+  <h1>Digital Shopping · Visual Hub</h1>
+  <p class="lead">Live design artefacts for the bilingual storefront: screenshots, galaxy themes, logo concepts, poster gallery and the generated API reference. English first, Persian throughout the product itself.</p>
+  <div class="grid">
+    <a class="card" href="screenshots/index.html"><small>GALLERY</small><b>Screenshots</b><span>Ten captures: fa/en, light/dark, catalogue, product, checkout, cart toast and mobile.</span></a>
+    <a class="card" href="galaxy-themes.html"><small>DESIGN SYSTEM</small><b>Eight galaxy themes</b><span>Nebula, Aurora, Solar, Ocean, Rose, Silver, paper and night.</span></a>
+    <a class="card" href="theme-showcase.html"><small>PALETTE</small><b>Theme showcase</b><span>Colour tokens and contrast pairs in a live preview.</span></a>
+    <a class="card" href="header-logo-concepts.html"><small>IDENTITY</small><b>Header &amp; logo concepts</b><span>Navigation and wordmark directions considered during the redesign.</span></a>
+    <a class="card" href="logo-concepts/final-preview.html"><small>IDENTITY</small><b>Nexus Loop</b><span>The chosen logo with its particle halo and theme-aware colours.</span></a>
+    <a class="card" href="github-posters/index.html"><small>GITHUB</small><b>Poster gallery</b><span>Five cover concepts; Nebula Hero was selected as the official cover.</span></a>
+    <a class="card" href="cover-previews/index.html"><small>GITHUB</small><b>Cover previews</b><span>Earlier catalogue cover layouts with real product imagery.</span></a>
+    <a class="card" href="api.html"><small>DEVELOPERS</small><b>API reference</b><span>Generated OpenAPI contract with 39 paths, rendered with Redoc.</span></a>
+  </div>
+  <footer>Source repository: <a href="https://github.com/MFCAtash/digital-shopping">MFCAtash/digital-shopping</a> · public for viewing only under the source-available licence.</footer>
+</main>
+</body>
+</html>

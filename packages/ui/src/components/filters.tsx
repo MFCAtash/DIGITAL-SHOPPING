@@ -1,7 +1,7 @@
 "use client";
 import type { ReactNode } from "react";
 import { cx } from "../lib/cx";
-import { toFaDigits } from "../lib/format";
+import { toFaDigits, type FormatLocale } from "../lib/format";
 import { Button } from "./button";
 import { Checkbox, SelectField, type SelectOption } from "./form";
 import { Sheet } from "./overlay";
@@ -29,12 +29,19 @@ export interface FilterPanelProps {
   /** بخش‌های اضافه (مثلاً بازهٔ قیمت) */
   extra?: ReactNode;
   className?: string;
+  /** برچسبهای قابلترجمه؛ پیشفرض فارسی برای سازگاری با مصرفکنندگان قدیمی */
+  locale?: FormatLocale;
+  title?: string;
+  clearLabel?: string;
+  closeLabel?: string;
+  showPrefix?: string;
+  showSuffix?: string;
 }
 
 export const activeFilterCount = (s: FilterSelection): number => Object.values(s).reduce((n, v) => n + v.length, 0);
 
 /** فیلترها: هر گروه یک fieldset/legend؛ تعداد نتیجه کنار هر گزینه؛ «پاک‌کردن» با شمار فعال‌ها. */
-export function FilterPanel({ groups, selected, onChange, onClear, extra, className }: FilterPanelProps) {
+export function FilterPanel({ groups, selected, onChange, onClear, extra, className, locale = "fa", title = "فیلترها", clearLabel = "پاک‌کردن همه", closeLabel = "بستن", showPrefix = "نمایش", showSuffix = "کالا" }: FilterPanelProps) {
   const active = activeFilterCount(selected);
   const toggle = (gid: string, value: string, on: boolean) => {
     const cur = selected[gid] ?? [];
@@ -43,14 +50,14 @@ export function FilterPanel({ groups, selected, onChange, onClear, extra, classN
   return (
     <div className={cx("cx-filters", className)}>
       <div className="cx-filters__head">
-        <h2 className="cx-filters__title">فیلترها{active ? <span className="cx-filters__n"> ({toFaDigits(active)})</span> : null}</h2>
-        {onClear && active ? <Button variant="ghost" size="sm" onClick={onClear}>پاک‌کردن همه</Button> : null}
+        <h2 className="cx-filters__title">{title}{active ? <span className="cx-filters__n"> ({toFaDigits(active, locale)})</span> : null}</h2>
+        {onClear && active ? <Button variant="ghost" size="sm" onClick={onClear}>{clearLabel}</Button> : null}
       </div>
       {groups.map((g) => (
         <fieldset key={g.id} className="cx-fieldset cx-filters__group">
           <legend className="cx-field__label">{g.label}</legend>
           {g.options.map((o) => (
-            <Checkbox key={o.value} label={o.label} count={o.count === undefined ? undefined : toFaDigits(o.count)} checked={(selected[g.id] ?? []).includes(o.value)} onChange={(e) => toggle(g.id, o.value, e.target.checked)} />
+            <Checkbox key={o.value} label={o.label} count={o.count === undefined ? undefined : toFaDigits(o.count, locale)} checked={(selected[g.id] ?? []).includes(o.value)} onChange={(e) => toggle(g.id, o.value, e.target.checked)} />
           ))}
         </fieldset>
       ))}
@@ -66,10 +73,10 @@ export interface FilterSheetProps extends FilterPanelProps {
 }
 
 /** نسخهٔ موبایل: فیلترها در Sheet با دکمهٔ ثابت «نمایش N کالا». */
-export function FilterSheet({ open, onClose, resultCount, ...panel }: FilterSheetProps) {
+export function FilterSheet({ open, onClose, resultCount, title = "فیلترها", closeLabel = "بستن", showPrefix = "نمایش", showSuffix = "کالا", locale = "fa", ...panel }: FilterSheetProps) {
   return (
-    <Sheet open={open} onClose={onClose} title="فیلترها" footer={<Button variant="primary" size="lg" fullWidth onClick={onClose}>{`نمایش ${toFaDigits(resultCount)} کالا`}</Button>}>
-      <FilterPanel {...panel} />
+    <Sheet open={open} onClose={onClose} title={title} closeLabel={closeLabel} footer={<Button variant="primary" size="lg" fullWidth onClick={onClose}>{`${showPrefix} ${toFaDigits(resultCount, locale)} ${showSuffix}`}</Button>}>
+      <FilterPanel {...panel} locale={locale} title={title} closeLabel={closeLabel} showPrefix={showPrefix} showSuffix={showSuffix} />
     </Sheet>
   );
 }

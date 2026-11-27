@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ALL_THEMES, applyTheme, GALAXY_LABELS, isGalaxyTheme, type ThemePreference } from "@codex/ui";
+import { ALL_THEMES, applyTheme, GALAXY_LABELS, isGalaxyTheme, type ThemePreference } from "@digital-shopping/ui";
 import { useT } from "./locale-provider";
 const GLYPH: Record<ThemePreference, string> = {
   light: "☀", dark: "☾", system: "◐",

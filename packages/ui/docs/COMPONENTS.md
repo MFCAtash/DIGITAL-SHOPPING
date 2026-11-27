@@ -1,6 +1,6 @@
 # فهرست کامپوننت‌ها
 
-همه با `import { … } from "@codex/ui"`؛ استایل: `@codex/ui/styles.css`. پیش‌نمایش زنده: `npm run preview` ← `preview/design-system.html`.
+همه با `import { … } from "@digital-shopping/ui"`؛ استایل: `@digital-shopping/ui/styles.css`. پیش‌نمایش زنده: `npm run preview` ← `preview/design-system.html`.
 «منطق خالص» = بدون Django/DOM و با تست واحد؛ «مرورگر» = در `npm run e2e` با Chromium واقعی آزموده می‌شود.
 
 | گروه | کامپوننت | نکات رفتاری و دسترس‌پذیری | تست |

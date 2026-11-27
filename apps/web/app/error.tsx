@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@codex/ui";
+import { Button } from "@digital-shopping/ui";
 import { useT } from "@/components/locale-provider";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {

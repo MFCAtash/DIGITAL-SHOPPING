@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Switch, Tabs } from "@codex/ui";
+import { Switch, Tabs } from "@digital-shopping/ui";
 import { useT } from "./locale-provider";
 
 /** قسمت تعاملی صفحهٔ زبان طراحی (لازم است در سمت کلاینت قرار گیرد). */

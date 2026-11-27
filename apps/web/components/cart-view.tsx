@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button, EmptyState, QuantityStepper, formatToman, toFaDigits } from "@codex/ui";
+import { Button, EmptyState, QuantityStepper, formatToman, toFaDigits } from "@digital-shopping/ui";
 import { useStore } from "./providers";
 import { imageUrl } from "@/lib/media";
 import { ProductImage } from "./product-image";

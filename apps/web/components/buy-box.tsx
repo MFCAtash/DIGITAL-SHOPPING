@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Button, QuantityStepper, toFaDigits } from "@codex/ui";
+import { Button, QuantityStepper, toFaDigits } from "@digital-shopping/ui";
 import { useStore } from "./providers";
 import { useT } from "./locale-provider";
 import type { ProductDto, VariantDto } from "@/lib/types";

@@ -3,7 +3,7 @@
 import { Suspense, useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Alert, Button, TextField } from "@codex/ui";
+import { Alert, Button, TextField } from "@digital-shopping/ui";
 import { auth } from "@/lib/api";
 import { useT } from "@/components/locale-provider";
 

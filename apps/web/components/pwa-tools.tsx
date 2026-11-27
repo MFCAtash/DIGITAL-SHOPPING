@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { OfflineBanner, useOnline } from "@codex/ui";
+import { OfflineBanner, useOnline } from "@digital-shopping/ui";
 import { useT } from "./locale-provider";
 
 interface InstallEvent extends Event {

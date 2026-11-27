@@ -5,7 +5,7 @@
 | شماره | عنوان | وضعیت |
 |---|---|---|
 | [0001](0001-django-nextjs.md) | Django + Next.js و بستن مسیر Supabase | پذیرفته‌شده |
-| [0002](0002-design-direction.md) | جهت بصری «برگهٔ مشخصات» و سیستم طراحی @codex/ui | پذیرفته‌شده |
+| [0002](0002-design-direction.md) | جهت بصری «برگهٔ مشخصات» و سیستم طراحی @digital-shopping/ui | پذیرفته‌شده |
 | [0003](0003-session-cookie-over-jwt.md) | نشست کوکی HttpOnly به‌جای JWT | پذیرفته‌شده |
 
 ## قالب

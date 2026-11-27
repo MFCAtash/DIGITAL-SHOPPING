@@ -1,6 +1,6 @@
 "use client";
 
-import { formatToman } from "@codex/ui";
+import { formatToman } from "@digital-shopping/ui";
 import { useStore } from "./providers";
 import { useT } from "./locale-provider";
 

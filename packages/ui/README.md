@@ -1,4 +1,4 @@
-# @codex/ui — سیستم طراحی Digital Shopping
+# @digital-shopping/ui — سیستم طراحی Digital Shopping
 
 توکن‌ها، کامپوننت‌های React 19 (بدون وابستگی زمان‌اجرا)، پیش‌تنظیم Tailwind و قواعد طراحی. تصمیم: [ADR-002](../../docs/adr/0002-design-direction.md). اصول: [docs/PRINCIPLES.md](docs/PRINCIPLES.md). فهرست: [docs/COMPONENTS.md](docs/COMPONENTS.md).
 
@@ -8,8 +8,8 @@ npm i                                   # در packages/ui؛ در پروژهٔ N
 ```
 ```tsx
 // app/layout.tsx
-import "@codex/ui/styles.css";
-import { themeInitScript } from "@codex/ui";
+import "@digital-shopping/ui/styles.css";
+import { themeInitScript } from "@digital-shopping/ui";
 import { fontClasses } from "./fonts";    // نگاه کنید به next/fonts.ts
 
 export default function Root({ children }: { children: React.ReactNode }) {
@@ -22,9 +22,9 @@ export default function Root({ children }: { children: React.ReactNode }) {
 }
 ```
 ```tsx
-import { ProductCard, PriceTag, Button } from "@codex/ui";
+import { ProductCard, PriceTag, Button } from "@digital-shopping/ui";
 ```
-Tailwind (اختیاری): `presets: [require("@codex/ui/tailwind-preset")]` — رنگ‌ها فقط توکن‌اند و ابزارهای گرادیان/سایه/blur خاموش.
+Tailwind (اختیاری): `presets: [require("@digital-shopping/ui/tailwind-preset")]` — رنگ‌ها فقط توکن‌اند و ابزارهای گرادیان/سایه/blur خاموش.
 
 ## دستورها
 | دستور | کار |

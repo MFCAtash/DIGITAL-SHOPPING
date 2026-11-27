@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductCard, toFaDigits, type ProductSummary } from "@codex/ui";
+import { ProductCard, toFaDigits, type ProductSummary } from "@digital-shopping/ui";
 import { useEffect, useState } from "react";
 import { useStore } from "./providers";
 import { imageUrl } from "@/lib/media";

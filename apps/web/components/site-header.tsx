@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Icon, Sheet } from "@codex/ui";
-import { toFaDigits } from "@codex/ui";
+import { Icon, Sheet } from "@digital-shopping/ui";
+import { toFaDigits } from "@digital-shopping/ui";
 import { NexusLogo } from "./nexus-logo";
 import { SearchBox } from "./search-box";
 import { CategoryMenu } from "./category-menu";

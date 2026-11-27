@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Alert, Badge, Breadcrumb, Button, ButtonLink, Checkbox, EmptyState, Icon, IconButton, PriceTag, Skeleton, Stepper, TextField } from "@codex/ui";
-import { BrandMark } from "@codex/ui";
+import { Alert, Badge, Breadcrumb, Button, ButtonLink, Checkbox, EmptyState, Icon, IconButton, PriceTag, Skeleton, Stepper, TextField } from "@digital-shopping/ui";
+import { BrandMark } from "@digital-shopping/ui";
 import { DesignInteractive } from "@/components/design-interactive";
 import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
@@ -84,7 +84,7 @@ export default async function DesignPage() {
         <section className="section" aria-labelledby="d-nav">
           <h2 id="d-nav" className="section__title">{tr("design.nav")}</h2>
           <div className="design-row">
-            <Stepper steps={[t("nav.cart", locale), t("checkout.address", locale), t("checkout.payment", locale)]} current={1} locale={locale} />
+            <Stepper steps={[t("nav.cart", locale), t("checkout.address", locale), t("checkout.payment", locale)]} current={1} locale={locale} label={t("ui.steps")} />
             <DesignInteractive />
             <Icon name="shield" size={20} aria-hidden="true" />
             <BrandMark size={28} />

@@ -2,7 +2,7 @@
  * پیش‌تنظیم Tailwind برای سیستم طراحی (ADR-002). رنگ‌ها به متغیرهای CSS وصل‌اند تا تم تاریک خودکار کار کند.
  * قواعد طراحی در خود پیش‌تنظیم اجرا می‌شوند: ابزارهای گرادیان، سایه و blur غیرفعال‌اند.
  *
- * tailwind.config.js:  presets: [require("@codex/ui/tailwind-preset")]
+ * tailwind.config.js:  presets: [require("@digital-shopping/ui/tailwind-preset")]
  */
 const v = (name) => `var(--cx-${name})`;
 

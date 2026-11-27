@@ -18,7 +18,7 @@ RUN cd apps/web && npm run build
 FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
-# ساختار پوشهها باید همانند مرحلهٔ builder بماند تا پیوند @codex/ui (file:../../packages/ui) معتبر باشد.
+# ساختار پوشهها باید همانند مرحلهٔ builder بماند تا پیوند @digital-shopping/ui (file:../../packages/ui) معتبر باشد.
 # اجرا بهعنوان کاربر غیر root (کمترین امتیاز).
 RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
 COPY --chown=nextjs:nodejs --from=builder /app/packages/ui ./packages/ui

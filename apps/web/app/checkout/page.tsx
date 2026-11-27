@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Breadcrumb } from "@codex/ui";
+import { Breadcrumb } from "@digital-shopping/ui";
 import { CheckoutFlow } from "@/components/checkout-flow";
 import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";

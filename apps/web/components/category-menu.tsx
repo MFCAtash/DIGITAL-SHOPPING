@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Icon } from "@codex/ui";
+import { Icon } from "@digital-shopping/ui";
 import { useT } from "./locale-provider";
 import type { CategoryDto } from "@/lib/types";
 

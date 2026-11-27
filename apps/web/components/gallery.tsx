@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState, type KeyboardEvent } from "react";
-import { Icon } from "@codex/ui";
+import { Icon } from "@digital-shopping/ui";
 import { imageUrl } from "@/lib/media";
 import type { ImageDto } from "@/lib/types";
 import { useT } from "./locale-provider";
