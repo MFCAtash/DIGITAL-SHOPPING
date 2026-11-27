@@ -39,7 +39,7 @@ module.exports = {
       transitionDuration: { fast: "120ms", base: "200ms", slow: "320ms" },
     },
   },
-  // ابزارهایی که ظاهر «ساخته‌شده با AI» می‌سازند خاموش‌اند (D.۵)
+  // ابزارهایی که ظاهر «ساختهشده با الگوهای تکراری» می‌سازند خاموش‌اند (D.۵)
   corePlugins: { backgroundImage: false, gradientColorStops: false, boxShadow: false, dropShadow: false, blur: false, backdropBlur: false, ringWidth: false },
   plugins: [],
 };

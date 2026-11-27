@@ -65,7 +65,7 @@ body {
   inset-block-start: 0;
   z-index: var(--cx-z-sticky);
   background: color-mix(in srgb, var(--cx-bg) 92%, transparent);
-  backdrop-filter: blur(0); /* قاعدۀ ضدّ AI-look: بدون blur */
+  backdrop-filter: blur(0); /* قاعدۀ ضدّ visual-system look: بدون blur */
   border-block-end: 1px solid var(--cx-line);
 }
 

@@ -166,7 +166,7 @@
 | خرید variant واقعی + موجودی جداگانه |Increase conversion | مدل Variant و endpoint لیست |
 | timeline ارسال + webhook حامل | کاهش تماس پشتیبانی | مدل Shipment |
 | جستجوی فارسی هوشمند (Meilisearch/FTS + synonym) | یافتن کالا | `/catalog/suggest` |
-| دستیار مقایسهٔ AI (مشخصات → توصیه) | تجربهٔ متمایز | CompareTable + spec data |
+| دستیار مقایسهٔ (مشخصات → توصیه) | تجربهٔ متمایز | CompareTable + spec data |
 | لینک اشتراک علاقهمندی/مقایسه | viral loop | localStorage compare |
 | کوپن/وفاداری و cashback |Repeat purchase | Coupon/CouponUse |
 | PWA نصبپذیر کامل (PNG icons, offline cart) | موبایل | SW + manifest |

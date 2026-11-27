@@ -31,7 +31,7 @@ Tailwind (اختیاری): `presets: [require("@digital-shopping/ui/tailwind-pre
 |---|---|
 | `npm run tokens:build` / `tokens:check` | تولید/بررسی همگامی `tokens.css` از `tokens.ts` |
 | `npm run contrast` | سنجش ۳۸ جفت رنگ در هر دو تم |
-| `npm run lint:design` | قواعد «ضد ظاهر AI» روی CSS و کد |
+| `npm run lint:design` | قواعد «سبک بصری اختصاصی» روی CSS و کد |
 | `npm run typecheck` | `tsc` با `@types/react` (محیط بدون آن: `typecheck:stub`) |
 | `npm test` | تست‌های واحد، SSR و تست متقابل با بک‌اند روی `contracts/` (۵۳ تست) |
 | `npm run preview` | ساخت `preview/design-system.html` (SSR + هیدراسیون واقعی) |

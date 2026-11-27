@@ -8,7 +8,7 @@
 | D.۲ سه جهت | A + نشان B + رنگ تطبیقی C ← [ADR-002](adr/0002-design-direction.md) | انجام شد |
 | D.۳ توکنها | `tokens.ts` (منبع) ← `tokens.css`؛ `line-strong` و `media` | انجام شد |
 | D.۴ تایپوگرافی | فونت self-hosted Vazirmatn / IBM Plex Sans / Mono، قواعد فارسی (`bdi`، اعداد، تومان، شمسی) | **انجام شد**؛ مجوز OFL در `apps/web/public/fonts/LICENSES.txt` |
-| D.۵ قواعد ضد ظاهر AI | `lint:design` + تست computed-style + Tailwind preset | انجام شد |
+| D.۵ قواعد سبک بصری اختصاصی | `lint:design` + تست computed-style + Tailwind preset | انجام شد |
 | D.۶ سیستم طراحی | ۳۰+ کامپوننت، ۲۴ آیکون خطی، نشان برند، ۱۹ فایل منطق خالص | انجام شد |
 | D.۷ جریانهای UX | صفحه محصول، فهرست، سبد، OTP، آدرس، مقایسه | **در `apps/web` و پیشنمایش `@digital-shopping/ui` پیاده شد** |
 | D.۸ معیار پذیرش | اصول، توکنها، نمونه روشن/تاریک، کنتراست | انجام شد؛ آزمون پنجثانیهای با کاربر واقعی خارج از کد باقی ماند |

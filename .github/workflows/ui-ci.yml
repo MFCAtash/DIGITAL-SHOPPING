@@ -22,7 +22,7 @@ jobs:
         run: npm run tokens:check
       - name: Contrast (WCAG)
         run: npm run contrast
-      - name: Design rules (anti-AI-look)
+      - name: Design rules (distinct visual system)
         run: npm run lint:design
       - name: Typecheck
         run: npm run typecheck

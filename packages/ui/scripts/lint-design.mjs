@@ -1,4 +1,4 @@
-// لینتر قواعد طراحی (ADR-002 / docs/PRINCIPLES.md): ظاهر «ساخته‌شده با AI» و تخطی از سیستم را در CI رد می‌کند.
+// لینتر قواعد طراحی (ADR-002 / docs/PRINCIPLES.md): ظاهر «ساختهشده با الگوهای تکراری» و تخطی از سیستم را در CI رد می‌کند.
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";

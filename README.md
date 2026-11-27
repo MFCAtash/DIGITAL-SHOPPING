@@ -151,7 +151,7 @@ Digital Shopping is a full-stack electronics storefront built around a simple pr
 #### 2.7 Security, quality and operations
 - CSRF on every write, strict CORS, `/admin/` protected by CIDR and `is_staff`.
 - Fail-closed production checks (E001–E031), `compare_digest` for the metrics token, PII-free logs and safe request IDs.
-- gitleaks, Dependabot, issue/PR templates, branch protection and deployment with backup plus real rollback.
+- gitleaks, automated dependency updates, issue/PR templates, branch protection and deployment with backup plus real rollback.
 - 15-minute encrypted GPG backups with an offsite target, SLO, runbook and eight actionable alerts.
 
 ---
@@ -430,6 +430,7 @@ This repository is **public for viewing only**. It is distributed under the **Di
 - [Logo concepts](docs/LOGO-CONCEPTS-2026-FA.md) · [Visual logo preview](docs/logo-concepts/final-preview.html)
 - [Poster gallery](docs/github-posters/index.html) · [Visual hub](docs/index.html) · [API reference](docs/api.html) — **live at https://mfcatash.github.io/DIGITAL-SHOPPING/**
 - [Contributing guide](CONTRIBUTING.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security policy](docs/SECURITY.md) · [Privacy and demo terms](docs/PRIVACY.md)
+- **Contributors:** [MFCAtash](https://github.com/MFCAtash) — the sole author and maintainer of this repository.
 
 **Concluding note.** Digital Shopping shows that an electronics storefront can be both rigorously engineered and deeply human: a place where every price carries a history, every image carries a provenance, every order carries a fingerprint, and every interface carries a language and an identity. This repository is not merely code — it is a system that treats transparency as a product feature and quality as an operating discipline, built with engineering rigour, protected by tests, and shaped by respect for the person at the other end of the screen.
 
@@ -568,7 +569,7 @@ Digital Shopping یک فروشگاه الکترونیکی تمامپیشه اس�
 #### ۲٫۷ امنیت، کیفیت و عملیات
 - CSRF بر تمام نوشتارها، CORS allowlist، محافظت `/admin/` با CIDR و `is_staff`.
 - چکهای fail-closed (E001–E031)، `compare_digest` برای توکن متریک، لاگ بدون PII و Request-ID امن.
-- gitleaks، Dependabot، الگوهای Issue/PR، محافظت شاخه و استقرار با بکاپ و rollback واقعی.
+- gitleaks، automated dependency updates، الگوهای Issue/PR، محافظت شاخه و استقرار با بکاپ و rollback واقعی.
 - بکاپ ۱۵دقیقهای با رمزگذاری GPG و مقصد offsite، SLO/RUNBOOK و ۸ هشدار با لینک معتبر.
 
 ---
@@ -819,5 +820,6 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 - [کانسپت لوگو](docs/LOGO-CONCEPTS-2026-FA.md) · [پیشنمایش بصری لوگو](docs/logo-concepts/final-preview.html)
 - [کاورها و پوسترها](docs/github-posters/index.html) · [هاب بصری](docs/index.html) · [مستندات API](docs/api.html) — **نسخۀ زنده: https://mfcatash.github.io/DIGITAL-SHOPPING/**
 - [راهنمای مشارکت](CONTRIBUTING.md) · [آییننامه](CODE_OF_CONDUCT.md) · [سیاست امنیتی](docs/SECURITY.md) · [حریم خصوصی](docs/PRIVACY.md)
+- **مشارکتکنندگان:** [MFCAtash](https://github.com/MFCAtash) — تنها نویسنده و نگهدارندهٔ این مخزن.
 
 **سخن پایانی.** Digital Shopping ثابت میکند که یک فروشگاه الکترونیکی میتواند هم **دقیق و مهندسی** باشد و هم **زیبا و انسانی**: جایی که هر price دارایhistory، هر تصویر دارای منبع، هر سفارش دارای اثر انگشت و هر رابط دارای هویت و زبان است. این مخزن تنها کد نیست، بلکه سیستمی قابلاعتماد است که شفافیت را بهعنوان قابلیت محصول و کیفیت را بهعنوان قاعدهای عملیاتی در نظر میگیرد — پروژهای با نظم مهندسی ساختهشده، با تستها محافظت شده و با احترام به کاربر نهایی به نقطۀ اعتماد رسیده است.

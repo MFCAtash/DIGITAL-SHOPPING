@@ -12,7 +12,7 @@
 - الگوهای GitHub اضافه شدند:
   - `.github/ISSUE_TEMPLATE/{bug_report,feature_request,config}.yml`
   - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/dependabot.yml`
+  - `.github/dependency updates.yml`
   - `.github/workflows/{backend-ci,web-ci,ui-ci,security,deploy}.yml`
 - اسکن رازها: **هیچ راز واقعی یافت نشد**； تنها مقادیر آزمایشی/CI (`change-me-*`) و فلگهای تست وجود دارند که در `.gitleaks.toml` مجازاند.
 - تستها قبل از کامیت سبزاند: بکاند **۳۱۱**، UI **۵۴**، E2E **۴** + **۲۶** پیشنمایش，`ruff`/`tsc`/`next build` موفق.
