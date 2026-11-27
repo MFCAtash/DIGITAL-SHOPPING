@@ -78,7 +78,7 @@ jobs:
         run: pytest -q -n 2 --cov --cov-report=term-missing --cov-report=xml --cov-fail-under=80
       - name: Coverage gate for money-critical apps (orders, pricing >= 90%)
         run: coverage report --include="apps/orders/*,apps/pricing/*" --fail-under=90
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-xml
