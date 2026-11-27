@@ -30,6 +30,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          overwrite_files: true
           generate_release_notes: true
           files: |
             docs/github-posters/cover.png
