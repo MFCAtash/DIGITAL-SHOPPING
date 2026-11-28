@@ -12,13 +12,13 @@
 </p>
 
 <p align="center">
-  <a href="https://mfcatash.github.io/DIGITAL-SHOPPING/watch.html"><b>▶ Watch the 1:48 product demo</b></a>
+  <a href="https://mfcatash.github.io/DIGITAL-SHOPPING/watch.html"><b>▶ Play the full 1:48 demo — chapters · speed · 1080p/720p · fullscreen</b></a>
   &nbsp;·&nbsp;
   <a href="docs/media/digital-shopping-demo-1080p.mp4">1080p MP4</a>
   &nbsp;·&nbsp;
   <a href="docs/media/digital-shopping-demo-720p.mp4">720p MP4</a>
   <br />
-  <sub>Storefront, themes, catalogue, product pages, cart and OTP checkout — recorded end to end in Persian, with the English interface one click away.</sub>
+  <sub>Storefront, themes, catalogue, product pages, cart and OTP checkout — recorded end to end in Persian, with the English interface one click away. The player on the demo page offers chapter seeking, buffered scrubbing previews, playback speed, quality switching, volume, loop, picture-in-picture, fullscreen, deep links and keyboard shortcuts.</sub>
 </p>
 
 [![Backend CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml)
@@ -428,7 +428,7 @@ The two concurrency tests are skipped only on SQLite and run against PostgreSQL 
 
 All images are reproducible with `node scripts/capture-screenshots.mjs`; the full gallery is at [`docs/screenshots/index.html`](docs/screenshots/index.html).
 
-The complete **1:48 product demo** is embedded at the top of this README and available as a standalone player at [`docs/watch.html`](docs/watch.html), in 1080p and 720p.
+The complete **1:48 product demo** opens with an animated preview at the top of this README; the full player at [`docs/watch.html`](docs/watch.html) and the embedded player on the [visual hub](docs/index.html) offer chapter seeking, scrub previews, playback speed, 1080p/720p switching, fullscreen, picture-in-picture, deep links and keyboard shortcuts.
 
 ### 17. Phases and risks
 
@@ -815,7 +815,7 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 
 گالری کامل: [`docs/screenshots/index.html`](docs/screenshots/index.html)؛ تولید مجدد با `node scripts/capture-screenshots.mjs`.
 
-**ویدیو معرفی ۱:۴۸** در بالای همین README قابل مشاهده است و نسخهٔ مستقل آن با کیفیت ۱۰۸۰p و ۷۲۰p در [`docs/watch.html`](docs/watch.html) قرار دارد.
+**ویدیو معرفی ۱:۴۸** در بالای همین README قابل مشاهده است و نسخهٔ کامل آن در [`docs/watch.html`](docs/watch.html) و نسخهٔ توکار در [هاب بصری](docs/index.html) با فصلبندی، پیشنمایش هنگام جستجو، سرعت پخش، کیفیت ۱۰۸۰p/۷۲۰p، تمامصفحه، تصویر در تصویر، لینک زمانزدار و میانبرهای صفحهکلید قابل پخش است.
 
 ---
 

@@ -18,12 +18,29 @@
   a.card small{color:#9F92B7;font-size:12px;letter-spacing:.08em}
   a.card span{display:block;color:#C7BCD8;font-size:13px;line-height:1.7;margin-top:10px}
   footer{margin-top:44px;color:#8B7FA3;font-size:13px;line-height:1.8}
+  .featured{margin-top:34px;border:1px solid rgba(255,255,255,.14);border-radius:20px;overflow:hidden;background:rgba(10,7,20,.9)}
+  .featured-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 18px}
+  .featured-head b{font-size:16px}
+  .featured-head a{color:#C084FC;font-size:13px;text-decoration:none}
+  .frame{position:relative;width:100%;aspect-ratio:1920/852;background:#000}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
 <main>
   <h1>Digital Shopping · Visual Hub</h1>
   <p class="lead">Live design artefacts for the bilingual storefront: screenshots, galaxy themes, logo concepts, poster gallery and the generated API reference. English first, Persian throughout the product itself.</p>
+
+  <section class="featured" aria-label="Product demo player">
+    <div class="featured-head">
+      <b>▶ Product demo · 1:48 — play it here</b>
+      <a href="watch.html">Open the full player with chapters, speed and quality ↗</a>
+    </div>
+    <div class="frame">
+      <iframe src="watch.html?embed=1" title="Digital Shopping 1:48 product demo player" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </section>
+
   <div class="grid">
     <a class="card" href="watch.html"><small>VIDEO · 1:48</small><b>Product demo</b><span>Full walkthrough: themes, catalogue, product pages, cart and OTP checkout — 1080p and 720p.</span></a>
     <a class="card" href="screenshots/index.html"><small>GALLERY</small><b>Screenshots</b><span>Ten captures: fa/en, light/dark, catalogue, product, checkout, cart toast and mobile.</span></a>
