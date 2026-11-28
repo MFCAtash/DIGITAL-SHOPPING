@@ -1,6 +1,6 @@
 /* Service Worker ساده: کش استاتیک و استراتژی network-first برای صفحات.
    ثبت آن توسط اسکریپت ثبت سرویس ورکر در layout انجام میشود (فقط production). */
-const CACHE = "codex-web-v2";
+const CACHE = "digital-shopping-web-v3";
 const CORE = ["/", "/products", "/icon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -15,8 +15,8 @@ self.addEventListener("activate", (event) => {
       .then(() => self.clients.claim())
       .then(() => self.clients.matchAll({ type: "window", includeUncontrolled: true }))
       .then((clients) => {
-        // pwa-tools منتظر رویداد codex:sw-update است؛ SW آن را به صورت پیام به صفحه میفرستد.
-        for (const client of clients) client.postMessage({ type: "codex:sw-update" });
+        // pwa-tools منتظر رویداد digital-shopping:sw-update است؛ SW آن را به صورت پیام به صفحه میفرستد.
+        for (const client of clients) client.postMessage({ type: "digital-shopping:sw-update" });
       }),
   );
 });

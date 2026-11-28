@@ -217,8 +217,8 @@ def place_order(
                 user=user if getattr(user, "pk", None) else None,
                 discount_toman=t.discount,
             )
-            metrics.inc("codex_coupon_applied_total", kind=coupon.kind)
-        metrics.inc("codex_orders_created_total", status=order.status)
+            metrics.inc("digital_shopping_coupon_applied_total", kind=coupon.kind)
+        metrics.inc("digital_shopping_orders_created_total", status=order.status)
         AuditLog.record(
             user, "order.create", "order", order.pk,
             after={

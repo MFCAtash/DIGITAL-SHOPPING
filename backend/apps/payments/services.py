@@ -79,7 +79,7 @@ def start_payment(order: Order, scenario: str | None = None) -> str:
         except GatewayError as exc:
             raise PaymentError("gateway_unavailable", "درگاه پرداخت در دسترس نیست.") from exc
         Payment.objects.create(order=order, gateway=gw.name, amount_toman=order.total_toman, authority=started.authority, status=PaymentStatus.REDIRECTED.value)
-        metrics.inc("codex_payments_started_total", gateway=gw.name)
+        metrics.inc("digital_shopping_payments_started_total", gateway=gw.name)
         # در جریان پرداخت، سفارش نباید زیر دست کاربر منقضی شود
         hold = now + timedelta(minutes=settings.PAYMENT_HOLD_MINUTES)
         if order.expires_at is None or order.expires_at < hold:
@@ -100,12 +100,12 @@ def _set(payment: Payment, status: PaymentStatus, result: VerifyResult | None = 
         payment.verified_at = timezone.now()
     payment.save()
     if status is PaymentStatus.VERIFIED:
-        metrics.inc("codex_orders_paid_total")
+        metrics.inc("digital_shopping_orders_paid_total")
         notify(payment.order.user, "order.paid", "پرداخت موفق", f"سفارش {payment.order.number} پرداخت شد.", payload={"order": payment.order.number})
     elif status is PaymentStatus.FAILED:
-        metrics.inc("codex_payments_failed_total", reason="verify")
+        metrics.inc("digital_shopping_payments_failed_total", reason="verify")
     elif status is PaymentStatus.NEEDS_REVIEW:
-        metrics.inc("codex_payments_failed_total", reason="needs_review")
+        metrics.inc("digital_shopping_payments_failed_total", reason="needs_review")
     AuditLog.record(None, f"payment.{status.value}", "payment", payment.pk, after={"order_id": payment.order_id, "amount_toman": payment.amount_toman})
 
 
@@ -219,7 +219,7 @@ def refund_payment(payment_id: int, actor=None) -> Payment:
                 actor, "payment.refund", "payment", payment.pk,
                 after={"amount_toman": payment.amount_toman, "gateway_status": result.status, "gateway_ref_id": result.ref_id or ""},
             )
-            metrics.inc("codex_payments_refunded_total", gateway=payment.gateway)
+            metrics.inc("digital_shopping_payments_refunded_total", gateway=payment.gateway)
             order = Order.objects.select_for_update().get(pk=payment.order_id)
             try:
                 change_status(order.pk, OrderStatus.REFUNDED, actor=actor)

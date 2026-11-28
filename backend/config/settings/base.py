@@ -123,14 +123,14 @@ CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"
 # اگر REDIS_URL خالی باشد، LocMem (تک‌پروسه) استفاده می‌شود و همه‌چیز بدون Redis کار می‌کند.
 REDIS_URL = env("REDIS_URL", default="")
 # مسیر فایلی که worker هر دقیقه مینویسد تا healthcheck از زنده بودن صف مطمئن شود.
-WORKER_HEARTBEAT_FILE = env("WORKER_HEARTBEAT_FILE", default="/tmp/codex-worker-heartbeat")
+WORKER_HEARTBEAT_FILE = env("WORKER_HEARTBEAT_FILE", default="/tmp/digital-shopping-worker-heartbeat")
 if REDIS_URL:
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",
             "LOCATION": REDIS_URL,
             "TIMEOUT": 300,
-            "KEY_PREFIX": env("CACHE_KEY_PREFIX", default="codex"),
+            "KEY_PREFIX": env("CACHE_KEY_PREFIX", default="digital-shopping"),
         }
     }
 

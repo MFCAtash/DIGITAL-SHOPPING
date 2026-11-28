@@ -2,13 +2,13 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: codex
-      POSTGRES_USER: codex
+      POSTGRES_DB: digital_shopping
+      POSTGRES_USER: digital_shopping
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U codex -d codex"]
+      test: ["CMD-SHELL", "pg_isready -U digital_shopping -d digital_shopping"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -34,7 +34,7 @@ services:
     mem_limit: 160m
 
   api:
-    build: .
+    build: ./backend
     env_file: .env
     environment:
       # migrationها توسط deploy.yml دقیقاً یکبار اجرا میشوند؛ entrypoint دوباره نباید migrate کند.
@@ -58,7 +58,7 @@ services:
   # اپلیکیشن فروشگاه (Next.js App Router). تصاویر از طریق Caddy در /media سرو میشوند.
   web:
     build:
-      context: ..
+      context: .
       dockerfile: apps/web/Dockerfile
     environment:
       API_BASE_URL: http://api:8000/api/v1
@@ -72,13 +72,13 @@ services:
 
   # صف کار (procrastinate روی همان Postgres): لغو سفارشهای منقضی و آزادسازی موجودی هر دقیقه.
   worker:
-    build: .
+    build: ./backend
     env_file: .env
     environment:
       RUN_MIGRATIONS: "0"
       REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
       METRICS_TOKEN: ${METRICS_TOKEN:?set METRICS_TOKEN in .env}
-      WORKER_HEARTBEAT_FILE: /tmp/codex-worker-heartbeat
+      WORKER_HEARTBEAT_FILE: /tmp/digital-shopping-worker-heartbeat
     command: ["python", "manage.py", "procrastinate", "worker"]
     depends_on:
       db:
@@ -106,9 +106,9 @@ services:
       SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
       ADMIN_ALLOWED_IPS: ${ADMIN_ALLOWED_IPS:-127.0.0.1/32 ::1/128}
     volumes:
-      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./backend/docker/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
-      - ../overlay/public/products:/srv/media/products:ro
+      - ./overlay/public/products:/srv/media/products:ro
     depends_on:
       - api
       - web
@@ -122,8 +122,8 @@ services:
       - --storage.tsdb.path=/prometheus
       - --web.enable-lifecycle
     volumes:
-      - ../ops/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ../ops/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - ./ops/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./ops/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
       - promdata:/prometheus
     secrets:
       - metrics_token
@@ -139,7 +139,7 @@ services:
     image: prom/alertmanager:v0.28.1
     command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
     volumes:
-      - ../ops/monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - ./ops/monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
     ports:
       - "127.0.0.1:9093:9093"
     restart: unless-stopped
@@ -152,8 +152,8 @@ services:
       GF_USERS_ALLOW_SIGN_UP: "false"
       GF_AUTH_ANONYMOUS_ENABLED: "false"
     volumes:
-      - ../ops/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
-      - ../ops/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - ./ops/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./ops/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
       - grafanadata:/var/lib/grafana
     ports:
       - "127.0.0.1:3001:3000"
@@ -166,7 +166,7 @@ services:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
     environment:
       # همان سیاست TLS دیتابیس در DATABASE_URL و security.E014؛ فقط در توسعه محلی disable مجاز است.
-      DATA_SOURCE_NAME: postgresql://codex:${POSTGRES_PASSWORD}@db:5432/codex?sslmode=${POSTGRES_SSLMODE:-require}
+      DATA_SOURCE_NAME: postgresql://digital_shopping:${POSTGRES_PASSWORD}@db:5432/digital_shopping?sslmode=${POSTGRES_SSLMODE:-require}
     depends_on:
       db:
         condition: service_healthy

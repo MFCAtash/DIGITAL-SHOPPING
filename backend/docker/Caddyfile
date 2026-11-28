@@ -34,8 +34,8 @@
 		header Cache-Control "public, max-age=31536000, immutable"
 	}
 
-	# بکاند: API، ادمین و بازگشت درگاه پرداخت
-	@backend path /api/* /admin/* /payments/*
+	# بک‌اند: API، ادمین، بازگشت درگاه پرداخت و فایل‌های استاتیک (WhiteNoise)
+	@backend path /api/* /admin/* /payments/* /static/*
 	handle @backend {
 		reverse_proxy api:8000
 	}

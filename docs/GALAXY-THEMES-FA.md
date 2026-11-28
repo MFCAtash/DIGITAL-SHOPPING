@@ -1,7 +1,7 @@
 # تمهای کهکشانی پیشنهادی — Digital Shopping
 
 > وضعیت: **تمام شش تم اعمال شد** (انتخاب کاربر) همراه با **GSAP + ScrollTrigger** برای زمینه و انیمیشن.
-> پیشنمایش زنده: `docs/galaxy-themes.html`. برند **Digital Shopping** است و متن «چرا کدکس؟» حذف شد.
+> پیشنمایش زنده: `docs/galaxy-themes.html`. برند **Digital Shopping** است و بخش قدیمی معرفی برند حذف شد.
 > زبان رابط کاملاً دوزبانه fa/en است.
 
 ## ۱٫ تمها

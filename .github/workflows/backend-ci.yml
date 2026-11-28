@@ -14,15 +14,15 @@ jobs:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_DB: codex
-          POSTGRES_USER: codex
-          POSTGRES_PASSWORD: codex
+          POSTGRES_DB: digital_shopping
+          POSTGRES_USER: digital_shopping
+          POSTGRES_PASSWORD: digital_shopping
         ports: ["5432:5432"]
         options: >-
-          --health-cmd "pg_isready -U codex" --health-interval 5s --health-timeout 3s --health-retries 10
+          --health-cmd "pg_isready -U digital_shopping" --health-interval 5s --health-timeout 3s --health-retries 10
     env:
       SECRET_KEY: ci-only-secret
-      DATABASE_URL: postgres://codex:codex@localhost:5432/codex
+      DATABASE_URL: postgres://digital_shopping:digital_shopping@localhost:5432/digital_shopping
       DJANGO_SETTINGS_MODULE: config.settings.test
     steps:
       - uses: actions/checkout@v4
@@ -68,7 +68,7 @@ jobs:
           ADMIN_ALLOWED_IPS: 127.0.0.1/32
           FRONTEND_URL: https://shop.example.com
           PUBLIC_BASE_URL: https://shop.example.com
-          DATABASE_URL: postgres://codex:codex@localhost:5432/codex?sslmode=require
+          DATABASE_URL: postgres://digital_shopping:digital_shopping@localhost:5432/digital_shopping?sslmode=require
         run: |
           export SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(64))')"
           python manage.py check --deploy --fail-level WARNING

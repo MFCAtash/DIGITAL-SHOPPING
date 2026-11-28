@@ -15,27 +15,27 @@
 
 ## بارگذاری معمول
 ```bash
-cd backend
-cp .env.example .env     # مقادیر واقعی را پر کنید
-make up
-make migrate
-make seed-shipping
-make set-rate RATE=1050000
-make import-catalog
+# فایل compose در ریشهٔ مخزن است؛ .env هم باید در ریشه ساخته شود.
+cp backend/.env.example .env     # مقادیر واقعی را پر کنید
+make -C backend up
+make -C backend migrate
+make -C backend seed-shipping
+make -C backend set-rate RATE=1050000
+make -C backend import-catalog
 ```
 
 ## عیب یابی
 
 <a id="api-high-error-rate"></a>
 ### نرخ خطای ۵xx بالا (ApiHighErrorRate)
-- هشدار: `sum(rate(codex_http_requests_total{status=~"5.."}[5m])) / ... > 0.02` به مدت ۵ دقیقه.
+- هشدار: `sum(rate(digital_shopping_http_requests_total{status=~"5.."}[5m])) / ... > 0.02` به مدت ۵ دقیقه.
 - لاگ ساختاریافتهٔ `api` را با همان `request_id` دنبال کنید؛ `/api/v1/health` و `/api/v1/metrics` مستثنیاند.
 - آخرین استقرار و migrationها را بررسید؛ در صورت لزوم طبق بخش «بازیابی» برگردانید.
 
 <a id="api-high-latency"></a>
 ### تأخیر بالای API (ApiHighLatency)
 - آستانه همان SLO است: p95 ≤ **۸۰۰ms** در پنجرهٔ ۳۰ روز؛ هشدار ۵ دقیقهای روی `> 0.8` است.
-- کوئری: `histogram_quantile(0.95, sum(rate(codex_http_request_duration_seconds_bucket[5m])) by (le))`.
+- کوئری: `histogram_quantile(0.95, sum(rate(digital_shopping_http_request_duration_seconds_bucket[5m])) by (le))`.
 - علتهای رایج: نرسیدن نرخ ارز/کش، نبود Redis، قفل ردیف روی سفارشها، Missing index؛ سپس `ops/k6/load.js` را اجرا کنید.
 
 <a id="payment"></a>
@@ -82,9 +82,9 @@ make import-catalog
 
 ## بازیابی و پشتیبانگیری
 - زمانبند: `ops/backup/backup-cron` (هر ۱۵ دقیقه، `KEEP=96`)؛ نصب: `crontab ops/backup/backup-cron`.
-- بکاپ: `POSTGRES_DB=codex POSTGRES_USER=codex bash ops/backup/backup.sh` → `codex-YYYYMMDD-HHMMSS.sql.gz` (اختیاراً `.gpg` با `BACKUP_GPG_RECIPIENT`).
-- offsite: `OFFSITE_TARGET=rclone-remote:codex` (اعتبارها محیطیاند)؛ رمزگذاری GPG پیش از کپی توصیه میشود.
-- بازیابی: `gunzip -c codex-....sql.gz | psql -U codex -d codex` یا `bash ops/backup/restore.sh codex-....sql.gz[.gpg]` (پیشفرض: دیتابیس جداگانه).
+- بکاپ: `POSTGRES_DB=digital_shopping POSTGRES_USER=digital_shopping bash ops/backup/backup.sh` → `digital-shopping-YYYYMMDD-HHMMSS.sql.gz` (اختیاراً `.gpg` با `BACKUP_GPG_RECIPIENT`).
+- offsite: `OFFSITE_TARGET=rclone-remote:digital-shopping` (اعتبارها محیطیاند)؛ رمزگذاری GPG پیش از کپی توصیه میشود.
+- بازیابی: `gunzip -c digital-shopping-....sql.gz | psql -U digital_shopping -d digital_shopping` یا `bash ops/backup/restore.sh digital-shopping-....sql.gz[.gpg]` (پیشفرض: دیتابیس جداگانه).
 - **RPO ≤ ۱۵ دقیقه** با زمانبند ۱۵ دقیقهای محقق میشود؛ **RTO < ۱ ساعت** با تمرین بازیابی ماهانه (`RESTORE_TEST=1`).
 
 ## تست بار

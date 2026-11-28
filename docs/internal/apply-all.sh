@@ -6,7 +6,7 @@ H="$(cd "$(dirname "$0")" && pwd)"
 [ -f "$T/package.json" ] || { echo "package.json در $T پیدا نشد"; exit 1; }
 T="$(cd "$T" && pwd)"
 [ "$T" != "$H" ] || { echo "مسیر پروژه نباید خود پوشهٔ این بسته باشد"; exit 1; }
-B="$(dirname "$T")/codex-backup-$(date +%Y%m%d%H%M%S)"; n=0
+B="$(dirname "$T")/digital-shopping-backup-$(date +%Y%m%d%H%M%S)"; n=0
 
 # پشتیبان از فایل‌هایی که قرار است بازنویسی شوند
 while IFS= read -r f; do

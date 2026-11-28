@@ -58,7 +58,7 @@ class MetricsMiddleware:
         if request.path in self.SKIP:
             return self.get_response(request)
         labels = {"method": request.method, "path": metrics.normalize_path(request.path)}
-        metrics.in_progress("codex_http_in_progress", **labels)
+        metrics.in_progress("digital_shopping_http_in_progress", **labels)
         started = time.perf_counter()
         status = 500
         try:
@@ -67,9 +67,9 @@ class MetricsMiddleware:
             return response
         finally:
             elapsed = time.perf_counter() - started
-            metrics.progress_done("codex_http_in_progress", **labels)
-            metrics.inc("codex_http_requests_total", status=str(status), **labels)
-            metrics.observe("codex_http_request_duration_seconds", elapsed, **labels)
+            metrics.progress_done("digital_shopping_http_in_progress", **labels)
+            metrics.inc("digital_shopping_http_requests_total", status=str(status), **labels)
+            metrics.observe("digital_shopping_http_request_duration_seconds", elapsed, **labels)
 
 
 class ApiCsrfMiddleware:

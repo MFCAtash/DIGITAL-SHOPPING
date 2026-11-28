@@ -5,10 +5,10 @@ set -euo pipefail
 
 : "${POSTGRES_DB:?}"
 : "${POSTGRES_USER:?}"
-: "${BACKUP_DIR:-/var/backups/codex}"
+: "${BACKUP_DIR:-/var/backups/digital-shopping}"
 KEEP="${KEEP:-96}"
 STAMP="$(date +%Y%m%d-%H%M%S)"
-OUT="$BACKUP_DIR/codex-$STAMP.sql.gz"
+OUT="$BACKUP_DIR/digital-shopping-$STAMP.sql.gz"
 
 mkdir -p "$BACKUP_DIR"
 pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" --no-owner --no-privileges | gzip > "$OUT"
@@ -33,10 +33,10 @@ if [[ -n "${OFFSITE_TARGET:-}" ]]; then
 fi
 
 # پاکسازی نسخههای قدیمی (هم .gz و هم .gpg).
-find "$BACKUP_DIR" -name 'codex-*.sql.gz*' -type f | sort -r | tail -n +$((KEEP + 1)) | xargs -r rm -f
+find "$BACKUP_DIR" -name 'digital-shopping-*.sql.gz*' -type f | sort -r | tail -n +$((KEEP + 1)) | xargs -r rm -f
 
 # تست بازیابی (ماهانه یا با RESTORE_TEST=1): بازیابی در دیتابیس جداگانه و بررسی جداول حیاتی.
 if [[ "${RESTORE_TEST:-0}" == "1" ]]; then
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  RESTORE_DB="${RESTORE_DB:-codex_restore_test}" "$SCRIPT_DIR/restore.sh" "$OUT"
+  RESTORE_DB="${RESTORE_DB:-digital_shopping_restore_test}" "$SCRIPT_DIR/restore.sh" "$OUT"
 fi

@@ -23,10 +23,10 @@ export function PwaTools() {
     };
     const onUpdate = () => setUpdateReady(true);
     window.addEventListener("beforeinstallprompt", onInstall);
-    window.addEventListener("codex:sw-update", onUpdate);
+    window.addEventListener("digital-shopping:sw-update", onUpdate);
     return () => {
       window.removeEventListener("beforeinstallprompt", onInstall);
-      window.removeEventListener("codex:sw-update", onUpdate);
+      window.removeEventListener("digital-shopping:sw-update", onUpdate);
     };
   }, []);
 

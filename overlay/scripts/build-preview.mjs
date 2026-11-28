@@ -11,7 +11,7 @@ const products = cat.products.filter((p) => p.usd_cents && (p.images ?? []).leng
 }));
 const fonts = "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;600;700&family=Lalezar&family=Playfair+Display:wght@500;600;700&family=Vazirmatn:wght@400;600;700&display=swap";
 const html = `<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Codex Shopping</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Digital Shopping</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="${fonts}">
 <style>${css}
 *{box-sizing:border-box}body{margin:0;line-height:1.7}
@@ -34,14 +34,14 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}td{padding:9px 6px;bo
 </style></head><body><div class="scroll-progress" id="sp" aria-hidden="true"></div><div class="shop-root">
 <div class="aurora" id="au" aria-hidden="true"><div class="aurora__far"></div><div class="aurora__mid"><i class="aurora__blob b1"></i><i class="aurora__blob b2"></i><i class="aurora__blob b3"></i><i class="aurora__blob b4"></i></div><div class="aurora__glow"></div><div class="aurora__noise"></div></div>
 <div class="shop-content">
-<header class="s-header"><div class="wrap hd"><a class="brand" href="#" aria-label="Codex Shopping">Codex Shopping</a>
+<header class="s-header"><div class="wrap hd"><a class="brand" href="#" aria-label="Digital Shopping">Digital Shopping</a>
 <div class="sw"><input id="q" type="search" autocomplete="off"><div class="sg" id="sg"></div></div>
 <div class="lang-sw" id="ls" role="group" aria-label="Language"><button data-l="en" lang="en">English</button><button data-l="fa" lang="fa">فارسی</button><button data-l="de" lang="de">Deutsch</button></div>
 <button class="s-chip" id="th" style="padding:7px 12px"></button></div></header>
 <main class="wrap"><section class="hero"><span class="tag" id="tg"></span><hr class="gold-rule" style="max-width:240px;margin:8px auto"><h1 class="gold-text" id="h1"></h1><p id="hp"></p></section>
 <div class="bar" id="fb"></div><div class="grid" id="g"></div></main></div>
 <div class="cb" id="cb"><div class="glass"><span id="cn"></span><button class="s-btn" id="co"></button></div></div>
-<div class="mo" id="mo" data-native-scroll role="dialog" aria-modal="true" aria-label="Codex Shopping"><div id="md"></div></div></div>
+<div class="mo" id="mo" data-native-scroll role="dialog" aria-modal="true" aria-label="Digital Shopping"><div id="md"></div></div></div>
 <script>
 const MSG=${JSON.stringify(M)},P=${JSON.stringify(products)};
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));

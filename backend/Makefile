@@ -1,34 +1,37 @@
+# فایل compose در ریشهٔ مخزن است؛ اجرا از همین پوشه هم کار می‌کند.
+COMPOSE ?= docker compose -f ../docker-compose.yml --project-directory ..
+
 seed-shipping:
-	docker compose run --rm api python manage.py seed_shipping_methods
+	$(COMPOSE) run --rm api python manage.py seed_shipping_methods
 
 .PHONY: seed-shipping up down logs migrate migrations migrations-check createsuperuser import-catalog set-rate data-report expire-orders test test-pure test-cov lint check lock
 
 up:
-	docker compose up -d --build
+	$(COMPOSE) up -d --build
 down:
-	docker compose down
+	$(COMPOSE) down
 logs:
-	docker compose logs -f api worker
+	$(COMPOSE) logs -f api worker
 # فقط یک بار (مرحلهٔ ۱.۲): ساخت مهاجرت‌های اولیه. سپس پوشه‌های migrations/ را commit کنید.
 migrations:
 	python manage.py makemigrations accounts core catalog pricing orders cart payments
 migrations-check:
 	python manage.py makemigrations --check --dry-run
 migrate:
-	docker compose run --rm api python manage.py migrate
+	$(COMPOSE) run --rm api python manage.py migrate
 createsuperuser:
-	docker compose run --rm api python manage.py createsuperuser
+	$(COMPOSE) run --rm api python manage.py createsuperuser
 import-catalog:
-	docker compose run --rm api python manage.py import_catalog
+	$(COMPOSE) run --rm api python manage.py import_catalog
 # نمونه: make set-rate RATE=1050000
 set-rate:
-	docker compose run --rm api python manage.py set_exchange_rate $(RATE)
+	$(COMPOSE) run --rm api python manage.py set_exchange_rate $(RATE)
 data-report:
-	docker compose run --rm api python manage.py report_data_quality
+	$(COMPOSE) run --rm api python manage.py report_data_quality
 expire-orders:
-	docker compose run --rm api python manage.py expire_pending_orders
+	$(COMPOSE) run --rm api python manage.py expire_pending_orders
 check:
-	docker compose run --rm api python manage.py check --deploy
+	$(COMPOSE) run --rm api python manage.py check --deploy
 test-pure:
 	python3 -m unittest discover -s tests/pure -t . -v
 test:

@@ -2,7 +2,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    service: codex-shopping
+    service: digital-shopping
 
 rule_files:
   - /etc/prometheus/alerts.yml
@@ -13,7 +13,7 @@ scrape_configs:
 
   # بکاند: متریکهای دستساز RED + شمارندههای دامنه (/api/v1/metrics).
   # در صورت تنظیم METRICS_TOKEN، هدر Authorization توسط Prometheus ارسال میشود.
-  - job_name: codex-api
+  - job_name: digital-shopping-api
     static_configs: [{ targets: ["api:8000"] }]
     metrics_path: /metrics
     authorization:

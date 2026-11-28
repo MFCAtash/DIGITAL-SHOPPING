@@ -1,9 +1,9 @@
 apiVersion: 1
 
 providers:
-  - name: Codex
+  - name: Digital Shopping
     orgId: 1
-    folder: Codex
+    folder: Digital Shopping
     type: file
     disableDeletion: true
     updateIntervalSeconds: 30

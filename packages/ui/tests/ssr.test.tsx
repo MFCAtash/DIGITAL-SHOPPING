@@ -282,7 +282,7 @@ test("فرم نشانی و فیلترها", () => {
 test("حالت‌ها، برند و رنگ تطبیقی", () => {
   assert.match(render(<ErrorState />), /role="alert"/);
   assert.match(render(<EmptyState title="خالی" description="چیزی نیست" />), /<h2[^>]*>خالی<\/h2>/);
-  assert.match(render(<BrandMark wordmark="Codex" />), /var\(--cx-gold\)/);
+  assert.match(render(<BrandMark wordmark="Digital Shopping" />), /var\(--cx-gold\)/);
   const ac = render(<AdaptiveAccent dominant="#2563EB">x</AdaptiveAccent>);
   assert.match(ac, /--cx-adaptive-l:#[0-9A-F]{6}/i);
   assert.match(ac, /--cx-adaptive-d:#[0-9A-F]{6}/i);

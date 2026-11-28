@@ -1,0 +1,21 @@
+# Root build context — used by the web image (apps/web/Dockerfile).
+.git
+.github
+docs
+legacy
+overlay
+backend
+**/node_modules
+**/.next
+**/dist
+**/.turbo
+**/coverage
+**/*.tsbuildinfo
+**/__pycache__
+**/*.pyc
+.env
+.env.*
+!.env.example
+!.env.production.example
+*.md
+!apps/web/README.md

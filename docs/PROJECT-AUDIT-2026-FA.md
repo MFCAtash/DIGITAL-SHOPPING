@@ -96,7 +96,7 @@
 
 **اسناد:**
 - README و PHASE-* قدیمی و متناقض با CHANGELOG؛ CHANGELOG بدون تاریخ/نسخه و دارای اعداد نادرست (۲۸۶ در مقابل ۲۸۲، «۲۰ سناریو E2E» در حالی که ۳ سناریو، «تخفیف ۵–۱۰٪» در حالی که ۳–۱۰٪).
-- مسیرهای nonexistent: `docs/PRINCIPLES.md`, `CODEX-SHOPPING-DEEP-REVIEW-FA.md`, `contracts/openapi.yaml`.
+- مسیرهای nonexistent: `docs/PRINCIPLES.md`, `DIGITAL-SHOPPING-DEEP-REVIEW-FA.md`, `contracts/openapi.yaml`.
 
 ### 🟡 P2 — متوسط
 
@@ -104,7 +104,7 @@
 |---|---|
 | Variantها فقط نمایشیاند؛ `variant_id` در سبد/سفارش و کاهش موجودی variant وجود ندارد | `cart/models.py`, `orders/services.py:157-175` |
 | جستجو در موبایل غایب است (`.site-header__nav { display:none }` و Sheet فاقد SearchBox) | `enhancements.css:253`, `site-header.tsx:75-97` |
-| بنر بروزرسانی PWA dead code است (`codex:sw-update` توسط sw.js ارسال نمیشود) | `pwa-tools.tsx:24`, `public/sw.js` |
+| بنر بروزرسانی PWA dead code است (`digital-shopping:sw-update` توسط sw.js ارسال نمیشود) | `pwa-tools.tsx:24`, `public/sw.js` |
 | SEO: `openGraph.locale=fa_IR` ثابت، fallback localhost، JSON-LD price=0، بدون canonical/hreflang | `layout.tsx:20,31`, `products/[slug]/page.tsx:70` |
 | انیمیشن GSAP `prefers-reduced-motion` را نادیده میگیرد | `cosmic-backdrop.tsx:23-33` |
 | ARIA ناقص: gallery tabs بدون tabpanel/ keyboard، search listbox بدون active-descendant | `components/gallery.tsx`, `search-box.tsx` |

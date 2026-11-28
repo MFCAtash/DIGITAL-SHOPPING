@@ -26,7 +26,7 @@ class DeploymentConfigTests(unittest.TestCase):
         self.assertIn('tags: ["v*"]', text)
 
     def test_compose_migrates_once_and_secures_redis(self):
-        text = (ROOT / "backend/docker-compose.yml").read_text(encoding="utf-8")
+        text = (ROOT / "docker-compose.yml").read_text(encoding="utf-8")
         self.assertIn('RUN_MIGRATIONS: "0"', text)
         self.assertIn("--requirepass", text)
         self.assertIn("redis://:${REDIS_PASSWORD}@redis:6379/0", text)

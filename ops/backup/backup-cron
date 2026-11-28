@@ -2,11 +2,11 @@
 # هر ۱۵ دقیقه → RPO ≤ ۱۵ دقیقه (با KEEP=96 یعنی ۲۴ ساعت نگهداری محلی).
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-POSTGRES_DB=codex
-POSTGRES_USER=codex
-BACKUP_DIR=/var/backups/codex
+POSTGRES_DB=digital_shopping
+POSTGRES_USER=digital_shopping
+BACKUP_DIR=/var/backups/digital-shopping
 KEEP=96
 # اختیاری: BACKUP_GPG_RECIPIENT و OFFSITE_TARGET را از محیط کانتینر/میزبان فراهم کنید.
-*/15 * * * * bash /app/ops/backup/backup.sh >> /var/log/codex-backup.log 2>&1
+*/15 * * * * bash /app/ops/backup/backup.sh >> /var/log/digital-shopping-backup.log 2>&1
 # تست بازیابی ماهانه، ساعت ۰۴:۳۰ روز اول هر ماه.
-30 4 1 * * RESTORE_TEST=1 bash /app/ops/backup/backup.sh >> /var/log/codex-backup.log 2>&1
+30 4 1 * * RESTORE_TEST=1 bash /app/ops/backup/backup.sh >> /var/log/digital-shopping-backup.log 2>&1

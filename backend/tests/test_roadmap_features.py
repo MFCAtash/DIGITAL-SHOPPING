@@ -214,9 +214,9 @@ def test_metrics_endpoint_is_protected_and_emits_red_metrics():
     assert c.get(f"{API}/metrics?token=test-metrics-token").status_code == 200
     assert c.get(f"{API}/metrics?token=test-metrics-tokeN").status_code == 403
     text = r.content.decode()
-    assert "# TYPE codex_http_requests_total counter" in text
-    assert "codex_process_start_time_seconds" in text
-    assert "# TYPE codex_http_request_duration_seconds histogram" in text
+    assert "# TYPE digital_shopping_http_requests_total counter" in text
+    assert "digital_shopping_process_start_time_seconds" in text
+    assert "# TYPE digital_shopping_http_request_duration_seconds histogram" in text
 
 
 def test_stock_ledger_records_order_and_cancel(rate):

@@ -39,6 +39,6 @@ yarn-debug.log*
 Thumbs.db
 
 # ---------- پشتیبانها و فایلهای محلی ----------
-codex-backup-*/
+digital-shopping-backup-*/
 *.bak
 *.tmp

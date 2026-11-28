@@ -61,7 +61,7 @@ jobs:
             # Start the data services first: pg_dump and migrations need the DB.
             docker compose --env-file .env up -d --remove-orphans db redis
             for i in {1..30}; do
-              if docker compose --env-file .env exec -T db pg_isready -U codex -d codex >/dev/null; then break; fi
+              if docker compose --env-file .env exec -T db pg_isready -U digital_shopping -d digital_shopping >/dev/null; then break; fi
               if [ "\$i" -eq 30 ]; then echo 'database did not become healthy' >&2; exit 1; fi
               sleep 2
             done
@@ -69,7 +69,7 @@ jobs:
             # Pre-migration backup, kept outside the containers and verified non-empty.
             mkdir -p backups
             BACKUP_FILE="backups/pre-migrate-\$(date -u +%Y%m%dT%H%M%SZ).sql.gz"
-            docker compose --env-file .env exec -T db pg_dump -U codex -d codex | gzip > "\$BACKUP_FILE"
+            docker compose --env-file .env exec -T db pg_dump -U digital_shopping -d digital_shopping | gzip > "\$BACKUP_FILE"
             test -s "\$BACKUP_FILE"
             echo "database backup: \$BACKUP_FILE"
 

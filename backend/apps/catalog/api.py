@@ -219,7 +219,7 @@ def list_products(request, filters: ProductFilters = Query(...)):
     rate = _current_rate()
     count = qs.count()
     if filters.q and count == 0:
-        metrics.inc("codex_search_zero_results_total")
+        metrics.inc("digital_shopping_search_zero_results_total")
     return {"count": count, "items": [serialize(p, rate, filters.lang) for p in qs[offset : offset + limit]]}
 
 

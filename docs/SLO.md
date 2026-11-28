@@ -7,10 +7,10 @@
 
 | سرویس | SLI | هدف (rolling 30d) | پرسوجو |
 |---|---|---|---|
-| API | نرخ موفقیت درخواستها (غیر ۵xx) | ≥ ۹۹٫۵٪ | `sum(rate(codex_http_requests_total{status!~"5.."}[30d])) / sum(rate(codex_http_requests_total[30d]))` |
-| API | تأخیر p95 | ≤ ۸۰۰ms (همان آستانهٔ هشدار `ApiHighLatency`) | `histogram_quantile(0.95, sum(rate(codex_http_request_duration_seconds_bucket[30d])) by (le))` |
-| سفارش | ثبت سفارش موفق (غیر خطای داخلی) | ≥ ۹۹٫۹٪ | `codex_orders_created_total` در برابر ۵xx مسیر `/orders` |
-| پرداخت | نرخ تکمیل پرداخت | ≥ ۷۰٪ (sandbox) / ≥ ۹۵٪ (واقعی) | `codex_orders_paid_total / codex_payments_started_total` |
+| API | نرخ موفقیت درخواستها (غیر ۵xx) | ≥ ۹۹٫۵٪ | `sum(rate(digital_shopping_http_requests_total{status!~"5.."}[30d])) / sum(rate(digital_shopping_http_requests_total[30d]))` |
+| API | تأخیر p95 | ≤ ۸۰۰ms (همان آستانهٔ هشدار `ApiHighLatency`) | `histogram_quantile(0.95, sum(rate(digital_shopping_http_request_duration_seconds_bucket[30d])) by (le))` |
+| سفارش | ثبت سفارش موفق (غیر خطای داخلی) | ≥ ۹۹٫۹٪ | `digital_shopping_orders_created_total` در برابر ۵xx مسیر `/orders` |
+| پرداخت | نرخ تکمیل پرداخت | ≥ ۷۰٪ (sandbox) / ≥ ۹۵٪ (واقعی) | `digital_shopping_orders_paid_total / digital_shopping_payments_started_total` |
 | صف کار | تأخیر پردازش periodic | ≤ ۵ دقیقه | `procrastinate_jobs_todo` |
 | دیتابیس | در دسترس بودن | ≥ ۹۹٫۹٪ | `up{job="postgres"}` |
 | فرانت | Lighthouse موبایل (Performance) | ≥ ۸۵٪ (بودجهٔ CI در `apps/web/lighthouserc.json`) | CI `web-ci.yml` |
@@ -32,7 +32,7 @@
 
 ## ۴٫ پایش و هشدار
 - Prometheus هر ۱۵ ثانیه scrape میکند؛ قواعد در `ops/monitoring/alerts.yml` و گیرندهها در `alertmanager.yml`.
-- Grafana با داشبورد `codex-overview` (نرخ درخواست، خطا، p95، قیف پرداخت، وضعیت سرویسها) از پیش provisioning شده است.
+- Grafana با داشبورد `digital-shopping-overview` (نرخ درخواست، خطا، p95، قیف پرداخت، وضعیت سرویسها) از پیش provisioning شده است.
 - `/metrics` با `METRICS_TOKEN` محافظت میشود؛ برچسبها فقط `method`, `path` (نرمالشده)، `status`, `gateway`, `kind`اند و هیچ PIIای در آنها نیست.
 - شمارندهها per-processاند؛ Prometheus هر worker/instance را جداگانه scrape میکند و sum در پرس و جو انجام میشود.
 

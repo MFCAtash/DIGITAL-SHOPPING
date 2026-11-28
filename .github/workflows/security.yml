@@ -4,6 +4,9 @@ on:
   pull_request:
   push:
     branches: [main]
+  # بازبینی هفتگی وابستگی‌ها حتی بدون تغییر کد (جایگزین به‌روزرسانی خودکار نسخه‌ها).
+  schedule:
+    - cron: "0 5 * * 1"
 
 jobs:
   gitleaks:

@@ -71,16 +71,16 @@ def _escape_help(text: str) -> str:
 
 
 HELP = {
-    "codex_http_requests_total": "کل درخواست‌های HTTP بر اساس مسیر نرمال‌شده، متد و کد وضعیت.",
-    "codex_http_request_duration_seconds": "توزیع زمان پاسخ HTTP.",
-    "codex_http_in_progress": "درخواست‌های در حال اجرا.",
-    "codex_orders_created_total": "سفارش‌های ثبت‌شده.",
-    "codex_orders_paid_total": "سفارش‌های پرداخت‌شده.",
-    "codex_payments_started_total": "پرداخت‌های آغازشده (ریدایرکت به درگاه).",
-    "codex_payments_failed_total": "پرداخت‌های ناموفق.",
-    "codex_coupon_applied_total": "کوپن‌های اعمال‌شده روی سفارش.",
-    "codex_search_zero_results_total": "جست‌وجوهای بدون نتیجه.",
-    "codex_process_start_time_seconds": "زمان شروع پروسه (Unix).",
+    "digital_shopping_http_requests_total": "کل درخواست‌های HTTP بر اساس مسیر نرمال‌شده، متد و کد وضعیت.",
+    "digital_shopping_http_request_duration_seconds": "توزیع زمان پاسخ HTTP.",
+    "digital_shopping_http_in_progress": "درخواست‌های در حال اجرا.",
+    "digital_shopping_orders_created_total": "سفارش‌های ثبت‌شده.",
+    "digital_shopping_orders_paid_total": "سفارش‌های پرداخت‌شده.",
+    "digital_shopping_payments_started_total": "پرداخت‌های آغازشده (ریدایرکت به درگاه).",
+    "digital_shopping_payments_failed_total": "پرداخت‌های ناموفق.",
+    "digital_shopping_coupon_applied_total": "کوپن‌های اعمال‌شده روی سفارش.",
+    "digital_shopping_search_zero_results_total": "جست‌وجوهای بدون نتیجه.",
+    "digital_shopping_process_start_time_seconds": "زمان شروع پروسه (Unix).",
 }
 
 
@@ -119,10 +119,10 @@ def render() -> str:
             emitted.add(name)
         lines.append(f"{name}{_fmt_labels(labels)} {value}")
 
-    if "codex_process_start_time_seconds" not in emitted:
-        lines.append("# HELP codex_process_start_time_seconds زمان شروع پروسه (Unix).")
-        lines.append("# TYPE codex_process_start_time_seconds gauge")
-    lines.append(f"codex_process_start_time_seconds {STARTED_AT:.0f}")
+    if "digital_shopping_process_start_time_seconds" not in emitted:
+        lines.append("# HELP digital_shopping_process_start_time_seconds زمان شروع پروسه (Unix).")
+        lines.append("# TYPE digital_shopping_process_start_time_seconds gauge")
+    lines.append(f"digital_shopping_process_start_time_seconds {STARTED_AT:.0f}")
     return "\n".join(lines) + "\n"
 
 

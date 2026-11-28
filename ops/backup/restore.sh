@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # بازیابی ایمن بکاپ فشرده (و در صورت نیاز رمزگشایی GPG) به دیتابیس جداگانه.
-# استفاده: POSTGRES_USER=codex RESTORE_DB=codex_restore_test ./restore.sh /var/backups/codex/codex-....sql.gz[.gpg]
+# استفاده: POSTGRES_USER=digital_shopping RESTORE_DB=digital_shopping_restore_test ./restore.sh /var/backups/digital-shopping/digital-shopping-....sql.gz[.gpg]
 set -euo pipefail
 
 FILE="${1:-}"
 if [[ -z "$FILE" || ! -f "$FILE" ]]; then
-  echo "usage: $0 /path/to/codex-*.sql.gz" >&2
+  echo "usage: $0 /path/to/digital-shopping-*.sql.gz" >&2
   exit 2
 fi
 : "${POSTGRES_USER:?}"
-TARGET_DB="${RESTORE_DB:-codex_restore_test}"
-BACKUP_DIR="${BACKUP_DIR:-/var/backups/codex}"
+TARGET_DB="${RESTORE_DB:-digital_shopping_restore_test}"
+BACKUP_DIR="${BACKUP_DIR:-/var/backups/digital-shopping}"
 
 SQL_FILE="$FILE"
 TMP_DECRYPT=""

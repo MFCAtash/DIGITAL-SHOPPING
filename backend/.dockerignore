@@ -1,0 +1,15 @@
+# Backend build context — used by the api/worker images (backend/Dockerfile).
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+.coverage
+coverage.xml
+htmlcov
+staticfiles
+*.sqlite3
+*.sqlite3-journal
+.env
+.env.*
+!.env.example

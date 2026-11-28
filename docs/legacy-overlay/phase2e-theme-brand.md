@@ -25,7 +25,7 @@
 > وضعیت فعلی: `tsc` و `next build` در `apps/web` و `npm run check` در `packages/ui` سبزاند (۵۴ تست و ۲۶ تست مرورگر).
 
 ---
-# فاز ۲و: Codex Shopping، سه‌زبانه، طلایی و اسکرول نرم
+# فاز ۲و: Digital Shopping، سه‌زبانه، طلایی و اسکرول نرم
 
 ## اتصال اضافه
 1. در `globals.css` بعد از `shop-theme.css`: `@import "../styles/shop-gold.css";`

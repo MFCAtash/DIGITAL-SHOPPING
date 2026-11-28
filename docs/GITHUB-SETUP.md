@@ -7,15 +7,14 @@
 ## ۱. وضعیت فعلی (انجامشده)
 
 - مخزن Git با شاخهٔ `main` مقداردهی اولیه شد.
-- `.gitignore` و `.gitattributes` تنظیم شدند； `node_modules`، `.next`، `.venv`، `.env`، دیتابیسهای محلی، کشها و خروجیهای تستIgnore میشوند.
-- `.env.example`ها، `LICENSE`، `NOTICE`، `CODE_OF_CONDUCT.md`، `CONTRIBUTING.md`، `SECURITY.md` وهمه مستندات `docs/` اضافه شدند.
+- `.gitignore` و `.gitattributes` تنظیم شدند؛ `node_modules`، `.next`، `.venv`، `.env`، دیتابیسهای محلی، کشها و خروجیهای تست ignore میشوند.
+- `.env.example`ها، `LICENSE`، `NOTICE`، `CODE_OF_CONDUCT.md`، `CONTRIBUTING.md`، `SECURITY.md` و همه مستندات `docs/` اضافه شدند.
 - الگوهای GitHub اضافه شدند:
   - `.github/ISSUE_TEMPLATE/{bug_report,feature_request,config}.yml`
   - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/dependency updates.yml`
   - `.github/workflows/{backend-ci,web-ci,ui-ci,security,deploy}.yml`
-- اسکن رازها: **هیچ راز واقعی یافت نشد**； تنها مقادیر آزمایشی/CI (`change-me-*`) و فلگهای تست وجود دارند که در `.gitleaks.toml` مجازاند.
-- تستها قبل از کامیت سبزاند: بکاند **۳۱۱**، UI **۵۴**، E2E **۴** + **۲۶** پیشنمایش，`ruff`/`tsc`/`next build` موفق.
+- اسکن رازها: **هیچ راز واقعی یافت نشد**؛ تنها مقادیر آزمایشی/CI (`change-me-*`) و فلگهای تست وجود دارند که در `.gitleaks.toml` مجازاند.
+- تستها قبل از کامیت سبزاند: بکاند **۳۱۱**، UI **۵۴**، E2E **۴** + **۲۶** پیشنمایش، `ruff`/`tsc`/`next build` موفق.
 
 ---
 
@@ -23,7 +22,7 @@
 
 1. وارد https://github.com/new شوید.
 2. Repository name: مثلاً `digital-shopping` (همان نامی که در `_remote` استفاده میکنید).
-3. **Private** یا **Public** — دلخواه； اگر Public است، مطمئن شوید هیچ رازی در کدها وجود ندارد (در پروژه ما وجود ندارد).
+3. **Private** یا **Public** — دلخواه؛ اگر Public است، مطمئن شوید هیچ رازی در کدها وجود ندارد (در پروژه ما وجود ندارد).
 4. **تیک نزنید** گزینههای `Add a README`، `.gitignore` و `license` — ماهمه را محلاً داریم.
 5. Create repository.
 
@@ -111,7 +110,7 @@ git push origin main --tags
 تگ `v*` workflow deploy را تحریک میکند. قبل از آن مطمئن شوید:
 
 - `DEPLOY_DIR`، `DEPLOY_SSH_KEY`، `DEPLOY_HOST`، `DEPLOY_USER` تنظیم شدند.
--روی سرور `.env` بر اساس `backend/.env.example` ساخته و رازها پر شدند.
+- روی سرور `.env` در ریشهٔ مخزن بر اساس `backend/.env.example` ساخته و رازها پر شدند.
 - دامنه و TLS توسط Caddy بهطور خودکار تنظیم میشود.
 
 ---
@@ -133,7 +132,7 @@ git push origin main --tags
 |---|---|
 | `fatal: remote origin already exists` | `git remote set-url origin <URL>` |
 | `Permission denied (publickey)` | کلید SSH را به GitHub اضافه کنید یا از HTTPS+token استفاده کنید |
-| CI گitleaks را فلگ کرد | `.gitleaks.toml` را بررسی کنید； فقط مقادیر آزمایشی مجازاند |
+| CI گitleaks را فلگ کرد | `.gitleaks.toml` را بررسی کنید؛ فقط مقادیر آزمایشی مجازاند |
 | E2E در CI خطا میدهد | مطمئن شوید mock API پورت ۴۰۰۰ قبل از Next اجرا میشود |
 | Deployrollback نشد | فایل `.deploy-previous-sha` روی سرور را بررسی کنید |
 
@@ -143,7 +142,7 @@ git push origin main --tags
 
 - هر تغییر را همراه با ورودی تاریخگذاریشده در `docs/CHANGELOG.md` کامیت کنید.
 - قبل از ادغام بزرگ، `docs/PROJECT-AUDIT-2026-FA.md` را بهروزرسانی کنید.
-- تصاویر و فونتها در `docs/ASSET-PROVENANCE.md` مستنداند； ۴۹ عکس کاتالوگ وضعیت `needs-review` دارند و پیش از استفادهٔ تجاری نیاز به تأیید حقوقیاند.
+- تصاویر و فونتها در `docs/ASSET-PROVENANCE.md` مستنداند؛ ۴۹ عکس کاتالوگ وضعیت `needs-review` دارند و پیش از استفادهٔ تجاری نیاز به تأیید حقوقیاند.
 
 ---
 

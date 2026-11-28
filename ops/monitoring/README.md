@@ -1,7 +1,7 @@
 # مانیتورینگ و Observability
 
 ## اجزا (پیادهمانده)
-- **Prometheus + Alertmanager + Grafana**: سرویسها در `backend/docker-compose.yml` تعریف شدهاند؛
+- **Prometheus + Alertmanager + Grafana**: سرویسها در `docker-compose.yml` تعریف شدهاند؛
   پیکربندیها در `ops/monitoring/` و dashboardها در `grafana/dashboards/` (provision خودکار).
 - **متریکهای بکاند**: `apps/core/metrics.py` قالب Prometheus 0.0.4 را بدون وابستگی خارجی تولید میکند و
   `GET /api/v1/metrics` آنها را (با `METRICS_TOKEN`) ارائه میدهد.
@@ -9,19 +9,19 @@
 - **Request-ID و لاگ ساختاریافته**: `RequestIdMiddleware` هر درخواست را با `request_id` Correlation میدهد.
 - **Sentry / Uptime Kuma (اختیاری)**: SDK هنوز نصب نشده است؛ متغیرها و نحوهٔ اتصال در ادامه.
 
-## متریکهای موجود (`codex_*`)
+## متریکهای موجود (`digital_shopping_*`)
 | متریک | نوع | محل | هدف |
 |---|---|---|---|
-| `codex_http_requests_total{method,path,status}` | counter | middleware | نرخ خطا و حجم |
-| `codex_http_request_duration_seconds_bucket` | histogram | middleware | p50/p95/p99 |
-| `codex_http_in_progress{method,path}` | gauge | middleware | درخواستهای در حال اجرا |
-| `codex_orders_created_total{status}` | counter | orders | قیف سفارش |
-| `codex_orders_paid_total` | counter | payments | تکمیل پرداخت |
-| `codex_payments_started_total{gateway}` | counter | payments | آغاز پرداخت |
-| `codex_payments_failed_total{reason}` | counter | payments | خطای پرداخت |
-| `codex_coupon_applied_total{kind}` | counter | orders | کوپنهای مصرفشده |
-| `codex_search_zero_results_total` | counter | catalog | جستجوهای بینتیجه |
-| `codex_process_start_time_seconds` | gauge | core | تشخیص restart worker |
+| `digital_shopping_http_requests_total{method,path,status}` | counter | middleware | نرخ خطا و حجم |
+| `digital_shopping_http_request_duration_seconds_bucket` | histogram | middleware | p50/p95/p99 |
+| `digital_shopping_http_in_progress{method,path}` | gauge | middleware | درخواستهای در حال اجرا |
+| `digital_shopping_orders_created_total{status}` | counter | orders | قیف سفارش |
+| `digital_shopping_orders_paid_total` | counter | payments | تکمیل پرداخت |
+| `digital_shopping_payments_started_total{gateway}` | counter | payments | آغاز پرداخت |
+| `digital_shopping_payments_failed_total{reason}` | counter | payments | خطای پرداخت |
+| `digital_shopping_coupon_applied_total{kind}` | counter | orders | کوپنهای مصرفشده |
+| `digital_shopping_search_zero_results_total` | counter | catalog | جستجوهای بینتیجه |
+| `digital_shopping_process_start_time_seconds` | gauge | core | تشخیص restart worker |
 
 > مسیرها پیش از برچسبزنی نرمال میشوند (`/orders/123` → `/orders/{id}`) تا کاردینالیتی منفجر نشود.
 > شمارندهها per-processاند؛ Prometheus هر instance را جدا scrape میکند و تجمیع در پرسوجو انجام میشود.

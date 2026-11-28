@@ -23,7 +23,7 @@ python scripts/security_scan.py --root . --git
 docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:latest detect \
   --source /repo --config /repo/.gitleaks.toml --redact --exit-code 1
 ```
-نتیجهٔ اجرا روی این تحویل: بدون یافته در پروژهٔ `codex-shopping-final` (فاقد تاریخچهٔ git)؛
+نتیجهٔ اجرا روی این تحویل: بدون یافته در پروژهٔ `digital-shopping-final` (فاقد تاریخچهٔ git)؛
 یافتههای مربوط به مخزن جداگانهٔ workspace در گزارش امنیتی مستند شدهاند.
 مقادیر ثابت و غیرحقیقی تعریفشده در `backend-ci.yml` (و الگوی `ci-only-*`) بهطور صریح در
 `.gitleaks.toml` مجازاند؛ راز واقعی هرگز نباید به این allowlist اضافه شود.
