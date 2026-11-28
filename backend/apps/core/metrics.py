@@ -29,6 +29,15 @@ def _key(name: str, labels: dict[str, str] | None):
     return name, tuple(sorted((labels or {}).items()))
 
 
+def worker_heartbeat() -> None:
+    """آخرین heartbeat worker را در کش مشترک ثبت میکند تا API آنرا متریک کند."""
+    try:
+        from django.core.cache import cache
+        cache.set("digital_shopping:worker_heartbeat", time.time(), 300)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def inc(name: str, value: float = 1, **labels: str) -> None:
     with _LOCK:
         _COUNTERS[_key(name, labels)] += value
@@ -81,6 +90,8 @@ HELP = {
     "digital_shopping_coupon_applied_total": "کوپن‌های اعمال‌شده روی سفارش.",
     "digital_shopping_search_zero_results_total": "جست‌وجوهای بدون نتیجه.",
     "digital_shopping_process_start_time_seconds": "زمان شروع پروسه (Unix).",
+    "digital_shopping_payments_refunded_total": "پرداختهای مرجوعشده.",
+    "digital_shopping_worker_heartbeat_age_seconds": "زمان سپریشده از آخرین heartbeat worker.",
 }
 
 
@@ -123,6 +134,15 @@ def render() -> str:
         lines.append("# HELP digital_shopping_process_start_time_seconds زمان شروع پروسه (Unix).")
         lines.append("# TYPE digital_shopping_process_start_time_seconds gauge")
     lines.append(f"digital_shopping_process_start_time_seconds {STARTED_AT:.0f}")
+    try:
+        from django.core.cache import cache
+        seen = cache.get("digital_shopping:worker_heartbeat")
+    except Exception:  # noqa: BLE001 — بدون Django هم قالب قابل رندر باشد
+        seen = None
+    age = max(0.0, time.time() - float(seen)) if seen else -1.0
+    lines.append("# HELP digital_shopping_worker_heartbeat_age_seconds زمان سپریشده از آخرین heartbeat worker.")
+    lines.append("# TYPE digital_shopping_worker_heartbeat_age_seconds gauge")
+    lines.append(f"digital_shopping_worker_heartbeat_age_seconds {age:.0f}")
     return "\n".join(lines) + "\n"
 
 

@@ -18,7 +18,10 @@ const num = (v: string | string[] | undefined, d?: number) => {
   const n = s ? Number(s) : NaN;
   return Number.isFinite(n) ? n : d;
 };
-const bool = (v: string | string[] | undefined) => one(v) === "true" ? true : undefined;
+const bool = (v: string | string[] | undefined) => {
+  const s = one(v);
+  return s === "true" ? true : s === "false" ? false : undefined;
+};
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
@@ -36,6 +39,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     max_usd: num(sp.max_usd),
     in_stock: bool(sp.in_stock),
     on_sale: bool(sp.on_sale),
+    min_rating: num(sp.min_rating),
+    purchasable: bool(sp.purchasable),
     sort: one(sp.sort) ?? "newest",
     limit: num(sp.limit, 24) ?? 24,
     offset: num(sp.offset, 0) ?? 0,

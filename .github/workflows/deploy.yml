@@ -51,6 +51,8 @@ jobs:
             export SITE_HOST="${SITE_HOST}"
             cd "\${DEPLOY_DIR:?DEPLOY_DIR is not set}"
             git fetch --tags --quiet
+            git fetch origin "+refs/heads/*:refs/remotes/origin/*" --quiet
+            git fetch origin "\$GITHUB_SHA" --quiet || true
 
             # Remember the SHA that is currently serving traffic. It is only
             # replaced with the new SHA after both health checks pass.
@@ -71,6 +73,7 @@ jobs:
             BACKUP_FILE="backups/pre-migrate-\$(date -u +%Y%m%dT%H%M%SZ).sql.gz"
             docker compose --env-file .env exec -T db pg_dump -U digital_shopping -d digital_shopping | gzip > "\$BACKUP_FILE"
             test -s "\$BACKUP_FILE"
+            gzip -t "\$BACKUP_FILE"
             echo "database backup: \$BACKUP_FILE"
 
             # api/worker run with RUN_MIGRATIONS=0, so this is the only migration run.

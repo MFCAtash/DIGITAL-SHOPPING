@@ -56,6 +56,14 @@ def test_success_status_codes_match(generated):
         assert want == got, (key, want, got)
 
 
+def test_query_parameters_match(generated):
+    """فیلترهای کاتالوگ نباید بین اسکیمای Ninja و قرارداد دچار drift شوند."""
+    for key, op in ops(CONTRACT).items():
+        want = {p["name"] for p in op.get("parameters", [])}
+        got = {p["name"] for p in generated[key].get("parameters", [])}
+        assert want == got, (key, sorted(want - got), sorted(got - want))
+
+
 def test_required_request_properties_match(generated):
     schemas = api.get_openapi_schema()["components"]["schemas"]
     for key, op in ops(CONTRACT).items():

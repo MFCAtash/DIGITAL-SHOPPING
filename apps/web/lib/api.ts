@@ -126,8 +126,9 @@ export function suggest(q: string, limit = 8): Promise<SuggestDto> {
   return request<SuggestDto>(`/catalog/suggest?q=${encodeURIComponent(q)}&limit=${limit}`);
 }
 
-export function related(slug: string, limit = 4): Promise<{ items: ProductDto[] }> {
-  return request<{ items: ProductDto[] }>(`/catalog/products/${encodeURIComponent(slug)}/related?limit=${limit}`);
+export function related(slug: string, lang = "fa", limit = 4): Promise<{ items: ProductDto[] }> {
+  const p = new URLSearchParams({ lang, limit: String(limit) });
+  return request<{ items: ProductDto[] }>(`/catalog/products/${encodeURIComponent(slug)}/related?${p}`);
 }
 
 export function reviews(slug: string, limit = 10, offset = 0, sort = "newest"): Promise<ReviewListDto> {
@@ -207,11 +208,11 @@ export function shippingMethods(province: string, subtotalToman: number): Promis
 
 /* ---------- فاز ۶–۱۲: واریانت، نظر، علاقهمندی، کوپن ---------- */
 export const engagement = {
-  variants: (slug: string) => request<{ items: ProductDto["variants"] }>(`/catalog/products/${encodeURIComponent(slug)}/variants`),
+  variants: (slug: string, lang = "fa") => request<{ items: ProductDto["variants"] }>(`/catalog/products/${encodeURIComponent(slug)}/variants?lang=${lang}`),
   reviews: (slug: string) => request<{ items: NonNullable<ProductDto["reviews"]>; average: number }>(`/catalog/products/${encodeURIComponent(slug)}/reviews`),
   addReview: (slug: string, body: { rating: number; title?: string; body: string }) =>
     request<{ ok: boolean }>(`/catalog/products/${encodeURIComponent(slug)}/reviews`, { method: "POST", body: JSON.stringify(body) }),
-  wishlist: () => request<{ items: ProductDto[] }>("/catalog/wishlist"),
+  wishlist: (lang = "fa") => request<{ items: ProductDto[] }>(`/catalog/wishlist?lang=${lang}`),
   wish: (slug: string) => request<{ wished: boolean }>(`/catalog/wishlist/${encodeURIComponent(slug)}`, { method: "POST" }),
   unwish: (slug: string) => request<{ wished: boolean }>(`/catalog/wishlist/${encodeURIComponent(slug)}`, { method: "DELETE" }),
   coupon: (code: string, subtotalToman: number) =>

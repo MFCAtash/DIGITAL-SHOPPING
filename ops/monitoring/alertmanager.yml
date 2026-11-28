@@ -5,7 +5,7 @@ global:
   resolve_timeout: 5m
   smtp_smarthost: '${SMTP_SMARTHOST}'
   smtp_from: '${SMTP_FROM}'
-  smtp_require_tls: '${SMTP_REQUIRE_TLS}'
+  smtp_require_tls: ${SMTP_REQUIRE_TLS}
 
 route:
   receiver: records
@@ -17,11 +17,13 @@ route:
     - matchers: ['severity="critical"']
       receiver: critical
       repeat_interval: 1h
+    - matchers: ['email="true"']
+      receiver: email
 
 inhibit_rules:
   - source_matchers: ['severity="critical"']
     target_matchers: ['severity="warning"']
-    equal: ["alertname"]
+    equal: ["severity", "job"]
 
 receivers:
   # گیرندهٔ پیشفرض: وب هوک داخلی/خارجی از طریق ALERT_WEBHOOK_URL.

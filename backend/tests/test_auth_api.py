@@ -183,3 +183,44 @@ def test_csrf_enforced_for_cookie_authenticated_writes():
 def test_validation_error_uses_unified_shape():
     r = jpost(Client(), "/auth/otp/request", {})
     assert r.status_code == 422 and r.json()["code"] == "validation_error"
+
+
+
+def test_two_recent_codes_both_remain_verifiable():
+    """کد جدید نباید کد معتبر قبلی را از اعتبار بیندازد (حملهٔ invalidation)."""
+    from django.conf import settings
+
+    from apps.accounts.otp_policy import hash_code
+
+    now = timezone.now()
+    for code in ("111111", "222222"):
+        OtpChallenge.objects.create(phone=PHONE, code_hash=hash_code(settings.OTP_SECRET, PHONE, code), expires_at=now + timedelta(minutes=2))
+    assert jpost(Client(), "/auth/otp/verify", {"phone": PHONE, "code": "222222"}).status_code == 200
+    OtpChallenge.objects.update(consumed_at=None)
+    assert jpost(Client(), "/auth/otp/verify", {"phone": PHONE, "code": "111111"}).status_code == 200
+
+
+def test_otp_verify_requires_csrf_token():
+    c = Client(enforce_csrf_checks=True)
+    request_code(c)
+    r = jpost(c, "/auth/otp/verify", {"phone": PHONE, "code": last_otp_code()})
+    assert r.status_code == 403 and r.json()["code"] == "csrf_failed"
+
+
+def test_auth_throttle_scopes_have_separate_cache_keys():
+    from django.conf import settings
+    from ninja.throttling import AnonRateThrottle
+
+    from apps.accounts.api import OtpRequestThrottle, OtpVerifyThrottle
+
+    class DummyRequest:
+        auth = None
+        META = {"REMOTE_ADDR": "9.9.9.9"}
+
+    r = DummyRequest()
+    keys = {
+        OtpRequestThrottle(settings.AUTH_OTP_THROTTLE).get_cache_key(r),
+        OtpVerifyThrottle(settings.AUTH_OTP_THROTTLE).get_cache_key(r),
+        AnonRateThrottle(settings.API_THROTTLE_ANON).get_cache_key(r),
+    }
+    assert len(keys) == 3  # ترافیک کاتالوگ سطل OTP را پر نمیکند

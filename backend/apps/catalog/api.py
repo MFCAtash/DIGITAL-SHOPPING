@@ -3,11 +3,12 @@ from __future__ import annotations
 import hashlib
 import json
 from datetime import date
+from functools import reduce
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db.models import Avg, Count, IntegerField, Max, Min, OuterRef, Q, Subquery, Sum
-from django.db.models.functions import Coalesce
+from django.db.models import Avg, Count, F, FloatField, IntegerField, Max, Min, OuterRef, Q, Subquery, Sum, Value
+from django.db.models.functions import Cast, Coalesce, Floor, Lower
 from ninja import Query, Router, Schema
 from ninja.errors import HttpError
 from ninja.security import django_auth
@@ -23,13 +24,38 @@ from .models import Category, Product, Review, Wishlist
 
 router = Router(tags=["catalog"])
 
+# قیمت نمایشی همان چیزی است که کاربر میبیند: price_usd_cents بعد از تخفیف.
+# کلیهٔ فیلترها و مرتبسازیهای قیمتی از این عبارت استفاده میکنند.
+FINAL_PRICE = Cast(Floor(F("price_usd_cents") * (100 - F("discount_percent")) / 100.0), IntegerField())
+
 SORTS = {
     "newest": ("-created_at", "-id"),
-    "price_asc": ("price_usd_cents", "id"),
-    "price_desc": ("-price_usd_cents", "-id"),
+    "price_asc": ("final_price_cents", "id"),
+    "price_desc": ("-final_price_cents", "-id"),
 }
-# مرتب‌سازی‌هایی که به annotate نیاز دارند (در list_products اضافه می‌شوند)
+# مرتبسازهایی که به alias نیاز دارند (در prepare_query اضافه میشوند)
 ANNOTATED_SORTS = {"rating": ("-rating_avg", "-id"), "discount": ("-discount_percent", "-id"), "popular": ("-sold_count", "-id")}
+
+
+def rating_alias():
+    """میانگین امتیاز تأییدشده؛ محصول بدون نظر ⇒ ۰ و در انتهای sort=rating."""
+    return Coalesce(Avg("reviews__rating", filter=Q(reviews__status=Review.Status.APPROVED)), Value(0.0), output_field=FloatField())
+
+
+def prepare_query(qs, f: ProductFilters):
+    """aliasهای لازم را بدون اضافه کردن ستون به SELECT اضافه میکند."""
+    qs = qs.alias(final_price_cents=FINAL_PRICE)
+    if f.min_rating is not None or f.sort == "rating":
+        qs = qs.alias(rating_avg=rating_alias())
+    if f.sort == "popular":
+        sold = (
+            OrderItem.objects.filter(product=OuterRef("pk"))
+            .values("product")
+            .annotate(n=Sum("qty"))
+            .values("n")[:1]
+        )
+        qs = qs.alias(sold_count=Coalesce(Subquery(sold, output_field=IntegerField()), 0))
+    return qs
 
 
 class ImageOut(Schema):
@@ -78,7 +104,9 @@ class ProductFilters(Schema):
     #: فیلتر عمومی مشخصات: spec=ram:gte:8,storage:gte:256
     spec: str | None = None
     min_usd: int | None = None
-    max_usd: int | None = None  # دلار، پیش از تخفیف
+    min_rating: int | None = None  # حداقل امتیاز میانگین تأییدشده (۱–۵)
+    max_usd: int | None = None  # دلار، بر اساس قیمت نهایی بعد از تخفیف
+    purchasable: bool | None = None
     in_stock: bool | None = None
     on_sale: bool | None = None
     sort: str = "newest"
@@ -145,75 +173,104 @@ def _split(raw: str | None) -> list[str]:
     return [x.strip() for x in (raw or "").split(",") if x.strip()]
 
 
+def _validate_filters(f: ProductFilters) -> None:
+    """پارامترهای نامعتبر را بهجای نادیده گرفتن، ۴۲۱ میکنند."""
+    if f.min_usd is not None and f.min_usd < 0:
+        raise HttpError(422, "invalid_min_usd")
+    if f.max_usd is not None and f.max_usd < 0:
+        raise HttpError(422, "invalid_max_usd")
+    if f.min_usd is not None and f.max_usd is not None and f.min_usd > f.max_usd:
+        raise HttpError(422, "inverted_price_range")
+    if f.min_rating is not None and not 1 <= f.min_rating <= 5:
+        raise HttpError(422, "invalid_min_rating")
+    if f.sort not in SORTS and f.sort not in ANNOTATED_SORTS:
+        raise HttpError(422, "invalid_sort")
+
+
+SPEC_FIELDS = {
+    "ram": ("ram_gb", int),
+    "storage": ("storage_gb", int),
+    "screen": ("screen_in", float),
+    "battery": ("battery_mah", int),
+    "weight": ("weight_g", int),
+}
+SPEC_OPS = {"gte": "gte", "lte": "lte", "eq": "exact"}
+
+
 def _spec_filters(raw: str | None) -> list[Q]:
-    """spec=ram:gte:8,storage:gte:256 → Q(ram_gb__gte=8) & ... (کلیدها به فیلد عددی مدل نگاشت می‌شوند)."""
-    mapping = {"ram": "ram_gb", "storage": "storage_gb"}
-    ops = {"gte": "gte", "lte": "lte", "eq": "exact"}
+    """spec=ram:gte:8,screen:gte:15,weight:lte:2500 → شرطهای ORM معتبر."""
     out: list[Q] = []
     for part in _split(raw):
         bits = part.split(":")
         if len(bits) != 3:
-            continue
+            raise HttpError(422, "invalid_spec")
         key, op, value = (b.strip() for b in bits)
-        field = mapping.get(key)
-        if field is None or op not in ops:
-            continue
+        field = SPEC_FIELDS.get(key)
+        if field is None or op not in SPEC_OPS:
+            raise HttpError(422, "invalid_spec")
         try:
-            number = int(value)
-        except ValueError:
-            continue
-        out.append(Q(**{f"{field}__{ops[op]}": number}))
+            number = field[1](value)
+        except (TypeError, ValueError):
+            raise HttpError(422, "invalid_spec") from None
+        out.append(Q(**{f"{field[0]}__{SPEC_OPS[op]}": number}))
     return out
 
 
 def apply_filters(qs, f: ProductFilters):
     """همهٔ فیلترها در یک نقطه تا فهرست، فاست و پیشنهادها یکسان رفتار کنند."""
+    _validate_filters(f)
     if f.brand:
         qs = qs.filter(brand__iexact=f.brand)
     brands = _split(f.brands)
     if brands:
-        qs = qs.filter(brand__in=brands)
+        qs = qs.filter(reduce(lambda a, b: a | b, [Q(brand__iexact=b) for b in brands]))
     if f.category:
         qs = qs.filter(category__slug=f.category)
     categories = _split(f.categories)
     if categories:
         qs = qs.filter(category__slug__in=categories)
-    if f.q:
-        term = normalize_fa(f.q)
-        qs = qs.filter(Q(name__icontains=term) | Q(brand__icontains=term))
+    term = (f.q or "").strip()
+    if term:
+        # هم متن خام و هم نسخهٔ نرمالشده جستجو میشوند تا «ی» عربی، نیمفاصله و
+        # ارقام فارسی در متن ذخیرهشده هم پیدا شوند.
+        terms = {term, normalize_fa(term)} - {""}
+        search = Q()
+        for value in terms:
+            search |= (
+                Q(name__icontains=value)
+                | Q(brand__icontains=value)
+                | Q(specs__icontains=value)
+                | Q(description_i18n__icontains=value)
+                | Q(category__slug__icontains=value)
+            )
+        qs = qs.filter(search)
     if f.ram_gte is not None:
         qs = qs.filter(ram_gb__gte=f.ram_gte)
     if f.storage_gte is not None:
         qs = qs.filter(storage_gb__gte=f.storage_gte)
     for condition in _spec_filters(f.spec):
         qs = qs.filter(condition)
+    # فیلتر قیمت بر اساس همان قیمتی که نمایش داده میشود (بعد از تخفیف)
     if f.min_usd is not None:
-        qs = qs.filter(price_usd_cents__gte=max(f.min_usd, 0) * 100)
+        qs = qs.filter(final_price_cents__gte=f.min_usd * 100)
     if f.max_usd is not None:
-        qs = qs.filter(price_usd_cents__lte=max(f.max_usd, 0) * 100)
-    if f.in_stock:
-        qs = qs.filter(stock__gt=0)
-    if f.on_sale:
-        qs = qs.filter(discount_percent__gt=0)
+        qs = qs.filter(final_price_cents__lt=f.max_usd * 100)
+    if f.in_stock is not None:
+        qs = qs.filter(stock__gt=0) if f.in_stock else qs.filter(stock=0)
+    if f.on_sale is not None:
+        qs = qs.filter(discount_percent__gt=0) if f.on_sale else qs.filter(discount_percent=0)
+    if f.purchasable is not None:
+        qs = qs.filter(purchasable=True, stock__gt=0) if f.purchasable else qs.filter(Q(purchasable=False) | Q(stock=0))
+    if f.min_rating is not None:
+        qs = qs.filter(rating_avg__gte=f.min_rating)
     return qs
 
 
-@router.get("/products", response=ProductList, operation_id="catalog_list_products", summary="فهرست کالاها با فیلتر و مرتب‌سازی")
+@router.get("/products", response=ProductList, operation_id="catalog_list_products", summary="فهرست کالاها با فیلتر و مرتبسازی")
 def list_products(request, filters: ProductFilters = Query(...)):
-    qs = apply_filters(visible_products(), filters)
-    if filters.sort in ANNOTATED_SORTS:
-        sold = (
-            OrderItem.objects.filter(product=OuterRef("pk"))
-            .values("product")
-            .annotate(n=Sum("qty"))
-            .values("n")[:1]
-        )
-        qs = qs.annotate(
-            rating_avg=Avg("reviews__rating", filter=Q(reviews__status=Review.Status.APPROVED)),
-            sold_count=Coalesce(Subquery(sold, output_field=IntegerField()), 0),
-        ).order_by(*ANNOTATED_SORTS[filters.sort])
-    else:
-        qs = qs.order_by(*SORTS.get(filters.sort, SORTS["newest"]))
+    qs = apply_filters(prepare_query(visible_products(), filters), filters)
+    order = ANNOTATED_SORTS.get(filters.sort) or SORTS[filters.sort]
+    qs = qs.order_by(*order)
     limit = min(max(filters.limit, 1), 100)
     offset = max(filters.offset, 0)
     rate = _current_rate()
@@ -221,7 +278,6 @@ def list_products(request, filters: ProductFilters = Query(...)):
     if filters.q and count == 0:
         metrics.inc("digital_shopping_search_zero_results_total")
     return {"count": count, "items": [serialize(p, rate, filters.lang) for p in qs[offset : offset + limit]]}
-
 
 @router.get("/products/{slug}", response=ProductOut, operation_id="catalog_get_product")
 def get_product(request, slug: str, lang: str = "fa"):
@@ -275,39 +331,62 @@ PRICE_BUCKETS = [(0, 100), (100, 300), (300, 600), (600, 1000), (1000, None)]
 
 @router.get("/facets", response=FacetsOut, operation_id="catalog_facets", summary="شمارش فیلترها برای PLP (کش ۶۰ ثانیه)")
 def facets(request, filters: ProductFilters = Query(...)):
-    # کلید کش باید شامل **همهٔ** فیلترها باشد؛ ram_gte/storage_gte/spec/in_stock/on_sale
-    # قبلاً نادیده گرفته میشدند و شمارش فاستها تا ۶۰ ثانیه اشتباه میداد.
+    _validate_filters(filters)
+    # sort/limit/offset بر شمارشها اثری ندارند و نباید کش را تکهتکه کنند.
     fingerprint = hashlib.sha256(
-        json.dumps(filters.model_dump(), sort_keys=True, default=str).encode("utf-8")
+        json.dumps(filters.model_dump(exclude={"sort", "limit", "offset"}), sort_keys=True, default=str).encode("utf-8")
     ).hexdigest()
-    key = f"catalog:facets:v3:{fingerprint}"
+    key = f"catalog:facets:v4:{fingerprint}"
     cached = cache.get(key)
     if cached is not None:
         return cached
-    base = apply_filters(visible_products(), filters.model_copy(update={"brand": None, "brands": None, "min_usd": None, "max_usd": None, "sort": "newest"}))
+
+    def base_without(*fields: str):
+        f2 = filters.model_copy(update={name: None for name in fields})
+        return apply_filters(prepare_query(visible_products(), f2), f2)
+
+    brand_base = base_without("brand", "brands")
+    category_base = base_without("category", "categories")
+    price_base = base_without("min_usd", "max_usd")
+    boolean_base = base_without("in_stock", "on_sale", "purchasable")
+    ram_base = base_without("ram_gte")
+    storage_base = base_without("storage_gte")
+    total_base = apply_filters(prepare_query(visible_products(), filters), filters)
     lang = filters.lang
-    brands = [
-        {"value": row["brand"], "label": row["brand"], "count": row["count"]}
-        for row in base.values("brand").annotate(count=Count("pk")).order_by("-count", "brand")
-        if row["count"]
-    ]
+
+    brand_rows = (
+        brand_base.annotate(brand_key=Lower("brand"))
+        .values("brand_key")
+        .annotate(count=Count("pk"))
+        .annotate(label=Min("brand"))
+        .order_by("-count", "brand_key")
+    )
+    brands = [{"value": r["label"], "label": r["label"], "count": r["count"]} for r in brand_rows if r["count"]]
     categories = [
-        {"value": row["category__slug"], "label": (row["category__name_i18n"] or {}).get(lang) or (row["category__name_i18n"] or {}).get("fa") or row["category__slug"], "count": row["count"]}
-        for row in base.values("category__slug", "category__name_i18n").annotate(count=Count("pk")).order_by("-count")
+        {
+            "value": r["category__slug"],
+            "label": (r["category__name_i18n"] or {}).get(lang)
+            or (r["category__name_i18n"] or {}).get("fa")
+            or r["category__slug"],
+            "count": r["count"],
+        }
+        for r in category_base.values("category__slug", "category__name_i18n")
+        .annotate(count=Count("pk"))
+        .order_by("-count")
     ]
-    ram_rows = base.exclude(ram_gb__isnull=True).values("ram_gb").annotate(count=Count("pk")).order_by("ram_gb")
-    storage_rows = base.exclude(storage_gb__isnull=True).values("storage_gb").annotate(count=Count("pk")).order_by("storage_gb")
-    bounds = base.aggregate(lo=Min("price_usd_cents"), hi=Max("price_usd_cents"))
+    ram_rows = ram_base.exclude(ram_gb__isnull=True).values("ram_gb").annotate(count=Count("pk")).order_by("ram_gb")
+    storage_rows = storage_base.exclude(storage_gb__isnull=True).values("storage_gb").annotate(count=Count("pk")).order_by("storage_gb")
+    bounds = price_base.annotate(price_value=FINAL_PRICE).aggregate(lo=Min("price_value"), hi=Max("price_value"))
     buckets = []
     for lo, hi in PRICE_BUCKETS:
         cond = Q()
         if lo:
-            cond &= Q(price_usd_cents__gte=lo * 100)
+            cond &= Q(final_price_cents__gte=lo * 100)
         if hi:
-            cond &= Q(price_usd_cents__lt=hi * 100)
-        buckets.append({"label": f"{lo}–{hi}" if hi else f"{lo}+", "min_usd": lo, "max_usd": hi, "count": base.filter(cond).count()})
+            cond &= Q(final_price_cents__lt=hi * 100)
+        buckets.append({"label": f"{lo}–{hi}" if hi else f"{lo}+", "min_usd": lo, "max_usd": hi, "count": price_base.filter(cond).count()})
     data = {
-        "total": base.count(),
+        "total": total_base.count(),
         "brands": brands,
         "categories": categories,
         "ram": [{"value": str(r["ram_gb"]), "label": str(r["ram_gb"]), "count": r["count"]} for r in ram_rows],
@@ -318,12 +397,11 @@ def facets(request, filters: ProductFilters = Query(...)):
             "toman_per_usd": _current_rate(),
             "buckets": buckets,
         },
-        "in_stock": base.filter(stock__gt=0).count(),
-        "on_sale": base.filter(discount_percent__gt=0).count(),
+        "in_stock": boolean_base.filter(stock__gt=0).count(),
+        "on_sale": boolean_base.filter(discount_percent__gt=0).count(),
     }
     cache.set(key, data, 60)
     return data
-
 
 # ---------------- فاز ۶–۱۲: واریانت، نظر، علاقه‌مندی ----------------
 
@@ -343,7 +421,7 @@ class VariantList(Schema):
 
 
 @router.get("/products/{slug}/variants", response=VariantList, operation_id="catalog_list_variants", summary="واریانت‌های قابل‌انتخاب محصول")
-def list_variants(request, slug: str):
+def list_variants(request, slug: str, lang: str = "fa"):
     product = visible_products().filter(slug=slug).first()
     if product is None:
         raise HttpError(404, "not_found")
@@ -353,7 +431,7 @@ def list_variants(request, slug: str):
         cents = v.final_usd_cents()
         items.append({
             "sku": v.sku,
-            "name": v.name_i18n.get("fa") or v.sku,
+            "name": v.name_i18n.get(lang) or v.name_i18n.get("fa") or v.sku,
             "options": v.options,
             "final_usd_cents": cents,
             "price_toman": to_toman(cents, rate) if (cents is not None and rate) else None,
@@ -501,12 +579,12 @@ class WishToggleOut(Schema):
 
 
 @router.get("/wishlist", response=WishlistOut, auth=django_auth, operation_id="catalog_wishlist_list")
-def wishlist_list(request):
+def wishlist_list(request, lang: str = "fa"):
     rate = _current_rate()
     rows = list(Wishlist.objects.filter(user=request.user).order_by("-created_at", "-id")[:200])
     ids = [r.product_id for r in rows]
     by_id = {p.pk: p for p in visible_products().filter(pk__in=ids)}
-    items = [serialize(by_id[r.product_id], rate, "fa") for r in rows if r.product_id in by_id]
+    items = [serialize(by_id[r.product_id], rate, lang) for r in rows if r.product_id in by_id]
     return {"items": items, "count": len(rows)}
 
 
@@ -530,21 +608,23 @@ class RelatedOut(Schema):
 
 
 @router.get("/products/{slug}/related", response=RelatedOut, operation_id="catalog_related", summary="کالاهای مشابه (همان دسته و بازهٔ قیمت)")
-def related(request, slug: str, limit: int = 4):
+def related(request, slug: str, lang: str = "fa", limit: int = 4):
     product = visible_products().filter(slug=slug).first()
     if product is None:
         raise HttpError(404, "not_found")
-    if product.price_usd_cents is None:
+    final = product.final_usd_cents
+    if final is None:
         return {"items": []}
-    lo, hi = int(product.price_usd_cents * 0.7), int(product.price_usd_cents * 1.3)
+    lo, hi = int(final * 0.7), int(final * 1.3)
+    blank = ProductFilters()
     qs = (
-        visible_products()
-        .filter(category_id=product.category_id, price_usd_cents__gte=lo, price_usd_cents__lte=hi)
+        prepare_query(visible_products(), blank)
+        .filter(category_id=product.category_id, final_price_cents__gte=lo, final_price_cents__lte=hi)
         .exclude(pk=product.pk)
         .order_by("-created_at")[: min(max(limit, 1), 8)]
     )
     rate = _current_rate()
-    return {"items": [serialize(p, rate, "fa") for p in qs]}
+    return {"items": [serialize(p, rate, lang) for p in qs]}
 
 
 class SuggestItem(Schema):
@@ -563,7 +643,7 @@ def suggest(request, q: str = "", limit: int = 8):
     term = normalize_fa(q).strip()
     if len(term) < 2:
         return {"items": []}
-    key = f"catalog:suggest:v1:{term}:{limit}"
+    key = f"catalog:suggest:v2:{term}:{limit}:{_current_rate()}"
     cached = cache.get(key)
     if cached is not None:
         return cached

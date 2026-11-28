@@ -120,7 +120,7 @@ git push origin main --tags
 **Settings → Branches → Add branch ruleset**:
 
 - Require a pull request before merging (حداقل ۱ تأیید)
-- Require status checks: `backend-ci`, `web-ci`, `ui-ci`, `security`
+- Require status checks (job names): `test`, `web`, `ui`, `gitleaks`
 - Require conversation resolution
 - Block force pushes و حذف شاخه
 

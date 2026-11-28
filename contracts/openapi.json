@@ -3,13 +3,13 @@
  "info": {
   "title": "Digital Shopping API",
   "version": "1.1.0",
-  "description": "قرارداد مرجع: contracts/openapi.json (تستشده در backend/tests/test_openapi_contract.py). خطاها: {code, message, ...}."
+  "description": "قرارداد مرجع: contracts/openapi.yaml (تست‌شده در tests/test_openapi_contract.py). خطاها: {code, message, ...}."
  },
  "paths": {
   "/catalog/products": {
    "get": {
     "operationId": "catalog_list_products",
-    "summary": "فهرست کالاها با فیلتر و مرتب‌سازی",
+    "summary": "فهرست کالاها با فیلتر و مرتبسازی",
     "parameters": [
      {
       "in": "query",
@@ -157,6 +157,22 @@
      },
      {
       "in": "query",
+      "name": "min_rating",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Min Rating"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
       "name": "max_usd",
       "schema": {
        "anyOf": [
@@ -168,6 +184,22 @@
         }
        ],
        "title": "Max Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "purchasable",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Purchasable"
       },
       "required": false
      },
@@ -494,6 +526,22 @@
      },
      {
       "in": "query",
+      "name": "min_rating",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Min Rating"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
       "name": "max_usd",
       "schema": {
        "anyOf": [
@@ -505,6 +553,22 @@
         }
        ],
        "title": "Max Usd"
+      },
+      "required": false
+     },
+     {
+      "in": "query",
+      "name": "purchasable",
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Purchasable"
       },
       "required": false
      },
@@ -614,6 +678,16 @@
        "type": "string"
       },
       "required": true
+     },
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
      }
     ],
     "responses": {
@@ -796,7 +870,18 @@
    "get": {
     "operationId": "catalog_wishlist_list",
     "summary": "Wishlist List",
-    "parameters": [],
+    "parameters": [
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
+     }
+    ],
     "responses": {
      "200": {
       "description": "OK",
@@ -934,6 +1019,16 @@
        "type": "string"
       },
       "required": true
+     },
+     {
+      "in": "query",
+      "name": "lang",
+      "schema": {
+       "default": "fa",
+       "title": "Lang",
+       "type": "string"
+      },
+      "required": false
      },
      {
       "in": "query",
@@ -2535,6 +2630,17 @@
       ],
       "title": "Min Usd"
      },
+     "min_rating": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Rating"
+     },
      "max_usd": {
       "anyOf": [
        {
@@ -2545,6 +2651,17 @@
        }
       ],
       "title": "Max Usd"
+     },
+     "purchasable": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Purchasable"
      },
      "in_stock": {
       "anyOf": [
@@ -3606,6 +3723,10 @@
       "title": "Name",
       "type": "string"
      },
+     "brand": {
+      "title": "Brand",
+      "type": "string"
+     },
      "image": {
       "anyOf": [
        {
@@ -3616,6 +3737,30 @@
        }
       ],
       "title": "Image"
+     },
+     "specs": {
+      "additionalProperties": true,
+      "title": "Specs",
+      "type": "object"
+     },
+     "discount_percent": {
+      "title": "Discount Percent",
+      "type": "integer"
+     },
+     "old_toman": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Old Toman"
+     },
+     "price_note": {
+      "title": "Price Note",
+      "type": "string"
      },
      "qty": {
       "title": "Qty",
@@ -3673,7 +3818,12 @@
     "required": [
      "slug",
      "name",
+     "brand",
      "image",
+     "specs",
+     "discount_percent",
+     "old_toman",
+     "price_note",
      "qty",
      "max_qty",
      "stock",

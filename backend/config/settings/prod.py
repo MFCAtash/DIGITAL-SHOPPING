@@ -3,6 +3,8 @@ from django.core.exceptions import ImproperlyConfigured
 from .base import *  # noqa: F401,F403
 
 DEBUG = False
+if not env("DATABASE_URL", default=""):  # noqa: F405
+    raise ImproperlyConfigured("DATABASE_URL در production الزامی است (sqlite پیشفرض فقط برای محیط محلی است).")
 
 # --- fail-closed: آداپتورهایی که کد OTP را فاش میکنند درprod ممنوعاند ---
 _FORBIDDEN_SMS = {

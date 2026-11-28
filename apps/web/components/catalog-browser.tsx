@@ -21,6 +21,8 @@ export interface CatalogQuery {
   max_usd?: number;
   in_stock?: boolean;
   on_sale?: boolean;
+  min_rating?: number;
+  purchasable?: boolean;
   sort?: string;
   limit: number;
   offset: number;
@@ -63,8 +65,10 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
   const [pending, startTransition] = useTransition();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [selected, setSelected] = useState<FilterSelection>(() => initialSelection(query));
+  const [priceDraft, setPriceDraft] = useState({ min: query.min_usd?.toString() ?? "", max: query.max_usd?.toString() ?? "" });
 
   useEffect(() => setSelected(initialSelection(query)), [query.brands, query.categories, query.brand, query.category, query.ram_gte, query.storage_gte]);
+  useEffect(() => setPriceDraft({ min: query.min_usd?.toString() ?? "", max: query.max_usd?.toString() ?? "" }), [query.min_usd, query.max_usd]);
 
   const groups = useMemo(
     () => [
@@ -103,8 +107,10 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
     if (v.spec) p.set("spec", v.spec);
     if (v.min_usd !== undefined) p.set("min_usd", String(v.min_usd));
     if (v.max_usd !== undefined) p.set("max_usd", String(v.max_usd));
-    if (v.in_stock) p.set("in_stock", "true");
-    if (v.on_sale) p.set("on_sale", "true");
+    if (v.in_stock !== undefined) p.set("in_stock", String(v.in_stock));
+    if (v.on_sale !== undefined) p.set("on_sale", String(v.on_sale));
+    if (v.purchasable !== undefined) p.set("purchasable", String(v.purchasable));
+    if (v.min_rating !== undefined) p.set("min_rating", String(v.min_rating));
     if (v.sort) p.set("sort", v.sort);
     if (v.limit !== 24) p.set("limit", String(v.limit));
     if (v.offset) p.set("offset", String(v.offset));
@@ -118,7 +124,7 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
   function clear() {
     const cleared: FilterSelection = { category: [], brand: [], ram: [], storage: [] };
     setSelected(cleared);
-    go({ q: undefined, min_usd: undefined, max_usd: undefined, in_stock: undefined, on_sale: undefined, spec: undefined, offset: 0 }, cleared);
+    go({ q: undefined, min_usd: undefined, max_usd: undefined, in_stock: undefined, on_sale: undefined, purchasable: undefined, min_rating: undefined, spec: undefined, offset: 0 }, cleared);
   }
 
   const activeChips = [
@@ -135,14 +141,17 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
       })),
     ),
     ...(query.min_usd !== undefined || query.max_usd !== undefined ? [{ key: "price", label: `${t("plp.priceChip")}${toFaDigits(query.min_usd ?? 0, locale)}–${query.max_usd === undefined ? "∞" : toFaDigits(query.max_usd, locale)} ${t("plp.usd")}`, clear: () => go({ min_usd: undefined, max_usd: undefined }) }] : []),
-    ...(query.in_stock ? [{ key: "stock", label: t("plp.inStockChip"), clear: () => go({ in_stock: undefined }) }] : []),
-    ...(query.on_sale ? [{ key: "sale", label: t("plp.onSaleChip"), clear: () => go({ on_sale: undefined }) }] : []),
+    ...(query.in_stock !== undefined ? [{ key: "stock", label: `${t("plp.inStock")}: ${query.in_stock ? "✓" : "✗"}`, clear: () => go({ in_stock: undefined }) }] : []),
+    ...(query.on_sale !== undefined ? [{ key: "sale", label: `${t("plp.onSale")}: ${query.on_sale ? "✓" : "✗"}`, clear: () => go({ on_sale: undefined }) }] : []),
+    ...(query.purchasable !== undefined ? [{ key: "buyable", label: t("plp.purchasable"), clear: () => go({ purchasable: undefined }) }] : []),
+    ...(query.min_rating !== undefined ? [{ key: "rating", label: `${t("plp.minRating")} ${query.min_rating}+`, clear: () => go({ min_rating: undefined }) }] : []),
   ];
 
+  const activeCategory = query.categories ?? query.category;
   const crumbs = [
     { label: t("common.home"), href: "/" },
-    { label: t("nav.products"), href: query.category || selected.category.length ? "/products" : undefined },
-    ...(query.category ? [{ label: categories.find((c) => c.slug === query.category)?.name ?? query.category }] : []),
+    { label: t("nav.products"), href: activeCategory || selected.category.length ? "/products" : undefined },
+    ...(activeCategory ? [{ label: categories.find((c) => c.slug === activeCategory)?.name ?? activeCategory }] : []),
     ...(query.q ? [{ label: `${t("plp.searchFor")} «${query.q}»` }] : []),
   ];
 
@@ -161,7 +170,7 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
           <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
             <legend className="filters__legend">{t("plp.priceRange")}</legend>
             {priceBuckets.map((b) => {
-              const active = query.min_usd === b.min_usd && query.max_usd === b.max_usd;
+              const active = query.min_usd === b.min_usd && query.max_usd === (b.max_usd ?? undefined);
               return (
                 <button
                   key={`${b.min_usd}-${b.max_usd}`}
@@ -179,9 +188,28 @@ export function CatalogBrowser({ products, count, query, categories, brands, fac
             })}
           </fieldset>
           <div style={{ display: "grid", gap: "var(--cx-space-1)", marginBlockStart: "var(--cx-space-3)" }}>
-            <Checkbox label={`${t("plp.inStock")} (${toFaDigits(facets?.in_stock ?? 0, locale)})`} checked={Boolean(query.in_stock)} onChange={(e) => go({ in_stock: e.target.checked || undefined })} />
-            <Checkbox label={`${t("plp.onSale")} (${toFaDigits(facets?.on_sale ?? 0, locale)})`} checked={Boolean(query.on_sale)} onChange={(e) => go({ on_sale: e.target.checked || undefined })} />
+            <Checkbox label={`${t("plp.inStock")} (${toFaDigits(facets?.in_stock ?? 0, locale)})`} checked={query.in_stock === true} onChange={(e) => go({ in_stock: e.target.checked })} />
+            <Checkbox label={`${t("plp.onSale")} (${toFaDigits(facets?.on_sale ?? 0, locale)})`} checked={query.on_sale === true} onChange={(e) => go({ on_sale: e.target.checked })} />
+            <Checkbox label={t("plp.purchasable")} checked={query.purchasable === true} onChange={(e) => go({ purchasable: e.target.checked })} />
           </div>
+          <div className="facet-price-custom" style={{ display: "flex", gap: 6, marginBlockStart: "var(--cx-space-3)", flexWrap: "wrap" }}>
+            <input className="cx-input" style={{ inlineSize: 88 }} inputMode="numeric" type="number" min={0} placeholder={t("plp.minPrice")} aria-label={t("plp.minPrice")}
+              value={priceDraft.min} onChange={(e) => setPriceDraft((d) => ({ ...d, min: e.target.value }))} />
+            <input className="cx-input" style={{ inlineSize: 88 }} inputMode="numeric" type="number" min={0} placeholder={t("plp.maxPrice")} aria-label={t("plp.maxPrice")}
+              value={priceDraft.max} onChange={(e) => setPriceDraft((d) => ({ ...d, max: e.target.value }))} />
+            <Button variant="secondary" onClick={() => go({
+              min_usd: priceDraft.min === "" ? undefined : Number(priceDraft.min),
+              max_usd: priceDraft.max === "" ? undefined : Number(priceDraft.max),
+              offset: 0,
+            })}>{t("plp.applyPrice")}</Button>
+          </div>
+          <label style={{ display: "flex", gap: 6, alignItems: "center", marginBlockStart: "var(--cx-space-2)", fontSize: "var(--cx-text-xs)" }}>
+            {t("plp.minRating")}
+            <select className="cx-input" style={{ inlineSize: 84 }} value={query.min_rating ?? ""} onChange={(e) => go({ min_rating: e.target.value === "" ? undefined : Number(e.target.value) })}>
+              <option value="">—</option>
+              {[4, 4.5, 5].map((n) => <option key={n} value={n}>{n}{t("plp.ratingUp")}</option>)}
+            </select>
+          </label>
           {facets?.price?.toman_per_usd ? <p style={{ color: "var(--cx-muted)", fontSize: "var(--cx-text-xs)" }}>{t("plp.rate")}{formatToman(facets.price.toman_per_usd, {}, locale)} / {t("plp.usd")}</p> : null}
         </div>
       }

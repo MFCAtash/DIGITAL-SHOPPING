@@ -7,17 +7,17 @@ import { useT } from "./locale-provider";
 
 export function WishlistButton({ slug }: { slug: string }) {
   const { user, notify } = useStore();
-  const { t } = useT();
+  const { t, locale } = useT();
   const [wished, setWished] = useState(false);
 
   useEffect(() => {
     if (!user) return;
     let alive = true;
-    void engagement.wishlist()
+    void engagement.wishlist(locale)
       .then((d) => { if (alive) setWished(d.items.some((p) => p.slug === slug)); })
       .catch(() => undefined);
     return () => { alive = false; };
-  }, [slug, user]);
+  }, [slug, user, locale]);
 
   if (!user) {
     return <a href="/checkout" className="chip">{t("wishlist.loginToSave")}</a>;

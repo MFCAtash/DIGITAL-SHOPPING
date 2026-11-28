@@ -34,7 +34,7 @@ make -C backend import-catalog
 
 <a id="api-high-latency"></a>
 ### تأخیر بالای API (ApiHighLatency)
-- آستانه همان SLO است: p95 ≤ **۸۰۰ms** در پنجرهٔ ۳۰ روز؛ هشدار ۵ دقیقهای روی `> 0.8` است.
+- آستانه همان SLO است: p95 ≤ **۸۰۰ms** در پنجرهٔ ۳۰ روز؛ هشدار ۱۰ دقیقهای روی `> 0.8` است.
 - کوئری: `histogram_quantile(0.95, sum(rate(digital_shopping_http_request_duration_seconds_bucket[5m])) by (le))`.
 - علتهای رایج: نرسیدن نرخ ارز/کش، نبود Redis، قفل ردیف روی سفارشها، Missing index؛ سپس `ops/k6/load.js` را اجرا کنید.
 
@@ -46,7 +46,7 @@ make -C backend import-catalog
 
 <a id="worker-backlog"></a>
 ### انباشت صف کار (ProcrastinateBacklog)
-- وضعیت worker: `docker compose logs worker`؛ تعداد کارها: کوئری `procrastinate_jobs` یا متریک `procrastinate_jobs_todo`.
+- وضعیت worker: `docker compose logs worker`؛ تازگی پردازش: متریک `digital_shopping_worker_heartbeat_age_seconds` (باید < ۳۰۰ ثانیه باشد).
 - اجرای دستی: `make expire-orders`؛ اطمینان حاصل کنید `procrastinate worker` در حال اجراست.
 
 ### پیامک ارسال نمیشود

@@ -1,7 +1,6 @@
 name: web-ci
 on:
   pull_request:
-    paths: ["apps/web/**", "packages/ui/**", "contracts/openapi.json", ".github/workflows/web-ci.yml"]
   push:
     branches: [main]
   schedule:

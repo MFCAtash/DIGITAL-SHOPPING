@@ -64,7 +64,9 @@ TEMPLATES = [
     }
 ]
 
-DATABASES = {"default": env.db("DATABASE_URL")}
+# محیطهای محلی/تست میتوانند بدون Postgres بالا بیایند؛ production این متغیر را الزامی میکند.
+DATABASE_URL = env("DATABASE_URL", default="")
+DATABASES = {"default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'local.sqlite3'}")}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.User"
 

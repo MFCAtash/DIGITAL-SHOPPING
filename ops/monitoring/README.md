@@ -22,6 +22,8 @@
 | `digital_shopping_coupon_applied_total{kind}` | counter | orders | کوپنهای مصرفشده |
 | `digital_shopping_search_zero_results_total` | counter | catalog | جستجوهای بینتیجه |
 | `digital_shopping_process_start_time_seconds` | gauge | core | تشخیص restart worker |
+| `digital_shopping_payments_refunded_total` | counter | payments | مرجوعیها |
+| `digital_shopping_worker_heartbeat_age_seconds` | gauge | worker/core | زنده بودن صف کار |
 
 > مسیرها پیش از برچسبزنی نرمال میشوند (`/orders/123` → `/orders/{id}`) تا کاردینالیتی منفجر نشود.
 > شمارندهها per-processاند؛ Prometheus هر instance را جدا scrape میکند و تجمیع در پرسوجو انجام میشود.

@@ -16,6 +16,16 @@ services:
 
   # کش مشترک: throttle، فاستها و suggests بین تمام workerها یکسان میشود.
   # در صورت قطع Redis، Django به LocMem برمیگردد (تکپروسه) — رفتار fail-open امن است.
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.66.0-alpine
+    environment:
+      REDIS_ADDR: redis://redis:6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
   redis:
     image: redis:7-alpine
     # REDIS_PASSWORD همان رازی است که rotate-secrets.sh میسازد؛ بدون requirepass چرخش آن بیاثر است.
@@ -139,11 +149,13 @@ services:
     image: prom/alertmanager:v0.28.1
     command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
     volumes:
-      - ./ops/monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - ./ops/monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.template.yml:ro
+      - ./ops/monitoring/alertmanager-entrypoint.sh:/etc/alertmanager/entrypoint.sh:ro
     ports:
       - "127.0.0.1:9093:9093"
     restart: unless-stopped
     mem_limit: 128m
+    entrypoint: ["/bin/sh", "/etc/alertmanager/entrypoint.sh"]
 
   grafana:
     image: grafana/grafana:12.2.0

@@ -80,22 +80,35 @@ def verify_otp(phone_raw: str, code_raw: str, now=None) -> User:
     outcome, left, user = "invalid_code", 0, None
     with transaction.atomic():
         _lock_phone(phone)
-        ch = OtpChallenge.objects.select_for_update().filter(phone=phone).order_by("-created_at", "-id").first()
-        if ch is None:
+        # تمام کدهای معتبر اخیر قابل تأییداند؛ درخواست کد جدید نباید کد قبلی را باطل کند.
+        challenges = list(
+            OtpChallenge.objects.select_for_update()
+            .filter(phone=phone, consumed_at__isnull=True, expires_at__gte=now)
+            .order_by("-created_at", "-id")[:5]
+        )
+        if not challenges:
             hash_code(settings.OTP_SECRET, phone, code or "0")  # زمان پاسخ شبیه حالت عادی
         else:
-            matches = bool(code) and verify_code(settings.OTP_SECRET, phone, code, ch.code_hash)
-            d = decide_verify(now=now, expires_at=ch.expires_at, attempts=ch.attempts, consumed=ch.consumed_at is not None, code_matches=matches, policy=DEFAULT_POLICY)
-            if d.outcome == "wrong":
-                ch.attempts += 1
-                ch.save(update_fields=["attempts"])
-                left = d.attempts_left
-            elif d.outcome == "ok":
-                OtpChallenge.objects.filter(phone=phone, consumed_at__isnull=True).update(consumed_at=now)  # همهٔ کدهای باز این شماره باطل
-                user = User.objects.filter(phone=phone).first() or User.objects.create_user(phone)
-                outcome = "ok"
-            elif d.outcome == "locked":
+            first = challenges[0]
+            lock_check = decide_verify(
+                now=now, expires_at=first.expires_at, attempts=first.attempts,
+                consumed=False, code_matches=False, policy=DEFAULT_POLICY,
+            )
+            if lock_check.outcome == "locked":
                 outcome = "otp_locked"
+            else:
+                matched = next(
+                    (ch for ch in challenges if code and verify_code(settings.OTP_SECRET, phone, code, ch.code_hash)),
+                    None,
+                )
+                if matched is not None:
+                    OtpChallenge.objects.filter(phone=phone, consumed_at__isnull=True).update(consumed_at=now)
+                    user = User.objects.filter(phone=phone).first() or User.objects.create_user(phone)
+                    outcome = "ok"
+                else:
+                    first.attempts += 1
+                    first.save(update_fields=["attempts"])
+                    left = max(0, DEFAULT_POLICY.max_attempts - first.attempts)
     if user is None:
         raise OtpError(outcome, left)
     if not user.is_active:

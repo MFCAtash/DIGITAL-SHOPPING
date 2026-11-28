@@ -35,14 +35,29 @@ groups:
           summary: "افزایش ناگهانی پرداختهای ناموفق"
           runbook_url: "docs/RUNBOOK.md#payment"
 
-      - alert: ProcrastinateBacklog
-        expr: procrastinate_jobs_todo > 200
-        for: 10m
+      - alert: WorkerHeartbeatStale
+        expr: digital_shopping_worker_heartbeat_age_seconds > 300 or digital_shopping_worker_heartbeat_age_seconds < 0
+        for: 2m
         labels: { severity: warning, team: backend }
         annotations:
-          summary: "صف کارها در حال انباشته شدن است"
+          summary: "صف کار worker زنده نیست (بیش از ۵ دقیقه بدون heartbeat)"
           runbook_url: "docs/RUNBOOK.md#worker-backlog"
 
+      - alert: ApiDown
+        expr: up{job="digital-shopping-api"} == 0
+        for: 1m
+        labels: { severity: critical, team: backend }
+        annotations:
+          summary: "API توسط Prometheus قابل scrape نیست"
+          runbook_url: "docs/RUNBOOK.md#api-high-error-rate"
+
+      - alert: ApiMetricsMissing
+        expr: absent(digital_shopping_http_requests_total)
+        for: 5m
+        labels: { severity: warning, team: backend }
+        annotations:
+          summary: "هیچ متریکی از API دریافت نمیشود (مسیر scrape را بررسی کنید)"
+          runbook_url: "docs/RUNBOOK.md#api-high-error-rate"
       - alert: PostgresDown
         expr: up{job="postgres"} == 0
         for: 2m

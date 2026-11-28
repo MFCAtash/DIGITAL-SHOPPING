@@ -15,7 +15,7 @@ scrape_configs:
   # در صورت تنظیم METRICS_TOKEN، هدر Authorization توسط Prometheus ارسال میشود.
   - job_name: digital-shopping-api
     static_configs: [{ targets: ["api:8000"] }]
-    metrics_path: /metrics
+    metrics_path: /api/v1/metrics
     authorization:
       type: Bearer
       credentials_file: /run/secrets/metrics_token
@@ -25,7 +25,7 @@ scrape_configs:
     static_configs: [{ targets: ["postgres-exporter:9187"] }]
 
   - job_name: redis
-    static_configs: [{ targets: ["redis:6379"] }]
+    static_configs: [{ targets: ["redis-exporter:9121"] }]
 
   - job_name: node
     static_configs: [{ targets: ["node-exporter:9100"] }]

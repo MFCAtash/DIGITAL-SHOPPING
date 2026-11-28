@@ -1,7 +1,6 @@
 name: ui-ci
 on:
   pull_request:
-    paths: ["packages/ui/**", "overlay/data/**", "overlay/public/products/**", ".github/workflows/ui-ci.yml"]
   push:
     branches: [main]
 jobs:

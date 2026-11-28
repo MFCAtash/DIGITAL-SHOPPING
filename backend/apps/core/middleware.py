@@ -82,7 +82,6 @@ class ApiCsrfMiddleware:
     SAFE = {"GET", "HEAD", "OPTIONS", "TRACE"}
     EXEMPT = {
         "/api/v1/auth/otp/request",
-        "/api/v1/auth/otp/verify",
         "/api/v1/auth/password/reset/request",
         "/api/v1/auth/password/reset/confirm",
     }

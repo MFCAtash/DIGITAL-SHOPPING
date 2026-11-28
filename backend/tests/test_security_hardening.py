@@ -31,10 +31,14 @@ def login_client(user):
 
 def test_password_set_change_and_hashing():
     u = UserFactory()
+    u.set_unusable_password()  # حساب OTP-only: تنظیم رمز مجاز است
+    u.save(update_fields=["password"])
     c = login_client(u)
     assert jpost(c, "/auth/password/set", {"new_password": STRONG}).status_code == 200
+    assert jpost(c, "/auth/password/set", {"new_password": STRONG}).status_code == 409  # بازنویسی بیصدا ممنوع
     u.refresh_from_db()
     assert u.has_usable_password() and u.password != STRONG and u.check_password(STRONG)
+    assert c.get("/api/v1/auth/me").status_code == 200  # نشست بعد از تنظیم رمز زنده میماند
 
     # تغییر هش رمز، نشست قبلی را باطل میکند (محافظت در برابر سرقت نشست)
     c.force_login(u)

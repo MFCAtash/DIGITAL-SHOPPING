@@ -1,10 +1,11 @@
 """API احراز هویت و نشانی‌ها. خطاها همه با قالب {code, message}. نشست کوکی + CSRF (ADR-003)."""
 from __future__ import annotations
 
+from datetime import timedelta
 from urllib.parse import quote
 
 from django.conf import settings
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -26,6 +27,23 @@ from .address_rules import MAX_ADDRESSES_PER_USER, normalize_postal_code, valida
 from .models import Address, SmsOutbox
 from .otp_policy import DEFAULT_POLICY
 from .services import OtpError, queue_sms, request_otp, verify_otp
+
+
+class OtpRequestThrottle(AnonRateThrottle):
+    """سطل جداگانه برای درخواست کد؛ ترافیک کاتالوگ نباید آنرا پر کند."""
+
+
+class OtpVerifyThrottle(AnonRateThrottle):
+    """سطل جداگانه برای تأیید کد."""
+
+
+class PasswordResetThrottle(AnonRateThrottle):
+    """سطل جداگانه برای بازنشانی رمز."""
+
+
+OtpRequestThrottle.scope = "auth_otp_request"
+OtpVerifyThrottle.scope = "auth_otp_verify"
+PasswordResetThrottle.scope = "auth_password_reset"
 
 auth_router = Router(tags=["auth"])
 addresses_router = Router(tags=["addresses"], auth=django_auth)
@@ -97,7 +115,7 @@ def csrf(request):
     return {"csrf_token": get_token(request)}
 
 
-@auth_router.post("/otp/request", response=OtpRequestOut, auth=None, operation_id="auth_otp_request", throttle=[AnonRateThrottle(settings.AUTH_OTP_THROTTLE)], summary="درخواست کد یک‌بارمصرف پیامکی")
+@auth_router.post("/otp/request", response=OtpRequestOut, auth=None, operation_id="auth_otp_request", throttle=[OtpRequestThrottle(settings.AUTH_OTP_THROTTLE)], summary="درخواست کد یک‌بارمصرف پیامکی")
 def otp_request(request, body: PhoneIn):
     try:
         d = request_otp(body.phone, client_ip(request.META, settings.NINJA_NUM_PROXIES))
@@ -108,7 +126,7 @@ def otp_request(request, body: PhoneIn):
     return {"ok": True, "expires_in": DEFAULT_POLICY.ttl_seconds, "resend_in": DEFAULT_POLICY.resend_seconds}
 
 
-@auth_router.post("/otp/verify", response=SessionOut, auth=None, operation_id="auth_otp_verify", throttle=[AnonRateThrottle(settings.AUTH_OTP_THROTTLE)], summary="تأیید کد و ورود")
+@auth_router.post("/otp/verify", response=SessionOut, auth=None, operation_id="auth_otp_verify", throttle=[OtpVerifyThrottle(settings.AUTH_OTP_THROTTLE)], summary="تأیید کد و ورود")
 def otp_verify(request, body: OtpVerifyIn):
     try:
         user = verify_otp(body.phone, body.code)
@@ -117,7 +135,7 @@ def otp_verify(request, body: OtpVerifyIn):
     except OtpError as e:
         log_security("otp_verify_failed", request, reason=e.code, phone_fp=fingerprint(body.phone, settings.SECRET_KEY))
         if e.code == "otp_locked":
-            raise ApiError(429, "otp_locked", "تعداد تلاش‌ها زیاد بود. کد جدید بگیرید.")
+            raise ApiError(429, "otp_locked", "تعداد تلاشها زیاد بود. کد جدید بگیرید.", headers={"Retry-After": "60"})
         raise ApiError(400, "invalid_code", "کد نامعتبر یا منقضی است.", attempts_left=e.attempts_left)
     login(request, user, backend="django.contrib.auth.backends.ModelBackend")  # شناسهٔ نشست را عوض می‌کند (جلوگیری از session fixation)
     return {"user": _user_out(user), "csrf_token": get_token(request)}
@@ -155,11 +173,15 @@ def _set_validated_password(user, raw: str, request=None) -> None:
         raise ApiError(422, "weak_password", "رمز عبور معیارهای امنیتی را رعایت نمیکند.", fields={"password": list(exc.messages)}, constraints=list(exc.messages))
     user.set_password(raw)  # PBKDF2-SHA256 (پیشفرض Django) + salt منحصربهفرد
     user.save(update_fields=["password"])
+    if request is not None and getattr(request, "user", None) is not None and request.user.pk == user.pk:
+        update_session_auth_hash(request, user)  # هش نشست بهروز شود تا logout ناخواسته رخ ندهد
     log_security("password_changed", request, user_fp=fingerprint(str(user.pk), settings.SECRET_KEY))
 
 
 @auth_router.post("/password/set", response=OkOut, auth=django_auth, operation_id="auth_password_set", summary="تنظیم رمز عبور برای حساب OTP-only")
 def password_set(request, body: PasswordSetIn):
+    if request.user.has_usable_password():
+        raise ApiError(409, "password_already_set", "رمز عبور وجود دارد؛ از تغییر رمز استفاده کنید.")
     _set_validated_password(request.user, body.new_password, request)
     return {"ok": True}
 
@@ -176,7 +198,7 @@ def password_change(request, body: PasswordChangeIn):
 @auth_router.post(
     "/password/reset/request", response=OkOut, auth=None, operation_id="auth_password_reset_request",
     summary="ارسال لینک زماندار بازنشانی رمز (بدون افشای وجود حساب)",
-    throttle=[AnonRateThrottle(settings.AUTH_PASSWORD_THROTTLE)],
+    throttle=[PasswordResetThrottle(settings.AUTH_PASSWORD_THROTTLE)],
 )
 def password_reset_request(request, body: PasswordResetRequestIn):
     from .models import User
@@ -185,6 +207,9 @@ def password_reset_request(request, body: PasswordResetRequestIn):
         phone = normalize_phone(body.phone)
     except ValueError:
         raise ApiError(422, "invalid_phone", "شمارهٔ موبایل معتبر نیست.")
+    recent = SmsOutbox.objects.filter(phone=phone, kind="reset", created_at__gte=timezone.now() - timedelta(hours=1)).count()
+    if recent >= 5:
+        raise ApiError(429, "phone_hourly_limit", "درخواستهای زیاد؛ یک ساعت دیگر تلاش کنید.", headers={"Retry-After": "3600"})
     user = User.objects.filter(phone=phone).first()
     if user is not None:
         uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -204,7 +229,7 @@ def password_reset_request(request, body: PasswordResetRequestIn):
 @auth_router.post(
     "/password/reset/confirm", response=OkOut, auth=None, operation_id="auth_password_reset_confirm",
     summary="تأیید لینک زماندار و تنظیم رمز جدید (هششده)",
-    throttle=[AnonRateThrottle(settings.AUTH_PASSWORD_THROTTLE)],
+    throttle=[PasswordResetThrottle(settings.AUTH_PASSWORD_THROTTLE)],
 )
 def password_reset_confirm(request, body: PasswordResetConfirmIn):
     from .models import User

@@ -26,4 +26,6 @@ def worker_heartbeat_task(timestamp: int) -> str:
     path = Path(settings.WORKER_HEARTBEAT_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(str(timestamp), encoding="utf-8")
+    from .metrics import worker_heartbeat
+    worker_heartbeat()  # همان heartbeat از طریق /metrics هم دیده شود
     return str(path)

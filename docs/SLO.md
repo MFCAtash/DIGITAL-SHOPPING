@@ -11,11 +11,11 @@
 | API | تأخیر p95 | ≤ ۸۰۰ms (همان آستانهٔ هشدار `ApiHighLatency`) | `histogram_quantile(0.95, sum(rate(digital_shopping_http_request_duration_seconds_bucket[30d])) by (le))` |
 | سفارش | ثبت سفارش موفق (غیر خطای داخلی) | ≥ ۹۹٫۹٪ | `digital_shopping_orders_created_total` در برابر ۵xx مسیر `/orders` |
 | پرداخت | نرخ تکمیل پرداخت | ≥ ۷۰٪ (sandbox) / ≥ ۹۵٪ (واقعی) | `digital_shopping_orders_paid_total / digital_shopping_payments_started_total` |
-| صف کار | تأخیر پردازش periodic | ≤ ۵ دقیقه | `procrastinate_jobs_todo` |
+| صف کار | تأخیر پردازش periodic | ≤ ۵ دقیقه | `digital_shopping_worker_heartbeat_age_seconds` |
 | دیتابیس | در دسترس بودن | ≥ ۹۹٫۹٪ | `up{job="postgres"}` |
 | فرانت | Lighthouse موبایل (Performance) | ≥ ۸۵٪ (بودجهٔ CI در `apps/web/lighthouserc.json`) | CI `web-ci.yml` |
 | فرانت | Lighthouse A11y / Best practices / SEO | ۱۰۰٪ / ≥ ۹۵٪ / ≥ ۹۰٪ | CI `web-ci.yml` |
-| فرانت | LCP / CLS / TBT | ≤ ۲۵۰۰ms / ≤ ۰٫۱ / ≤ ۳۰۰ms | CI `web-ci.yml` |
+| فرانت | LCP / CLS / TBT | هدف ۲۵۰۰ms (بودجهٔ CI ۳۵۰۰ms) / ≤ ۰٫۱ / ≤ ۳۰۰ms | CI `web-ci.yml` |
 
 > اعداد پرداخت در sandbox وابسته به سناریوی آزمایشیاند (`fake`)؛ هدف واقعی پس از اتصال درگاه معتبر اعمال میشود.
 
