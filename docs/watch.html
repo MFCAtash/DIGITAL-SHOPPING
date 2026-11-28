@@ -284,7 +284,15 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { el.classList.remove("show"); }, 2200);
   }
-  function icon(name) { return '<svg><use href="#i-' + name + '"/></svg>'; }
+  function iconNode(name) {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    const use = document.createElementNS(ns, "use");
+    use.setAttribute("href", "#i-" + name);
+    svg.appendChild(use);
+    return svg;
+  }
+  function setIcon(el, name) { el.replaceChildren(iconNode(name)); }
   function activeChapter(t) {
     let found = CHAPTERS[0];
     for (let i = 0; i < CHAPTERS.length; i++) if (t >= CHAPTERS[i].t) found = CHAPTERS[i];
@@ -304,7 +312,9 @@
     b.type = "button";
     b.dataset.rate = String(r);
     b.setAttribute("role", "menuitemradio");
-    b.innerHTML = "<span>" + (r === 1 ? "Normal" : r + "×") + "</span><span></span>";
+    const label = document.createElement("span");
+    label.textContent = r === 1 ? "Normal" : r + "×";
+    b.append(label, document.createElement("span"));
     rateMenu.appendChild(b);
   });
   Object.keys(SRC).forEach(function (q) {
@@ -312,7 +322,9 @@
     b.type = "button";
     b.dataset.q = q;
     b.setAttribute("role", "menuitemradio");
-    b.innerHTML = "<span>" + q + "</span><span></span>";
+    const label = document.createElement("span");
+    label.textContent = q;
+    b.append(label, document.createElement("span"));
     qualityMenu.appendChild(b);
   });
   function closeMenus() {
@@ -400,7 +412,7 @@
   }
   function syncPlayIcon() {
     const name = video.paused ? "play" : "pause";
-    playBtn.innerHTML = icon(name);
+    setIcon(playBtn, name);
     playBtn.setAttribute("aria-label", video.paused ? "Play" : "Pause");
     bigPlay.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
     stage.classList.toggle("playing", !video.paused);
@@ -517,7 +529,7 @@
     video.volume = volume;
     video.muted = muted || volume === 0;
     vol.value = String(volume);
-    muteBtn.innerHTML = icon(video.muted ? "mute" : "vol");
+    setIcon(muteBtn, video.muted ? "mute" : "vol");
     muteBtn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
     muteBtn.classList.toggle("on", video.muted);
     set("ds-volume", String(volume));
@@ -538,8 +550,20 @@
     b.type = "button";
     b.className = "cbtn";
     b.dataset.t = String(c.t);
-    b.innerHTML = '<span class="thumb" style="background-position:' + spritePos(frameFor(c.t)) + '"><b>' + fmt(c.t) + '</b></span>' +
-      '<span class="ct"><b>' + fmt(c.t) + '</b><span>' + c.en + " · " + c.fa + "</span></span>";
+    const thumb = document.createElement("span");
+    thumb.className = "thumb";
+    thumb.style.backgroundPosition = spritePos(frameFor(c.t));
+    const thumbTime = document.createElement("b");
+    thumbTime.textContent = fmt(c.t);
+    thumb.appendChild(thumbTime);
+    const text = document.createElement("span");
+    text.className = "ct";
+    const stamp = document.createElement("b");
+    stamp.textContent = fmt(c.t);
+    const label = document.createElement("span");
+    label.textContent = c.en + " · " + c.fa;
+    text.append(stamp, label);
+    b.append(thumb, text);
     b.addEventListener("click", function () {
       seekTo(c.t);
       if (video.paused) video.play().catch(function () {});
@@ -580,7 +604,7 @@
   $("fullBtn").addEventListener("click", toggleFull);
   document.addEventListener("fullscreenchange", function () {
     const on = !!document.fullscreenElement;
-    $("fullBtn").innerHTML = icon(on ? "full-exit" : "full");
+    setIcon($("fullBtn"), on ? "full-exit" : "full");
     $("fullBtn").setAttribute("aria-label", on ? "Exit fullscreen" : "Fullscreen");
   });
   $("back10").addEventListener("click", function () { seekTo(video.currentTime - 10); });
