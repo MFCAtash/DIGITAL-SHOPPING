@@ -342,7 +342,7 @@
 /* ---------- موبایل ---------- */
 @media (max-width: 900px) {
   .site-header__menu { display: inline-flex; }
-  .site-header__nav { display: none; }
+  .site-header__nav { display: none !important; }
   .home-section__head { align-items: start; flex-direction: column; }
 }
 @media (max-width: 900px) {
