@@ -22,7 +22,7 @@ interface Props {
 /** هدر چسبنده: ناوبری دسکتاپ + کشوی موبایل + جستجو + تم + زبان + شمارش سبد. */
 export function SiteHeader({ categories, locale }: Props) {
   const pathname = usePathname();
-  const { cart } = useStore();
+  const { cart, user } = useStore();
   const [scrolled, setScrolled] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
@@ -63,6 +63,10 @@ export function SiteHeader({ categories, locale }: Props) {
           <Link href="/cart" className="site-header__cart">
             {cartText}
           </Link>
+          <Link href={user ? "/account" : "/login"} className="site-header__auth">
+            <Icon name="user" size={16} aria-hidden="true" />
+            <span>{user ? t("nav.account", locale) : t("nav.signIn", locale)}</span>
+          </Link>
           <LocaleSwitch locale={locale} />
         </div>
       </div>
@@ -82,6 +86,7 @@ export function SiteHeader({ categories, locale }: Props) {
               </li>
             ))}
             <li><Link href="/cart">{cartText}</Link></li>
+            <li><Link href={user ? "/account" : "/login"} className="mobile-nav__auth">{user ? t("nav.account", locale) : t("nav.signIn", locale)}</Link></li>
           </ul>
           <h2 className="mobile-nav__title">{t("nav.categories", locale)}</h2>
           <ul className="mobile-nav__cats">

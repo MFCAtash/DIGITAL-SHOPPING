@@ -36,6 +36,7 @@ const routes = [
   "/design",
   "/forgot-password",
   "/password-reset",
+  "/login",
 ];
 
 const browser = await chromium.launch({ headless: true, ...(channel ? { channel } : {}) });

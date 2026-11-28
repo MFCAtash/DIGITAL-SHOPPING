@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital Shopping — cart toast concepts</title>
+<style>
+  :root{--bg:#080512;--ink:#F7F3FF;--muted:#B9AECB;--violet:#A855F7;--cyan:#22D3EE;--green:#34D399}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Vazirmatn,sans-serif;color:var(--ink);background:radial-gradient(900px 500px at 15% -5%,rgba(124,58,237,.35),transparent 60%),radial-gradient(800px 460px at 90% 25%,rgba(34,211,238,.14),transparent 60%),var(--bg);min-height:100vh}
+  header{max-width:1100px;margin:auto;padding:38px 22px 10px}
+  h1{font-size:clamp(24px,3vw,38px);margin:0 0 8px;background:linear-gradient(100deg,#fff,#C084FC 55%,#67E8F9);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);line-height:1.9;max-width:760px}
+  .stage{max-width:1100px;margin:auto;padding:18px 22px 70px;display:grid;gap:24px}
+  .card{border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:20px;background:linear-gradient(160deg,rgba(30,20,55,.65),rgba(10,7,20,.85));box-shadow:0 22px 60px rgba(0,0,0,.35)}
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .card-head b{font-size:17px}
+  .tag{font-size:11px;letter-spacing:.06em;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 11px;color:#D8CCF0}
+  .tag.best{background:linear-gradient(100deg,#34D399,#22D3EE);color:#04231C;border:0;font-weight:800}
+  .demo{min-height:150px;border-radius:14px;display:grid;place-items:center;padding:22px;background:radial-gradient(600px 200px at 60% 100%,rgba(168,85,247,.22),transparent 70%),linear-gradient(#0d0a1c,#0b0818);border:1px solid rgba(255,255,255,.07)}
+  .demo.light{background:linear-gradient(135deg,#eef2f7,#e7e9f2)}
+  small.note{display:block;color:#9F92B7;margin-top:12px;font-size:12px;line-height:1.8}
+
+  /* common toast structure */
+  .t{position:relative;display:flex;align-items:center;gap:12px;width:min(560px,100%);min-height:84px;padding:12px 14px;border-radius:16px;overflow:hidden;isolation:isolate}
+  .t .check{display:grid;place-items:center;inline-size:34px;block-size:34px;flex:none;border-radius:50%;font-size:18px;font-weight:900}
+  .t img{inline-size:56px;block-size:56px;flex:none;object-fit:cover;border-radius:11px}
+  .t .body{display:flex;flex-direction:column;gap:3px;min-inline-size:0;flex:1;text-align:right}
+  .t .title{font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t .sub{font-size:11px;color:#C5B9D8;line-height:1.5}
+  .t .price{font-size:12px;font-weight:800;color:#6EE7B7;direction:rtl}
+  .t .cta{flex:none;text-decoration:none;font-size:12px;font-weight:800;padding:9px 15px;border-radius:999px;color:#fff}
+  .t .x{flex:none;border:0;background:transparent;color:#B9AECB;font-size:20px;line-height:1;cursor:pointer;padding:2px 6px}
+
+  /* A — Emerald Aurora (recommended) */
+  .a{background:linear-gradient(115deg,rgba(6,35,30,.94),rgba(22,12,48,.96) 55%,rgba(45,16,74,.94));border:1px solid rgba(52,211,153,.55);border-inline-start:5px solid #34D399;box-shadow:0 18px 48px rgba(0,0,0,.55),inset 0 0 28px rgba(34,211,238,.12),0 0 26px rgba(52,211,153,.16)}
+  .a::before{content:"";position:absolute;inset:-60% -20%;z-index:-1;background:radial-gradient(circle at 15% 50%,rgba(52,211,153,.5),transparent 55%),radial-gradient(circle at 85% 50%,rgba(168,85,247,.5),transparent 55%);filter:blur(22px)}
+  .a::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.24) 48%,transparent 65%);transform:translateX(-120%);animation:sheen 1.2s ease-out .3s both}
+  .a .check{background:linear-gradient(135deg,#6EE7B7,#10B981);color:#04231C;box-shadow:0 0 22px rgba(52,211,153,.8),inset 0 1px 0 rgba(255,255,255,.6)}
+  .a img{border:1px solid rgba(110,231,183,.6);box-shadow:0 0 16px rgba(52,211,153,.35)}
+  .a .cta{background:linear-gradient(100deg,#7C3AED,#A855F7 55%,#22D3EE);box-shadow:0 0 20px rgba(168,85,247,.55)}
+  .a .price{color:#6EE7B7;text-shadow:0 0 12px rgba(52,211,153,.5)}
+  @keyframes sheen{to{transform:translateX(120%)}}
+
+  /* B — Royal Violet */
+  .b{background:linear-gradient(110deg,#2A0E4E,#4C1D95 55%,#6D28D9);border:1px solid rgba(196,181,253,.6);border-inline-start:5px solid #C084FC;box-shadow:0 18px 44px rgba(76,29,149,.5),inset 0 1px 0 rgba(255,255,255,.18)}
+  .b .check{background:linear-gradient(135deg,#FDE68A,#F59E0B);color:#3B0764;box-shadow:0 0 20px rgba(245,158,11,.55)}
+  .b img{border:1px solid rgba(233,213,255,.7)}
+  .b .cta{background:#fff;color:#4C1D95;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+  .b .price{color:#FDE68A}
+  .b .sub{color:#DDD6FE}
+
+  /* C — Neon Mint cyber */
+  .c{background:#070D12;border:1px solid #34D399;border-inline-start:5px solid #6EE7B7;box-shadow:0 0 0 1px rgba(52,211,153,.2),0 0 34px rgba(52,211,153,.32),inset 0 0 26px rgba(52,211,153,.1)}
+  .c .check{background:#34D399;color:#03291F;box-shadow:0 0 24px #34D399}
+  .c img{border:1px solid #34D399}
+  .c .cta{background:#34D399;color:#03291F;box-shadow:0 0 18px rgba(52,211,153,.6)}
+  .c .title{color:#D1FAE5}
+  .c .price{color:#A7F3D0}
+
+  /* D — Light glass (for bright themes) */
+  .d{background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(240,245,255,.92));border:1px solid rgba(16,185,129,.35);border-inline-start:5px solid #10B981;box-shadow:0 18px 40px rgba(15,23,42,.18),inset 0 1px 0 #fff}
+  .d .check{background:linear-gradient(135deg,#34D399,#059669);color:#fff;box-shadow:0 6px 16px rgba(16,185,129,.35)}
+  .d img{border:1px solid rgba(15,23,42,.12)}
+  .d .body{color:#0F172A}
+  .d .title{color:#0F172A}
+  .d .sub{color:#475569}
+  .d .price{color:#047857}
+  .d .cta{background:linear-gradient(100deg,#7C3AED,#A855F7);box-shadow:0 8px 18px rgba(124,58,237,.3)}
+  .d .x{color:#64748B}
+
+  /* E — Compact pill */
+  .e{background:linear-gradient(100deg,rgba(15,23,42,.96),rgba(46,16,101,.96));border:1px solid rgba(168,85,247,.5);border-inline-start:4px solid #22D3EE;box-shadow:0 14px 34px rgba(0,0,0,.5);min-height:64px;padding-block:8px}
+  .e img{inline-size:42px;block-size:42px}
+  .e .check{inline-size:28px;block-size:28px;font-size:15px;background:linear-gradient(135deg,#6EE7B7,#34D399);color:#04231C}
+  .e .cta{background:rgba(34,211,238,.16);border:1px solid #22D3EE;color:#A5F3FC;padding:7px 12px}
+  .e .price{color:#67E8F9}
+  @media (max-width:620px){.t{flex-wrap:wrap}.t .cta{margin-inline-start:46px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>اعلان «اضافه شدن به سبد خرید» — ۵ کانسپت</h1>
+  <p>همه نمونهها با رنگهای سبز زمردی، بنفش سلطنتی و فیروزهای طراحی شدهاند؛ شفافیت بالا، تضاد خوانا، سایهٔ نرم، انعکاس نور و انیمیشن ورود. نمونهٔ <b>A</b> پیشنهاد من است و همانی است که در پروژه پیاده میشود.</p>
+</header>
+<div class="stage">
+
+  <section class="card">
+    <div class="card-head"><b>A · Emerald Aurora</b><span class="tag best">پیشنهادی</span></div>
+    <div class="demo">
+      <div class="t a">
+        <span class="check">✓</span>
+        <img src="assets/grand-theft-auto-vi-1.webp" alt="" />
+        <span class="body"><span class="title">Grand Theft Auto VI — Global Edition</span><span class="sub">Rockstar · ۱ عدد · ۱ کالا در سبد</span><span class="price">۶٬۴۹۰٬۰۰۰ تومان</span></span>
+        <a class="cta" href="#cart">مشاهدهٔ سبد</a>
+        <button class="x" aria-label="بستن">×</button>
+      </div>
+    </div>
+    <small class="note">پسزمینهٔ تیرهٔ شفاف با هالهٔ سبز–بنفش، تیک زمردی درخشان، دکمهٔ گرادینت بنفش→ فیروزهای و خط نور متحرک روی کارت.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>B · Royal Violet</b><span class="tag">سلطنتی و گرم</span></div>
+    <div class="demo">
+      <div class="t b">
+        <span class="check">✓</span>
+        <img src="assets/grand-theft-auto-vi-1.webp" alt="" />
+        <span class="body"><span class="title">Grand Theft Auto VI — Global Edition</span><span class="sub">Rockstar · ۱ عدد · ۱ کالا در سبد</span><span class="price">۶٬۴۹۰٬۰۰۰ تومان</span></span>
+        <a class="cta" href="#cart">مشاهدهٔ سبد</a>
+        <button class="x" aria-label="بستن">×</button>
+      </div>
+    </div>
+    <small class="note">بنفش عمیق با تیک طلایی و دکمهٔ سفید — حس لوکس و جشنوارهای؛ مناسب تمهای Nebula و Solar.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>C · Neon Mint</b><span class="tag">نئون و پرانرژی</span></div>
+    <div class="demo">
+      <div class="t c">
+        <span class="check">✓</span>
+        <img src="assets/grand-theft-auto-vi-1.webp" alt="" />
+        <span class="body"><span class="title">Grand Theft Auto VI — Global Edition</span><span class="sub">Rockstar · ۱ عدد · ۱ کالا در سبد</span><span class="price">۶٬۴۹۰٬۰۰۰ تومان</span></span>
+        <a class="cta" href="#cart">مشاهدهٔ سبد</a>
+        <button class="x" aria-label="بستن">×</button>
+      </div>
+    </div>
+    <small class="note">مشکی مینیمال با لبه و هالهٔ نئون سبز — بسیار خوانا و مدرن؛ مناسب تم شب مخملی.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>D · Light Glass</b><span class="tag">تم روشن</span></div>
+    <div class="demo light">
+      <div class="t d">
+        <span class="check">✓</span>
+        <img src="assets/grand-theft-auto-vi-1.webp" alt="" />
+        <span class="body"><span class="title">Grand Theft Auto VI — Global Edition</span><span class="sub">Rockstar · ۱ عدد · ۱ کالا در سبد</span><span class="price">۶٬۴۹۰٬۰۰۰ تومان</span></span>
+        <a class="cta" href="#cart">مشاهدهٔ سبد</a>
+        <button class="x" aria-label="بستن">×</button>
+      </div>
+    </div>
+    <small class="note">شیشهای روشن با متن تیره و تیک سبز — برای تم «کاغذ گرم» و تمهای روشن طراحی شده است.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>E · Compact Pill</b><span class="tag">جمعوجور</span></div>
+    <div class="demo">
+      <div class="t e">
+        <span class="check">✓</span>
+        <img src="assets/grand-theft-auto-vi-1.webp" alt="" />
+        <span class="body"><span class="title">Grand Theft Auto VI</span><span class="sub">Added to cart · 6,490,000 تومان</span></span>
+        <a class="cta" href="#cart">سبد</a>
+        <button class="x" aria-label="بستن">×</button>
+      </div>
+    </div>
+    <small class="note">نسخهٔ کوتاه و باریک برای موبایل و صفحاتی که فضای کمی دارند.</small>
+  </section>
+
+</div>
+</body>
+</html>

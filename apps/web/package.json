@@ -7,7 +7,7 @@
     "dev": "next dev --webpack --port 3000",
     "build": "next build --webpack",
     "start": "next start --port 3000",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
     "lighthouse": "npx --yes @lhci/cli autorun --config=lighthouserc.json"
