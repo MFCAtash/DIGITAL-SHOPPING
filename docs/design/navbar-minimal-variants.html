@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital Shopping — minimal luxury navigation concepts</title>
+<style>
+  :root{--ink:#F7F3FF;--muted:#A99BBF;--gold:#D9BE86;--emerald:#34D399;--violet:#A855F7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Vazirmatn,sans-serif;color:var(--ink);background:radial-gradient(900px 480px at 12% -8%,rgba(124,58,237,.22),transparent 60%),radial-gradient(800px 420px at 92% 18%,rgba(52,211,153,.08),transparent 60%),#07050E;min-height:100vh}
+  header{max-width:1180px;margin:auto;padding:40px 22px 8px}
+  h1{font-size:clamp(23px,3vw,36px);margin:0 0 8px;background:linear-gradient(100deg,#fff,#E8D7A3 55%,#9FE8D0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);line-height:1.9;max-width:780px;margin:0}
+  .stage{max-width:1180px;margin:auto;padding:20px 22px 80px;display:grid;gap:24px}
+  .card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px;background:linear-gradient(160deg,rgba(26,20,44,.55),rgba(9,7,16,.85));box-shadow:0 20px 52px rgba(0,0,0,.35)}
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 4px 14px}
+  .card-head b{font-size:16px;font-weight:700}
+  .tag{font-size:11px;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 11px;color:#CFC1E4}
+  .tag.best{background:rgba(217,190,134,.16);border-color:rgba(217,190,134,.55);color:#E8D7A3;font-weight:700}
+  .demo{min-height:112px;border-radius:14px;padding:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#0c0a18,#0a0814);border:1px solid rgba(255,255,255,.06);overflow:hidden}
+  small.note{display:block;color:#9385AA;margin-top:12px;font-size:12px;line-height:1.8}
+
+  .nav{display:flex;align-items:center;gap:9px;max-inline-size:100%;padding:7px 10px;border-radius:999px}
+  .brand{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:700;font-size:14px;white-space:nowrap;direction:ltr}
+  .brand i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:block;position:relative}
+  .brand i::after{content:"";position:absolute;inset:4px;border-radius:50%;background:#fff;opacity:.7}
+  .brand span{font-weight:400;color:#A99BBF}
+  .search{display:flex;align-items:center;gap:6px;color:#9C8EB3;font-size:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px;min-inline-size:130px;white-space:nowrap}
+  .links{display:flex;align-items:center;gap:3px;list-style:none;margin:0;padding:0;font-size:12px}
+  .links a{display:inline-flex;text-decoration:none;color:#C7BCD8;padding:7px 11px;border-radius:999px;white-space:nowrap}
+  .links a.on{color:#fff;font-weight:700}
+  .cart{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#D8CCF0;font-size:12px;font-weight:600;white-space:nowrap;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+  .cart b{font-size:10px;min-width:17px;height:17px;display:grid;place-items:center;border-radius:999px;background:rgba(255,255,255,.14)}
+  .locale{font-size:11px;color:#A99BBF;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;white-space:nowrap}
+
+  /* A — Ink & Gold (recommended) */
+  .a{background:rgba(10,9,16,.88);border:1px solid rgba(217,190,134,.28);box-shadow:0 14px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.07)}
+  .a .links a.on{background:rgba(217,190,134,.12);color:#E8D7A3}
+  .a .auth{display:inline-flex;align-items:center;gap:8px;text-decoration:none;white-space:nowrap;font-size:12px;font-weight:600;color:#E8D7A3;padding:8px 14px;border-radius:999px;border:1px solid rgba(217,190,134,.5);background:linear-gradient(180deg,rgba(217,190,134,.09),rgba(217,190,134,.02));transition:.22s}
+  .a .auth i{width:6px;height:6px;border-radius:50%;background:#D9BE86;box-shadow:0 0 8px rgba(217,190,134,.7)}
+  .a .auth:hover{background:rgba(217,190,134,.16);border-color:#E8D7A3;box-shadow:0 0 18px rgba(217,190,134,.22)}
+
+  /* B — Pearl Outline */
+  .b{background:rgba(12,12,20,.9);border:1px solid rgba(255,255,255,.14)}
+  .b .links a.on{border-block-end:1px solid rgba(255,255,255,.65);border-radius:0}
+  .b .auth{display:inline-flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;font-size:12px;font-weight:600;color:#F7F3FF;padding:8px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:transparent;transition:.22s}
+  .b .auth i{width:6px;height:6px;border-radius:50%;background:#6EE7B7}
+  .b .auth:hover{border-color:#fff;background:rgba(255,255,255,.07)}
+
+  /* C — Emerald Whisper */
+  .c{background:rgba(9,14,14,.9);border:1px solid rgba(52,211,153,.2)}
+  .c .links a.on{color:#A7F3D0}
+  .c .auth{display:inline-flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;font-size:12px;font-weight:700;color:#A7F3D0;padding:8px 14px;border-radius:999px;border:1px solid rgba(52,211,153,.35);background:rgba(52,211,153,.07);transition:.22s}
+  .c .auth i{width:6px;height:6px;border-radius:50%;background:#34D399;box-shadow:0 0 8px rgba(52,211,153,.6)}
+  .c .auth:hover{background:rgba(52,211,153,.15);border-color:#34D399}
+
+  /* D — Violet Silk */
+  .d{background:rgba(14,9,24,.9);border:1px solid rgba(168,85,247,.24)}
+  .d .links a.on{color:#DDD6FE}
+  .d .auth{display:inline-flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;font-size:12px;font-weight:600;color:#DDD6FE;padding:8px 14px;border-radius:999px;border:1px solid rgba(168,85,247,.42);background:linear-gradient(100deg,rgba(168,85,247,.12),rgba(168,85,247,.03));transition:.22s}
+  .d .auth i{width:6px;height:6px;border-radius:50%;background:#C084FC}
+  .d .auth:hover{border-color:#C084FC;background:rgba(168,85,247,.2)}
+
+  /* E — Serif Text Only */
+  .e{background:rgba(11,10,17,.86);border:1px solid rgba(255,255,255,.12)}
+  .e .links{font-family:Georgia,"Times New Roman",serif}
+  .e .links a.on{color:#E8D7A3}
+  .e .auth{display:inline-flex;align-items:center;gap:6px;text-decoration:none;white-space:nowrap;font-family:Georgia,"Times New Roman",serif;font-size:13px;color:#E8D7A3;padding:6px 4px;border-block-end:1px solid rgba(217,190,134,.55)}
+  .e .auth i{font-style:normal;font-size:14px}
+  .e .auth:hover{color:#fff;border-color:#fff}
+  @media(max-width:900px){.nav{flex-wrap:wrap;border-radius:18px!important}.search{display:none}.links{order:3;width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<header>
+  <h1>دکمهٔ «ثبت نام و ورود» — مینیمال و لوکس</h1>
+  <p>پنج نمونه با رنگبندی ملایمتر و طراحی ظریفتر: طلا/مشکی، سفیدِ خالص، زمردی کم رنگ، بنفش ابریشمی و متن سریف ساده. مثل همیشه منو، جستجو، زبان و سبد هم در هر نمونه موجوداند.</p>
+</header>
+<div class="stage">
+
+  <section class="card">
+    <div class="card-head"><b>A · Ink &amp; Gold</b><span class="tag best">پیشنهاد من</span></div>
+    <div class="demo">
+      <nav class="nav a">
+        <a class="brand" href="#"><i></i>Digital <span>Shopping</span></a>
+        <div class="search">⌕ جستجوی محصولات…</div>
+        <ul class="links"><li><a class="on" href="#">خانه</a></li><li><a href="#">کالاها</a></li><li><a href="#">مقایسه</a></li><li><a href="#">حساب من</a></li></ul>
+        <a class="cart" href="#">سبد <b>۳</b></a>
+        <span class="locale">FA / EN</span>
+        <a class="auth" href="#"><i></i>ثبت نام و ورود</a>
+      </nav>
+    </div>
+    <small class="note">مشکی عمیق با لبهٔ طلای کم رنگ و دکمهٔ outline طلایی و نقطهٔ نور — لوکس، آرام و بسیار خوانا.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>B · Pearl Outline</b><span class="tag">سفید مینیمال</span></div>
+    <div class="demo">
+      <nav class="nav b">
+        <a class="brand" href="#"><i></i>Digital <span>Shopping</span></a>
+        <div class="search">⌕ جستجوی محصولات…</div>
+        <ul class="links"><li><a class="on" href="#">خانه</a></li><li><a href="#">کالاها</a></li><li><a href="#">مقایسه</a></li><li><a href="#">حساب من</a></li></ul>
+        <a class="cart" href="#">سبد <b>۳</b></a>
+        <span class="locale">FA / EN</span>
+        <a class="auth" href="#"><i></i>ثبت نام و ورود</a>
+      </nav>
+    </div>
+    <small class="note">دکمهٔ کاملاً شفاف با لبهٔ سفید نازک و یک نقطهٔ سبز — کمترین رنگ، بیشترین سادگی.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>C · Emerald Whisper</b><span class="tag">سبز ملایم</span></div>
+    <div class="demo">
+      <nav class="nav c">
+        <a class="brand" href="#"><i></i>Digital <span>Shopping</span></a>
+        <div class="search">⌕ جستجوی محصولات…</div>
+        <ul class="links"><li><a class="on" href="#">خانه</a></li><li><a href="#">کالاها</a></li><li><a href="#">مقایسه</a></li><li><a href="#">حساب من</a></li></ul>
+        <a class="cart" href="#">سبد <b>۳</b></a>
+        <span class="locale">FA / EN</span>
+        <a class="auth" href="#"><i></i>ثبت نام و ورود</a>
+      </nav>
+    </div>
+    <small class="note">زمردی کم رنگ و لبهٔ نازک سبز — هماهنگ با اعلان سبد ولی بدون گرادینت پررنگ.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>D · Violet Silk</b><span class="tag">بنفش ابریشمی</span></div>
+    <div class="demo">
+      <nav class="nav d">
+        <a class="brand" href="#"><i></i>Digital <span>Shopping</span></a>
+        <div class="search">⌕ جستجوی محصولات…</div>
+        <ul class="links"><li><a class="on" href="#">خانه</a></li><li><a href="#">کالاها</a></li><li><a href="#">مقایسه</a></li><li><a href="#">حساب من</a></li></ul>
+        <a class="cart" href="#">سبد <b>۳</b></a>
+        <span class="locale">FA / EN</span>
+        <a class="auth" href="#"><i></i>ثبت نام و ورود</a>
+      </nav>
+    </div>
+    <small class="note">بنفش تیره با لبهٔ نازک و زمینهٔ ملایم — حس لوکس و نرم بدون درخشندگی زیاد.</small>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><b>E · Serif Text Only</b><span class="tag">سادهٔ کلاسیک</span></div>
+    <div class="demo">
+      <nav class="nav e">
+        <a class="brand" href="#"><i></i>Digital <span>Shopping</span></a>
+        <div class="search">⌕ جستجوی محصولات…</div>
+        <ul class="links"><li><a class="on" href="#">خانه</a></li><li><a href="#">کالاها</a></li><li><a href="#">مقایسه</a></li><li><a href="#">حساب من</a></li></ul>
+        <a class="cart" href="#">سبد <b>۳</b></a>
+        <span class="locale">FA / EN</span>
+        <a class="auth" href="#"><i>↗</i>ثبت نام و ورود</a>
+      </nav>
+    </div>
+    <small class="note">فقط متن سریف با خط باریک زیرین — مینیمالترین حالت ممکن.</small>
+  </section>
+
+</div>
+</body>
+</html>
