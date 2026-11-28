@@ -134,6 +134,9 @@ await t("Modal: فوکوس داخل دیالوگ، Esc، بازگشت فوکوس
   ok(await dlg.evaluate((d) => d.contains(document.activeElement)), "فوکوس داخل دیالوگ نیست");
   ok(await page.evaluate(() => document.documentElement.style.overflow === "hidden"), "اسکرول قفل نشد");
   await page.keyboard.press("Escape");
+  // بسته شدن dialog و بازگشت فوکوس میتواند یک فریم طول بکشد؛ قبل از assert صبر میکنیم.
+  await page.waitForFunction(() => document.querySelectorAll("dialog[open]").length === 0, null, { timeout: 3000 }).catch(() => undefined);
+  await page.waitForFunction(() => document.documentElement.style.overflow !== "hidden", null, { timeout: 3000 }).catch(() => undefined);
   eq(await page.locator("dialog[open]").count(), 0);
   ok(await trigger.evaluate((el) => document.activeElement === el), "فوکوس به دکمه برنگشت");
   ok(await page.evaluate(() => document.documentElement.style.overflow !== "hidden"), "قفل اسکرول آزاد نشد");
