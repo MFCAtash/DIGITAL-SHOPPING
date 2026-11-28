@@ -1,6 +1,25 @@
 # DIGITAL SHOPPING
 
-![Digital Shopping — Nebula Hero cover](docs/github-posters/cover.png)
+<a id="demo"></a>
+
+<p align="center">
+  <a href="https://mfcatash.github.io/DIGITAL-SHOPPING/watch.html" title="Watch the full 1:48 product demo">
+    <picture>
+      <source srcset="docs/media/digital-shopping-demo-preview.webp" type="image/webp" />
+      <img src="docs/media/digital-shopping-demo-poster.jpg" width="920" alt="DIGITAL SHOPPING — animated preview of the 1 minute 48 second product demo" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://mfcatash.github.io/DIGITAL-SHOPPING/watch.html"><b>▶ Watch the 1:48 product demo</b></a>
+  &nbsp;·&nbsp;
+  <a href="docs/media/digital-shopping-demo-1080p.mp4">1080p MP4</a>
+  &nbsp;·&nbsp;
+  <a href="docs/media/digital-shopping-demo-720p.mp4">720p MP4</a>
+  <br />
+  <sub>Storefront, themes, catalogue, product pages, cart and OTP checkout — recorded end to end in Persian, with the English interface one click away.</sub>
+</p>
 
 [![Backend CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/backend-ci.yml)
 [![Web CI](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/web-ci.yml/badge.svg)](https://github.com/MFCAtash/DIGITAL-SHOPPING/actions/workflows/web-ci.yml)
@@ -27,11 +46,13 @@
 
 **A digital storefront where every price has a history, every claim has evidence, and every interface speaks the user's language — Persian and English, eight themes, one uncompromising standard of trust.**
 
-> **Status (27 November 2026):** the backend and frontend are complete, tested and published. **311 backend tests passed + 2 skipped** (the two concurrency tests require PostgreSQL and are skipped on SQLite), **143 pure tests**, **54 UI tests**, **26 preview E2E tests** and **4 web E2E tests**. The API contract contains **39 paths**, the catalogue has **28 products / 51 images**, and the interface ships **17 routes** with **8 themes**. All migrations are committed, and `ruff`, `tsc`, `next build`, Lighthouse and every CI workflow are green.
+> **Status (28 November 2026):** the backend and frontend are complete, tested and published. **311 backend tests passed + 2 skipped** (the two concurrency tests require PostgreSQL and are skipped on SQLite), **143 pure tests**, **54 UI tests**, **26 preview E2E tests** and **4 web E2E tests**. The API contract contains **39 paths**, the catalogue has **28 products / 51 images**, and the interface ships **17 routes** with **8 themes**. All migrations are committed, and `ruff`, `tsc`, `next build`, Lighthouse and every CI workflow are green.
 
 Digital Shopping is a full-stack electronics storefront built around a simple principle: **real prices, real comparisons**. It combines a transaction-oriented Django backend, a bilingual Next.js frontend with a bespoke visual identity, and an operational layer covering CI/CD, monitoring, encrypted backups and verifiable rollback. The goal is not merely to display products, but to produce **measurable trust** through price history, standardised specifications, transparent tax and shipping, honest image-rights reporting, and append-only financial audits.
 
 ### Contents
+
+**Demo:** [Watch the 1:48 product demo](#demo)
 
 1. [Technologies and libraries](#1-technologies-and-libraries)
 2. [Features and capabilities](#2-features-and-capabilities)
@@ -288,6 +309,8 @@ A one-click alternative is available through the committed [dev container](.devc
 | `node scripts/check-i18n.mjs` | Assert that English pages contain no Persian characters |
 | `node scripts/capture-screenshots.mjs` | Regenerate the screenshot gallery |
 
+> Make targets live in `backend/Makefile`; from the repository root run `make -C backend <target>`. The Compose file is at the repository root and reads `.env` from there.
+
 ---
 
 ### 8. Environment configuration
@@ -341,7 +364,7 @@ Operations: `METRICS_TOKEN`, `ALERT_WEBHOOK_URL`, `SLACK_WEBHOOK_URL`, `EMAIL_TO
 - **`/admin/`:** protected by Caddy and `AdminGuardMiddleware` with CIDR and `is_staff`.
 - **Production checks:** `check --deploy --fail-level WARNING` in CI; the only silenced warning is `security.W021`.
 - **Secrets:** gitleaks, rotation procedure and fail-closed behaviour; a leaked secret is revoked, not merely deleted.
-- **Monitoring:** `codex_*` metrics, Grafana, eight alerts and a runbook with valid links.
+- **Monitoring:** `digital_shopping_*` metrics, Grafana, eight alerts and a runbook with valid links.
 - **Backup:** 15-minute schedule, RPO ≤ 15 minutes and RTO < 1 hour.
 - **Deployment:** backup before migration, single migration, API+web health checks and rollback to the previous known-good SHA.
 
@@ -405,6 +428,8 @@ The two concurrency tests are skipped only on SQLite and run against PostgreSQL 
 
 All images are reproducible with `node scripts/capture-screenshots.mjs`; the full gallery is at [`docs/screenshots/index.html`](docs/screenshots/index.html).
 
+The complete **1:48 product demo** is embedded at the top of this README and available as a standalone player at [`docs/watch.html`](docs/watch.html), in 1080p and 720p.
+
 ### 17. Phases and risks
 
 | Phase | Status |
@@ -451,6 +476,8 @@ This repository is **public for viewing only**. It is distributed under the **Di
 Digital Shopping یک فروشگاه الکترونیکی تمامپیشه است که «قیمت واقعی، مقایسۀ واقعی» را اصل طراحی خود قرار میدهد. این پروژه ترکیبی است از بکاند Django با معماری امن و تراکنشمحور، فرانت Next.js دوزبان با هویت بصری اختصاصی، و لایهای از عملیات شامل CI/CD، مانیتورینگ، پشتیبانگیری رمزگذاری شده و بازگشت قابل اثبات. هدف تنها نمایش کالا نیست، بلکه **ایجاد اعتماد قابلاندازهگیری** از طریق تاریخچۀ قیمت، مشخصات استاندارد، شفافسازی مالیات و حملونقل، گزارش صادقانه حقوق تصاویر و ممیزی فقطافزودنی مالی است.
 
 ### فهرست
+
+**ویدیو:** [تماشای ویدیو معرفی ۱:۴۸](#demo)
 
 1. [فناوریها و کتابخانهها](#۱-فناوریها-و-کتابخانهها)
 2. [قابلیتها و امکانات](#۲-قابلیتها-و-امکانات)
@@ -688,6 +715,8 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 | `node scripts/check-i18n.mjs` | اثبات نبود کاراکتر فارسی در صفحات en |
 | `node scripts/capture-screenshots.mjs` | تولید مجدد گالری تصاویر |
 
+> تارگت‌های make در `backend/Makefile` هستند؛ از ریشهٔ مخزن با `make -C backend <target>` اجرا کنید. فایل Compose در ریشهٔ مخزن است و `.env` را از همان‌جا می‌خواند.
+
 ---
 
 ### ۶. تنظیمات محیطی
@@ -722,7 +751,7 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 - `/admin/` تحت Caddy و `AdminGuardMiddleware` با CIDR و `is_staff`.
 - `check --deploy --fail-level WARNING` در CI؛ تنها هشدار خاموششده `security.W021`.
 - رازها: gitleaks، چرخش و fail-closed؛ راز لو رفته باطل میشود.
-- مانیتورینگ: متریکهای `codex_*`، Grafana، ۸ هشدار و RUNBOOK.
+- مانیتورینگ: متریکهای `digital_shopping_*`، Grafana، ۸ هشدار و RUNBOOK.
 - بکاپ ۱۵دقیقهای، RPO ≤ ۱۵ دقیقه و RTO < ۱ ساعت.
 - استقرار: بکاپ قبل migrate، migrate تکبار، بررسی سلامت API+وب و rollback به SHA قبلی.
 
@@ -785,6 +814,8 @@ API: `GET /api/v1/catalog/products?brand=asus&ram_gte=16&max_usd=1500&sort=price
 | ![GTA VI](docs/screenshots/06-product-gta-fa.webp) | ![چکاوت](docs/screenshots/08-checkout-fa.webp) | ![موبایل](docs/screenshots/10-mobile-home-fa.webp) |
 
 گالری کامل: [`docs/screenshots/index.html`](docs/screenshots/index.html)؛ تولید مجدد با `node scripts/capture-screenshots.mjs`.
+
+**ویدیو معرفی ۱:۴۸** در بالای همین README قابل مشاهده است و نسخهٔ مستقل آن با کیفیت ۱۰۸۰p و ۷۲۰p در [`docs/watch.html`](docs/watch.html) قرار دارد.
 
 ---
 

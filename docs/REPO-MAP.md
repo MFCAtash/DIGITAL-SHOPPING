@@ -13,7 +13,8 @@ This guide explains what each top-level directory is, which files are authoritat
 | `overlay/data/` | Catalogue seed (`real-catalog.json`) and image-rights ledger | ✅ source of truth for seed data and rights |
 | `ops/` | Docker Compose, Caddy, backup, k6 and monitoring configuration | ✅ source of truth for deployment |
 | `scripts/` | Security scan, secret rotation, i18n audit and screenshot capture | ✅ tooling |
-| `docs/` | ADRs, runbooks, audits, design concepts, poster/screenshot galleries | 📘 documentation |
+| `docs/` | ADRs, runbooks, audits, design concepts, poster/screenshot galleries, demo video and player | 📘 documentation |
+| `docs/media/` | Optimised 1080p/720p demo video, animated preview and poster used by the README | 🎬 media |
 | `docs/internal/` | Historical working notes moved out of the repository root | 🗄️ archive — not product code |
 | `docs/legacy-overlay/` | Earlier phase notes for the catalogue overlay | 🗄️ archive |
 | `legacy/` | Pre-redesign assets retained for provenance | 🗄️ archive — do not use in production |
